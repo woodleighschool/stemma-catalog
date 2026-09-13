@@ -20,7 +20,6 @@ spec:
         uninstallable: false
   extends: mac-software
   source:
-    filename: CompanyPortal.pkg
     url: https://go.microsoft.com/fwlink/?linkid=853070
   verification:
     integrity: true

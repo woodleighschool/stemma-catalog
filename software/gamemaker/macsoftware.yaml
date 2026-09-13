@@ -20,7 +20,6 @@ spec:
         uninstallable: true
   extends: mac-software
   source:
-    filename: GameMaker.pkg
     url: https://gamemaker.io/en/download/mac/monthly/GameMaker.pkg
   verification:
     integrity: true

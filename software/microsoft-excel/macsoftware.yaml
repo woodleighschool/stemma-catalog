@@ -23,7 +23,6 @@ spec:
         uninstallable: false
   extends: mac-software
   source:
-    filename: MicrosoftExcel.pkg
     url: https://go.microsoft.com/fwlink/?linkid=525135
   verification:
     integrity: true

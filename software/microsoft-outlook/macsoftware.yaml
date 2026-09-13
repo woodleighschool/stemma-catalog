@@ -110,7 +110,6 @@ spec:
         uninstallable: false
   extends: mac-software
   source:
-    filename: MicrosoftOutlook.pkg
     url: https://go.microsoft.com/fwlink/?linkid=525137
   verification:
     integrity: true

@@ -31,7 +31,6 @@ spec:
         uninstallable: false
   extends: mac-software
   source:
-    filename: Microsoft365BusinessProSuite.pkg
     url: https://go.microsoft.com/fwlink/?linkid=2009112
   verification:
     integrity: true

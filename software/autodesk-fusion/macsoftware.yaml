@@ -21,7 +21,6 @@ spec:
         uninstallable: true
   extends: mac-software
   source:
-    filename: AutodeskFusion.pkg
     url: https://dl.appstreaming.autodesk.com/production/installers/Autodesk%20Fusion%20Admin%20Install.pkg
   verification:
     integrity: true

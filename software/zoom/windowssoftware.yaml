@@ -9,5 +9,4 @@ spec:
       description: Zoom Workplace for Windows.
   extends: windows-win32
   source:
-    filename: ZoomInstallerFull.msi
     url: https://zoom.us/client/latest/ZoomInstallerFull.msi?archType=x64

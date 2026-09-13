@@ -23,7 +23,6 @@ spec:
         uninstallable: false
   extends: mac-software
   source:
-    filename: MicrosoftWord.pkg
     url: https://go.microsoft.com/fwlink/?linkid=525134
   verification:
     integrity: true

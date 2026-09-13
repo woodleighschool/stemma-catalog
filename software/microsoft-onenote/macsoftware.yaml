@@ -23,7 +23,6 @@ spec:
         uninstallable: false
   extends: mac-software
   source:
-    filename: MicrosoftOneNote.pkg
     url: https://go.microsoft.com/fwlink/?linkid=820886
   verification:
     integrity: true

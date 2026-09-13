@@ -23,7 +23,6 @@ spec:
         uninstallable: false
   extends: mac-software
   source:
-    filename: MicrosoftPowerPoint.pkg
     url: https://go.microsoft.com/fwlink/?linkid=525136
   verification:
     integrity: true

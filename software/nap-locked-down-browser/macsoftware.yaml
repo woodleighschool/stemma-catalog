@@ -29,7 +29,6 @@ spec:
   extends: mac-software
   source:
     config:
-      filename: NAPLockedDownBrowser.pkg
       match: https://[^"\s]+\.pkg
       url: https://www.assessform.edu.au/naplan-online/locked-down-browser
     resolver: http

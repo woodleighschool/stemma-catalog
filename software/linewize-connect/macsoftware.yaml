@@ -69,7 +69,6 @@ spec:
         uninstallable: false
   extends: mac-software
   source:
-    filename: Connect Installer.pkg
     url: https://qoria-mza-installers.linewize.net/Connect%20Installer.pkg
   verification:
     certificate_sha256: 638e2fa3b1b15b657cbecd820c2e24f598717c5c6cbae254642e7adfcae6e9b0

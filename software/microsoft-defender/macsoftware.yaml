@@ -19,7 +19,6 @@ spec:
         uninstallable: false
   extends: mac-software
   source:
-    filename: MicrosoftDefender.pkg
     url: https://go.microsoft.com/fwlink/?linkid=2097502
   verification:
     integrity: true

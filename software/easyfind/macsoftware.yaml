@@ -20,7 +20,6 @@ spec:
   extends: mac-software
   source:
     config:
-      filename: EasyFind.zip
       match: https://[^"\s]+EasyFind\.app\.zip
       url: https://www.devontechnologies.com/apps/freeware
     resolver: http

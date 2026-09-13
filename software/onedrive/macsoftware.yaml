@@ -19,7 +19,6 @@ spec:
         uninstallable: false
   extends: mac-software
   source:
-    filename: OneDrive.pkg
     url: https://go.microsoft.com/fwlink/?linkid=823060
   verification:
     integrity: true

@@ -9,5 +9,4 @@ spec:
       description: Google Chrome Enterprise for Windows.
   extends: windows-win32
   source:
-    filename: GoogleChrome.msi
     url: https://dl.google.com/dl/chrome/install/googlechromestandaloneenterprise64.msi

@@ -24,7 +24,6 @@ spec:
   extends: mac-software
   package_path: Install Google Earth Pro *.pkg
   source:
-    filename: GoogleEarthPro.dmg
     url: https://dl.google.com/dl/earth/client/advanced/current/googleearthpromac-intel.dmg
   verification:
     integrity: true

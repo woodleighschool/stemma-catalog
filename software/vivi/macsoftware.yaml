@@ -21,7 +21,6 @@ spec:
         uninstallable: true
   extends: mac-software
   source:
-    filename: Vivi.pkg
     url: https://api.vivi.io/mac
   verification:
     integrity: true
