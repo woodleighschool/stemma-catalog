@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/woodleighschool/stemma/refs/heads/main/stemma.schema.json
+apiVersion: stemma/v1alpha1
+kind: WindowsSoftware
+metadata:
+  name: google-chrome
+spec:
+  destinations:
+    intune:
+      description: Google Chrome Enterprise for Windows.
+  extends: windows-win32
+  source:
+    filename: GoogleChrome.msi
+    url: https://dl.google.com/dl/chrome/install/googlechromestandaloneenterprise64.msi

@@ -1,0 +1,48 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/woodleighschool/stemma/refs/heads/main/stemma.schema.json
+apiVersion: stemma/v1alpha1
+kind: MacSoftware
+metadata:
+  name: adobe-browser-authentication
+spec:
+  destinations:
+    woodstar:
+      pkginfo:
+        blocking_applications:
+          - Creative Cloud
+          - Creative Cloud Desktop App
+          - Creative Cloud Installer
+        category: Creativity
+        description: Enables browser-based authentication for Adobe Creative Cloud.
+        developer: Adobe
+        installcheck_script: |-
+          #!/bin/sh
+          config="/Library/Application Support/Adobe/OOBE/Configs/ServiceConfig.xml"
+          assertion="count(/config/*) = 1 and count(/config/feature[name = 'BrowserBasedAuthentication' and enabled = 'true' and count(*) = 2]) = 1"
+          if [ -f "$config" ] && [ "$(/usr/bin/xmllint --xpath "$assertion" "$config" 2>/dev/null)" = true ]; then
+            exit 1
+          fi
+          exit 0
+        installer_type: nopkg
+        minimum_os_version: "11.0"
+        name: Adobe Creative Cloud Browser-Based Authentication
+        postinstall_script: |-
+          #!/bin/sh
+          set -eu
+          config="/Library/Application Support/Adobe/OOBE/Configs/ServiceConfig.xml"
+          /bin/mkdir -p "${config%/*}"
+          /bin/cat > "$config" <<'EOF'
+          <config>
+            <feature>
+              <name>BrowserBasedAuthentication</name>
+              <enabled>true</enabled>
+            </feature>
+          </config>
+          EOF
+          /usr/sbin/chown root:wheel "$config"
+          /bin/chmod 0644 "$config"
+        unattended_install: true
+        uninstallable: false
+        update_for:
+          - Adobe Creative Cloud
+        version: "1.0"
+  extends: mac-software

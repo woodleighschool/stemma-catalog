@@ -1,0 +1,39 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/woodleighschool/stemma/refs/heads/main/stemma.schema.json
+apiVersion: stemma/v1alpha1
+kind: MacSoftware
+metadata:
+  name: microsoft-365-business-pro-suite
+spec:
+  application:
+    bundle_id: com.microsoft.Word
+  destinations:
+    woodstar:
+      pkginfo:
+        blocking_applications:
+          - Microsoft AutoUpdate
+          - Microsoft Excel
+          - Microsoft OneNote
+          - Microsoft Outlook
+          - Microsoft PowerPoint
+          - Microsoft Teams
+          - Microsoft Word
+        category: Productivity
+        description: Installs the Microsoft 365 suite. Individual applications and Microsoft
+          AutoUpdate own subsequent updates.
+        developer: Microsoft
+        installs: []
+        minimum_os_version: "13.0"
+        name: Microsoft 365 Business Pro Suite
+        receipts:
+          - packageid: com.microsoft.package.Frameworks
+            version: "0"
+        unattended_install: true
+        uninstallable: false
+  extends: mac-software
+  source:
+    filename: Microsoft365BusinessProSuite.pkg
+    url: https://go.microsoft.com/fwlink/?linkid=2009112
+  verification:
+    integrity: true
+    signature: true
+    subject: source

@@ -1,0 +1,125 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/woodleighschool/stemma/refs/heads/main/stemma.schema.json
+apiVersion: stemma/v1alpha1
+kind: MacSoftware
+metadata:
+  name: windows-app
+spec:
+  application:
+    bundle_id: com.microsoft.rdc.macos
+    installed_path: /Applications/Windows App.app
+  destinations:
+    woodstar:
+      pkginfo:
+        category: Productivity
+        description: Windows App (formerly Microsoft Remote Desktop) is your gateway to Azure
+          Virtual Desktop, Windows 365, Microsoft Dev Box, Remote Desktop Services, and remote PCs,
+          securely connecting you to Windows devices and apps.
+        developer: Microsoft
+        name: Windows App
+        unattended_install: true
+        unattended_uninstall: true
+        uninstall_method: removepackages
+        uninstallable: true
+  extends: mac-software
+  source:
+    filename: WindowsApp.pkg
+    url: https://go.microsoft.com/fwlink/?linkid=868963
+  verification:
+    integrity: true
+    signature: true
+    subject: source
+---
+apiVersion: stemma/v1alpha1
+kind: MacSoftware
+metadata:
+  name: windows-app-rds
+spec:
+  destinations:
+    woodstar:
+      pkginfo:
+        category: Productivity
+        description: Adds the Woodleigh Remote Desktop Services connection to Windows App.
+        developer: Woodleigh School
+        installcheck_script: |-
+          #!/bin/zsh --no-rcs
+
+          app="/Applications/Windows App.app/Contents/MacOS/Windows App"
+          friendly_name="RDS"
+          uuid="7A91ED4C-BEA5-453E-91AC-4F0A7C266390"
+
+          if [[ ! -x "${app}" ]]; then
+              exit 1
+          fi
+
+          logged_in_user="$(/usr/bin/stat -f '%Su' /dev/console)"
+          if [[ -z "${logged_in_user}" || "${logged_in_user}" == "root" || "${logged_in_user}" == "loginwindow" ]]; then
+              exit 1
+          fi
+
+          user_id="$(/usr/bin/id -u "${logged_in_user}")"
+
+          run_as_user() {
+              /bin/launchctl asuser "${user_id}" /usr/bin/sudo -u "${logged_in_user}" "$@"
+          }
+
+          bookmarks="$(run_as_user "${app}" --script bookmark list 2>/dev/null)" || exit 0
+          rds_entries="$(/usr/bin/printf '%s\n' "${bookmarks}" |
+              /usr/bin/grep -F "\"${friendly_name}\", " || true)"
+
+          if [[ "${rds_entries}" != "\"${friendly_name}\", ${uuid}" ]]; then
+              exit 0
+          fi
+
+          exit 1
+        installer_type: nopkg
+        name: Windows App RDS
+        postinstall_script: |-
+          #!/bin/zsh --no-rcs
+
+          set -euo pipefail
+
+          app="/Applications/Windows App.app/Contents/MacOS/Windows App"
+          host_address="rds.woodleigh.vic.edu.au"
+          friendly_name="RDS"
+          uuid="7A91ED4C-BEA5-453E-91AC-4F0A7C266390"
+
+          if [[ ! -x "${app}" ]]; then
+              echo "Windows App is not installed." >&2
+              exit 1
+          fi
+
+          logged_in_user="$(/usr/bin/stat -f '%Su' /dev/console)"
+          if [[ -z "${logged_in_user}" || "${logged_in_user}" == "root" || "${logged_in_user}" == "loginwindow" ]]; then
+              echo "Windows App RDS requires a logged-in user." >&2
+              exit 1
+          fi
+
+          user_id="$(/usr/bin/id -u "${logged_in_user}")"
+
+          run_as_user() {
+              /bin/launchctl asuser "${user_id}" /usr/bin/sudo -u "${logged_in_user}" "$@"
+          }
+
+          bookmarks="$(run_as_user "${app}" --script bookmark list)"
+          while IFS= read -r existing_uuid; do
+              if [[ -n "${existing_uuid}" && "${existing_uuid}" != "${uuid}" ]]; then
+                  run_as_user "${app}" --script bookmark delete "${existing_uuid}"
+              fi
+          done < <(
+              /usr/bin/printf '%s\n' "${bookmarks}" |
+                  /usr/bin/awk -F ', ' -v name="\"${friendly_name}\"" '$1 == name {print $2}'
+          )
+
+          run_as_user "${app}" --script bookmark write "${uuid}" \
+              --hostname "${host_address}" \
+              --friendlyname "${friendly_name}" \
+              --redirectprinters true \
+              --username "${logged_in_user}"
+
+          echo "Windows App RDS bookmark configured."
+        unattended_install: true
+        uninstallable: false
+        update_for:
+          - Windows App
+        version: "1.0"
+  extends: mac-software

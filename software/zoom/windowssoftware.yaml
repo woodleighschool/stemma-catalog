@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/woodleighschool/stemma/refs/heads/main/stemma.schema.json
+apiVersion: stemma/v1alpha1
+kind: WindowsSoftware
+metadata:
+  name: zoom
+spec:
+  destinations:
+    intune:
+      description: Zoom Workplace for Windows.
+  extends: windows-win32
+  source:
+    filename: ZoomInstallerFull.msi
+    url: https://zoom.us/client/latest/ZoomInstallerFull.msi?archType=x64

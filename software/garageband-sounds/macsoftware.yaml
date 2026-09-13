@@ -1,0 +1,378 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/woodleighschool/stemma/refs/heads/main/stemma.schema.json
+apiVersion: stemma/v1alpha1
+kind: MacSoftware
+metadata:
+  name: garageband-all-sounds
+spec:
+  destinations:
+    woodstar:
+      pkginfo:
+        category: Creativity
+        description: The complete collection of sounds and instruments for GarageBand.
+        developer: Apple
+        installcheck_script: |-
+          #!/bin/zsh --no-rcs
+
+          manifest_rows="$(/usr/bin/osascript -l JavaScript <<'JXA'
+          ObjC.import("Foundation")
+
+          function run() {
+              const fm = $.NSFileManager.defaultManager
+              const resources = "/Applications/GarageBand.app/Contents/Resources"
+              const stateDir = "/Library/Application Support/Woodleigh/GarageBandAllSounds"
+              const names = ObjC.deepUnwrap(
+                  fm.contentsOfDirectoryAtPathError($(resources), null)
+              ) || []
+              const manifests = names.filter(
+                  name => /^garageband[0-9]+\.plist$/i.test(name)
+              ).sort((left, right) => left.localeCompare(right, undefined, { numeric: true }))
+
+              if (manifests.length === 0) {
+                  throw new Error("GarageBand content manifest not found")
+              }
+
+              const manifestName = manifests[manifests.length - 1]
+              const paths = [
+                  `${resources}/${manifestName}`,
+                  `${stateDir}/${manifestName}`,
+              ]
+
+              if (!fm.fileExistsAtPath($(paths[1]))) {
+                  throw new Error("GarageBand All Sounds inventory not found")
+              }
+
+              const packagesByID = {}
+              for (const path of paths) {
+                  const data = $.NSData.dataWithContentsOfFile($(path))
+                  const plist = ObjC.deepUnwrap(
+                      $.NSPropertyListSerialization.propertyListWithDataOptionsFormatError(
+                          data,
+                          $.NSPropertyListImmutable,
+                          null,
+                          null
+                      )
+                  )
+                  for (const pkg of Object.values(plist.Packages || {})) {
+                      if (pkg.PackageID) {
+                          packagesByID[pkg.PackageID] = pkg
+                      }
+                  }
+              }
+
+              return Object.keys(packagesByID).sort().map(packageID => {
+                  const pkg = packagesByID[packageID]
+                  const checks = Array.isArray(pkg.FileCheck)
+                      ? pkg.FileCheck
+                      : [pkg.FileCheck]
+                  const filesPresent = checks.some(
+                      check => check && fm.fileExistsAtPath($(check))
+                  )
+                  return `${packageID}\t${filesPresent}`
+              }).join("\n")
+          }
+          JXA
+          )" || exit 0
+
+          [[ -n "${manifest_rows}" ]] || exit 0
+
+          receipt_output="$(/usr/sbin/pkgutil --pkgs)" || exit 0
+          typeset -A installed_receipts
+          for receipt in "${(@f)receipt_output}"; do
+              installed_receipts[${receipt}]=1
+          done
+
+          while IFS=$'\t' read -r package_id files_present; do
+              [[ "${files_present}" == "true" ]] || exit 0
+              [[ -n "${installed_receipts[${package_id}]-}" ]] || exit 0
+          done <<< "${manifest_rows}"
+
+          exit 1
+        minimum_os_version: "14.0"
+        name: GarageBand All Sounds
+        postinstall_script: |-
+          #!/bin/zsh --no-rcs
+
+          set -e
+
+          workdir="/private/var/tmp/Woodleigh/GarageBandAllSounds"
+          helper="${workdir}/loopdown"
+          state_dir="/Library/Application Support/Woodleigh/GarageBandAllSounds"
+
+          cleanup() {
+              /bin/rm -rf "${workdir}"
+              /bin/rmdir "/private/var/tmp/Woodleigh" 2>/dev/null || true
+          }
+
+          trap cleanup EXIT
+
+          if [[ ! -x "${helper}" ]]; then
+              echo "loopdown helper is missing or not executable" >&2
+              exit 1
+          fi
+
+          if [[ ! -d "/Applications/GarageBand.app" ]]; then
+              echo "GarageBand is not installed" >&2
+              exit 1
+          fi
+
+          manifest_name="$(/usr/bin/osascript -l JavaScript <<'JXA'
+          ObjC.import("Foundation")
+
+          function run() {
+              const fm = $.NSFileManager.defaultManager
+              const resources = "/Applications/GarageBand.app/Contents/Resources"
+              const names = ObjC.deepUnwrap(
+                  fm.contentsOfDirectoryAtPathError($(resources), null)
+              ) || []
+              const manifests = names.filter(
+                  name => /^garageband[0-9]+\.plist$/i.test(name)
+              ).sort((left, right) => left.localeCompare(right, undefined, { numeric: true }))
+
+              if (manifests.length === 0) {
+                  throw new Error("GarageBand content manifest not found")
+              }
+
+              return manifests[manifests.length - 1]
+          }
+          JXA
+          )"
+          remote_manifest="${workdir}/${manifest_name}"
+
+          /usr/bin/curl \
+              --compressed \
+              --fail \
+              --location \
+              --silent \
+              --show-error \
+              --output "${remote_manifest}" \
+              "https://audiocontentdownload.apple.com/lp10_ms3_content_2016/${manifest_name}"
+          /usr/bin/plutil -lint -- "${remote_manifest}" >/dev/null
+
+          "${helper}" deploy \
+              --app garageband \
+              --core \
+              --optional \
+              --cache-server auto
+
+          /usr/bin/install -d -o root -g wheel -m 0755 "${state_dir}"
+          /usr/bin/install -o root -g wheel -m 0644 "${remote_manifest}" "${state_dir}/${manifest_name}"
+        requires:
+          - GarageBand
+        unattended_install: true
+        unattended_uninstall: true
+        uninstall_method: uninstall_script
+        uninstall_script: |-
+          #!/bin/zsh --no-rcs
+
+          set -e
+
+          package_output="$(/usr/bin/osascript -l JavaScript <<'JXA'
+          ObjC.import("Foundation")
+
+          function run() {
+              const fm = $.NSFileManager.defaultManager
+              const resources = "/Applications/GarageBand.app/Contents/Resources"
+              const stateDir = "/Library/Application Support/Woodleigh/GarageBandAllSounds"
+              const names = ObjC.deepUnwrap(
+                  fm.contentsOfDirectoryAtPathError($(resources), null)
+              ) || []
+              const manifests = names.filter(
+                  name => /^garageband[0-9]+\.plist$/i.test(name)
+              ).sort((left, right) => left.localeCompare(right, undefined, { numeric: true }))
+
+              const stateNames = ObjC.deepUnwrap(
+                  fm.contentsOfDirectoryAtPathError($(stateDir), null)
+              ) || []
+              const stateManifests = stateNames.filter(
+                  name => /^garageband[0-9]+\.plist$/i.test(name)
+              ).sort((left, right) => left.localeCompare(right, undefined, { numeric: true }))
+
+              const paths = manifests.map(name => `${resources}/${name}`).concat(
+                  stateManifests.map(name => `${stateDir}/${name}`)
+              )
+              if (paths.length === 0) {
+                  throw new Error("GarageBand content inventory not found")
+              }
+
+              const packagesByID = {}
+              for (const path of paths) {
+                  const data = $.NSData.dataWithContentsOfFile($(path))
+                  const plist = ObjC.deepUnwrap(
+                      $.NSPropertyListSerialization.propertyListWithDataOptionsFormatError(
+                          data,
+                          $.NSPropertyListImmutable,
+                          null,
+                          null
+                      )
+                  )
+                  for (const pkg of Object.values(plist.Packages || {})) {
+                      if (pkg.PackageID) {
+                          packagesByID[pkg.PackageID] = pkg
+                      }
+                  }
+              }
+
+              return Object.keys(packagesByID).sort().flatMap(packageID => {
+                  const pkg = packagesByID[packageID]
+                  return pkg.IsMandatory === true || !pkg.PackageID
+                      ? []
+                      : [packageID]
+              }).join("\n")
+          }
+          JXA
+          )"
+          package_ids=("${(@f)package_output}")
+
+          receipt_output="$(/usr/sbin/pkgutil --pkgs)"
+          typeset -A installed_receipts
+          for receipt in "${(@f)receipt_output}"; do
+              installed_receipts[${receipt}]=1
+          done
+
+          installed_package_ids=()
+          for package_id in "${package_ids[@]}"; do
+              if [[ -n "${installed_receipts[${package_id}]-}" ]]; then
+                  installed_package_ids+=("${package_id}")
+              fi
+          done
+
+          if (( ${#installed_package_ids[@]} > 0 )); then
+              /usr/local/munki/removepackages "${installed_package_ids[@]}"
+          fi
+
+          state_dir="/Library/Application Support/Woodleigh/GarageBandAllSounds"
+          state_manifests=("${state_dir}"/garageband*.plist(N))
+          if (( ${#state_manifests[@]} > 0 )); then
+              /bin/rm -f -- "${state_manifests[@]}"
+          fi
+          /bin/rmdir "${state_dir}" 2>/dev/null || true
+        uninstallable: true
+        version: 2.0.3.1
+  extends: mac-software
+  source:
+    resource:
+      kind: BuildMacPkg
+      name: garageband-all-sounds
+      output: installer
+---
+apiVersion: stemma/v1alpha1
+kind: MacSoftware
+metadata:
+  name: garageband-essential-sounds
+spec:
+  destinations:
+    woodstar:
+      pkginfo:
+        blocking_applications:
+          - GarageBand
+        category: Creativity
+        description: Essential sounds and instruments for GarageBand.
+        developer: Apple
+        installcheck_script: |-
+          #!/bin/zsh --no-rcs
+
+          manifest_rows="$(/usr/bin/osascript -l JavaScript <<'JXA'
+          ObjC.import("Foundation")
+
+          function run() {
+              const fm = $.NSFileManager.defaultManager
+              const resources = "/Applications/GarageBand.app/Contents/Resources"
+              const names = ObjC.deepUnwrap(
+                  fm.contentsOfDirectoryAtPathError($(resources), null)
+              ) || []
+              const manifests = names.filter(
+                  name => /^garageband[0-9]+\.plist$/i.test(name)
+              ).sort((left, right) => left.localeCompare(right, undefined, { numeric: true }))
+
+              if (manifests.length === 0) {
+                  throw new Error("GarageBand content manifest not found")
+              }
+
+              const path = `${resources}/${manifests[manifests.length - 1]}`
+              const data = $.NSData.dataWithContentsOfFile($(path))
+              const plist = ObjC.deepUnwrap(
+                  $.NSPropertyListSerialization.propertyListWithDataOptionsFormatError(
+                      data,
+                      $.NSPropertyListImmutable,
+                      null,
+                      null
+                  )
+              )
+              const packages = plist.Packages || {}
+
+              return Object.keys(packages).sort().flatMap(key => {
+                  const pkg = packages[key]
+                  if (pkg.IsMandatory !== true || !pkg.PackageID) {
+                      return []
+                  }
+
+                  const checks = Array.isArray(pkg.FileCheck)
+                      ? pkg.FileCheck
+                      : [pkg.FileCheck]
+                  const filesPresent = checks.some(
+                      check => check && fm.fileExistsAtPath($(check))
+                  )
+                  return [`${pkg.PackageID}\t${filesPresent}`]
+              }).join("\n")
+          }
+          JXA
+          )" || exit 0
+
+          [[ -n "${manifest_rows}" ]] || exit 0
+
+          receipt_output="$(/usr/sbin/pkgutil --pkgs)" || exit 0
+          typeset -A installed_receipts
+          for receipt in "${(@f)receipt_output}"; do
+              installed_receipts[${receipt}]=1
+          done
+
+          while IFS=$'\t' read -r package_id files_present; do
+              [[ "${files_present}" == "true" ]] || exit 0
+              [[ -n "${installed_receipts[${package_id}]-}" ]] || exit 0
+          done <<< "${manifest_rows}"
+
+          exit 1
+        minimum_os_version: "14.0"
+        name: GarageBand Essential Sounds
+        postinstall_script: |-
+          #!/bin/zsh --no-rcs
+
+          set -e
+
+          workdir="/private/var/tmp/Woodleigh/GarageBandEssentialSounds"
+          helper="${workdir}/loopdown"
+
+          cleanup() {
+              /bin/rm -rf "${workdir}"
+              /bin/rmdir "/private/var/tmp/Woodleigh" 2>/dev/null || true
+          }
+
+          trap cleanup EXIT
+
+          if [[ ! -x "${helper}" ]]; then
+              echo "loopdown helper is missing or not executable" >&2
+              exit 1
+          fi
+
+          if [[ ! -d "/Applications/GarageBand.app" ]]; then
+              echo "GarageBand is not installed" >&2
+              exit 1
+          fi
+
+          "${helper}" deploy \
+              --app garageband \
+              --core \
+              --cache-server auto
+        requires:
+          - GarageBand
+        unattended_install: true
+        uninstallable: false
+        update_for:
+          - GarageBand
+        version: 2.0.3.2
+  extends: mac-software
+  source:
+    resource:
+      kind: BuildMacPkg
+      name: garageband-essential-sounds
+      output: installer

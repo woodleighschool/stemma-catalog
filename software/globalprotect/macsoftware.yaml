@@ -1,0 +1,32 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/woodleighschool/stemma/refs/heads/main/stemma.schema.json
+apiVersion: stemma/v1alpha1
+kind: MacSoftware
+metadata:
+  name: globalprotect
+spec:
+  application:
+    installed_path: /Applications/GlobalProtect.app
+  destinations:
+    woodstar:
+      pkginfo:
+        blocking_applications: []
+        category: Security
+        description: The Palo Alto VPN client is required to access organizational resources outside
+          of the school network.
+        developer: Palo Alto
+        name: GlobalProtect
+        unattended_install: true
+        unattended_uninstall: true
+        uninstall_method: uninstall_script
+        uninstall_script: |
+          #!/bin/sh
+          exec /Applications/GlobalProtect.app/Contents/Resources/uninstall_gp.sh
+        uninstallable: true
+  extends: mac-software
+  source:
+    filename: GlobalProtect.pkg
+    url: https://access.woodleigh.vic.edu.au/global-protect/getmsi.esp?platform=mac
+  verification:
+    integrity: true
+    signature: true
+    subject: source

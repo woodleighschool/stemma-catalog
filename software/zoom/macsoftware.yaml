@@ -1,0 +1,29 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/woodleighschool/stemma/refs/heads/main/stemma.schema.json
+apiVersion: stemma/v1alpha1
+kind: MacSoftware
+metadata:
+  name: zoom
+spec:
+  application:
+    bundle_id: us.zoom.xos
+    installed_path: /Applications/zoom.us.app
+  destinations:
+    woodstar:
+      pkginfo:
+        blocking_applications:
+          - zoom.us.app
+        category: Communication
+        description: Video meetings and collaboration.
+        developer: Zoom Video Communications
+        name: Zoom
+        unattended_install: true
+        uninstall_method: removepackages
+        uninstallable: true
+  extends: mac-software
+  source:
+    filename: ZoomInstallerIT.pkg
+    url: https://zoom.us/client/latest/ZoomInstallerIT.pkg
+  verification:
+    integrity: true
+    signature: true
+    subject: source

@@ -1,0 +1,31 @@
+#!/bin/zsh --no-rcs
+
+set -eu
+
+required_apps=(
+    "/System/Applications/Apps.app"
+    "/Applications/Google Chrome.app"
+    "/Applications/Microsoft Word.app"
+    "/Applications/Microsoft PowerPoint.app"
+    "/Applications/Microsoft Excel.app"
+    "/Applications/Microsoft Outlook.app"
+    "/Applications/Microsoft OneNote.app"
+    "/Applications/Microsoft Teams.app"
+    "/Applications/Managed Software Center.app"
+    "/System/Applications/System Settings.app"
+)
+
+missing=()
+for app in "${required_apps[@]}"; do
+    if [[ ! -d "${app}" ]]; then
+        missing+=("${app}")
+    fi
+done
+
+if (( ${#missing[@]} > 0 )); then
+    /bin/echo "Branding requires the following applications:" >&2
+    /usr/bin/printf '  %s\n' "${missing[@]}" >&2
+    exit 1
+fi
+
+exit 0

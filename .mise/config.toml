@@ -1,0 +1,2 @@
+[env]
+STEMMA_CACHE_DIR = "{{ config_root }}/.stemma/cache"

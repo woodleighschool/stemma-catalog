@@ -1,0 +1,30 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/woodleighschool/stemma/refs/heads/main/stemma.schema.json
+apiVersion: stemma/v1alpha1
+kind: MacSoftware
+metadata:
+  name: godot
+spec:
+  application:
+    bundle_id: org.godotengine.godot
+    path: Godot.app
+  destinations:
+    woodstar:
+      pkginfo:
+        blocking_applications:
+          - Godot.app
+        category: Programming
+        description: Game development editor and engine.
+        developer: Godot Foundation
+        name: Godot
+        unattended_install: true
+        uninstall_method: removepackages
+        uninstallable: true
+  extends: mac-software
+  source:
+    filename: Godot.zip
+    match: https://downloads\.godotengine\.org/\?version=4\.[0-9.]+&flavor=stable&slug=macos\.universal\.zip&platform=macos\.universal
+    url: https://godotengine.org/download/macos/
+  verification:
+    integrity: true
+    signature: true
+    subject: application

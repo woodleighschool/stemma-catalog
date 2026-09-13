@@ -1,0 +1,31 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/woodleighschool/stemma/refs/heads/main/stemma.schema.json
+apiVersion: stemma/v1alpha1
+kind: MacSoftware
+metadata:
+  name: microsoft-onenote
+spec:
+  application:
+    bundle_id: com.microsoft.onenote.mac
+    installed_path: /Applications/Microsoft OneNote.app
+  destinations:
+    woodstar:
+      pkginfo:
+        blocking_applications:
+          - Microsoft AutoUpdate
+          - Microsoft Error Reporting
+          - Microsoft OneNote
+        category: Productivity
+        description: Capture, organize, and share your notes, ideas, and to-do lists, making
+          information retrieval a breeze.
+        developer: Microsoft
+        name: Microsoft OneNote
+        unattended_install: true
+        uninstallable: false
+  extends: mac-software
+  source:
+    filename: MicrosoftOneNote.pkg
+    url: https://go.microsoft.com/fwlink/?linkid=820886
+  verification:
+    integrity: true
+    signature: true
+    subject: source

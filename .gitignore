@@ -1,0 +1,10 @@
+.stemma/
+.env
+.env.*
+!.env.example
+.DS_Store
+._*
+software/linewize-connect/Assets/
+software/woodleigh-fonts/Fonts/
+software/microsoft-office-ltsc-2024-vl-serializer/Assets/*.pkg
+/plugins/woodstar

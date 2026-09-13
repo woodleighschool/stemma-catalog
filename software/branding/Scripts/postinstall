@@ -1,0 +1,66 @@
+#!/bin/zsh --no-rcs
+
+set -eu
+
+wallpaper_source="/private/var/tmp/Woodleigh/Branding/Woodleigh.jpg"
+wallpaper="/Library/Desktop Pictures/Woodleigh.jpg"
+
+current_user="$(/usr/bin/stat -f '%Su' /dev/console)"
+if [[ -z "${current_user}" || "${current_user}" == "root" || "${current_user}" == "loginwindow" ]]; then
+    /bin/echo "Branding requires a logged-in user." >&2
+    exit 1
+fi
+
+current_uid="$(/usr/bin/id -u "${current_user}")"
+user_home="$(/usr/bin/dscl . -read "/Users/${current_user}" NFSHomeDirectory | /usr/bin/awk '{print $2}')"
+if [[ -z "${current_uid}" || -z "${user_home}" ]]; then
+    /bin/echo "Unable to resolve the logged-in user." >&2
+    exit 1
+fi
+
+dock_apps=(
+    "/System/Applications/Apps.app"
+    "/Applications/Google Chrome.app"
+    "/Applications/Microsoft Word.app"
+    "/Applications/Microsoft PowerPoint.app"
+    "/Applications/Microsoft Excel.app"
+    "/Applications/Microsoft Outlook.app"
+    "/Applications/Microsoft OneNote.app"
+    "/Applications/Microsoft Teams.app"
+    "/Applications/Managed Software Center.app"
+    "/System/Applications/System Settings.app"
+)
+
+run_as_user() {
+    /bin/launchctl asuser "${current_uid}" /usr/bin/sudo -u "${current_user}" "$@"
+}
+
+run_as_user /usr/bin/defaults delete com.apple.dock persistent-apps 2>/dev/null || true
+run_as_user /usr/bin/defaults delete com.apple.dock persistent-others 2>/dev/null || true
+
+for app in "${dock_apps[@]}"; do
+    run_as_user /usr/bin/defaults write com.apple.dock persistent-apps -array-add \
+        "<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>${app}</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>"
+done
+
+downloads="${user_home}/Downloads"
+run_as_user /usr/bin/defaults write com.apple.dock persistent-others -array-add \
+    "<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>${downloads}</string><key>_CFURLStringType</key><integer>0</integer></dict><key>file-label</key><string>Downloads</string><key>file-type</key><string>2</string></dict><key>tile-type</key><string>directory-tile</string></dict>"
+
+run_as_user /usr/bin/defaults write com.apple.dock show-recents -bool false
+run_as_user /usr/bin/defaults write com.apple.dock minimize-to-application -bool true
+run_as_user /usr/bin/killall -KILL Dock 2>/dev/null || true
+
+/bin/mkdir -p "${wallpaper:h}"
+/bin/cp "${wallpaper_source}" "${wallpaper}"
+/usr/sbin/chown root:wheel "${wallpaper}"
+/bin/chmod 0644 "${wallpaper}"
+
+run_as_user /usr/bin/osascript \
+    -e "tell application \"Finder\" to set desktop picture to POSIX file \"${wallpaper}\"" \
+    >/dev/null 2>&1 &!
+
+/bin/rm -rf "/private/var/tmp/Woodleigh/Branding"
+/bin/rmdir "/private/var/tmp/Woodleigh" 2>/dev/null || true
+
+exit 0

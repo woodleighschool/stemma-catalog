@@ -1,0 +1,42 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/woodleighschool/stemma/refs/heads/main/stemma.schema.json
+apiVersion: stemma/v1alpha1
+kind: BuildMacPkg
+metadata:
+  name: garageband-all-sounds
+spec:
+  inputs:
+    assets:
+      path: Assets
+  package:
+    identifier: au.edu.vic.woodleigh.garageband-all-sounds
+    version: 2.0.3.1
+  payload:
+    /private/var/tmp/Woodleigh/GarageBandAllSounds/loopdown:
+      $input: assets
+      mode: "0755"
+      path: loopdown
+    /private/var/tmp/Woodleigh/GarageBandAllSounds/loopdown-LICENSE.txt:
+      $input: assets
+      mode: "0644"
+      path: loopdown-LICENSE.txt
+---
+apiVersion: stemma/v1alpha1
+kind: BuildMacPkg
+metadata:
+  name: garageband-essential-sounds
+spec:
+  inputs:
+    assets:
+      path: Assets
+  package:
+    identifier: au.edu.vic.woodleigh.garageband-essential-sounds
+    version: 2.0.3.2
+  payload:
+    /private/var/tmp/Woodleigh/GarageBandEssentialSounds/loopdown:
+      $input: assets
+      mode: "0755"
+      path: loopdown
+    /private/var/tmp/Woodleigh/GarageBandEssentialSounds/loopdown-LICENSE.txt:
+      $input: assets
+      mode: "0644"
+      path: loopdown-LICENSE.txt

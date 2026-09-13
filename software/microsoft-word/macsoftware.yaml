@@ -1,0 +1,31 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/woodleighschool/stemma/refs/heads/main/stemma.schema.json
+apiVersion: stemma/v1alpha1
+kind: MacSoftware
+metadata:
+  name: microsoft-word
+spec:
+  application:
+    bundle_id: com.microsoft.Word
+    installed_path: /Applications/Microsoft Word.app
+  destinations:
+    woodstar:
+      pkginfo:
+        blocking_applications:
+          - Microsoft AutoUpdate
+          - Microsoft Error Reporting
+          - Microsoft Word
+        category: Productivity
+        description: Create and edit professional-looking documents with ease, whether it's for
+          business reports, academic papers, or personal projects.
+        developer: Microsoft
+        name: Microsoft Word
+        unattended_install: true
+        uninstallable: false
+  extends: mac-software
+  source:
+    filename: MicrosoftWord.pkg
+    url: https://go.microsoft.com/fwlink/?linkid=525134
+  verification:
+    integrity: true
+    signature: true
+    subject: source
