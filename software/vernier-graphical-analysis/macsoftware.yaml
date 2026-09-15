@@ -21,9 +21,7 @@ spec:
         uninstall_method: remove_copied_items
         uninstallable: true
   extends: mac-software
+  signature:
+    signer: apple:developer-id:75WN2B2WR8 # Vernier Software & Technology
   source:
     url: https://software-releases.graphicalanalysis.com/ga/mac/release/latest/Vernier-Graphical-Analysis.dmg
-  verification:
-    integrity: true
-    signature: true
-    subject: application

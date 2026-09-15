@@ -25,10 +25,8 @@ spec:
         uninstallable: true
   extends: mac-software
   package_path: Install Wacom Tablet.pkg
+  signature:
+    signer: apple:developer-id:EG27766DY7 # Wacom Technology Corp.
   source:
     match: https://cdn\.wacom\.com/u/productsupport/drivers/mac/professional/WacomTablet_[0-9]+(?:\.[0-9]+)*(?:-[0-9]+)?\.dmg
     url: https://www.wacom.com/en-us/support/product-support/drivers
-  verification:
-    integrity: true
-    signature: true
-    subject: installer

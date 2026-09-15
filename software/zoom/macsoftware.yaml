@@ -20,9 +20,7 @@ spec:
         uninstall_method: removepackages
         uninstallable: true
   extends: mac-software
+  signature:
+    signer: apple:developer-id:BJ4HAAB9B3 # Zoom Video Communications, Inc.
   source:
     url: https://zoom.us/client/latest/ZoomInstallerIT.pkg
-  verification:
-    integrity: true
-    signature: true
-    subject: source

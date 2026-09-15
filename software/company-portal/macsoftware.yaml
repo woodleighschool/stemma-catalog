@@ -19,9 +19,7 @@ spec:
         unattended_install: true
         uninstallable: false
   extends: mac-software
+  signature:
+    signer: apple:developer-id:UBF8T346G9 # Microsoft Corporation
   source:
     url: https://go.microsoft.com/fwlink/?linkid=853070
-  verification:
-    integrity: true
-    signature: true
-    subject: source

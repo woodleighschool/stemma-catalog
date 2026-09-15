@@ -23,9 +23,7 @@ spec:
         uninstallable: true
   extends: mac-software
   package_path: Install Google Earth Pro *.pkg
+  signature:
+    signer: apple:developer-id:EQHXZ8M8AV # Google LLC
   source:
     url: https://dl.google.com/dl/earth/client/advanced/current/googleearthpromac-intel.dmg
-  verification:
-    integrity: true
-    signature: true
-    subject: installer

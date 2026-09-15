@@ -22,7 +22,6 @@ spec:
           AutoUpdate own subsequent updates.
         developer: Microsoft
         installs: []
-        minimum_os_version: "13.0"
         name: Microsoft 365 Business Pro Suite
         receipts:
           - packageid: com.microsoft.package.Frameworks
@@ -30,9 +29,7 @@ spec:
         unattended_install: true
         uninstallable: false
   extends: mac-software
+  signature:
+    signer: apple:developer-id:UBF8T346G9 # Microsoft Corporation
   source:
     url: https://go.microsoft.com/fwlink/?linkid=2009112
-  verification:
-    integrity: true
-    signature: true
-    subject: source

@@ -28,14 +28,10 @@ spec:
         uninstallable: false
         version: 1.4.1
   extends: mac-software
+  signature:
+    signer: apple:developer-id:5S77G864UH # B Communications Pty Ltd
   source:
     path: Assets/auth-agent.pkg
-  verification:
-    certificate_sha256: 43c6eaffb619abe3418ec6af6cec36130afd7d9c6c39132f5a1dc27709c905df
-    identity: true
-    integrity: true
-    signature: true
-    subject: source
 ---
 apiVersion: stemma/v1alpha1
 kind: MacSoftware
@@ -68,11 +64,7 @@ spec:
         unattended_install: true
         uninstallable: false
   extends: mac-software
+  signature:
+    signer: apple:developer-id:5S77G864UH # FAMILY ZONE CYBER SAFETY LIMITED
   source:
     url: https://qoria-mza-installers.linewize.net/Connect%20Installer.pkg
-  verification:
-    certificate_sha256: 638e2fa3b1b15b657cbecd820c2e24f598717c5c6cbae254642e7adfcae6e9b0
-    identity: true
-    integrity: true
-    signature: true
-    subject: source

@@ -22,7 +22,3 @@ spec:
   extends: mac-software
   source:
     url: https://public-cdn.cloud.unity3d.com/hub/prod/UnityHubSetup-arm64.dmg
-  verification:
-    integrity: true
-    signature: true
-    subject: application

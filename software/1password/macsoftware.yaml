@@ -22,9 +22,7 @@ spec:
         uninstall_method: removepackages
         uninstallable: true
   extends: mac-software
+  signature:
+    signer: apple:developer-id:2BUA8C4S2C # AgileBits Inc.
   source:
     url: https://downloads.1password.com/mac/1Password.pkg
-  verification:
-    integrity: true
-    signature: true
-    subject: source

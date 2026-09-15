@@ -20,9 +20,7 @@ spec:
         uninstall_method: removepackages
         uninstallable: true
   extends: mac-software
+  signature:
+    signer: apple:developer-id:3NRCUJ8TJC # VIVI AUSTRALIA PTY LTD
   source:
     url: https://api.vivi.io/mac
-  verification:
-    integrity: true
-    signature: true
-    subject: source

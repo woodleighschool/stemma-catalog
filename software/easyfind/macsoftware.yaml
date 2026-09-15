@@ -18,12 +18,10 @@ spec:
         name: EasyFind
         unattended_install: true
   extends: mac-software
+  signature:
+    signer: apple:developer-id:679S2QUWR8 # DEVONtechnologies, LLC
   source:
     config:
       match: https://[^"\s]+EasyFind\.app\.zip
       url: https://www.devontechnologies.com/apps/freeware
     resolver: http
-  verification:
-    integrity: true
-    signature: true
-    subject: application

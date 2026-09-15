@@ -14,9 +14,7 @@ spec:
         uninstall_method: removepackages
         uninstallable: true
   extends: mac-software
+  signature:
+    signer: apple:developer-id:EQHXZ8M8AV # Google LLC
   source:
     url: https://dl.google.com/dl/chrome/mac/universal/stable/gcem/GoogleChrome.pkg
-  verification:
-    integrity: true
-    signature: true
-    subject: source

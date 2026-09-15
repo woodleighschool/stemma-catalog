@@ -8,5 +8,7 @@ spec:
     intune:
       description: Zoom Workplace for Windows.
   extends: windows-win32
+  signature:
+    signer: authenticode:dabb2081eb1d52bf60d812d955f60279629167729ab8fd13708b0f66502e4795 # Zoom Communications, Inc.
   source:
     url: https://zoom.us/client/latest/ZoomInstallerFull.msi?archType=x64

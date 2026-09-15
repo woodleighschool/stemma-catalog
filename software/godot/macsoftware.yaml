@@ -20,10 +20,8 @@ spec:
         uninstall_method: removepackages
         uninstallable: true
   extends: mac-software
+  signature:
+    signer: apple:developer-id:6K46PWY5DM # Prehensile Tales B.V.
   source:
     match: https://downloads\.godotengine\.org/\?version=4\.[0-9.]+&flavor=stable&slug=macos\.universal\.zip&platform=macos\.universal
     url: https://godotengine.org/download/macos/
-  verification:
-    integrity: true
-    signature: true
-    subject: application
