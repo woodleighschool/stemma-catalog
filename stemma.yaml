@@ -15,43 +15,23 @@ spec:
           targets:
             exclude: []
             include: []
-    windows-win32:
-      destinations:
-        intune:
-          allowedArchitectures: x64
-          installExperience:
-            deviceRestartBehavior: basedOnReturnCode
-            runAsAccount: system
-          minimumSupportedWindowsRelease: Windows11_24H2
-          retention:
-            keep: 1
-          returnCodes:
-            - returnCode: 0
-              type: success
-            - returnCode: 1707
-              type: success
-            - returnCode: 3010
-              type: softReboot
-            - returnCode: 1641
-              type: hardReboot
-            - returnCode: 1618
-              type: retry
-          type: win32
   destinations:
-    intune:
-      config:
-        client_id: ${INTUNE_CLIENT_ID}
-        client_secret: ${INTUNE_CLIENT_SECRET}
-        tenant_id: ${INTUNE_TENANT_ID}
-      operation: intune
     woodstar:
       config:
-        api_key: ${WOODSTAR_API_KEY}
-        url: https://woodstar.woodleigh.vic.edu.au
+        api_key: ${WOODSTAR_DEV_API_KEY}
+        url: https://woodstar:8443
       operation: woodstar.munki
   imports:
-    - software/**/*.yaml
+    - software/**/buildmacpkg.yaml
+    - software/**/macsoftware.yaml
   plugins:
     woodstar:
       path: plugins/woodstar
       trusted: true
+  reconcile:
+    source_control:
+      type: github
+      config:
+        client_id: ${GITHUB_APP_CLIENT_ID}
+        installation_id: ${GITHUB_APP_INSTALLATION_ID}
+        private_key: ${GITHUB_APP_PRIVATE_KEY}
