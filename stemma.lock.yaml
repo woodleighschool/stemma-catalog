@@ -534,15 +534,16 @@ inputs:
       version: 1
       resolver: http
       resolver_version: "1"
-      declaration: f9dbc9116f04e22675967ea58bd351553e48705ff53f038b50b5fa6385aee1b0
-      resolved_at: "2026-09-12T13:26:10Z"
+      declaration: d7141a1b25dd7b23c1c955d03d6954a28083875caeeb4d72713532065ca51678
+      resolved_at: "2026-09-16T14:25:20Z"
       observation:
+        last_modified: Wed, 09 Sep 2026 06:34:51 GMT
         url: https://go.microsoft.com/fwlink/?linkid=868963
       content:
         artifact:
-          sha256: bdc7ccf2914960074d8eaeaa0b3661127bb3a29291f6832ab7dfdadf70c4171a
-          size: 102915960
-        filename: WindowsApp.pkg
+          sha256: 346b9cc2e97ce9d82bdff7c565983b9061f27c3aec38831d3c46e64a1bdfbc75
+          size: 102919875
+        filename: Windows_App_11.4.1_installer.pkg
         mode: 420
   stemma/v1alpha1/MacSoftware/zoom:
     source:
