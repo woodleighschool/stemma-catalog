@@ -249,15 +249,17 @@ inputs:
       version: 1
       resolver: http
       resolver_version: "1"
-      declaration: fb76bb7ce7aa4539c69a8181bc394753b9045a02724c622210af396433ffdd62
+      declaration: a5e3f659ec9367ab1972832070ec8f15106c6051da7b217a5ede1bb8fac6d213
       resolved_at: "2026-09-12T13:21:59Z"
       observation:
+        etag: '"FWDTh9US79aZgLxnTFQFtz9SbkY="'
+        last_modified: Fri, 11 Sep 2026 00:25:11 GMT
         url: https://go.microsoft.com/fwlink/?linkid=2093504
       content:
         artifact:
           sha256: 8ccdfd126c8e80411108c8ec45cbc610779a08c54285d02d48681e8d8afed529
           size: 429856524
-        filename: MicrosoftEdge.pkg
+        filename: MicrosoftEdge-153.0.4234.32.pkg
         mode: 420
   stemma/v1alpha1/MacSoftware/microsoft-excel:
     source:
