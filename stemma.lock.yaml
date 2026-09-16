@@ -541,23 +541,6 @@ inputs:
           size: 363035127
         filename: ZoomInstallerIT.pkg
         mode: 420
-  stemma/v1alpha1/WindowsSoftware/google-chrome:
-    source:
-      version: 1
-      resolver: http
-      resolver_version: "1"
-      declaration: bce4ed5e78e6c91e0cd711908a02cd8314ae06ca16e7eac8e840f9069c7f93ee
-      resolved_at: "2026-09-16T13:51:17Z"
-      observation:
-        etag: '"6c95612-6aa1e4d0"'
-        last_modified: Tue, 15 Sep 2026 20:08:18 GMT
-        url: https://dl.google.com/dl/chrome/install/googlechromestandaloneenterprise64.msi
-      content:
-        artifact:
-          sha256: 7ba3a878d7b16e420307924d6e7e7eec722a30f1b3934ac7a6f1bda72b627153
-          size: 167350272
-        filename: googlechromestandaloneenterprise64.msi
-        mode: 420
   stemma/v1alpha1/WindowsSoftware/zoom:
     source:
       version: 1
