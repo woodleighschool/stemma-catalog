@@ -1,2 +1,3 @@
 [env]
 STEMMA_CACHE_DIR = "{{ config_root }}/.stemma/cache"
+WOODSTAR_PLUGIN = "{{ config_root | dirname }}/woodstar/stemma/build/plugin"

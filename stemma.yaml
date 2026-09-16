@@ -26,7 +26,7 @@ spec:
     - software/**/macsoftware.yaml
   plugins:
     woodstar:
-      path: plugins/woodstar
+      path: ${WOODSTAR_PLUGIN}
       trusted: true
   reconcile:
     source_control:

@@ -623,17 +623,17 @@ inputs:
         mode: 420
 plugins:
   woodstar:
-    path: plugins/woodstar
+    path: /Users/ahyde/GitHub/woodleighschool/woodstar/stemma/build/plugin
     local:
       version: 1
       resolver: file
       resolver_version: "1"
-      declaration: 20e20c85c836044f208ecbc4c377f1c5c9370811fcccafc8aa8da738f58eafee
-      resolved_at: "2026-09-16T10:15:42Z"
+      declaration: b6f54d135fe59477b55f680b9aa010b0f5e13b8d74e6af4a9f517d75b414caae
+      resolved_at: "2026-09-16T14:15:11Z"
       observation: {}
       content:
         artifact:
           sha256: 8d9b315998f7139f5e025976798e467bc429bf164ef0ceb8bf60411233233f3d
           size: 23893634
-        filename: woodstar
+        filename: plugin
         mode: 493
