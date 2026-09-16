@@ -407,6 +407,24 @@ inputs:
           size: 313891319
         filename: OneDrive.pkg
         mode: 420
+  stemma/v1alpha1/MacSoftware/safe-exam-browser:
+    source:
+      version: 1
+      resolver: github
+      resolver_version: "1"
+      declaration: e039d70e6a2f4341d89eb308e775336f36e362a41d8f0ee7460dcb1560bbd021
+      resolved_at: "2026-09-16T14:24:47Z"
+      observation:
+        asset_id: 553598100
+        release: 3.7.1
+        release_id: 385854580
+        url: https://github.com/SafeExamBrowser/seb-mac/releases/download/3.7.1/SafeExamBrowser-3.7.1.dmg
+      content:
+        artifact:
+          sha256: d9a11b2f5f35f5681b0f0f204a217bdcb90413481748f34cbff2ae86044e6086
+          size: 11456688
+        filename: SafeExamBrowser-3.7.1.dmg
+        mode: 420
   stemma/v1alpha1/MacSoftware/spotify:
     source:
       version: 1
