@@ -61,21 +61,6 @@ inputs:
         filename: Assets
         tree: true
         mode: 493
-  stemma/v1alpha1/BuildMacPkg/woodleigh-fonts:
-    fonts:
-      version: 1
-      resolver: file
-      resolver_version: "1"
-      declaration: 91b61d632a6ac6614a8e9ebaaf345cd9ed52946add74774a143b78f1ad92ae40
-      resolved_at: "2026-09-12T13:19:32Z"
-      observation: {}
-      content:
-        artifact:
-          sha256: 5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef
-          size: 1024
-        filename: Fonts
-        tree: true
-        mode: 493
   stemma/v1alpha1/MacSoftware/1password:
     source:
       version: 1
@@ -226,37 +211,6 @@ inputs:
           sha256: 20df0f4927f312f8d47e60294b9a77fd60e44be61476a581fb9195c029ba0893
           size: 84161771
         filename: googleearthpromac-intel.dmg
-        mode: 420
-  stemma/v1alpha1/MacSoftware/linewize-authentication-agent:
-    source:
-      version: 1
-      resolver: file
-      resolver_version: "1"
-      declaration: 8e3e65539a17e0f54274d17f6635387a1257878ffcc757109b47b5133621260a
-      resolved_at: "2026-09-12T13:21:06Z"
-      observation: {}
-      content:
-        artifact:
-          sha256: 15587de55d972cf9d28a5f070e2da2dd8eaa520deaad66f72e2e00010e6ea5da
-          size: 9509271
-        filename: auth-agent.pkg
-        mode: 420
-  stemma/v1alpha1/MacSoftware/linewize-connect:
-    source:
-      version: 1
-      resolver: http
-      resolver_version: "1"
-      declaration: ef23608b62eac75c1672622a7af67f28b8b6b1fd9a52cee782861f64499ea16b
-      resolved_at: "2026-09-12T13:21:06Z"
-      observation:
-        etag: '"34e61c0dc3f6a242ba39077aff9a038a"'
-        last_modified: Tue, 04 Aug 2026 06:19:31 GMT
-        url: https://qoria-mza-installers.linewize.net/Connect%20Installer.pkg
-      content:
-        artifact:
-          sha256: 4f3e405718c08e4764e41404fb03c5a9b82e799221bbd6883cb1970c5c3df69b
-          size: 149628134
-        filename: Connect Installer.pkg
         mode: 420
   stemma/v1alpha1/MacSoftware/microsoft-365-business-pro-suite:
     source:
