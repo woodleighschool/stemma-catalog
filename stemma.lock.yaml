@@ -578,23 +578,6 @@ inputs:
           size: 167350272
         filename: googlechromestandaloneenterprise64.msi
         mode: 420
-  stemma/v1alpha1/WindowsSoftware/zoom:
-    source:
-      version: 1
-      resolver: http
-      resolver_version: "1"
-      declaration: 3062bc012bac6be0b69c9174c3ff0269b88dc188a7b11d622af228ad2ceb55f8
-      resolved_at: "2026-09-12T09:14:54Z"
-      observation:
-        etag: '"db2220531fd1da565893adab851d3d86-26"'
-        last_modified: Mon, 31 Aug 2026 07:01:59 GMT
-        url: https://zoom.us/client/latest/ZoomInstallerFull.msi?archType=x64
-      content:
-        artifact:
-          sha256: caa80801ac68d327014da0a6e387f37976d1e405e8a02ea40ce5b73cf47c3302
-          size: 212007936
-        filename: ZoomInstallerFull.msi
-        mode: 420
 plugins:
   woodstar:
     path: /Users/ahyde/GitHub/woodleighschool/woodstar/stemma/build/plugin
