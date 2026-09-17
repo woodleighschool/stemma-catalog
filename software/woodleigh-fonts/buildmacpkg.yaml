@@ -1,0 +1,17 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/woodleighschool/stemma/refs/heads/main/stemma.schema.json
+apiVersion: stemma/v1alpha1
+kind: BuildMacPkg
+metadata:
+  name: woodleigh-fonts
+suspend: true
+spec:
+  inputs:
+    fonts:
+      path: Fonts
+  package:
+    identifier: au.edu.vic.woodleigh.fonts
+    version: 1.0.0
+  payload:
+    /Library/Fonts:
+      $input: fonts
+      mode: "0755"

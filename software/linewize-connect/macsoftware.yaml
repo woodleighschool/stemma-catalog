@@ -1,0 +1,71 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/woodleighschool/stemma/refs/heads/main/stemma.schema.json
+apiVersion: stemma/v1alpha1
+kind: MacSoftware
+metadata:
+  name: linewize-authentication-agent
+suspend: true
+spec:
+  destinations:
+    woodstar:
+      pkginfo:
+        category: Security
+        description: Identifies the signed-in user to Linewize Connect for school web-filtering
+          policy.
+        developer: Qoria
+        installcheck_script: |-
+          #!/bin/bash
+          agent="/opt/FamilyZone/AuthenticationAgent/bin/fc-authentication-agent_darwin-amd64"
+          if [[ ! -x "$agent" ]] || ! /usr/bin/pgrep -f "$agent" >/dev/null 2>&1; then
+            exit 0
+          fi
+          exit 1
+        installs:
+          - path: /opt/FamilyZone/AuthenticationAgent/bin/fc-authentication-agent_darwin-amd64
+            type: file
+        name: Linewize Authentication Agent
+        requires:
+          - Rosetta
+        unattended_install: true
+        uninstallable: false
+        version: 1.4.1
+  extends: mac-software
+  signature:
+    signer: apple:developer-id:5S77G864UH # B Communications Pty Ltd
+  source:
+    path: Assets/auth-agent.pkg
+---
+apiVersion: stemma/v1alpha1
+kind: MacSoftware
+metadata:
+  name: linewize-connect
+spec:
+  destinations:
+    woodstar:
+      pkginfo:
+        category: Security
+        description: School-managed web filtering and safety controls away from the school network.
+        developer: Qoria
+        installcheck_script: |-
+          #!/bin/bash
+          service="/Applications/FamilyZone/MobileZoneAgent/bin/fc-system-service_darwin-amd64"
+          if [[ ! -x "$service" ]] || ! /usr/bin/pgrep -f "$service" >/dev/null 2>&1; then
+            exit 0
+          fi
+          exit 1
+        name: Linewize Connect
+        preinstall_script: |-
+          #!/bin/bash
+          app="/Applications/FamilyZone/MobileZoneAgent/bin/Connect.app"
+          if [[ -d "$app" ]]; then
+            /usr/bin/chflags -R noschg "$app" || exit 1
+          fi
+        requires:
+          - Linewize Authentication Agent
+          - Rosetta
+        unattended_install: true
+        uninstallable: false
+  extends: mac-software
+  signature:
+    signer: apple:developer-id:5S77G864UH # FAMILY ZONE CYBER SAFETY LIMITED
+  source:
+    url: https://qoria-mza-installers.linewize.net/Connect%20Installer.pkg
