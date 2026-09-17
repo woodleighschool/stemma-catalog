@@ -212,6 +212,23 @@ inputs:
           size: 84161771
         filename: googleearthpromac-intel.dmg
         mode: 420
+  stemma/v1alpha1/MacSoftware/linewize-connect:
+    source:
+      version: 1
+      resolver: http
+      resolver_version: "1"
+      declaration: ef23608b62eac75c1672622a7af67f28b8b6b1fd9a52cee782861f64499ea16b
+      resolved_at: "2026-09-17T01:07:08Z"
+      observation:
+        etag: '"34e61c0dc3f6a242ba39077aff9a038a"'
+        last_modified: Tue, 04 Aug 2026 06:19:31 GMT
+        url: https://qoria-mza-installers.linewize.net/Connect%20Installer.pkg
+      content:
+        artifact:
+          sha256: 4f3e405718c08e4764e41404fb03c5a9b82e799221bbd6883cb1970c5c3df69b
+          size: 149628134
+        filename: Connect Installer.pkg
+        mode: 420
   stemma/v1alpha1/MacSoftware/microsoft-365-business-pro-suite:
     source:
       version: 1
