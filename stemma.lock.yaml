@@ -348,15 +348,15 @@ inputs:
       resolver: http
       resolver_version: "1"
       declaration: 9d6bb26017e403487758ec08e11578e9363c3bc868f033cd5c48058e044872fd
-      resolved_at: "2026-09-12T13:23:06Z"
+      resolved_at: "2026-09-17T01:09:15Z"
       observation:
-        last_modified: Thu, 10 Sep 2026 15:56:13 GMT
+        last_modified: Wed, 16 Sep 2026 18:28:06 GMT
         url: https://go.microsoft.com/fwlink/?linkid=525134
       content:
         artifact:
-          sha256: b5a51125e57351f255a7a6387eb2b16f3c444e1740182f11bbbce6a9378e85e0
-          size: 1402502410
-        filename: Microsoft_Word_16.112.26090911_Installer.pkg
+          sha256: c39836a695a923d7642067fa5046cf01c8b27250dd61df395dd3b22e01717c3d
+          size: 1412376483
+        filename: Microsoft_Word_16.113.26091433_Installer.pkg
         mode: 420
   stemma/v1alpha1/MacSoftware/minecraft-education:
     source:
