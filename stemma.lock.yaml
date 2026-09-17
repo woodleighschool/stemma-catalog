@@ -315,15 +315,15 @@ inputs:
       resolver: http
       resolver_version: "1"
       declaration: 7a337931a41396bd6770c5d16dc89447025a0ef7cfb1bb9653a15f767457d148
-      resolved_at: "2026-09-12T13:22:46Z"
+      resolved_at: "2026-09-17T01:08:56Z"
       observation:
-        last_modified: Thu, 10 Sep 2026 15:56:09 GMT
+        last_modified: Wed, 16 Sep 2026 18:30:32 GMT
         url: https://go.microsoft.com/fwlink/?linkid=525136
       content:
         artifact:
-          sha256: 91401619ea602be784a91091fbb5c779b25d0a01285be000cc339f87a7e28744
-          size: 1084672363
-        filename: Microsoft_PowerPoint_16.112.26090911_Installer.pkg
+          sha256: a53535cba997880e8003059211e1d826629a1f55d9f4e1deabc1e7d18c11f46f
+          size: 1093197877
+        filename: Microsoft_PowerPoint_16.113.26091433_Installer.pkg
         mode: 420
   stemma/v1alpha1/MacSoftware/microsoft-teams:
     source:
