@@ -266,15 +266,15 @@ inputs:
       resolver: http
       resolver_version: "1"
       declaration: 1239f5ebb7ce9746e5a704e103d2d56fc4f040c8a330e936f3aea3b423c3613a
-      resolved_at: "2026-09-12T13:22:20Z"
+      resolved_at: "2026-09-17T01:08:27Z"
       observation:
-        last_modified: Thu, 10 Sep 2026 15:51:51 GMT
+        last_modified: Wed, 16 Sep 2026 20:15:45 GMT
         url: https://go.microsoft.com/fwlink/?linkid=820886
       content:
         artifact:
-          sha256: 6cb356b3f54cfa0956ca9a3a03ecb3dd693cc7163d3f2c662a69d81dbe7bc428
-          size: 625877536
-        filename: Microsoft_OneNote_16.112.26090911_Updater.pkg
+          sha256: 20518656c1b28121d055122a2cca0d880ce379791da08045481075261b25e5cc
+          size: 627715218
+        filename: Microsoft_OneNote_16.113.26091433_Updater.pkg
         mode: 420
   stemma/v1alpha1/MacSoftware/microsoft-outlook:
     source:
