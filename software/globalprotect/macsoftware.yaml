@@ -23,6 +23,7 @@ spec:
           exec /Applications/GlobalProtect.app/Contents/Resources/uninstall_gp.sh
         uninstallable: true
   extends: mac-software
+  icon: globalprotect
   signature:
     signer: apple:developer-id:PXPZ95SK77 # Palo Alto Networks
   source:

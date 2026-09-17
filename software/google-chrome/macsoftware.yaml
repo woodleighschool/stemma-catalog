@@ -14,6 +14,7 @@ spec:
         uninstall_method: removepackages
         uninstallable: true
   extends: mac-software
+  icon: google-chrome
   signature:
     signer: apple:developer-id:EQHXZ8M8AV # Google LLC
   source:

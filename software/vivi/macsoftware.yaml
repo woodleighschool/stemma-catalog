@@ -20,6 +20,7 @@ spec:
         uninstall_method: removepackages
         uninstallable: true
   extends: mac-software
+  icon: vivi
   signature:
     signer: apple:developer-id:3NRCUJ8TJC # VIVI AUSTRALIA PTY LTD
   source:

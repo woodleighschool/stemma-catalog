@@ -249,6 +249,7 @@ spec:
         uninstallable: true
         version: 2.0.3.1
   extends: mac-software
+  icon: garageband-sounds
   source:
     resource:
       kind: BuildMacPkg
@@ -371,6 +372,7 @@ spec:
           - GarageBand
         version: 2.0.3.2
   extends: mac-software
+  icon: garageband-sounds
   source:
     resource:
       kind: BuildMacPkg

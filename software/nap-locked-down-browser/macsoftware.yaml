@@ -27,6 +27,7 @@ spec:
         uninstall_method: removepackages
         uninstallable: true
   extends: mac-software
+  icon: nap-locked-down-browser
   signature:
     signer: apple:developer-id:KU9HRE5GET # Janison
   source:

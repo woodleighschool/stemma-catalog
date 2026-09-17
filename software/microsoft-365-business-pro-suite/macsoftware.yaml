@@ -29,6 +29,7 @@ spec:
         unattended_install: true
         uninstallable: false
   extends: mac-software
+  icon: microsoft-365-business-pro-suite
   signature:
     signer: apple:developer-id:UBF8T346G9 # Microsoft Corporation
   source:

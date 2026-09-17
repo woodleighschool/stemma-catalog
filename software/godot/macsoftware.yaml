@@ -20,6 +20,7 @@ spec:
         uninstall_method: removepackages
         uninstallable: true
   extends: mac-software
+  icon: godot
   signature:
     signer: apple:developer-id:6K46PWY5DM # Prehensile Tales B.V.
   source:

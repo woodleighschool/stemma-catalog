@@ -64,6 +64,7 @@ spec:
         uninstallable: true
         version: "1.2"
   extends: mac-software
+  icon: printers
 ---
 apiVersion: stemma/v1alpha1
 kind: MacSoftware
@@ -130,6 +131,7 @@ spec:
         uninstallable: true
         version: "1.2"
   extends: mac-software
+  icon: printers
 ---
 apiVersion: stemma/v1alpha1
 kind: MacSoftware
@@ -196,3 +198,4 @@ spec:
         uninstallable: true
         version: "1.2"
   extends: mac-software
+  icon: printers

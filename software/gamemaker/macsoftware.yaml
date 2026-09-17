@@ -19,6 +19,7 @@ spec:
         uninstall_method: removepackages
         uninstallable: true
   extends: mac-software
+  icon: gamemaker
   signature:
     signer: apple:developer-id:C9E7J7HL3D # YoYo Games Ltd
   source:

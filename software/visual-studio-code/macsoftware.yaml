@@ -29,6 +29,7 @@ spec:
         uninstall_method: remove_copied_items
         uninstallable: true
   extends: mac-software
+  icon: visual-studio-code
   signature:
     signer: apple:developer-id:UBF8T346G9 # Microsoft Corporation
   source:

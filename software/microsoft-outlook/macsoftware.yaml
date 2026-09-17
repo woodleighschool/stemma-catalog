@@ -85,6 +85,7 @@ spec:
           - software: microsoft-outlook
         version: "1.0"
   extends: mac-software
+  icon: mail2outlook
 ---
 apiVersion: stemma/v1alpha1
 kind: MacSoftware
@@ -109,6 +110,7 @@ spec:
         unattended_install: true
         uninstallable: false
   extends: mac-software
+  icon: microsoft-outlook
   signature:
     signer: apple:developer-id:UBF8T346G9 # Microsoft Corporation
   source:

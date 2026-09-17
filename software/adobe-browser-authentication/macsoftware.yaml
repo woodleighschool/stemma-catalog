@@ -46,3 +46,4 @@ spec:
           - Adobe Creative Cloud
         version: "1.0"
   extends: mac-software
+  icon: adobe-browser-authentication

@@ -25,3 +25,4 @@ spec:
         uninstallable: false
         version: "1.0"
   extends: mac-software
+  icon: rosetta

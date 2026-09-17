@@ -24,6 +24,7 @@ spec:
         uninstall_method: removepackages
         uninstallable: true
   extends: mac-software
+  icon: wacom-tablet-driver
   package_path: Install Wacom Tablet.pkg
   signature:
     signer: apple:developer-id:EG27766DY7 # Wacom Technology Corp.

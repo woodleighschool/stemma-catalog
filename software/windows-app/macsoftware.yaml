@@ -21,6 +21,7 @@ spec:
         uninstall_method: removepackages
         uninstallable: true
   extends: mac-software
+  icon: windows-app
   signature:
     signer: apple:developer-id:UBF8T346G9 # Microsoft Corporation
   source:
@@ -120,3 +121,4 @@ spec:
           - software: windows-app
         version: "1.0"
   extends: mac-software
+  icon: windows-app-rds

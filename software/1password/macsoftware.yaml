@@ -22,6 +22,7 @@ spec:
         uninstall_method: removepackages
         uninstallable: true
   extends: mac-software
+  icon: 1password
   signature:
     signer: apple:developer-id:2BUA8C4S2C # AgileBits Inc.
   source:

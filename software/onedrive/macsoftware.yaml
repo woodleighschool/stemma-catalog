@@ -18,6 +18,7 @@ spec:
         unattended_install: true
         uninstallable: false
   extends: mac-software
+  icon: onedrive
   signature:
     signer: apple:developer-id:UBF8T346G9 # Microsoft Corporation
   source:

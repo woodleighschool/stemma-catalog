@@ -24,6 +24,7 @@ spec:
         uninstall_method: removepackages
         uninstallable: true
   extends: mac-software
+  icon: microsoft-edge
   signature:
     signer: apple:developer-id:UBF8T346G9 # Microsoft Corporation
   source:

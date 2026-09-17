@@ -18,6 +18,7 @@ spec:
         name: EasyFind
         unattended_install: true
   extends: mac-software
+  icon: easyfind
   signature:
     signer: apple:developer-id:679S2QUWR8 # DEVONtechnologies, LLC
   source:

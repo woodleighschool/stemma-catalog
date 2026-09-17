@@ -22,6 +22,7 @@ spec:
         uninstallable: false
         version: "1.1"
   extends: mac-software
+  icon: branding
   source:
     resource:
       kind: BuildMacPkg
