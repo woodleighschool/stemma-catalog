@@ -38,6 +38,7 @@ apiVersion: stemma/v1alpha1
 kind: MacSoftware
 metadata:
   name: linewize-connect
+suspend: true
 spec:
   destinations:
     woodstar:
