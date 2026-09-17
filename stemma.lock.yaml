@@ -299,15 +299,15 @@ inputs:
       resolver: http
       resolver_version: "1"
       declaration: 7030f86a46f4ba7c316fc2dc52486e1f956eea7c0f6015625dcc5f1f399c379f
-      resolved_at: "2026-09-12T13:22:29Z"
+      resolved_at: "2026-09-17T01:08:37Z"
       observation:
-        last_modified: Tue, 18 Aug 2026 18:14:06 GMT
+        last_modified: Wed, 16 Sep 2026 18:33:49 GMT
         url: https://go.microsoft.com/fwlink/?linkid=525137
       content:
         artifact:
-          sha256: 5e01efb78c20a72ac0eaeed92386667959710f2489542692dda4d65e1ce09953
-          size: 1310339956
-        filename: Microsoft_Outlook_16.112.26081720_Installer.pkg
+          sha256: f0001f0794f6c5c98bb486401133249d5e2c8a92a5d34205ef0cf33985c0f64c
+          size: 1237521608
+        filename: Microsoft_Outlook_16.113.26091433_Installer.pkg
         mode: 420
   stemma/v1alpha1/MacSoftware/microsoft-powerpoint:
     source:
