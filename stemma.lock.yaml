@@ -111,6 +111,23 @@ inputs:
           size: 85659163
         filename: CompanyPortal-Installer.pkg
         mode: 420
+  stemma/v1alpha1/MacSoftware/easyfind:
+    source:
+      version: 1
+      resolver: http
+      resolver_version: "1"
+      declaration: 43c72883ee4d3c9f7c9d4d6d6266fb2e40de919886bbf07cbf63ebaf275571f5
+      resolved_at: "2026-09-12T13:20:45Z"
+      observation:
+        etag: '"91ce8e492999bfa0cf4a95e2aa505b73"'
+        last_modified: Thu, 19 Aug 2021 07:01:12 GMT
+        url: https://download.devontechnologies.com/download/freeware/easyfind/5.0.2/EasyFind.app.zip
+      content:
+        artifact:
+          sha256: 1539a562539e3b3a243da864fddee0351a4c7d109aa9dcae436775ecbb288fc9
+          size: 5056310
+        filename: EasyFind.app.zip
+        mode: 420
   stemma/v1alpha1/MacSoftware/gamemaker:
     source:
       version: 1
