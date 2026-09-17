@@ -267,15 +267,15 @@ inputs:
       resolver: http
       resolver_version: "1"
       declaration: 3a74d1c3215025fed8ce3b1e8f48bf4539bdf83a4ea98e17fce00871b686b265
-      resolved_at: "2026-09-12T13:22:04Z"
+      resolved_at: "2026-09-17T01:08:09Z"
       observation:
-        last_modified: Thu, 10 Sep 2026 15:56:25 GMT
+        last_modified: Wed, 16 Sep 2026 18:30:58 GMT
         url: https://go.microsoft.com/fwlink/?linkid=525135
       content:
         artifact:
-          sha256: c41c0b430ca99ffe6a328797f5247fbd4be8df8ca9b5229b1253c3a4efc3891d
-          size: 1171721911
-        filename: Microsoft_Excel_16.112.26090911_Installer.pkg
+          sha256: 3a2c363c3c96644138a8ee936d9be848a0b742b2f13765e3a8c68291cd60d8d0
+          size: 1178508955
+        filename: Microsoft_Excel_16.113.26091433_Installer.pkg
         mode: 420
   stemma/v1alpha1/MacSoftware/microsoft-onenote:
     source:
