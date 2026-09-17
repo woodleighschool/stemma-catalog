@@ -81,8 +81,8 @@ spec:
         unattended_install: true
         uninstallable: false
         update_for:
-          - Microsoft 365 Business Pro Suite
-          - Microsoft Outlook
+          - software: microsoft-365-business-pro-suite
+          - software: microsoft-outlook
         version: "1.0"
   extends: mac-software
 ---

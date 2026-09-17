@@ -24,7 +24,7 @@ spec:
             type: file
         name: Linewize Authentication Agent
         requires:
-          - Rosetta
+          - software: rosetta
         unattended_install: true
         uninstallable: false
         version: 1.4.1
@@ -61,8 +61,8 @@ spec:
             /usr/bin/chflags -R noschg "$app" || exit 1
           fi
         requires:
-          - Linewize Authentication Agent
-          - Rosetta
+          - software: linewize-authentication-agent
+          - software: rosetta
         unattended_install: true
         uninstallable: false
   extends: mac-software

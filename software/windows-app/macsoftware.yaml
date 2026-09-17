@@ -117,6 +117,6 @@ spec:
         unattended_install: true
         uninstallable: false
         update_for:
-          - Windows App
+          - software: windows-app
         version: "1.0"
   extends: mac-software
