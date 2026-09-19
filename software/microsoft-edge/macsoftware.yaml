@@ -34,4 +34,5 @@ spec:
   signature:
     signer: apple:developer-id:UBF8T346G9 # Microsoft Corporation
   source:
-    url: https://go.microsoft.com/fwlink/?linkid=2093504
+    resolver: microsoft
+    product: edge

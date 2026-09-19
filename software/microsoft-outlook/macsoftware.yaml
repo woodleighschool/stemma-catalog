@@ -127,4 +127,5 @@ spec:
   signature:
     signer: apple:developer-id:UBF8T346G9 # Microsoft Corporation
   source:
-    url: https://go.microsoft.com/fwlink/?linkid=525137
+    resolver: microsoft
+    product: outlook
