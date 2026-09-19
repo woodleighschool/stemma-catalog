@@ -13,16 +13,11 @@ import (
 
 // PythonConfig selects a Python 3 branch from 3.10 onward.
 type PythonConfig struct {
-	Branch string `json:"branch"`
+	Branch string `json:"branch" jsonschema:"pattern=^3\\.[1-9][0-9]+$" jsonschema_description:"Python 3 branch from 3.10 onward."`
 }
-
-var branchPattern = regexp.MustCompile(`^3\.[1-9][0-9]+$`)
 
 // Python selects the latest stable macOS installer in the configured branch.
 func Python(ctx context.Context, client *http.Client, config PythonConfig) (Release, error) {
-	if !branchPattern.MatchString(config.Branch) {
-		return Release{}, errors.New("python: branch must be a canonical Python 3 branch, 3.10 or later")
-	}
 	target := &url.URL{Scheme: "https", Host: "www.python.org", Path: "/downloads/macos/"}
 	data, err := metadata(ctx, client, target, hostURL(target.Host))
 	if err != nil {

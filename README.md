@@ -15,8 +15,17 @@ Build the download resolvers before validating the catalog:
 
 ```sh
 mise run //plugins/downloads:build
+stemma schema --offline --output-file stemma.schema.json
 stemma validate --offline
 ```
 
 See the [download resolvers](plugins/downloads/README.md) for configuration and
 packaging. Keep credentials and local tool paths in `.env` or the shell environment.
+
+## 📝 Editor schema
+
+YAML files reference the tracked root `stemma.schema.json` through its
+[raw repository URL](https://raw.githubusercontent.com/woodleighschool/stemma-catalog/main/stemma.schema.json)
+in their `$schema` modelines. Run `mise run schema` after changing plugin types,
+registrations or destination names, then commit the regenerated schema. The command
+uses the plugins configured in `stemma.yaml`; `.stemma/` contains disposable cache.

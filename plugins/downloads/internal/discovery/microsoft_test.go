@@ -24,15 +24,15 @@ func TestMicrosoftSelectsFirstFullUpdate(t *testing.T) {
 	for _, test := range []struct {
 		name, channel, kind, channelID, suffix string
 	}{
-		{"defaults", "", "", "C1297A47-86C4-4C1F-97FA-950631F94777", "Installer"},
+		{"production", "production", "standalone", "C1297A47-86C4-4C1F-97FA-950631F94777", "Installer"},
 		{"explicit", "production", "standalone", "C1297A47-86C4-4C1F-97FA-950631F94777", "Installer"},
-		{"preview", "preview", "", "1ac37578-5a24-40fb-892e-b89d85b6dfaa", "Installer"},
+		{"preview", "preview", "standalone", "1ac37578-5a24-40fb-892e-b89d85b6dfaa", "Installer"},
 		{"beta updater", "beta", "updater", "4B2D7701-0A4F-49C8-B4CB-0C2D4043F51F", "Updater"},
 	} {
 		t.Run(test.name, func(t *testing.T) {
 			endpoint := "https://res.public.onecdn.static.microsoft/mro1cdnstorage/" + test.channelID + "/MacAutoupdate/0409OPIM2019.xml"
 			client := fixtureClient(t, map[string]string{endpoint: microsoftTestFeed})
-			got, err := Microsoft(t.Context(), client, MicrosoftConfig{Product: "outlook", Channel: test.channel, Type: test.kind})
+			got, err := Microsoft(t.Context(), client, MicrosoftConfig{Product: "outlook", Channel: Channel(test.channel), Type: PackageType(test.kind)})
 			filename := "Microsoft_Outlook_16.113_" + test.suffix + ".pkg"
 			want := Release{URL: "https://res.public.onecdn.static.microsoft/" + filename, Filename: filename, Version: "16.113"}
 			if err != nil || got != want {
@@ -45,7 +45,7 @@ func TestMicrosoftSelectsFirstFullUpdate(t *testing.T) {
 func TestMicrosoftOneNoteStandaloneUsesFullPackage(t *testing.T) {
 	endpoint := "https://res.public.onecdn.static.microsoft/mro1cdnstorage/C1297A47-86C4-4C1F-97FA-950631F94777/MacAutoupdate/0409ONMC2019.xml"
 	client := fixtureClient(t, map[string]string{endpoint: strings.ReplaceAll(microsoftTestFeed, "Outlook", "OneNote")})
-	got, err := Microsoft(t.Context(), client, MicrosoftConfig{Product: "onenote"})
+	got, err := Microsoft(t.Context(), client, MicrosoftConfig{Product: "onenote", Channel: ChannelProduction, Type: PackageStandalone})
 	want := Release{URL: "https://res.public.onecdn.static.microsoft/Microsoft_OneNote_16.113_Updater.pkg", Filename: "Microsoft_OneNote_16.113_Updater.pkg", Version: "16.113"}
 	if err != nil || got != want {
 		t.Fatalf("release = %+v, want %+v, error = %v", got, want, err)
@@ -65,7 +65,7 @@ func TestMicrosoftRejectsInvalidManifest(t *testing.T) {
 		t.Run(name, func(t *testing.T) {
 			endpoint := "https://res.public.onecdn.static.microsoft/mro1cdnstorage/C1297A47-86C4-4C1F-97FA-950631F94777/MacAutoupdate/0409OPIM2019.xml"
 			client := fixtureClient(t, map[string]string{endpoint: body})
-			if _, err := Microsoft(t.Context(), client, MicrosoftConfig{Product: "outlook"}); err == nil {
+			if _, err := Microsoft(t.Context(), client, MicrosoftConfig{Product: "outlook", Channel: ChannelProduction, Type: PackageStandalone}); err == nil {
 				t.Fatal("accepted invalid manifest")
 			}
 		})
@@ -96,7 +96,7 @@ func TestMicrosoftStandaloneResolvesWithoutDownloading(t *testing.T) {
 				}
 				return response, nil
 			})}
-			got, err := Microsoft(t.Context(), client, MicrosoftConfig{Product: product})
+			got, err := Microsoft(t.Context(), client, MicrosoftConfig{Product: Product(product), Channel: ChannelProduction, Type: PackageStandalone})
 			want := Release{URL: target, Filename: "Standalone.pkg"}
 			if err != nil || got != want || calls != 2 {
 				t.Fatalf("release = %+v, want %+v, calls = %d, error = %v", got, want, calls, err)
@@ -116,7 +116,7 @@ func TestMicrosoftRejectsStandaloneRedirectsAndErrors(t *testing.T) {
 				}
 				return response, nil
 			})}
-			if _, err := Microsoft(t.Context(), client, MicrosoftConfig{Product: "edge"}); err == nil {
+			if _, err := Microsoft(t.Context(), client, MicrosoftConfig{Product: "edge", Channel: ChannelProduction, Type: PackageStandalone}); err == nil {
 				t.Fatal("accepted invalid standalone location")
 			}
 		})
@@ -126,7 +126,7 @@ func TestMicrosoftRejectsStandaloneRedirectsAndErrors(t *testing.T) {
 			client := &http.Client{Transport: roundTripFunc(func(req *http.Request) (*http.Response, error) {
 				return &http.Response{StatusCode: status, Header: make(http.Header), Body: io.NopCloser(strings.NewReader("")), Request: req}, nil
 			})}
-			if _, err := Microsoft(t.Context(), client, MicrosoftConfig{Product: "edge"}); err == nil {
+			if _, err := Microsoft(t.Context(), client, MicrosoftConfig{Product: "edge", Channel: ChannelProduction, Type: PackageStandalone}); err == nil {
 				t.Fatal("accepted unsuccessful standalone request")
 			}
 		})

@@ -44,7 +44,7 @@ func fixtureClient(t *testing.T, handler http.HandlerFunc) *http.Client {
 	return client
 }
 
-func invoke(t *testing.T, registry *plugin.Registry, method, operation string, request plugin.ResolveRequest) (plugin.ResolveResponse, error) {
+func invoke(t *testing.T, registry *plugin.Registry, method, operation string, request plugin.ResolveRequest[json.RawMessage]) (plugin.ResolveResponse, error) {
 	t.Helper()
 	data, err := json.Marshal(request)
 	if err != nil {
@@ -83,7 +83,7 @@ func TestLockedRunsFetchOnlyRecordedArtifact(t *testing.T) {
 	hash := sha256.Sum256([]byte(body))
 	for operation, config := range configs {
 		t.Run(operation, func(t *testing.T) {
-			request := plugin.ResolveRequest{Config: json.RawMessage(config), Root: t.TempDir(), Workspace: t.TempDir(), Locked: true, Observation: observation}
+			request := plugin.ResolveRequest[json.RawMessage]{Config: json.RawMessage(config), Root: t.TempDir(), Workspace: t.TempDir(), Locked: true, Observation: observation}
 			result, err := invoke(t, registry, "run", operation, request)
 			if err != nil {
 				t.Fatal(err)
@@ -125,20 +125,27 @@ func TestValidationRejectsInvalidConfigurationWithoutNetwork(t *testing.T) {
 		{"blender", `{"major":0}`},
 		{"blender", `{"major":5,"url":"https://example.test"}`},
 		{"python", `{"branch":"3.13rc1"}`},
+		{"python", `{"branch":"2.7"}`},
+		{"python", `{"branch":"3.9"}`},
+		{"epson", `{"device_id":" ","os":"MAC26","cti":"2001"}`},
+		{"epson", `{"device_id":"Printer","os":"MAC 26","cti":"2001"}`},
+		{"epson", `{"device_id":"Printer","os":"MAC26","cti":"2001","region":"gb"}`},
 		{"cricut", `{"operating_system":"windows"}`},
 		{"epson", `{"device_id":"Printer","os":"MAC26","cti":2001}`},
 	} {
-		if _, err := invoke(t, registry, "validate", test.operation, plugin.ResolveRequest{Config: json.RawMessage(test.config)}); err == nil {
-			t.Fatalf("accepted %s %s", test.operation, test.config)
+		for _, method := range []string{"validate", "run"} {
+			if _, err := invoke(t, registry, method, test.operation, plugin.ResolveRequest[json.RawMessage]{Config: json.RawMessage(test.config), Locked: true}); err == nil {
+				t.Fatalf("accepted %s %s on %s", test.operation, test.config, method)
+			}
 		}
 	}
 	for _, config := range []string{`{"product":"outlook"}`, `{"product":"outlook","channel":"preview","type":"updater"}`, `{"product":"edge"}`} {
-		if _, err := invoke(t, registry, "validate", "microsoft", plugin.ResolveRequest{Config: json.RawMessage(config)}); err != nil {
+		if _, err := invoke(t, registry, "validate", "microsoft", plugin.ResolveRequest[json.RawMessage]{Config: json.RawMessage(config)}); err != nil {
 			t.Fatal(err)
 		}
 	}
 
-	if _, err := invoke(t, registry, "validate", "python", plugin.ResolveRequest{Config: json.RawMessage(`{"branch":"3.13"}`)}); err != nil {
+	if _, err := invoke(t, registry, "validate", "python", plugin.ResolveRequest[json.RawMessage]{Config: json.RawMessage(`{"branch":"3.13"}`)}); err != nil {
 		t.Fatal(err)
 	}
 }

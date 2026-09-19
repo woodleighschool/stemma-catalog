@@ -9,7 +9,7 @@ Stemma owns source locks, cached content and software preparation.
 | ----------- | ------------------------------------------------------ | --------------------------------------------------------- |
 | `blender`   | `major`; `architecture: arm64` or `x64`                | Latest stable macOS DMG within the major                  |
 | `python`    | `branch`, such as `"3.13"`                             | Latest stable macOS PKG within the branch; 3.10 and later |
-| `cricut`    | `operating_system: osxnative`; `shard: a`              | The shard's update manifest and installer API             |
+| `cricut`    | `shard: a`                                             | The shard's update manifest and installer API             |
 | `epson`     | `device_id`, `os`, `cti`; `region: GB`, `language: en` | Matching Download Center content type                     |
 | `microsoft` | `product`; `channel: production`; `type: standalone`   | Office MAU metadata or the product’s standalone download  |
 
@@ -68,6 +68,13 @@ mise run lint
 
 The binary is written to `build/plugin`. This is a separate Go module using
 Stemma's public `plugin` SDK. Tests use synthetic metadata and local HTTP servers.
+
+Resolver config structs own JSON field names, constraints, defaults and hover
+descriptions. Named enums extend the generated schema with their Go constants.
+`plugin.Register` infers the config through the typed resolver request, applies
+defaults and validation, and exposes the same contract to the plugin protocol and
+the catalog editor. Microsoft combination rules live in `MicrosoftConfig.Validate`;
+its generated schema documents the finite choices without duplicating those rules.
 
 The catalog loads the built bundle:
 

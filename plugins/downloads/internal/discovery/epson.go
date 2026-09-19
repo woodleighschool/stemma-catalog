@@ -8,39 +8,28 @@ import (
 	"net/http"
 	"net/url"
 	"path"
-	"regexp"
 	"strings"
 )
 
 // EpsonConfig selects one Download Center content type for a device and OS.
 type EpsonConfig struct {
-	DeviceID string `json:"device_id"`
-	OS       string `json:"os"`
-	Region   string `json:"region"`
-	CTI      string `json:"cti"`
-	Language string `json:"language"`
+	DeviceID string `json:"device_id" jsonschema:"minLength=1" jsonschema_description:"Exact device identifier accepted by Epson Download Center, such as its model or series name."`
+	OS       string `json:"os" jsonschema:"pattern=^[A-Za-z0-9_-]+$" jsonschema_description:"Epson operating-system token used to select compatible downloads."`
+	Region   string `json:"region,omitempty" jsonschema:"pattern=^[A-Z]{2}$,default=GB" jsonschema_description:"Two-letter uppercase Epson region code. Defaults to GB."`
+	CTI      string `json:"cti" jsonschema:"pattern=^[0-9]+$" jsonschema_description:"Numeric content-type identifier. Exactly one returned download must match."`
+	Language string `json:"language,omitempty" jsonschema:"pattern=^[a-z]{2}(-[A-Z]{2})?$,default=en" jsonschema_description:"Language code, optionally followed by an uppercase region, such as en or en-GB. Defaults to en."`
 }
 
-var (
-	ctiPattern      = regexp.MustCompile(`^[0-9]+$`)
-	regionPattern   = regexp.MustCompile(`^[A-Z]{2}$`)
-	languagePattern = regexp.MustCompile(`^[a-z]{2}(-[A-Z]{2})?$`)
-)
+// Validate rejects device identifiers that cannot identify a vendor record.
+func (config EpsonConfig) Validate() error {
+	if !validText(config.DeviceID) {
+		return errors.New("device_id must be nonempty text without surrounding whitespace or control characters")
+	}
+	return nil
+}
 
 // Epson requires exactly one matching CTI and uses the vendor's public file origin.
 func Epson(ctx context.Context, client *http.Client, config EpsonConfig) (Release, error) {
-	if !validText(config.DeviceID) || !tokenPattern.MatchString(config.OS) || !ctiPattern.MatchString(config.CTI) {
-		return Release{}, errors.New("epson: device_id, OS token, and numeric cti are required")
-	}
-	if config.Region == "" {
-		config.Region = "GB"
-	}
-	if config.Language == "" {
-		config.Language = "en"
-	}
-	if !regionPattern.MatchString(config.Region) || !languagePattern.MatchString(config.Language) {
-		return Release{}, errors.New("epson: invalid region or language code")
-	}
 	query := url.Values{"device_id": {config.DeviceID}, "os": {config.OS}, "region": {config.Region}, "language": {config.Language}}
 	endpoint := &url.URL{Scheme: "https", Host: "download-center.epson.com", Path: "/api/v1/modules/", RawQuery: query.Encode()}
 	type item struct {

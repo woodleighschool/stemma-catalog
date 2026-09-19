@@ -14,3 +14,8 @@ lockfile = true
 
 [monorepo]
 config_roots = ["plugins/*"]
+
+[tasks.schema]
+description = "Generate the editor schema from the local Stemma registry"
+depends = ["//plugins/downloads:build"]
+run = "stemma schema --offline --output-file stemma.schema.json"

@@ -10,27 +10,20 @@ import (
 	"regexp"
 	"strconv"
 	"strings"
+
+	"github.com/invopop/jsonschema"
 )
 
 // BlenderConfig selects a macOS architecture within a Blender major release.
 type BlenderConfig struct {
-	Major        int    `json:"major"`
-	Architecture string `json:"architecture"`
+	Major        int          `json:"major" jsonschema:"minimum=1" jsonschema_description:"Blender major release."`
+	Architecture Architecture `json:"architecture,omitempty" jsonschema:"default=arm64" jsonschema_description:"macOS installer architecture. arm64 selects Apple silicon; x64 selects Intel."`
 }
 
 var hrefPattern = regexp.MustCompile(`(?i)\bhref\s*=\s*["']([^"']+)["']`)
 
 // Blender selects the latest stable patch in the newest minor release directory.
 func Blender(ctx context.Context, client *http.Client, config BlenderConfig) (Release, error) {
-	if config.Major < 1 {
-		return Release{}, errors.New("blender: major must be positive")
-	}
-	if config.Architecture == "" {
-		config.Architecture = "arm64"
-	}
-	if config.Architecture != "arm64" && config.Architecture != "x64" {
-		return Release{}, errors.New("blender: architecture must be arm64 or x64")
-	}
 	base := &url.URL{Scheme: "https", Host: "download.blender.org", Path: "/release/"}
 	data, err := metadata(ctx, client, base, hostURL(base.Host))
 	if err != nil {
@@ -90,4 +83,16 @@ func listingNames(data []byte, base *url.URL) []string {
 		names = append(names, strings.TrimPrefix(target.Path, base.Path))
 	}
 	return names
+}
+
+// Architecture selects a macOS build.
+type Architecture string
+
+const (
+	ArchitectureARM64 Architecture = "arm64"
+	ArchitectureX64   Architecture = "x64"
+)
+
+func (Architecture) JSONSchemaExtend(schema *jsonschema.Schema) {
+	schema.Enum = []any{ArchitectureARM64, ArchitectureX64}
 }

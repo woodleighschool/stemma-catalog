@@ -51,7 +51,7 @@ func TestBlenderSelectsNumericStableRelease(t *testing.T) {
 		<a href="blender-5.10.9-macos-arm64.dmg">arm64</a>
 		</body></html>`,
 	})
-	got, err := Blender(t.Context(), client, BlenderConfig{Major: 5})
+	got, err := Blender(t.Context(), client, BlenderConfig{Major: 5, Architecture: ArchitectureARM64})
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -74,7 +74,7 @@ func TestBlenderRequiresStableInstallerInNewestDirectory(t *testing.T) {
 		"https://download.blender.org/release/":            `<a href="Blender5.1/">5.1</a><a href="Blender5.2/">5.2</a>`,
 		"https://download.blender.org/release/Blender5.2/": `<a href="blender-5.2.0-beta-macos-arm64.dmg">beta</a>`,
 	})
-	if _, err := Blender(t.Context(), client, BlenderConfig{Major: 5}); err == nil {
+	if _, err := Blender(t.Context(), client, BlenderConfig{Major: 5, Architecture: ArchitectureARM64}); err == nil {
 		t.Fatal("accepted release directory without a stable installer")
 	}
 }
@@ -115,7 +115,7 @@ func TestCricutResolvesRolloutInstaller(t *testing.T) {
 		"https://static.cricut.com/desktop/update.json":                                        `{"rolloutInstallFile":"` + filename + `","version":"unrelated updater version"}`,
 		"https://apis.cricut.com/desktopdownload/InstallerFile?" + query.Encode():              `{"result":"https://static.cricut.com/desktop/` + url.PathEscape(filename) + `?token=a%2Fb"}`,
 	})
-	got, err := Cricut(t.Context(), client, CricutConfig{})
+	got, err := Cricut(t.Context(), client, CricutConfig{Shard: "a"})
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -162,7 +162,7 @@ func TestCricutRejectsInvalidMetadata(t *testing.T) {
 				"https://static.cricut.com/update.json":                                                                          test.rollout,
 				"https://apis.cricut.com/desktopdownload/InstallerFile?fileName=Installer.dmg&operatingSystem=osxnative&shard=a": test.artifact,
 			})
-			_, err := Cricut(t.Context(), client, CricutConfig{})
+			_, err := Cricut(t.Context(), client, CricutConfig{Shard: "a"})
 			if err == nil {
 				t.Fatal("accepted invalid metadata")
 			}
@@ -189,7 +189,7 @@ func TestEpsonPreservesVersionAndRewritesPublicOrigin(t *testing.T) {
 			client := fixtureClient(t, map[string]string{
 				"https://download-center.epson.com/api/v1/modules/?" + query.Encode(): `{"items":[{"cti":1000,"version":"99.0","url":"https://example.invalid/other.dmg"},{"cti":` + test.cti + `,"version":"13.04.00","url":"` + test.url + `"}]}`,
 			})
-			got, err := Epson(t.Context(), client, EpsonConfig{DeviceID: device, OS: "MAC26", CTI: "2001"})
+			got, err := Epson(t.Context(), client, EpsonConfig{DeviceID: device, OS: "MAC26", CTI: "2001", Region: "GB", Language: "en"})
 			if err != nil {
 				t.Fatal(err)
 			}
@@ -228,41 +228,10 @@ func TestEpsonRejectsAmbiguousOrMalformedMetadata(t *testing.T) {
 			client := fixtureClient(t, map[string]string{
 				"https://download-center.epson.com/api/v1/modules/?device_id=AM-C6000+Series&language=en&os=MAC26&region=GB": test.payload,
 			})
-			if _, err := Epson(t.Context(), client, EpsonConfig{DeviceID: "AM-C6000 Series", OS: "MAC26", CTI: "2001"}); err == nil {
+			if _, err := Epson(t.Context(), client, EpsonConfig{DeviceID: "AM-C6000 Series", OS: "MAC26", CTI: "2001", Region: "GB", Language: "en"}); err == nil {
 				t.Fatal("accepted ambiguous or malformed metadata")
 			}
 		})
-	}
-}
-
-func TestInvalidConfigDoesNotRequestMetadata(t *testing.T) {
-	client := fixtureClient(t, nil)
-	for _, config := range []BlenderConfig{{}, {Major: -1}, {Major: 5, Architecture: "../arm64"}} {
-		if _, err := Blender(t.Context(), client, config); err == nil {
-			t.Errorf("accepted Blender config %+v", config)
-		}
-	}
-	for _, branch := range []string{"", "2.7", "3.8", "3.9", "4.0", "3", "3.13.1", "3.013", "3.13|.*", "../3.13"} {
-		if _, err := Python(t.Context(), client, PythonConfig{Branch: branch}); err == nil {
-			t.Errorf("accepted Python branch %q", branch)
-		}
-	}
-	for _, config := range []CricutConfig{{OperatingSystem: "win32"}, {Shard: "a&shard=b"}, {Shard: "../a"}} {
-		if _, err := Cricut(t.Context(), client, config); err == nil {
-			t.Errorf("accepted Cricut config %+v", config)
-		}
-	}
-	for _, config := range []EpsonConfig{
-		{},
-		{DeviceID: "printer", OS: "MAC26", CTI: "abc"},
-		{DeviceID: "printer\n", OS: "MAC26", CTI: "2001"},
-		{DeviceID: "printer", OS: "MAC26&region=US", CTI: "2001"},
-		{DeviceID: "printer", OS: "MAC26", CTI: "2001", Region: "gb"},
-		{DeviceID: "printer", OS: "MAC26", CTI: "2001", Language: "../en"},
-	} {
-		if _, err := Epson(t.Context(), client, config); err == nil {
-			t.Errorf("accepted Epson config %+v", config)
-		}
 	}
 }
 

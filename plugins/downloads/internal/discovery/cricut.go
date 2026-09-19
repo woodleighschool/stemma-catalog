@@ -7,34 +7,18 @@ import (
 	"net/http"
 	"net/url"
 	"path"
-	"regexp"
 	"strings"
 )
 
 // CricutConfig selects the macOS rollout shard for Cricut Design Space.
 type CricutConfig struct {
-	OperatingSystem string `json:"operating_system"`
-	Shard           string `json:"shard"`
+	Shard string `json:"shard,omitempty" jsonschema:"pattern=^[A-Za-z0-9_-]+$,default=a" jsonschema_description:"Vendor rollout shard used to select the update manifest. Defaults to the primary shard a."`
 }
-
-var tokenPattern = regexp.MustCompile(`^[A-Za-z0-9_-]+$`)
 
 // Cricut resolves the vendor's update JSON and installer indirection.
 // The protocol does not provide an authoritative installer version.
 func Cricut(ctx context.Context, client *http.Client, config CricutConfig) (Release, error) {
-	if config.OperatingSystem == "" {
-		config.OperatingSystem = "osxnative"
-	}
-	if config.OperatingSystem != "osxnative" {
-		return Release{}, errors.New("cricut: operating_system must be osxnative")
-	}
-	if config.Shard == "" {
-		config.Shard = "a"
-	}
-	if !tokenPattern.MatchString(config.Shard) {
-		return Release{}, errors.New("cricut: shard must be an ASCII token")
-	}
-	query := url.Values{"operatingSystem": {config.OperatingSystem}, "shard": {config.Shard}}
+	query := url.Values{"operatingSystem": {"osxnative"}, "shard": {config.Shard}}
 	endpoint := &url.URL{Scheme: "https", Host: "apis.cricut.com", Path: "/desktopdownload/UpdateJson", RawQuery: query.Encode()}
 	var update struct {
 		Result string `json:"result"`
