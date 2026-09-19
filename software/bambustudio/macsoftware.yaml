@@ -1,0 +1,39 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/woodleighschool/stemma-catalog/main/stemma.schema.json
+apiVersion: stemma/v1alpha1
+kind: MacSoftware
+metadata:
+  name: bambustudio
+spec:
+  extends: mac-software
+  source:
+    resolver: github
+    repository: bambulab/BambuStudio
+    asset: Bambu_Studio_mac-*.dmg
+    include_prereleases: true
+  application:
+    bundle_id: com.bambulab.bambu-studio
+  signature:
+    signer: apple:developer-id:T3UBR9Y3B2 # Shanghai Lunkuo Technology Co., Ltd
+  destinations:
+    woodstar:
+      pkginfo:
+        blocking_applications:
+          - BambuStudio
+        category: STEAM
+        description: Bambu Studio is an open-source, cutting-edge, feature-rich slicing
+          software. It contains project-based workflows, systematically optimized
+          slicing algorithms, and an easy-to-use graphical interface, bringing users
+          an incredibly smooth printing experience.
+        developer: Bambu Lab
+        name: BambuStudio
+        unattended_install: true
+        unattended_uninstall: true
+        uninstall_method: remove_copied_items
+        uninstallable: true
+      targets:
+        exclude: []
+        include:
+          - actions:
+              - optional_installs
+              - managed_updates
+            label_name: All Hosts
