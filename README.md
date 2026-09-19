@@ -6,7 +6,10 @@ Our software catalog and Stemma plugins.
 
 `stemma.yaml` owns imports, shared settings and destination connections.
 `software/` contains the managed items and their package inputs; `icons/` contains
-reviewed artwork. Resource identities do not depend on directory names.
+reviewed artwork. Standalone items use `software/<slug>.yaml`; folders group
+related product editions, application configuration, suites and package inputs.
+`microsoft-365/`, `windows-app/` and `printers/` group related items; Mail2Outlook
+and Epson drivers remain standalone. Resource identities do not depend on directory names.
 
 ## 🧩 Plugins
 

@@ -93,39 +93,3 @@ spec:
         include: []
   extends: mac-software
   icon: mail2outlook
----
-apiVersion: stemma/v1alpha1
-kind: MacSoftware
-metadata:
-  name: microsoft-outlook
-spec:
-  application:
-    bundle_id: com.microsoft.Outlook
-    installed_path: /Applications/Microsoft Outlook.app
-  destinations:
-    woodstar:
-      pkginfo:
-        blocking_applications:
-          - Microsoft AutoUpdate
-          - Microsoft Error Reporting
-          - Microsoft Outlook
-        category: Productivity
-        description: Manage your emails, calendar, contacts, and tasks, keeping your communications
-          smooth and synchronized.
-        developer: Microsoft
-        name: Microsoft Outlook
-        unattended_install: true
-        uninstallable: false
-      targets:
-        exclude: []
-        include:
-          - actions:
-              - optional_installs
-            label_name: All Hosts
-  extends: mac-software
-  icon: microsoft-outlook
-  signature:
-    signer: apple:developer-id:UBF8T346G9 # Microsoft Corporation
-  source:
-    resolver: microsoft
-    product: outlook

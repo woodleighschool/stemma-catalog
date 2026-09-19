@@ -20,6 +20,10 @@ spec:
         url: https://woodstar:8443
       operation: woodstar.munki
   imports:
+    - software/*.yaml
+    - software/microsoft-365/*.yaml
+    - software/printers/*.yaml
+    - software/windows-app/rds.yaml
     - software/**/buildmacpkg.yaml
     - software/**/macsoftware.yaml
   plugins:
