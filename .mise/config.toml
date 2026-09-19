@@ -1,3 +1,7 @@
 [env]
+_.file = ["{{config_root}}/.env"]
 STEMMA_CACHE_DIR = "{{ config_root }}/.stemma/cache"
 WOODSTAR_PLUGIN = "{{ config_root | dirname }}/woodstar/stemma/build/plugin"
+
+[tools]
+"github:woodleighschool/stemma" = "0.2.1"
