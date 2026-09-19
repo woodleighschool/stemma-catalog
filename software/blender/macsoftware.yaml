@@ -33,6 +33,6 @@ spec:
     major: 5
     architecture: arm64
   signature:
-    signer: apple:developer-id:68UA947AUU
+    signer: apple:developer-id:68UA947AUU # Stichting Blender Foundation
   application:
     bundle_id: org.blenderfoundation.blender

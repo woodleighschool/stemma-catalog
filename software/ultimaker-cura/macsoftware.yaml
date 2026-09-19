@@ -34,4 +34,4 @@ spec:
   application:
     bundle_id: nl.ultimaker.cura_UltiMaker_Cura
   signature:
-    signer: apple:developer-id:V4B3JXRRQS
+    signer: apple:developer-id:V4B3JXRRQS # UltiMaker

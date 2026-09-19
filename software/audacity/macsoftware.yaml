@@ -34,4 +34,4 @@ spec:
   application:
     bundle_id: org.audacityteam.audacity
   signature:
-    signer: apple:developer-id:AWEYX923UX
+    signer: apple:developer-id:AWEYX923UX # Audacity

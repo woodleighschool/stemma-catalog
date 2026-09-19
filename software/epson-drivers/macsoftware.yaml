@@ -39,6 +39,6 @@ spec:
     region: GB
     cti: "2001"
   signature:
-    signer: apple:developer-id:TXAEAV5RN4
+    signer: apple:developer-id:TXAEAV5RN4 # Seiko Epson Corporation
   package_path: EPSON Printer.pkg
   icon: epson-drivers

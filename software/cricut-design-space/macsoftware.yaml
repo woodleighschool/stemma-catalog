@@ -32,6 +32,6 @@ spec:
   source:
     resolver: cricut
   signature:
-    signer: apple:developer-id:25627ZFVT7
+    signer: apple:developer-id:25627ZFVT7 # Cricut
   application:
     bundle_id: com.cricut.design

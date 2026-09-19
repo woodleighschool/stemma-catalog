@@ -38,7 +38,7 @@ spec:
     resolver: python
     branch: "3.13"
   signature:
-    signer: apple:developer-id:BMM5U3QVKW
+    signer: apple:developer-id:BMM5U3QVKW # Python Software Foundation
   application:
     path: Python_Framework.pkg/Payload/Versions/3.13/Resources/Python.app
     installed_path: "/Library/Frameworks/Python.framework/Versions/3.13/Resources/Python.app"

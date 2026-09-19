@@ -31,4 +31,4 @@ spec:
     path: tmp-package.pkg/Payload/Library/Application Support/Dialog/Dialog.app
     installed_path: "/Library/Application Support/Dialog/Dialog.app"
   signature:
-    signer: apple:developer-id:PWA5E9TQ59
+    signer: apple:developer-id:PWA5E9TQ59 # Commonwealth Scientific and Industrial Research Organisation
