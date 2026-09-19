@@ -29,7 +29,5 @@ spec:
   signature:
     signer: apple:developer-id:679S2QUWR8 # DEVONtechnologies, LLC
   source:
-    config:
-      match: https://[^"\s]+EasyFind\.app\.zip
-      url: https://www.devontechnologies.com/apps/freeware
-    resolver: http
+    match: https://[^"\s]+EasyFind\.app\.zip
+    url: https://www.devontechnologies.com/apps/freeware

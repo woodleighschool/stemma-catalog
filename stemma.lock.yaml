@@ -570,11 +570,11 @@ plugins:
       resolver: file
       resolver_version: "1"
       declaration: b6f54d135fe59477b55f680b9aa010b0f5e13b8d74e6af4a9f517d75b414caae
-      resolved_at: "2026-09-17T14:23:37Z"
+      resolved_at: "2026-09-19T09:46:51Z"
       observation: {}
       content:
         artifact:
-          sha256: 57dc4b4a75a7ed9cea775b599c992790b8197b0e8a0af9a7bd462e47c14f6bd9
-          size: 23894114
+          sha256: a7351ebdf983918b44ee6451a10bd3b02ad82fdfc5582fc1a087a4ceea000d2a
+          size: 23913970
         filename: plugin
         mode: 493

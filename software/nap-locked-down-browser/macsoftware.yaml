@@ -40,7 +40,5 @@ spec:
   signature:
     signer: apple:developer-id:KU9HRE5GET # Janison
   source:
-    config:
-      match: https://[^"\s]+\.pkg
-      url: https://www.assessform.edu.au/naplan-online/locked-down-browser
-    resolver: http
+    match: https://[^"\s]+\.pkg
+    url: https://www.assessform.edu.au/naplan-online/locked-down-browser

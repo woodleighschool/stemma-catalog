@@ -17,7 +17,6 @@ spec:
         developer: Godot Foundation
         name: Godot
         unattended_install: true
-        uninstall_method: removepackages
         uninstallable: true
       targets:
         exclude: []
