@@ -73,10 +73,11 @@ func TestLockedRunsFetchOnlyRecordedArtifact(t *testing.T) {
 		t.Fatal(err)
 	}
 	configs := map[string]string{
-		"blender": `{"major":5}`,
-		"python":  `{"branch":"3.13"}`,
-		"cricut":  `{}`,
-		"epson":   `{"device_id":"AM-C6000 Series","os":"MAC26","cti":"2001"}`,
+		"microsoft": `{"product":"outlook"}`,
+		"blender":   `{"major":5}`,
+		"python":    `{"branch":"3.13"}`,
+		"cricut":    `{}`,
+		"epson":     `{"device_id":"AM-C6000 Series","os":"MAC26","cti":"2001"}`,
 	}
 	observation := json.RawMessage(`{"url":"https://downloads.example.test/releases/old.pkg","filename":"old.pkg","version":"1.2.3"}`)
 	hash := sha256.Sum256([]byte(body))
@@ -114,6 +115,13 @@ func TestValidationRejectsInvalidConfigurationWithoutNetwork(t *testing.T) {
 		t.Fatal(err)
 	}
 	for _, test := range []struct{ operation, config string }{
+		{"microsoft", `{}`},
+		{"microsoft", `{"product":"unknown"}`},
+		{"microsoft", `{"product":"outlook","channel":"unknown"}`},
+		{"microsoft", `{"product":"outlook","type":"delta"}`},
+		{"microsoft", `{"product":"outlook","url":"https://example.test"}`},
+		{"microsoft", `{"product":"edge","channel":"beta"}`},
+		{"microsoft", `{"product":"office","type":"updater"}`},
 		{"blender", `{"major":0}`},
 		{"blender", `{"major":5,"url":"https://example.test"}`},
 		{"python", `{"branch":"3.13rc1"}`},
@@ -124,6 +132,12 @@ func TestValidationRejectsInvalidConfigurationWithoutNetwork(t *testing.T) {
 			t.Fatalf("accepted %s %s", test.operation, test.config)
 		}
 	}
+	for _, config := range []string{`{"product":"outlook"}`, `{"product":"outlook","channel":"preview","type":"updater"}`, `{"product":"edge"}`} {
+		if _, err := invoke(t, registry, "validate", "microsoft", plugin.ResolveRequest{Config: json.RawMessage(config)}); err != nil {
+			t.Fatal(err)
+		}
+	}
+
 	if _, err := invoke(t, registry, "validate", "python", plugin.ResolveRequest{Config: json.RawMessage(`{"branch":"3.13"}`)}); err != nil {
 		t.Fatal(err)
 	}

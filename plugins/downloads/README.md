@@ -1,16 +1,17 @@
 # Download resolvers
 
-Find Blender, Python, Cricut and Epson installers. Vendor discovery lives here;
+Find Blender, Python, Cricut, Epson and Microsoft installers. Vendor discovery lives here;
 Stemma owns source locks, cached content and software preparation.
 
 ## 🧩 Operations
 
-| Resolver  | Configuration                                          | Selection                                                 |
-| --------- | ------------------------------------------------------ | --------------------------------------------------------- |
-| `blender` | `major`; `architecture: arm64` or `x64`                | Latest stable macOS DMG within the major                  |
-| `python`  | `branch`, such as `"3.13"`                             | Latest stable macOS PKG within the branch; 3.10 and later |
-| `cricut`  | `operating_system: osxnative`; `shard: a`              | The shard's update manifest and installer API             |
-| `epson`   | `device_id`, `os`, `cti`; `region: GB`, `language: en` | Matching Download Center content type                     |
+| Resolver    | Configuration                                          | Selection                                                 |
+| ----------- | ------------------------------------------------------ | --------------------------------------------------------- |
+| `blender`   | `major`; `architecture: arm64` or `x64`                | Latest stable macOS DMG within the major                  |
+| `python`    | `branch`, such as `"3.13"`                             | Latest stable macOS PKG within the branch; 3.10 and later |
+| `cricut`    | `operating_system: osxnative`; `shard: a`              | The shard's update manifest and installer API             |
+| `epson`     | `device_id`, `os`, `cti`; `region: GB`, `language: en` | Matching Download Center content type                     |
+| `microsoft` | `product`; `channel: production`; `type: standalone`   | Office MAU metadata or the product’s standalone download  |
 
 Values shown after a colon are defaults unless alternatives are listed.
 
@@ -28,6 +29,31 @@ runs fetch that URL without rediscovery; Stemma verifies the reviewed content ha
 Blender, Python and Epson expose their version as evidence, such as
 `{$fact: epson.version}`. Cricut's version comes from inspecting the application.
 Keep installer signature requirements on the software resource.
+
+### Microsoft
+
+```yaml
+source:
+  resolver: microsoft
+  product: outlook
+```
+
+`channel` defaults to `production`; `type` defaults to `standalone`.
+Excel, OneNote, Outlook, PowerPoint and Word also accept `preview` and `beta`
+channels and `type: updater`. The resolver selects the first full update in the
+MAU feed, skips deltas, and changes the Office package suffix for standalone
+installers. OneNote uses its full updater package for standalone installation,
+matching Microsoft's download link. MAU supplies `{$fact: microsoft.version}` evidence.
+
+`office` (the Microsoft 365 Business Pro suite), `defender`, `edge`, `teams`,
+`company-portal`, `onedrive` and `windows-app` support production standalone
+installers. Their official download links are resolved with HEAD requests;
+package inspection supplies version metadata. These links preserve each product's
+standalone release stream, which can differ from its MAU updater stream.
+
+The feed mapping and Office selection follow
+[AutoPkg's provider](https://github.com/autopkg/recipes/blob/master/MSOfficeUpdates/MSOfficeMacURLandUpdateInfoProvider.py),
+using [Microsoft's current MAU endpoints](https://learn.microsoft.com/en-us/microsoft-365-apps/mac/mau-configure-organization-specific-updates).
 
 ## 🧑‍💻 Development
 
