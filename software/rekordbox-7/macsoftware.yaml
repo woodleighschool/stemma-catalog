@@ -1,0 +1,53 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/woodleighschool/stemma/refs/heads/main/stemma.schema.json
+apiVersion: stemma/v1alpha1
+kind: MacSoftware
+metadata:
+  name: rekordbox-7
+spec:
+  extends: mac-software
+  destinations:
+    woodstar:
+      pkginfo:
+        blocking_applications:
+          - rekordbox.app
+        category: Creativity
+        description: rekordbox is Pioneer DJ's all-in-one software for track preparation,
+          performance, and management, used for DJ and music production.
+        developer: AlphaTheta Corporation
+        name: rekordbox 7
+        postinstall_script: |
+          #!/bin/bash
+
+          # Create directories and set permissions needed to stop admin prompt on launch
+          /bin/mkdir -p /private/var/slmdata ; /bin/chmod 777 /private/var/slmdata
+          /bin/mkdir -p /private/var/.slm ; /bin/chmod 777 /private/var/.slm
+          /bin/mkdir -p /private/var/.slmbackup ; /bin/chmod 777 /private/var/.slmbackup
+          /bin/mkdir -p /private/var/.slmauth ; /bin/chmod 777 /private/var/.slmauth
+
+          exit 0
+        unattended_install: true
+        unattended_uninstall: true
+        uninstall_method: uninstall_script
+        uninstall_script: |
+          #!/bin/sh
+
+          /bin/rm -rf "/Applications/rekordbox 7"
+        uninstallable: true
+      targets:
+        exclude: []
+        include:
+          - actions:
+              - optional_installs
+              - managed_updates
+            label_name: All Hosts
+  source:
+    url: https://rekordbox.com/en/download/
+    match: https://cdn\.rekordbox\.com/files/[^"\s<>]+/Install_rekordbox_7_[^"\s<>]+\.pkg_\.zip
+    headers:
+      User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15
+        (KHTML, like Gecko) Version/16.6 Safari/605.1.15
+  application:
+    installed_path: "/Applications/rekordbox 7/rekordbox.app"
+  signature:
+    signer: apple:developer-id:6BRHGXQ6VU
+  package_path: "*.pkg"

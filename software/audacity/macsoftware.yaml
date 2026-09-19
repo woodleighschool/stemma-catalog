@@ -1,0 +1,37 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/woodleighschool/stemma/refs/heads/main/stemma.schema.json
+apiVersion: stemma/v1alpha1
+kind: MacSoftware
+metadata:
+  name: audacity
+spec:
+  extends: mac-software
+  destinations:
+    woodstar:
+      pkginfo:
+        blocking_applications:
+          - Audacity
+        category: Creativity
+        description: Audacity is the world's most popular free software for recording
+          and editing audio. So if you're producing music, a podcast, or just playing
+          around with audio, Audacity is for you.
+        developer: Audacity
+        name: Audacity
+        unattended_install: true
+        unattended_uninstall: true
+        uninstall_method: remove_copied_items
+        uninstallable: true
+      targets:
+        exclude: []
+        include:
+          - actions:
+              - optional_installs
+              - managed_updates
+            label_name: All Hosts
+  source:
+    resolver: github
+    repository: audacity/audacity
+    asset: audacity-macOS-*-arm64.dmg
+  application:
+    bundle_id: org.audacityteam.audacity
+  signature:
+    signer: apple:developer-id:AWEYX923UX

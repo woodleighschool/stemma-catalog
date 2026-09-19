@@ -1,0 +1,45 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/woodleighschool/stemma/refs/heads/main/stemma.schema.json
+apiVersion: stemma/v1alpha1
+kind: MacSoftware
+metadata:
+  name: python
+spec:
+  extends: mac-software
+  destinations:
+    woodstar:
+      pkginfo:
+        blocking_applications:
+          - IDLE
+          - Python Launcher
+        category: Programming
+        description: Python is a high-level, general-purpose programming language.
+          Its design philosophy emphasizes code readability with the use of significant
+          indentation. Python is dynamically typed and garbage-collected. It supports
+          multiple programming paradigms, including structured, object-oriented and
+          functional programming.
+        developer: Python Software Foundation
+        installer_choices_xml:
+          - attributeSetting: 0
+            choiceAttribute: selected
+            choiceIdentifier: org.python.Python.PythonProfileChanges-3.13
+        minimum_os_version: "11.0"
+        name: Python 3.13
+        unattended_install: true
+        uninstall_method: removepackages
+        uninstallable: true
+      targets:
+        exclude: []
+        include:
+          - actions:
+              - optional_installs
+              - managed_updates
+            label_name: All Hosts
+  source:
+    resolver: python
+    branch: "3.13"
+  signature:
+    signer: apple:developer-id:BMM5U3QVKW
+  application:
+    path: Python_Framework.pkg/Payload/Versions/3.13/Resources/Python.app
+    installed_path: "/Library/Frameworks/Python.framework/Versions/3.13/Resources/Python.app"
+    version_key: CFBundleVersion

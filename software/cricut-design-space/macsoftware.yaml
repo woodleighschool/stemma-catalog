@@ -1,0 +1,37 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/woodleighschool/stemma/refs/heads/main/stemma.schema.json
+apiVersion: stemma/v1alpha1
+kind: MacSoftware
+metadata:
+  name: cricut-design-space
+spec:
+  extends: mac-software
+  destinations:
+    woodstar:
+      pkginfo:
+        blocking_applications:
+          - Cricut Design Space
+        category: Creativity
+        description: Enjoy total creative freedom over your next DIY project with
+          Cricut Design Space. Design, cut, or draw by connecting to Cricut Explore
+          or Cricut Maker machines. Start your project from scratch or browse thousands
+          of images, ready-to-make projects, and unique fonts in the Cricut Image
+          Library.
+        developer: Cricut
+        name: Cricut Design Space
+        unattended_install: true
+        unattended_uninstall: true
+        uninstall_method: remove_copied_items
+        uninstallable: true
+      targets:
+        exclude: []
+        include:
+          - actions:
+              - optional_installs
+              - managed_updates
+            label_name: All Hosts
+  source:
+    resolver: cricut
+  signature:
+    signer: apple:developer-id:25627ZFVT7
+  application:
+    bundle_id: com.cricut.design

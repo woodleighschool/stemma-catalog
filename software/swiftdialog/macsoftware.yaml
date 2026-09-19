@@ -1,0 +1,34 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/woodleighschool/stemma/refs/heads/main/stemma.schema.json
+apiVersion: stemma/v1alpha1
+kind: MacSoftware
+metadata:
+  name: swiftdialog
+spec:
+  extends: mac-software
+  destinations:
+    woodstar:
+      pkginfo:
+        blocking_applications:
+          - Dialog
+        category: Utilities
+        description: swiftDialog is an open source admin utility for macOS 12 or later
+          written in SwiftUI that presents custom dialogs, displays informative messages
+          or can be used as a form to request user input.
+        developer: CSIRO
+        name: swiftDialog
+        unattended_install: true
+      targets:
+        exclude: []
+        include:
+          - actions:
+              - managed_installs
+            label_name: All Hosts
+  source:
+    resolver: github
+    repository: swiftDialog/swiftDialog
+    asset: dialog-*-*.pkg
+  application:
+    path: tmp-package.pkg/Payload/Library/Application Support/Dialog/Dialog.app
+    installed_path: "/Library/Application Support/Dialog/Dialog.app"
+  signature:
+    signer: apple:developer-id:PWA5E9TQ59

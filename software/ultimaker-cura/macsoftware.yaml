@@ -1,0 +1,37 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/woodleighschool/stemma/refs/heads/main/stemma.schema.json
+apiVersion: stemma/v1alpha1
+kind: MacSoftware
+metadata:
+  name: ultimaker-cura
+spec:
+  extends: mac-software
+  destinations:
+    woodstar:
+      pkginfo:
+        blocking_applications:
+          - UltiMaker Cura
+        category: STEAM
+        description: UltiMaker Cura is free, easy-to-use 3D printing software trusted
+          by millions of users. Fine-tune your 3D model with 400+ settings for the
+          best slicing and printing results.
+        developer: UltiMaker
+        name: UltiMaker Cura
+        unattended_install: true
+        unattended_uninstall: true
+        uninstall_method: remove_copied_items
+        uninstallable: true
+      targets:
+        exclude: []
+        include:
+          - actions:
+              - optional_installs
+              - managed_updates
+            label_name: All Hosts
+  source:
+    resolver: github
+    repository: Ultimaker/Cura
+    asset: "*-ARM64.dmg"
+  application:
+    bundle_id: nl.ultimaker.cura_UltiMaker_Cura
+  signature:
+    signer: apple:developer-id:V4B3JXRRQS
