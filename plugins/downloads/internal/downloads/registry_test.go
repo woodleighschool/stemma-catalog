@@ -1,0 +1,180 @@
+package downloads
+
+import (
+	"context"
+	"crypto/sha256"
+	"encoding/hex"
+	"encoding/json"
+	"errors"
+	"fmt"
+	"net/http"
+	"net/http/httptest"
+	"net/url"
+	"os"
+	"path/filepath"
+	"reflect"
+	"strings"
+	"testing"
+
+	"github.com/woodleighschool/stemma-catalog/plugins/downloads/internal/discovery"
+	"github.com/woodleighschool/stemma/plugin"
+)
+
+type transportFunc func(*http.Request) (*http.Response, error)
+
+func (f transportFunc) RoundTrip(request *http.Request) (*http.Response, error) {
+	return f(request)
+}
+
+func fixtureClient(t *testing.T, handler http.HandlerFunc) *http.Client {
+	t.Helper()
+	server := httptest.NewTLSServer(handler)
+	t.Cleanup(server.Close)
+	target, err := url.Parse(server.URL)
+	if err != nil {
+		t.Fatal(err)
+	}
+	transport := server.Client().Transport
+	client := Client()
+	client.Transport = transportFunc(func(request *http.Request) (*http.Response, error) {
+		copy := request.Clone(request.Context())
+		copy.URL.Scheme, copy.URL.Host = target.Scheme, target.Host
+		return transport.RoundTrip(copy)
+	})
+	return client
+}
+
+func invoke(t *testing.T, registry *plugin.Registry, method, operation string, request plugin.ResolveRequest) (plugin.ResolveResponse, error) {
+	t.Helper()
+	data, err := json.Marshal(request)
+	if err != nil {
+		t.Fatal(err)
+	}
+	response, err := registry.Handle(t.Context(), plugin.Request{Protocol: plugin.ProtocolVersion, Method: method, Operation: operation, Input: data})
+	var result plugin.ResolveResponse
+	if err == nil && len(response.Output) > 0 {
+		err = json.Unmarshal(response.Output, &result)
+	}
+	return result, err
+}
+
+func TestLockedRunsFetchOnlyRecordedArtifact(t *testing.T) {
+	const body = "synthetic installer bytes"
+	client := fixtureClient(t, func(w http.ResponseWriter, r *http.Request) {
+		if r.URL.Path != "/releases/old.pkg" {
+			t.Errorf("locked run rediscovered %s", r.URL.Path)
+			http.Error(w, "unexpected discovery", http.StatusGone)
+			return
+		}
+		_, _ = fmt.Fprint(w, body)
+	})
+	registry := plugin.New("test", "1")
+	if err := Register(registry, client); err != nil {
+		t.Fatal(err)
+	}
+	configs := map[string]string{
+		"blender": `{"major":5}`,
+		"python":  `{"branch":"3.13"}`,
+		"cricut":  `{}`,
+		"epson":   `{"device_id":"AM-C6000 Series","os":"MAC26","cti":"2001"}`,
+	}
+	observation := json.RawMessage(`{"url":"https://downloads.example.test/releases/old.pkg","filename":"old.pkg","version":"1.2.3"}`)
+	hash := sha256.Sum256([]byte(body))
+	for operation, config := range configs {
+		t.Run(operation, func(t *testing.T) {
+			request := plugin.ResolveRequest{Config: json.RawMessage(config), Root: t.TempDir(), Workspace: t.TempDir(), Locked: true, Observation: observation}
+			result, err := invoke(t, registry, "run", operation, request)
+			if err != nil {
+				t.Fatal(err)
+			}
+			data, err := os.ReadFile(result.Artifact.Path)
+			if err != nil || string(data) != body || result.Artifact.SHA256 != hex.EncodeToString(hash[:]) || result.Artifact.Size != int64(len(body)) {
+				t.Fatalf("artifact=%+v, content=%q, error=%v", result.Artifact, data, err)
+			}
+			if result.Artifact.Path != filepath.Join(request.Workspace, "old.pkg") || string(result.Artifact.Evidence[operation]) != `{"version":"1.2.3"}` {
+				t.Fatalf("artifact=%+v", result.Artifact)
+			}
+			var before, after any
+			_ = json.Unmarshal(observation, &before)
+			_ = json.Unmarshal(result.Observation, &after)
+			if !reflect.DeepEqual(before, after) {
+				t.Fatalf("locked observation changed: %s", result.Observation)
+			}
+		})
+	}
+}
+
+func TestValidationRejectsInvalidConfigurationWithoutNetwork(t *testing.T) {
+	client := &http.Client{Transport: transportFunc(func(*http.Request) (*http.Response, error) {
+		t.Fatal("validation performed HTTP request")
+		return nil, nil
+	})}
+	registry := plugin.New("test", "1")
+	if err := Register(registry, client); err != nil {
+		t.Fatal(err)
+	}
+	for _, test := range []struct{ operation, config string }{
+		{"blender", `{"major":0}`},
+		{"blender", `{"major":5,"url":"https://example.test"}`},
+		{"python", `{"branch":"3.13rc1"}`},
+		{"cricut", `{"operating_system":"windows"}`},
+		{"epson", `{"device_id":"Printer","os":"MAC26","cti":2001}`},
+	} {
+		if _, err := invoke(t, registry, "validate", test.operation, plugin.ResolveRequest{Config: json.RawMessage(test.config)}); err == nil {
+			t.Fatalf("accepted %s %s", test.operation, test.config)
+		}
+	}
+	if _, err := invoke(t, registry, "validate", "python", plugin.ResolveRequest{Config: json.RawMessage(`{"branch":"3.13"}`)}); err != nil {
+		t.Fatal(err)
+	}
+}
+
+func TestDownloadRejectsUnsafeObservationAndRedirect(t *testing.T) {
+	for _, release := range []discovery.Release{
+		{URL: "http://example.test/app.pkg", Filename: "app.pkg"},
+		{URL: "https://secret@example.test/app.pkg", Filename: "app.pkg"},
+		{URL: "https://example.test/app.pkg#secret", Filename: "app.pkg"},
+		{URL: "https://example.test/app.pkg", Filename: "../app.pkg"},
+		{URL: "https://example.test/app.pkg", Filename: `..\app.pkg`},
+	} {
+		if _, err := download(t.Context(), Client(), release, t.TempDir()); err == nil {
+			t.Fatalf("accepted %+v", release)
+		}
+	}
+	client := fixtureClient(t, func(w http.ResponseWriter, r *http.Request) {
+		http.Redirect(w, r, "http://insecure.example.test/app.pkg", http.StatusFound)
+	})
+	if _, err := download(t.Context(), client, discovery.Release{URL: "https://example.test/app.pkg", Filename: "app.pkg"}, t.TempDir()); err == nil {
+		t.Fatal("accepted insecure redirect")
+	}
+}
+
+func TestFailedDownloadLeavesNoArtifact(t *testing.T) {
+	for _, status := range []int{http.StatusOK, http.StatusForbidden} {
+		t.Run(fmt.Sprint(status), func(t *testing.T) {
+			client := fixtureClient(t, func(w http.ResponseWriter, _ *http.Request) {
+				w.Header().Set("Content-Length", "100")
+				w.WriteHeader(status)
+				_, _ = fmt.Fprint(w, "private error response")
+			})
+			workspace := t.TempDir()
+			_, err := download(t.Context(), client, discovery.Release{URL: "https://example.test/app.pkg", Filename: "app.pkg"}, workspace)
+			if err == nil || strings.Contains(err.Error(), "private error response") {
+				t.Fatalf("download error: %v", err)
+			}
+			entries, err := os.ReadDir(workspace)
+			if err != nil || len(entries) != 0 {
+				t.Fatalf("partial files: %v, %v", entries, err)
+			}
+		})
+	}
+}
+
+func TestDownloadCancellation(t *testing.T) {
+	ctx, cancel := context.WithCancel(t.Context())
+	cancel()
+	_, err := download(ctx, Client(), discovery.Release{URL: "https://example.test/app.pkg", Filename: "app.pkg"}, t.TempDir())
+	if !errors.Is(err, context.Canceled) {
+		t.Fatalf("cancellation lost: %v", err)
+	}
+}

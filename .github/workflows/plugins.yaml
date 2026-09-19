@@ -1,0 +1,69 @@
+---
+# yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
+name: Plugins
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - plugins/**
+      - .mise/**
+      - LICENSE
+      - .github/workflows/plugins.yaml
+      - .github/workflows/release.yaml
+  pull_request:
+    paths:
+      - plugins/**
+      - .mise/**
+      - LICENSE
+      - .github/workflows/plugins.yaml
+      - .github/workflows/release.yaml
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+permissions:
+  contents: read
+
+jobs:
+  downloads:
+    name: Download resolvers
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Setup Mise
+        uses: jdx/mise-action@c2a87611a18de5b3828c5652fe268e992400cb5c # v4.3.0
+        with:
+          cache: false
+          experimental: true
+          working_directory: plugins/downloads
+          install_args: --locked go golangci-lint go:golang.org/x/vuln/cmd/govulncheck goreleaser
+
+      - name: Check formatting
+        run: mise run //plugins/downloads:fmt-check
+
+      - name: Check module tidiness
+        run: mise run //plugins/downloads:tidy-check
+
+      - name: Lint
+        run: mise run //plugins/downloads:lint
+
+      - name: Test
+        run: mise run //plugins/downloads:test
+
+      - name: Build
+        run: mise run //plugins/downloads:build
+
+      - name: Validate packaging
+        run: mise run //plugins/downloads:release-check
+
+      - name: Check vulnerabilities
+        run: mise run //plugins/downloads:vulncheck

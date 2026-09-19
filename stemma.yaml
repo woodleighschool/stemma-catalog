@@ -22,6 +22,9 @@ spec:
     - software/**/buildmacpkg.yaml
     - software/**/macsoftware.yaml
   plugins:
+    downloads:
+      path: plugins/downloads/build
+      trusted: true
     woodstar:
       path: ${WOODSTAR_PLUGIN}
       trusted: true
