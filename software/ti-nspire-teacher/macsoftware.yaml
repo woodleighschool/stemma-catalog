@@ -1,0 +1,38 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/woodleighschool/stemma-catalog/main/stemma.schema.json
+apiVersion: stemma/v1alpha1
+kind: MacSoftware
+metadata:
+  name: ti-nspire-teacher
+spec:
+  extends: mac-software
+  source:
+    url: https://education.ti.com/en/software/details/en/B993F3BD97D94D7EA35E5D514DD57FB5/ti-nspirecx-tps_sda?sc_lang=en
+    match: /download/en/ed-tech/[^"\s<>]+/TINspireCXPremiumTeacherSoftware-[^"\s<>]+\.dmg
+  signature:
+    signer: apple:developer-id:TLEVLB8B5D # Texas Instruments
+  destinations:
+    woodstar:
+      pkginfo:
+        blocking_applications:
+          - TI-Nspire CX Premium Teacher Software
+        category: Education
+        description: Powerful teacher software that turns a teacher's PC or Mac into
+          a virtual TI-Nspire CX graphing calculator environment and supports classroom
+          presentation and management workflows.
+        developer: Texas Instruments
+        name: TI-Nspire CX Premium Teacher Software
+        unattended_install: true
+        unattended_uninstall: true
+        uninstall_method: removepackages
+        uninstallable: true
+      targets:
+        exclude: []
+        include:
+          - actions:
+              - optional_installs
+              - managed_updates
+            label_name: All Staff
+  package_path: TINspireCXPremiumTeacherSoftware-*.pkg
+  application:
+    path: Applications/TI-Nspire CX Premium Teacher Software.app
+    installed_path: "/Applications/TI-Nspire CX Premium Teacher Software.app"

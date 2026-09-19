@@ -1,0 +1,38 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/woodleighschool/stemma-catalog/main/stemma.schema.json
+apiVersion: stemma/v1alpha1
+kind: MacSoftware
+metadata:
+  name: ti-nspire-student
+spec:
+  extends: mac-software
+  source:
+    url: https://education.ti.com/en/software/details/en/AFCFF2853BC34DEFB4C0B8B156F92404/ti-nspirecx_pc_full
+    match: /download/en/ed-tech/[^"\s<>]+/TINspireCX[^"\s<>]*\.dmg
+  signature:
+    signer: apple:developer-id:TLEVLB8B5D # Texas Instruments
+  destinations:
+    woodstar:
+      pkginfo:
+        blocking_applications:
+          - TI-Nspire CX Student Software
+        category: Education
+        description: Powerful computer software with a Computer Algebra System (CAS)
+          that satisfies math and science curriculum needs from middle school through
+          college.
+        developer: Texas Instruments
+        name: TI-Nspire CX Student Software
+        unattended_install: true
+        unattended_uninstall: true
+        uninstall_method: removepackages
+        uninstallable: true
+      targets:
+        exclude: []
+        include:
+          - actions:
+              - optional_installs
+              - managed_updates
+            label_name: All Students
+  package_path: TINspireCXStudentSoftware-*.pkg
+  application:
+    path: Applications/TI-Nspire CX Student Software.app
+    installed_path: "/Applications/TI-Nspire CX Student Software.app"
