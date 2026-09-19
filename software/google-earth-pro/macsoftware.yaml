@@ -21,6 +21,12 @@ spec:
         unattended_uninstall: true
         uninstall_method: removepackages
         uninstallable: true
+      targets:
+        exclude: []
+        include:
+          - actions:
+              - managed_uninstalls
+            label_name: All Hosts
   extends: mac-software
   icon: google-earth-pro
   package_path: Install Google Earth Pro *.pkg

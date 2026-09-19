@@ -248,6 +248,13 @@ spec:
           /bin/rmdir "${state_dir}" 2>/dev/null || true
         uninstallable: true
         version: 2.0.3.1
+      targets:
+        exclude: []
+        include:
+          - actions:
+              - optional_installs
+              - managed_updates
+            label_name: All Hosts
   extends: mac-software
   icon: garageband-sounds
   source:
@@ -371,6 +378,9 @@ spec:
         update_for:
           - GarageBand
         version: 2.0.3.2
+      targets:
+        exclude: []
+        include: []
   extends: mac-software
   icon: garageband-sounds
   source:

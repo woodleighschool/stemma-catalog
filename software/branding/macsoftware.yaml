@@ -21,6 +21,12 @@ spec:
         unattended_install: true
         uninstallable: false
         version: "1.1"
+      targets:
+        exclude: []
+        include:
+          - actions:
+              - managed_installs
+            label_name: All Hosts
   extends: mac-software
   icon: branding
   source:

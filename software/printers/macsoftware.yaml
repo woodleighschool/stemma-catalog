@@ -63,6 +63,15 @@ spec:
           fi
         uninstallable: true
         version: "1.2"
+      targets:
+        exclude: []
+        include:
+          - actions:
+              - managed_installs
+            label_name: Minimbah Campus
+          - actions:
+              - optional_installs
+            label_name: All Hosts
   extends: mac-software
   icon: printers
 ---
@@ -130,6 +139,15 @@ spec:
           fi
         uninstallable: true
         version: "1.2"
+      targets:
+        exclude: []
+        include:
+          - actions:
+              - managed_installs
+            label_name: Penbank Campus
+          - actions:
+              - optional_installs
+            label_name: All Hosts
   extends: mac-software
   icon: printers
 ---
@@ -197,5 +215,14 @@ spec:
           fi
         uninstallable: true
         version: "1.2"
+      targets:
+        exclude: []
+        include:
+          - actions:
+              - managed_installs
+            label_name: Senior Campus
+          - actions:
+              - optional_installs
+            label_name: All Hosts
   extends: mac-software
   icon: printers

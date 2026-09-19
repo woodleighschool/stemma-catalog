@@ -17,6 +17,12 @@ spec:
         name: OneDrive
         unattended_install: true
         uninstallable: false
+      targets:
+        exclude: []
+        include:
+          - actions:
+              - optional_installs
+            label_name: All Hosts
   extends: mac-software
   icon: onedrive
   signature:

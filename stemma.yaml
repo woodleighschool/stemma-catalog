@@ -12,9 +12,6 @@ spec:
               - arm64
           retention:
             keep: 1
-          targets:
-            exclude: []
-            include: []
   destinations:
     woodstar:
       config:

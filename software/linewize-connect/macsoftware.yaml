@@ -28,6 +28,9 @@ spec:
         unattended_install: true
         uninstallable: false
         version: 1.4.1
+      targets:
+        exclude: []
+        include: []
   extends: mac-software
   signature:
     signer: apple:developer-id:5S77G864UH # B Communications Pty Ltd
@@ -65,6 +68,18 @@ spec:
           - software: rosetta
         unattended_install: true
         uninstallable: false
+      targets:
+        exclude: []
+        include:
+          - actions:
+              - managed_installs
+            label_name: All Students
+          - actions:
+              - managed_installs
+            label_name: CRT/Spare Shared MacBooks
+          - actions:
+              - managed_installs
+            label_name: SAC MacBooks
   extends: mac-software
   signature:
     signer: apple:developer-id:5S77G864UH # FAMILY ZONE CYBER SAFETY LIMITED

@@ -21,6 +21,12 @@ spec:
         name: Microsoft Excel
         unattended_install: true
         uninstallable: false
+      targets:
+        exclude: []
+        include:
+          - actions:
+              - optional_installs
+            label_name: All Hosts
   extends: mac-software
   icon: microsoft-excel
   signature:

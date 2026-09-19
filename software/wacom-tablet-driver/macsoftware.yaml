@@ -23,6 +23,13 @@ spec:
         unattended_uninstall: true
         uninstall_method: removepackages
         uninstallable: true
+      targets:
+        exclude: []
+        include:
+          - actions:
+              - optional_installs
+              - managed_updates
+            label_name: All Hosts
   extends: mac-software
   icon: wacom-tablet-driver
   package_path: Install Wacom Tablet.pkg

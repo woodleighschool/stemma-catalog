@@ -19,6 +19,13 @@ spec:
         unattended_install: true
         uninstall_method: removepackages
         uninstallable: true
+      targets:
+        exclude: []
+        include:
+          - actions:
+              - optional_installs
+              - managed_updates
+            label_name: All Hosts
   extends: mac-software
   icon: godot
   signature:

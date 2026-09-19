@@ -21,6 +21,12 @@ spec:
         name: Microsoft OneNote
         unattended_install: true
         uninstallable: false
+      targets:
+        exclude: []
+        include:
+          - actions:
+              - optional_installs
+            label_name: All Hosts
   extends: mac-software
   icon: microsoft-onenote
   signature:

@@ -13,6 +13,13 @@ spec:
         name: Google Chrome
         uninstall_method: removepackages
         uninstallable: true
+      targets:
+        exclude:
+          - label_name: SAC MacBooks
+        include:
+          - actions:
+              - managed_installs
+            label_name: All Hosts
   extends: mac-software
   icon: google-chrome
   signature:

@@ -17,6 +17,12 @@ spec:
         name: Microsoft Defender
         unattended_install: true
         uninstallable: false
+      targets:
+        exclude: []
+        include:
+          - actions:
+              - managed_installs
+            label_name: Defender Test
   extends: mac-software
   icon: microsoft-defender
   signature:

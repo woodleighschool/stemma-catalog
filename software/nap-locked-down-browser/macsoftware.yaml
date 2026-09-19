@@ -26,6 +26,15 @@ spec:
         unattended_uninstall: true
         uninstall_method: removepackages
         uninstallable: true
+      targets:
+        exclude: []
+        include:
+          - actions:
+              - managed_installs
+            label_name: SAC MacBooks
+          - actions:
+              - managed_installs
+            label_name: NAPLAN Students
   extends: mac-software
   icon: nap-locked-down-browser
   signature:

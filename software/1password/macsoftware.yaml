@@ -21,6 +21,13 @@ spec:
         unattended_uninstall: true
         uninstall_method: removepackages
         uninstallable: true
+      targets:
+        exclude: []
+        include:
+          - actions:
+              - optional_installs
+              - managed_updates
+            label_name: All Staff
   extends: mac-software
   icon: 1password
   signature:

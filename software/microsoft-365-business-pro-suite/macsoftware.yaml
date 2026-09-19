@@ -28,6 +28,12 @@ spec:
             version: "0"
         unattended_install: true
         uninstallable: false
+      targets:
+        exclude: []
+        include:
+          - actions:
+              - managed_installs
+            label_name: All Hosts
   extends: mac-software
   icon: microsoft-365-business-pro-suite
   signature:

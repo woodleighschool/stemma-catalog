@@ -18,6 +18,13 @@ spec:
         name: Company Portal
         unattended_install: true
         uninstallable: false
+      targets:
+        exclude: []
+        include:
+          - actions:
+              - optional_installs
+              - managed_updates
+            label_name: All Hosts
   extends: mac-software
   icon: company-portal
   signature:

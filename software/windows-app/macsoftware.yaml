@@ -20,6 +20,13 @@ spec:
         unattended_uninstall: true
         uninstall_method: removepackages
         uninstallable: true
+      targets:
+        exclude: []
+        include:
+          - actions:
+              - optional_installs
+              - managed_updates
+            label_name: All Staff
   extends: mac-software
   icon: windows-app
   signature:
@@ -120,5 +127,8 @@ spec:
         update_for:
           - software: windows-app
         version: "1.0"
+      targets:
+        exclude: []
+        include: []
   extends: mac-software
   icon: windows-app-rds
