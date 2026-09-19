@@ -21,7 +21,9 @@ spec:
         minimum_os_version: "14.0"
         name: NAP Locked down browser
         requires:
-          - software: rosetta
+          - resource:
+              kind: MacSoftware
+              name: rosetta
         unattended_install: true
         unattended_uninstall: true
         uninstall_method: removepackages

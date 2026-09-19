@@ -81,8 +81,12 @@ spec:
         unattended_install: true
         uninstallable: false
         update_for:
-          - software: microsoft-365-business-pro-suite
-          - software: microsoft-outlook
+          - resource:
+              kind: MacSoftware
+              name: microsoft-365-business-pro-suite
+          - resource:
+              kind: MacSoftware
+              name: microsoft-outlook
         version: "1.0"
       targets:
         exclude: []

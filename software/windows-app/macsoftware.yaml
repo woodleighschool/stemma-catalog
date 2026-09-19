@@ -125,7 +125,9 @@ spec:
         unattended_install: true
         uninstallable: false
         update_for:
-          - software: windows-app
+          - resource:
+              kind: MacSoftware
+              name: windows-app
         version: "1.0"
       targets:
         exclude: []
