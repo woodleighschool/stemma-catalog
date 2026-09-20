@@ -1,0 +1,58 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/woodleighschool/stemma-catalog/main/stemma.schema.json
+apiVersion: stemma/v1alpha1
+kind: MacSoftware
+metadata:
+  name: woodsweep
+spec:
+  extends: mac-software
+  application:
+    bundle_id: au.edu.vic.woodleigh.WoodSweep
+  signature:
+    signer: apple:developer-id:SMLKBTR495 # Woodleigh School
+  source:
+    resolver: github
+    repository: woodleighschool/woodsweep
+    asset: WoodSweep-*.zip
+  destinations:
+    woodstar:
+      pkginfo:
+        blocking_applications:
+          - WoodSweep
+        category: Utilities
+        description: Snapshots a configured local account, resets Microsoft Office user
+          state and reconciles the account home after the snapshot succeeds.
+        developer: Woodleigh School
+        name: WoodSweep
+        preinstall_script: |-
+          #!/bin/zsh --no-rcs
+          logged_in_user="$(/usr/bin/stat -f '%Su' /dev/console)"
+          if [[ -z "${logged_in_user}" || "${logged_in_user}" == "root" || "${logged_in_user}" == "loginwindow" ]]; then
+            echo "WoodSweep bootstrap requires a logged-in user. Deferring installation." >&2
+            exit 1
+          fi
+        postinstall_script: |-
+          #!/bin/zsh --no-rcs
+          set -euo pipefail
+          app="/Applications/WoodSweep.app/Contents/MacOS/WoodSweep"
+          logged_in_user="$(/usr/bin/stat -f '%Su' /dev/console)"
+          if [[ -z "${logged_in_user}" || "${logged_in_user}" == "root" || "${logged_in_user}" == "loginwindow" ]]; then
+            echo "WoodSweep bootstrap requires a logged-in user." >&2
+            exit 1
+          fi
+          user_id="$(/usr/bin/id -u "${logged_in_user}")"
+          /bin/launchctl asuser "${user_id}" \
+            /usr/bin/sudo -u "${logged_in_user}" \
+            "${app}" bootstrap \
+            --server-url '{{ env.WOODSWEEP_SERVER_URL }}' \
+            --bootstrap-user '{{ env.WOODSWEEP_BOOTSTRAP_USER }}' \
+            --bootstrap-password '{{ env.WOODSWEEP_BOOTSTRAP_PASSWORD }}'
+        unattended_install: true
+        unattended_uninstall: true
+        uninstall_method: remove_copied_items
+        uninstallable: true
+      targets:
+        exclude: []
+        include:
+          - actions:
+              - managed_installs
+            label_name: SAC MacBooks

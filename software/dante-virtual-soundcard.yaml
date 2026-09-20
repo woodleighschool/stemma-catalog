@@ -1,0 +1,47 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/woodleighschool/stemma-catalog/main/stemma.schema.json
+apiVersion: stemma/v1alpha1
+kind: MacSoftware
+metadata:
+  name: dante-virtual-soundcard
+spec:
+  extends: mac-software
+  source:
+    resolver: audinate
+    product: dante-virtual-soundcard
+  signature:
+    signer: apple:developer-id:P4WCR6Y822 # Audinate Pty Ltd
+  package_path: DanteVirtualSoundcard.pkg
+  application:
+    path: DVS_User_Interface.pkg/Payload/Dante Virtual Soundcard.app
+    installed_path: /Applications/Dante Virtual Soundcard.app
+  destinations:
+    woodstar:
+      pkginfo:
+        blocking_applications: []
+        category: System
+        description: Connects audio applications to Dante devices over the network for
+          recording, processing and playback.
+        developer: Audinate
+        name: Dante Virtual Soundcard
+        preinstall_script: |-
+          #!/bin/sh
+          # Audinate's package suppresses installer dialogs while this marker exists.
+          /usr/bin/touch /tmp/DVS_silent_install
+        unattended_install: true
+        unattended_uninstall: true
+        uninstall_method: uninstall_script
+        uninstall_script: |-
+          #!/bin/sh
+          uninstaller="/Library/Application Support/Audinate/DanteVirtualSoundcard/Uninstall DVS.app/Contents/Resources/uninstall.sh"
+          if [ ! -f "$uninstaller" ]; then
+            echo "Dante Virtual Soundcard uninstaller not found."
+            exit 1
+          fi
+          "$uninstaller"
+        uninstallable: true
+      targets:
+        exclude: []
+        include:
+          - actions:
+              - optional_installs
+            label_name: All Hosts

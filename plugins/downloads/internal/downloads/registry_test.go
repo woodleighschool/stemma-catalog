@@ -73,6 +73,7 @@ func TestLockedRunsFetchOnlyRecordedArtifact(t *testing.T) {
 		t.Fatal(err)
 	}
 	configs := map[string]string{
+		"audinate":  `{"product":"dante-controller"}`,
 		"microsoft": `{"product":"outlook"}`,
 		"blender":   `{"major":5}`,
 		"python":    `{"branch":"3.13"}`,
@@ -115,6 +116,8 @@ func TestValidationRejectsInvalidConfigurationWithoutNetwork(t *testing.T) {
 		t.Fatal(err)
 	}
 	for _, test := range []struct{ operation, config string }{
+		{"audinate", `{}`},
+		{"audinate", `{"product":"unknown"}`},
 		{"microsoft", `{}`},
 		{"microsoft", `{"product":"unknown"}`},
 		{"microsoft", `{"product":"outlook","channel":"unknown"}`},

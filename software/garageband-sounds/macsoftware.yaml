@@ -89,73 +89,6 @@ spec:
           exit 1
         minimum_os_version: "14.0"
         name: GarageBand All Sounds
-        postinstall_script: |-
-          #!/bin/zsh --no-rcs
-
-          set -e
-
-          workdir="/private/var/tmp/Woodleigh/GarageBandAllSounds"
-          helper="${workdir}/loopdown"
-          state_dir="/Library/Application Support/Woodleigh/GarageBandAllSounds"
-
-          cleanup() {
-              /bin/rm -rf "${workdir}"
-              /bin/rmdir "/private/var/tmp/Woodleigh" 2>/dev/null || true
-          }
-
-          trap cleanup EXIT
-
-          if [[ ! -x "${helper}" ]]; then
-              echo "loopdown helper is missing or not executable" >&2
-              exit 1
-          fi
-
-          if [[ ! -d "/Applications/GarageBand.app" ]]; then
-              echo "GarageBand is not installed" >&2
-              exit 1
-          fi
-
-          manifest_name="$(/usr/bin/osascript -l JavaScript <<'JXA'
-          ObjC.import("Foundation")
-
-          function run() {
-              const fm = $.NSFileManager.defaultManager
-              const resources = "/Applications/GarageBand.app/Contents/Resources"
-              const names = ObjC.deepUnwrap(
-                  fm.contentsOfDirectoryAtPathError($(resources), null)
-              ) || []
-              const manifests = names.filter(
-                  name => /^garageband[0-9]+\.plist$/i.test(name)
-              ).sort((left, right) => left.localeCompare(right, undefined, { numeric: true }))
-
-              if (manifests.length === 0) {
-                  throw new Error("GarageBand content manifest not found")
-              }
-
-              return manifests[manifests.length - 1]
-          }
-          JXA
-          )"
-          remote_manifest="${workdir}/${manifest_name}"
-
-          /usr/bin/curl \
-              --compressed \
-              --fail \
-              --location \
-              --silent \
-              --show-error \
-              --output "${remote_manifest}" \
-              "https://audiocontentdownload.apple.com/lp10_ms3_content_2016/${manifest_name}"
-          /usr/bin/plutil -lint -- "${remote_manifest}" >/dev/null
-
-          "${helper}" deploy \
-              --app garageband \
-              --core \
-              --optional \
-              --cache-server auto
-
-          /usr/bin/install -d -o root -g wheel -m 0755 "${state_dir}"
-          /usr/bin/install -o root -g wheel -m 0644 "${remote_manifest}" "${state_dir}/${manifest_name}"
         requires:
           - GarageBand
         unattended_install: true
@@ -342,35 +275,6 @@ spec:
           exit 1
         minimum_os_version: "14.0"
         name: GarageBand Essential Sounds
-        postinstall_script: |-
-          #!/bin/zsh --no-rcs
-
-          set -e
-
-          workdir="/private/var/tmp/Woodleigh/GarageBandEssentialSounds"
-          helper="${workdir}/loopdown"
-
-          cleanup() {
-              /bin/rm -rf "${workdir}"
-              /bin/rmdir "/private/var/tmp/Woodleigh" 2>/dev/null || true
-          }
-
-          trap cleanup EXIT
-
-          if [[ ! -x "${helper}" ]]; then
-              echo "loopdown helper is missing or not executable" >&2
-              exit 1
-          fi
-
-          if [[ ! -d "/Applications/GarageBand.app" ]]; then
-              echo "GarageBand is not installed" >&2
-              exit 1
-          fi
-
-          "${helper}" deploy \
-              --app garageband \
-              --core \
-              --cache-server auto
         requires:
           - GarageBand
         unattended_install: true

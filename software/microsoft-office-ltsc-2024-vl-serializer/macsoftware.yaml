@@ -1,0 +1,160 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/woodleighschool/stemma-catalog/main/stemma.schema.json
+apiVersion: stemma/v1alpha1
+kind: MacSoftware
+metadata:
+  name: microsoft-office-ltsc-2024-vl-serializer
+suspend: true
+spec:
+  extends: mac-software
+  icon: microsoft-office-ltsc-2024-vl-serializer
+  destinations:
+    woodstar:
+      pkginfo:
+        category: Productivity
+        description: Applies Woodleigh's Microsoft Office LTSC 2024 volume license
+          to shared devices.
+        developer: Microsoft
+        minimum_os_version: "10.15"
+        name: Microsoft Office LTSC 2024 VL Serializer
+        preinstall_script: |-
+          #!/bin/zsh --no-rcs
+
+          # Reset user-based Microsoft Office activation before applying
+          # a Microsoft Office Volume License Serializer package.
+
+          export PATH="/usr/bin:/bin:/usr/sbin:/sbin"
+
+          consoleUser="$(/usr/bin/stat -f '%Su' /dev/console)"
+
+          if [[ -z "${consoleUser}" || "${consoleUser}" == "root" || "${consoleUser}" == "loginwindow" ]]; then
+              echo "No logged-in user; removing system Office licensing state only."
+              consoleUser=""
+              userHome=""
+              userUID=""
+          else
+              userUID="$(/usr/bin/id -u "${consoleUser}")"
+              userHome="$(/usr/bin/dscl . -read "/Users/${consoleUser}" NFSHomeDirectory 2>/dev/null |
+                  /usr/bin/awk -F': ' '/NFSHomeDirectory/{print $2}')"
+
+              echo "Resetting Office activation for ${consoleUser}."
+          fi
+
+          runAsUser() {
+              /bin/launchctl asuser "${userUID}" \
+                  /usr/bin/sudo -u "${consoleUser}" \
+                  "$@"
+          }
+
+          deleteGenericPassword() {
+              local option="$1"
+              local value="$2"
+
+              while runAsUser /usr/bin/security find-generic-password \
+                  "${option}" "${value}" >/dev/null 2>&1; do
+                  runAsUser /usr/bin/security delete-generic-password \
+                      "${option}" "${value}" >/dev/null 2>&1 || break
+              done
+          }
+
+          deleteInternetPassword() {
+              local service="$1"
+
+              while runAsUser /usr/bin/security find-internet-password \
+                  -s "${service}" >/dev/null 2>&1; do
+                  runAsUser /usr/bin/security delete-internet-password \
+                      -s "${service}" >/dev/null 2>&1 || break
+              done
+          }
+
+          echo "Closing Microsoft Office applications."
+
+          typeset -a officeProcesses=(
+              "Microsoft Word"
+              "Microsoft Excel"
+              "Microsoft PowerPoint"
+              "Microsoft Outlook"
+              "Microsoft OneNote"
+          )
+
+          for process in "${officeProcesses[@]}"; do
+              /usr/bin/pkill -TERM -x "${process}" 2>/dev/null || true
+          done
+
+          /bin/sleep 3
+
+          for process in "${officeProcesses[@]}"; do
+              /usr/bin/pkill -KILL -x "${process}" 2>/dev/null || true
+          done
+
+          if [[ -n "${consoleUser}" && -n "${userHome}" ]]; then
+              echo "Removing Office activation credentials."
+
+              # Modern Microsoft identity state.
+              deleteGenericPassword -s "OneAuthAccount"
+
+              # Older ADAL and Live ID activation state.
+              deleteInternetPassword "msoCredentialSchemeADAL"
+              deleteInternetPassword "msoCredentialSchemeLiveId"
+              deleteGenericPassword -G "MSOpenTech.ADAL.1"
+
+              # Office identity and activation caches.
+              deleteGenericPassword -l "Microsoft Office Identities Cache 2"
+              deleteGenericPassword -l "Microsoft Office Identities Cache 3"
+              deleteGenericPassword -l "Microsoft Office Identities Settings 2"
+              deleteGenericPassword -l "Microsoft Office Identities Settings 3"
+              deleteGenericPassword -l "Microsoft Office Ticket Cache"
+              deleteGenericPassword -l "com.microsoft.adalcache"
+              deleteGenericPassword -G "Microsoft Office Data"
+
+              echo "Removing cached Office licensing data."
+
+              /bin/rm -rf \
+                  "${userHome}/Library/Group Containers/UBF8T346G9.com.microsoft.oneauth" \
+                  "${userHome}/Library/Group Containers/UBF8T346G9.Office/Licenses" \
+                  "${userHome}/Library/Group Containers/UBF8T346G9.Office/com.microsoft.Office365.plist" \
+                  "${userHome}/Library/Group Containers/UBF8T346G9.Office/com.microsoft.Office365V2.plist" \
+                  "${userHome}/Library/Group Containers/UBF8T346G9.Office/MicrosoftRegistrationDB.reg" \
+                  "${userHome}/Library/Containers/com.microsoft.Word/Data/Library/Application Support/Microsoft" \
+                  "${userHome}/Library/Containers/com.microsoft.Excel/Data/Library/Application Support/Microsoft" \
+                  "${userHome}/Library/Containers/com.microsoft.Powerpoint/Data/Library/Application Support/Microsoft" \
+                  "${userHome}/Library/Containers/com.microsoft.Outlook/Data/Library/Application Support/Microsoft" \
+                  "${userHome}/Library/Containers/com.microsoft.onenote.mac/Data/Library/Application Support/Microsoft"
+
+              # Remove the remembered activation account without resetting unrelated
+              # Office preferences.
+              runAsUser /usr/bin/defaults delete \
+                  "${userHome}/Library/Preferences/com.microsoft.office" \
+                  OfficeActivationEmailAddress >/dev/null 2>&1 || true
+          fi
+
+          echo "Removing system Office licensing records."
+
+          /bin/rm -rf \
+              "/Library/Application Support/Microsoft/Office365/com.microsoft.Office365.plist" \
+              "/Library/Application Support/Microsoft/Office365/com.microsoft.Office365V2.plist" \
+              "/Library/Microsoft/Office/Licenses"
+
+          /bin/rm -f \
+              "/Library/Preferences/com.microsoft.office.licensingV2.plist" \
+              "/Library/Preferences/com.microsoft.office.licensingV2.plist.bak" \
+              "/Library/Preferences/com.microsoft.office.licensingV2.backup"
+
+          /usr/bin/killall cfprefsd 2>/dev/null || true
+
+          echo "Office activation state reset complete."
+          exit 0
+        unattended_install: true
+        uninstall_method: ""
+        uninstallable: false
+        version: 16.89.24080626
+      targets:
+        exclude: []
+        include:
+          - actions:
+              - managed_installs
+            label_name: CRT/Spare Shared MacBooks
+          - actions:
+              - managed_installs
+            label_name: SAC MacBooks
+  source:
+    path: Assets/Microsoft_Office_LTSC_2024_VL_Serializer.pkg

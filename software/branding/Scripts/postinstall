@@ -2,7 +2,6 @@
 
 set -eu
 
-wallpaper_source="/private/var/tmp/Woodleigh/Branding/Woodleigh.jpg"
 wallpaper="/Library/Desktop Pictures/Woodleigh.jpg"
 
 current_user="$(/usr/bin/stat -f '%Su' /dev/console)"
@@ -51,16 +50,8 @@ run_as_user /usr/bin/defaults write com.apple.dock show-recents -bool false
 run_as_user /usr/bin/defaults write com.apple.dock minimize-to-application -bool true
 run_as_user /usr/bin/killall -KILL Dock 2>/dev/null || true
 
-/bin/mkdir -p "${wallpaper:h}"
-/bin/cp "${wallpaper_source}" "${wallpaper}"
-/usr/sbin/chown root:wheel "${wallpaper}"
-/bin/chmod 0644 "${wallpaper}"
-
 run_as_user /usr/bin/osascript \
     -e "tell application \"Finder\" to set desktop picture to POSIX file \"${wallpaper}\"" \
     >/dev/null 2>&1 &!
-
-/bin/rm -rf "/private/var/tmp/Woodleigh/Branding"
-/bin/rmdir "/private/var/tmp/Woodleigh" 2>/dev/null || true
 
 exit 0

@@ -1,17 +1,18 @@
 # Download resolvers
 
-Find Blender, Python, Cricut, Epson and Microsoft installers. Vendor discovery lives here;
+Find Audinate, Blender, Python, Cricut, Epson and Microsoft installers. Vendor discovery lives here;
 Stemma owns source locks, cached content and software preparation.
 
 ## 🧩 Operations
 
-| Resolver    | Configuration                                          | Selection                                                 |
-| ----------- | ------------------------------------------------------ | --------------------------------------------------------- |
-| `blender`   | `major`; `architecture: arm64` or `x64`                | Latest stable macOS DMG within the major                  |
-| `python`    | `branch`, such as `"3.13"`                             | Latest stable macOS PKG within the branch; 3.10 and later |
-| `cricut`    | `shard: a`                                             | The shard's update manifest and installer API             |
-| `epson`     | `device_id`, `os`, `cti`; `region: GB`, `language: en` | Matching Download Center content type                     |
-| `microsoft` | `product`; `channel: production`; `type: standalone`   | Office MAU metadata or the product’s standalone download  |
+| Resolver    | Configuration                                            | Selection                                                 |
+| ----------- | -------------------------------------------------------- | --------------------------------------------------------- |
+| `audinate`  | `product: dante-controller` or `dante-virtual-soundcard` | First full installer from the product's macOS appcast     |
+| `blender`   | `major`; `architecture: arm64` or `x64`                  | Latest stable macOS DMG within the major                  |
+| `python`    | `branch`, such as `"3.13"`                               | Latest stable macOS PKG within the branch; 3.10 and later |
+| `cricut`    | `shard: a`                                               | The shard's update manifest and installer API             |
+| `epson`     | `device_id`, `os`, `cti`; `region: GB`, `language: en`   | Matching Download Center content type                     |
+| `microsoft` | `product`; `channel: production`; `type: standalone`     | Office MAU metadata or the product’s standalone download  |
 
 Values shown after a colon are defaults unless alternatives are listed.
 
@@ -27,8 +28,11 @@ source:
 Discovery records the selected URL, filename and available vendor version. Locked
 runs fetch that URL without rediscovery; Stemma verifies the reviewed content hash.
 Blender, Python and Epson expose their version as evidence, such as
-`{$fact: epson.version}`. Cricut's version comes from inspecting the application.
+`{{ evidence.epson.version }}`. Cricut's version comes from inspecting the application.
 Keep installer signature requirements on the software resource.
+
+Audinate uses the Apple Silicon Controller feed and the macOS Virtual Soundcard
+feed. Delta updates are skipped.
 
 ### Microsoft
 
@@ -43,7 +47,7 @@ Excel, OneNote, Outlook, PowerPoint and Word also accept `preview` and `beta`
 channels and `type: updater`. The resolver selects the first full update in the
 MAU feed, skips deltas, and changes the Office package suffix for standalone
 installers. OneNote uses its full updater package for standalone installation,
-matching Microsoft's download link. MAU supplies `{$fact: microsoft.version}` evidence.
+matching Microsoft's download link. MAU supplies `{{ evidence.microsoft.version }}` evidence.
 
 `office` (the Microsoft 365 Business Pro suite), `defender`, `edge`, `teams`,
 `company-portal`, `onedrive` and `windows-app` support production standalone

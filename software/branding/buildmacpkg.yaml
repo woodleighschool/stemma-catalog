@@ -13,7 +13,7 @@ spec:
     identifier: au.edu.vic.woodleigh.branding
     version: "1.1"
   payload:
-    /private/var/tmp/Woodleigh/Branding/Woodleigh.jpg:
+    /Library/Desktop Pictures/Woodleigh.jpg:
       $input: wallpaper
       mode: "0644"
   scripts:

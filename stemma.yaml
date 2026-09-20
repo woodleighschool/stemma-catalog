@@ -13,30 +13,53 @@ spec:
               - arm64
           retention:
             keep: 1
+    windows-win32:
+      destinations:
+        intune:
+          allowedArchitectures: x64
+          installExperience:
+            deviceRestartBehavior: basedOnReturnCode
+            runAsAccount: system
+          minimumSupportedWindowsRelease: Windows11_24H2
+          retention:
+            keep: 1
+          returnCodes:
+            - returnCode: 0
+              type: success
+            - returnCode: 1707
+              type: success
+            - returnCode: 3010
+              type: softReboot
+            - returnCode: 1641
+              type: hardReboot
+            - returnCode: 1618
+              type: retry
+          type: win32
   destinations:
+    intune:
+      config:
+        client_id: "{{ env.INTUNE_CLIENT_ID }}"
+        client_secret: "{{ env.INTUNE_CLIENT_SECRET }}"
+        tenant_id: "{{ env.INTUNE_TENANT_ID }}"
+      operation: intune
     woodstar:
       config:
-        api_key: ${WOODSTAR_DEV_API_KEY}
-        url: https://woodstar:8443
+        api_key: "{{ env.WOODSTAR_API_KEY }}"
+        url: https://woodstar.woodleigh.vic.edu.au
       operation: woodstar.munki
   imports:
-    - software/*.yaml
-    - software/microsoft-365/*.yaml
-    - software/printers/*.yaml
-    - software/windows-app/rds.yaml
-    - software/**/buildmacpkg.yaml
-    - software/**/macsoftware.yaml
+    - software/**/*.yaml
   plugins:
     downloads:
       path: plugins/downloads/build
       trusted: true
     woodstar:
-      path: ${WOODSTAR_PLUGIN}
+      path: ../woodstar/stemma/build
       trusted: true
   reconcile:
     source_control:
       type: github
       config:
-        client_id: ${GITHUB_APP_CLIENT_ID}
-        installation_id: ${GITHUB_APP_INSTALLATION_ID}
-        private_key: ${GITHUB_APP_PRIVATE_KEY}
+        client_id: "{{ env.GITHUB_APP_CLIENT_ID }}"
+        installation_id: "{{ env.GITHUB_APP_INSTALLATION_ID }}"
+        private_key: "{{ env.GITHUB_APP_PRIVATE_KEY }}"

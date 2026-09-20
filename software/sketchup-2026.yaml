@@ -1,0 +1,42 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/woodleighschool/stemma-catalog/main/stemma.schema.json
+apiVersion: stemma/v1alpha1
+kind: MacSoftware
+metadata:
+  name: sketchup-2026
+suspend: true
+spec:
+  extends: mac-software
+  source:
+    url: https://sketchup.trimble.com/sketchup/2026/SketchUpPro-dmg
+    filename: SketchUp2026.dmg
+    headers:
+      User-Agent: Mozilla/5.0
+  signature:
+    signer: apple:developer-id:J8PVMCY7KL # Trimble Inc.
+  application:
+    path: SketchUp 2026/SketchUp.app
+    installed_path: /Applications/SketchUp 2026/SketchUp.app
+  destinations:
+    woodstar:
+      pkginfo:
+        blocking_applications:
+          - SketchUp
+          - LayOut
+        category: STEAM
+        description: 3D modelling, documentation and presentation software.
+        developer: Trimble
+        name: SketchUp 2026
+        unattended_install: true
+        unattended_uninstall: true
+        items_to_copy:
+          - source_item: SketchUp 2026
+            destination_path: /Applications
+        uninstall_method: remove_copied_items
+        uninstallable: true
+      targets:
+        exclude: []
+        include:
+          - actions:
+              - optional_installs
+              - managed_updates
+            label_name: All Hosts

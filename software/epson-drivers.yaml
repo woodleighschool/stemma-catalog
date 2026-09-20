@@ -17,15 +17,13 @@ spec:
         unattended_uninstall: true
         uninstall_method: removepackages
         uninstallable: true
-        version:
-          "$fact": epson.version
+        version: "{{ evidence.epson.version }}"
         installs:
           - type: bundle
             path: "/Library/Printers/EPSON/InkjetPrinter2/SupportPrinters/AM-C6000 Series.data"
             CFBundleIdentifier: com.epson.ijprinter.data.AM-C6000 Series
             CFBundleName: AM-C6000 Series
-            CFBundleShortVersionString:
-              "$fact": epson.version
+            CFBundleShortVersionString: "{{ evidence.epson.version }}"
       targets:
         exclude: []
         include:

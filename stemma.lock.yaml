@@ -563,18 +563,35 @@ inputs:
         filename: ZoomInstallerIT.pkg
         mode: 420
 plugins:
-  woodstar:
-    path: /Users/ahyde/GitHub/woodleighschool/woodstar/stemma/build/plugin
+  downloads:
+    path: plugins/downloads/build
     local:
       version: 1
       resolver: file
       resolver_version: "1"
-      declaration: b6f54d135fe59477b55f680b9aa010b0f5e13b8d74e6af4a9f517d75b414caae
-      resolved_at: "2026-09-19T09:46:51Z"
+      declaration: d906700d3a4d8bdeb98c7ae874be5d6ce04232434aef75f45a2d2a7dc6bded83
+      resolved_at: "2026-09-20T01:53:23Z"
       observation: {}
       content:
         artifact:
-          sha256: a7351ebdf983918b44ee6451a10bd3b02ad82fdfc5582fc1a087a4ceea000d2a
-          size: 23913970
-        filename: plugin
+          sha256: 300151c51ba908778d65b4f4a8ba7d208300b940040b72bf0c47fa23791fb675
+          size: 14139904
+        filename: build
+        tree: true
+        mode: 493
+  woodstar:
+    path: ../woodstar/stemma/build
+    local:
+      version: 1
+      resolver: file
+      resolver_version: "1"
+      declaration: d906700d3a4d8bdeb98c7ae874be5d6ce04232434aef75f45a2d2a7dc6bded83
+      resolved_at: "2026-09-20T01:57:44Z"
+      observation: {}
+      content:
+        artifact:
+          sha256: c6e48809737215df03de24d73fab5e72bf40450957184c4e56800e89421a79e0
+          size: 25824768
+        filename: build
+        tree: true
         mode: 493

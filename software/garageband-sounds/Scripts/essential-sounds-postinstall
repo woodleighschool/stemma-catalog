@@ -1,0 +1,21 @@
+#!/bin/zsh --no-rcs
+
+set -e
+
+workdir="${0:A:h}"
+helper="${workdir}/loopdown"
+
+if [[ ! -x "${helper}" ]]; then
+    echo "loopdown helper is missing or not executable" >&2
+    exit 1
+fi
+
+if [[ ! -d "/Applications/GarageBand.app" ]]; then
+    echo "GarageBand is not installed" >&2
+    exit 1
+fi
+
+"${helper}" deploy \
+    --app garageband \
+    --core \
+    --cache-server auto

@@ -7,17 +7,20 @@ spec:
   inputs:
     assets:
       path: Assets
+    scripts:
+      path: Scripts
   package:
     identifier: au.edu.vic.woodleigh.garageband-all-sounds
     version: 2.0.3.1
-  payload:
-    /private/var/tmp/Woodleigh/GarageBandAllSounds/loopdown:
+  scripts:
+    postinstall:
+      $input: scripts
+      path: all-sounds-postinstall
+    loopdown:
       $input: assets
-      mode: "0755"
       path: loopdown
-    /private/var/tmp/Woodleigh/GarageBandAllSounds/loopdown-LICENSE.txt:
+    loopdown-LICENSE.txt:
       $input: assets
-      mode: "0644"
       path: loopdown-LICENSE.txt
 ---
 apiVersion: stemma/v1alpha1
@@ -28,15 +31,18 @@ spec:
   inputs:
     assets:
       path: Assets
+    scripts:
+      path: Scripts
   package:
     identifier: au.edu.vic.woodleigh.garageband-essential-sounds
     version: 2.0.3.2
-  payload:
-    /private/var/tmp/Woodleigh/GarageBandEssentialSounds/loopdown:
+  scripts:
+    postinstall:
+      $input: scripts
+      path: essential-sounds-postinstall
+    loopdown:
       $input: assets
-      mode: "0755"
       path: loopdown
-    /private/var/tmp/Woodleigh/GarageBandEssentialSounds/loopdown-LICENSE.txt:
+    loopdown-LICENSE.txt:
       $input: assets
-      mode: "0644"
       path: loopdown-LICENSE.txt

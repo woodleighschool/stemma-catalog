@@ -7,5 +7,10 @@
 software/linewize-connect/Assets/
 software/woodleigh-fonts/Fonts/
 software/microsoft-office-ltsc-2024-vl-serializer/Assets/*.pkg
+software/garageband/Assets/
+software/keynote/Assets/
+software/numbers/Assets/
+software/pages/Assets/
+software/imovie/Assets/
 plugins/*/build/
 plugins/*/dist/
