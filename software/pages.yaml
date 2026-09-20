@@ -1,0 +1,37 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/woodleighschool/stemma-catalog/main/stemma.schema.json
+apiVersion: stemma/v1alpha1
+kind: MacSoftware
+metadata:
+  name: pages
+suspend: true
+spec:
+  extends: mac-software
+  destinations:
+    woodstar:
+      pkginfo:
+        blocking_applications:
+          - Pages
+        category: Productivity
+        description: Pages is Apple's word processor for creating documents and collaborating
+          with others.
+        developer: Apple
+        name: Pages
+        preinstall_script: |-
+          #!/bin/zsh --no-rcs
+
+          /bin/rm -rf "/Applications/Pages.app"
+        unattended_install: true
+        unattended_uninstall: true
+        uninstall_method: remove_copied_items
+        uninstallable: true
+      targets:
+        exclude: []
+        include:
+          - actions:
+              - optional_installs
+              - managed_updates
+            label_name: All Hosts
+  source:
+    path: /Applications/Pages Creator Studio.app
+  application:
+    installed_path: "/Applications/Pages Creator Studio.app"
