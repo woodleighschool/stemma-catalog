@@ -4,6 +4,7 @@ kind: MacSoftware
 metadata:
   name: penbank-campus-printers
 spec:
+  minimum_os: "11.0"
   destinations:
     woodstar:
       pkginfo:
@@ -20,7 +21,6 @@ spec:
 
           exit 0
         installer_type: nopkg
-        minimum_os_version: "11.0"
         name: Penbank Campus Printers
         postinstall_script: |-
           #!/bin/zsh --no-rcs

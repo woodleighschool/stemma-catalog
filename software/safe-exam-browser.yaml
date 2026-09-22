@@ -4,6 +4,7 @@ kind: MacSoftware
 metadata:
   name: safe-exam-browser
 spec:
+  minimum_os: "12.0"
   application:
     bundle_id: org.safeexambrowser.SafeExamBrowser
     installed_path: /Applications/Safe Exam Browser.app
@@ -16,7 +17,6 @@ spec:
         category: Education
         description: Safe Exam Browser provides a secure browser environment for carrying out online assessments.
         developer: ETH Zurich
-        minimum_os_version: "12.0"
         name: Safe Exam Browser
         unattended_install: true
         unattended_uninstall: true

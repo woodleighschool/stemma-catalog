@@ -14,3 +14,5 @@ software/pages/Assets/
 software/imovie/Assets/
 plugins/*/build/
 plugins/*/dist/
+go.work
+go.work.sum

@@ -6,7 +6,9 @@ metadata:
 spec:
   destinations:
     intune:
+      display_name: Zoom Workplace
       description: Zoom Workplace for Windows.
+      publisher: Zoom Communications, Inc.
   extends: windows-win32
   signature:
     signer: authenticode:dabb2081eb1d52bf60d812d955f60279629167729ab8fd13708b0f66502e4795 # Zoom Communications, Inc.

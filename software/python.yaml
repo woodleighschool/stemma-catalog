@@ -4,6 +4,7 @@ kind: MacSoftware
 metadata:
   name: python
 spec:
+  minimum_os: "11.0"
   extends: mac-software
   destinations:
     woodstar:
@@ -22,7 +23,6 @@ spec:
           - attributeSetting: 0
             choiceAttribute: selected
             choiceIdentifier: org.python.Python.PythonProfileChanges-3.13
-        minimum_os_version: "11.0"
         name: Python 3.13
         unattended_install: true
         uninstall_method: removepackages

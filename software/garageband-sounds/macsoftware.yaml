@@ -4,6 +4,7 @@ kind: MacSoftware
 metadata:
   name: garageband-all-sounds
 spec:
+  minimum_os: "14.0"
   destinations:
     woodstar:
       pkginfo:
@@ -87,7 +88,6 @@ spec:
           done <<< "${manifest_rows}"
 
           exit 1
-        minimum_os_version: "14.0"
         name: GarageBand All Sounds
         requires:
           - GarageBand
@@ -201,6 +201,7 @@ kind: MacSoftware
 metadata:
   name: garageband-essential-sounds
 spec:
+  minimum_os: "14.0"
   destinations:
     woodstar:
       pkginfo:
@@ -273,7 +274,6 @@ spec:
           done <<< "${manifest_rows}"
 
           exit 1
-        minimum_os_version: "14.0"
         name: GarageBand Essential Sounds
         requires:
           - GarageBand

@@ -4,6 +4,7 @@ kind: MacSoftware
 metadata:
   name: nap-locked-down-browser
 spec:
+  minimum_os: "14.0"
   application:
     bundle_id: au.com.janison.mac.naplan
     installed_path: /Applications/NAP Locked down browser.app
@@ -18,7 +19,6 @@ spec:
           NAP Sample tests by preventing access to other applications and unauthorised device
           resources during an assessment.
         developer: ACARA
-        minimum_os_version: "14.0"
         name: NAP Locked down browser
         requires:
           - resource:

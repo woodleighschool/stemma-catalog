@@ -4,6 +4,7 @@ kind: MacSoftware
 metadata:
   name: rosetta
 spec:
+  minimum_os: "11.0"
   destinations:
     woodstar:
       pkginfo:
@@ -16,7 +17,6 @@ spec:
           /usr/bin/arch -x86_64 /usr/bin/true 2>/dev/null && exit 1
           exit 0
         installer_type: nopkg
-        minimum_os_version: "11.0"
         name: Rosetta
         postinstall_script: |
           #!/bin/sh

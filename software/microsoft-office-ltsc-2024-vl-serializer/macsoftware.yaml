@@ -5,6 +5,7 @@ metadata:
   name: microsoft-office-ltsc-2024-vl-serializer
 suspend: true
 spec:
+  minimum_os: "10.15"
   extends: mac-software
   icon: microsoft-office-ltsc-2024-vl-serializer
   destinations:
@@ -14,7 +15,6 @@ spec:
         description: Applies Woodleigh's Microsoft Office LTSC 2024 volume license
           to shared devices.
         developer: Microsoft
-        minimum_os_version: "10.15"
         name: Microsoft Office LTSC 2024 VL Serializer
         preinstall_script: |-
           #!/bin/zsh --no-rcs
@@ -144,7 +144,7 @@ spec:
           echo "Office activation state reset complete."
           exit 0
         unattended_install: true
-        uninstall_method: ""
+        uninstall_method: null
         uninstallable: false
         version: 16.89.24080626
       targets:

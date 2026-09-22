@@ -8,33 +8,29 @@ spec:
     mac-software:
       destinations:
         woodstar:
-          pkginfo:
-            supported_architectures:
-              - arm64
           retention:
             keep: 1
     windows-win32:
       destinations:
         intune:
-          allowedArchitectures: x64
-          installExperience:
-            deviceRestartBehavior: basedOnReturnCode
-            runAsAccount: system
-          minimumSupportedWindowsRelease: Windows11_24H2
+          architecture: x64
+          install_experience:
+            restart: based_on_return_code
+            run_as: system
+          minimum_windows_release: Windows11_24H2
           retention:
             keep: 1
-          returnCodes:
-            - returnCode: 0
+          return_codes:
+            - code: 0
               type: success
-            - returnCode: 1707
+            - code: 1707
               type: success
-            - returnCode: 3010
-              type: softReboot
-            - returnCode: 1641
-              type: hardReboot
-            - returnCode: 1618
+            - code: 3010
+              type: soft_reboot
+            - code: 1641
+              type: hard_reboot
+            - code: 1618
               type: retry
-          type: win32
   destinations:
     intune:
       config:
