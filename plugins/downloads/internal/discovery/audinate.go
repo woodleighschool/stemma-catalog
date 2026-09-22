@@ -28,7 +28,7 @@ func Audinate(ctx context.Context, client *http.Client, config AudinateConfig) (
 		return Release{}, errors.New("audinate: unknown product")
 	}
 	endpoint := &url.URL{Scheme: "https", Host: "software-updates.audinate.com", Path: feed}
-	data, err := metadata(ctx, client, endpoint, hostURL(endpoint.Host))
+	data, err := metadata(ctx, client, endpoint, audinateURL)
 	if err != nil {
 		return Release{}, fmt.Errorf("audinate: appcast: %w", err)
 	}
@@ -70,4 +70,9 @@ func Audinate(ctx context.Context, client *http.Client, config AudinateConfig) (
 		}
 	}
 	return Release{}, errors.New("audinate: appcast has no full installer")
+}
+
+// audinateURL admits the public feed host and the Artifactory instance it redirects to.
+func audinateURL(u *url.URL) bool {
+	return httpsURL(u) && (u.Host == "software-updates.audinate.com" || u.Host == "audinate.jfrog.io")
 }

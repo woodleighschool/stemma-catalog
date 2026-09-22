@@ -1,6 +1,9 @@
 package discovery
 
-import "testing"
+import (
+	"net/http"
+	"testing"
+)
 
 func TestAudinateSelectsCurrentFullInstaller(t *testing.T) {
 	const body = `<rss xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle"><channel>
@@ -13,7 +16,14 @@ func TestAudinateSelectsCurrentFullInstaller(t *testing.T) {
 		"dante-virtual-soundcard": "/DanteVirtualSoundcard/appcast/macOS/DanteVirtualSoundcard-macOS.xml",
 	} {
 		t.Run(product, func(t *testing.T) {
-			client := fixtureClient(t, map[string]string{"https://software-updates.audinate.com" + feed: body})
+			mirror := "https://audinate.jfrog.io/artifactory/ad8-software-updates-prod" + feed
+			fixtures := fixtureClient(t, map[string]string{mirror: body})
+			client := &http.Client{Transport: roundTripFunc(func(req *http.Request) (*http.Response, error) {
+				if req.URL.String() == "https://software-updates.audinate.com"+feed {
+					return &http.Response{StatusCode: http.StatusTemporaryRedirect, Header: http.Header{"Location": {mirror}}, Body: http.NoBody, Request: req}, nil
+				}
+				return fixtures.Transport.RoundTrip(req)
+			})}
 			got, err := Audinate(t.Context(), client, AudinateConfig{Product: product})
 			want := Release{URL: "https://downloads.audinate.com/current.dmg", Filename: "current.dmg", Version: "4.2.3"}
 			if err != nil || got != want {
