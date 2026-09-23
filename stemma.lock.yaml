@@ -233,7 +233,7 @@ inputs:
     source:
       version: 1
       resolver: microsoft
-      resolver_version: 932921851ef57e9290e7871892a2d86108840d2afba8dbcf16dfd6ac16112e17
+      resolver_version: b10e06f611fe82af7c236c4eb3e580c3a45bccf6659a4920c15774dd652d9be4
       declaration: 57b005d3ce8541a109b820cb630bc290ec15c6a0b72a9a3bb3fd3116eef51bb6
       resolved_at: "2026-09-12T13:20:43Z"
       observation:
