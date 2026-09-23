@@ -1006,34 +1006,10 @@ inputs:
         mode: 420
 plugins:
   downloads:
-    path: plugins/downloads/build
-    local:
-      version: 1
-      resolver: file
-      resolver_version: "1"
-      declaration: d906700d3a4d8bdeb98c7ae874be5d6ce04232434aef75f45a2d2a7dc6bded83
-      resolved_at: "2026-09-22T23:31:41Z"
-      observation: {}
-      content:
-        artifact:
-          sha256: 62cf8d2d1fd0cf43eb2ef89dc87528490ac0cb3f119f7857d0b8411a230dc434
-          size: 14139904
-        filename: build
-        tree: true
-        mode: 493
+    image: ghcr.io/woodleighschool/stemma-catalog/downloads@sha256:d16232bcd8ab55b0e9aba7ad5dbd0204a51b6006b75f32dfb8990d5bfaa10ef7
+    digest: sha256:d16232bcd8ab55b0e9aba7ad5dbd0204a51b6006b75f32dfb8990d5bfaa10ef7
+    size: 1605
   woodstar:
-    path: ../woodstar/stemma/build
-    local:
-      version: 1
-      resolver: file
-      resolver_version: "1"
-      declaration: d906700d3a4d8bdeb98c7ae874be5d6ce04232434aef75f45a2d2a7dc6bded83
-      resolved_at: "2026-09-22T23:31:41Z"
-      observation: {}
-      content:
-        artifact:
-          sha256: 13f97c4acdf7754f80245a17daf18b9b16ee2dfb334c20255203448e455946af
-          size: 25790464
-        filename: build
-        tree: true
-        mode: 493
+    image: ghcr.io/woodleighschool/woodstar/stemma@sha256:9c0af2b397eb7e212b8d3602cab1879790588dbdf770a1db5e9159c199eb41c2
+    digest: sha256:9c0af2b397eb7e212b8d3602cab1879790588dbdf770a1db5e9159c199eb41c2
+    size: 1605
