@@ -4,7 +4,7 @@ go 1.27.0
 
 require (
 	github.com/invopop/jsonschema v0.14.0
-	github.com/woodleighschool/stemma v0.0.0-20260922233048-804c82e648e1
+	github.com/woodleighschool/stemma v0.0.0-20260923115219-f94e5cf8c1f6
 	howett.net/plist v1.0.1
 )
 
@@ -21,5 +21,3 @@ require (
 	golang.org/x/net v0.59.0 // indirect
 	golang.org/x/text v0.42.0 // indirect
 )
-
-replace github.com/woodleighschool/stemma => ../../../stemma
