@@ -263,6 +263,26 @@ inputs:
           size: 403839816
         filename: CricutDesignSpace-Install-v9.83.76.dmg
         mode: 420
+  stemma/v1alpha1/MacSoftware/dante-virtual-soundcard:
+    source:
+      version: 1
+      resolver: audinate
+      resolver_version: b10e06f611fe82af7c236c4eb3e580c3a45bccf6659a4920c15774dd652d9be4
+      declaration: d4b78168c674e9cca8bb2a9bac18d936622c21732ff0b1432953304727cded8a
+      resolved_at: "2026-09-23T12:50:57Z"
+      observation:
+        filename: DVS-4.5.2.3_macos.dmg
+        url: https://audinate-software-updates.sgp1.cdn.digitaloceanspaces.com/DanteVirtualSoundcard/4/4.5/macOS/DVS-4.5.2.3_macos.dmg
+        version: 4.5.2.3
+      content:
+        artifact:
+          sha256: 8d23b26a1b8b6601f4c5dc370bfcfea7558ec18c297992306830d0205d571a1c
+          size: 41889137
+        filename: DVS-4.5.2.3_macos.dmg
+        mode: 420
+      evidence:
+        audinate:
+          version: 4.5.2.3
   stemma/v1alpha1/MacSoftware/docker-desktop:
     source:
       version: 1
