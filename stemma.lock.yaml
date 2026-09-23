@@ -213,7 +213,7 @@ inputs:
     source:
       version: 1
       resolver: blender
-      resolver_version: 932921851ef57e9290e7871892a2d86108840d2afba8dbcf16dfd6ac16112e17
+      resolver_version: b10e06f611fe82af7c236c4eb3e580c3a45bccf6659a4920c15774dd652d9be4
       declaration: c804a4b621c79e295ce90ef64097d592641877bf87f692ab420e0fe83afa5083
       resolved_at: "2026-09-23T00:01:48Z"
       observation:
