@@ -138,24 +138,6 @@ inputs:
           size: 708069135
         filename: ActivInspire_Application_v3.4.16_MAC.dmg
         mode: 420
-  stemma/v1alpha1/MacSoftware/assetcache-exporter:
-    source:
-      version: 1
-      resolver: github
-      resolver_version: "1"
-      declaration: fc31945b95182ae927f1570092040fb0eca797b3e3a077a1ed2d241fa7ca70bd
-      resolved_at: "2026-09-23T00:01:37Z"
-      observation:
-        asset_id: 554516707
-        release: 1.3.0
-        release_id: 386084636
-        url: https://github.com/woodleighschool/assetcache-exporter/releases/download/1.3.0/assetcache-exporter-1.3.0.pkg
-      content:
-        artifact:
-          sha256: 7213002dd1900bcf0a0a8294e291e2a8cbbff62143bc3f61e21cf5bc68239a5d
-          size: 6396295
-        filename: assetcache-exporter-1.3.0.pkg
-        mode: 420
   stemma/v1alpha1/MacSoftware/audacity:
     source:
       version: 1
