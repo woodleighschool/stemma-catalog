@@ -6,12 +6,12 @@ inputs:
       resolver: file
       resolver_version: "1"
       declaration: ec521052526b0f78bff2b29f28283033c6cf07c8be797c0c8f8f011dd11dafac
-      resolved_at: "2026-09-12T09:14:59Z"
+      resolved_at: "2026-09-20T02:31:17Z"
       observation: {}
       content:
         artifact:
-          sha256: 3675168c9c45ea127c72946f571af70cf613dc53c226cc6326fa2a2465a4d750
-          size: 6144
+          sha256: 17992d98dbcf5f6bb4df7c9c6a88fc9af35d4beb9e147f479e350665a9379278
+          size: 5632
         filename: Scripts
         tree: true
         mode: 493
@@ -46,6 +46,20 @@ inputs:
         filename: Assets
         tree: true
         mode: 493
+    scripts:
+      version: 1
+      resolver: file
+      resolver_version: "1"
+      declaration: cea9101c8bc3ce861692d8478cd7ed7df85ced58da4a7326e409dd278eb30ee3
+      resolved_at: "2026-09-23T00:01:18Z"
+      observation: {}
+      content:
+        artifact:
+          sha256: 2e5aef0b303f592133d5ab82c5d90df9b72a88ab060ce5206248f5a481ec0154
+          size: 4608
+        filename: Scripts
+        tree: true
+        mode: 493
   stemma/v1alpha1/BuildMacPkg/garageband-essential-sounds:
     assets:
       version: 1
@@ -61,6 +75,35 @@ inputs:
         filename: Assets
         tree: true
         mode: 493
+    scripts:
+      version: 1
+      resolver: file
+      resolver_version: "1"
+      declaration: cea9101c8bc3ce861692d8478cd7ed7df85ced58da4a7326e409dd278eb30ee3
+      resolved_at: "2026-09-23T00:01:18Z"
+      observation: {}
+      content:
+        artifact:
+          sha256: 2e5aef0b303f592133d5ab82c5d90df9b72a88ab060ce5206248f5a481ec0154
+          size: 4608
+        filename: Scripts
+        tree: true
+        mode: 493
+  stemma/v1alpha1/BuildMacPkg/sophos:
+    vendor:
+      version: 1
+      resolver: http
+      resolver_version: "1"
+      declaration: 4802a2ef7af946a75e3cd5761a92797e7a838aec16385f2c473599aca991d72d
+      resolved_at: "2026-09-23T00:01:18Z"
+      observation:
+        url: https://dzr-api-amzn-eu-west-1-9af7.api-upe.p.hmr.sophos.com/api/download/a51be3b1c689c4225374bdd797335f42/SophosInstall.zip
+      content:
+        artifact:
+          sha256: 3d4d6184436ea22b477740004280f80f5d156bf39762b347bea7266301953fbc
+          size: 6452809
+        filename: SophosInstall.zip
+        mode: 420
   stemma/v1alpha1/MacSoftware/1password:
     source:
       version: 1
@@ -77,6 +120,59 @@ inputs:
           sha256: 48e383a0b754e133d44dc900130c09266435f0f2fbf6aa2f40f7e0946ed9def8
           size: 393410672
         filename: 1Password.pkg
+        mode: 420
+  stemma/v1alpha1/MacSoftware/activinspire:
+    source:
+      version: 1
+      resolver: http
+      resolver_version: "1"
+      declaration: 270cc135957ec00d354a72683ea3e8d9b90a2b7b66d90c826df10d5cd711f9c1
+      resolved_at: "2026-09-23T00:01:25Z"
+      observation:
+        etag: '"f6ca7882abcc6dfe383b36cedd6185fc-42"'
+        last_modified: Wed, 18 Sep 2024 12:50:08 GMT
+        url: http://www.activsoftware.co.uk/update/Inspire/update/mac/ActivInspire_Application_v3.4.16_MAC.dmg
+      content:
+        artifact:
+          sha256: be9337a23401fc3e1fdaae8e529f102cd10fe89b97c9b8a69ad5d5bed7ee6eea
+          size: 708069135
+        filename: ActivInspire_Application_v3.4.16_MAC.dmg
+        mode: 420
+  stemma/v1alpha1/MacSoftware/assetcache-exporter:
+    source:
+      version: 1
+      resolver: github
+      resolver_version: "1"
+      declaration: fc31945b95182ae927f1570092040fb0eca797b3e3a077a1ed2d241fa7ca70bd
+      resolved_at: "2026-09-23T00:01:37Z"
+      observation:
+        asset_id: 554516707
+        release: 1.3.0
+        release_id: 386084636
+        url: https://github.com/woodleighschool/assetcache-exporter/releases/download/1.3.0/assetcache-exporter-1.3.0.pkg
+      content:
+        artifact:
+          sha256: 7213002dd1900bcf0a0a8294e291e2a8cbbff62143bc3f61e21cf5bc68239a5d
+          size: 6396295
+        filename: assetcache-exporter-1.3.0.pkg
+        mode: 420
+  stemma/v1alpha1/MacSoftware/audacity:
+    source:
+      version: 1
+      resolver: github
+      resolver_version: "1"
+      declaration: 4e8624b9cc81a4571f17484743de6e43f1a44429124730923318d89dd00025d6
+      resolved_at: "2026-09-23T00:01:38Z"
+      observation:
+        asset_id: 542511135
+        release: Audacity-4.0.0
+        release_id: 381877760
+        url: https://github.com/audacity/audacity/releases/download/Audacity-4.0.0/audacity-macOS-4.0.0-arm64.dmg
+      content:
+        artifact:
+          sha256: 266201f3151b09e46a5ab8e0ce1a16cefdd53a66fc7c979e943b2c88d6500c51
+          size: 46806707
+        filename: audacity-macOS-4.0.0-arm64.dmg
         mode: 420
   stemma/v1alpha1/MacSoftware/autodesk-fusion:
     source:
@@ -95,21 +191,94 @@ inputs:
           size: 3798015585
         filename: Autodesk Fusion Admin Install.pkg
         mode: 420
+  stemma/v1alpha1/MacSoftware/bambustudio:
+    source:
+      version: 1
+      resolver: github
+      resolver_version: "1"
+      declaration: 658612c6d75822f03410ba922bbdd2662e70c1a263d5b57b92f2ef7eb4f74bfd
+      resolved_at: "2026-09-23T00:01:40Z"
+      observation:
+        asset_id: 581275014
+        release: v02.08.04.57
+        release_id: 393562106
+        url: https://github.com/bambulab/BambuStudio/releases/download/v02.08.04.57/Bambu_Studio_mac_v02.08.04.57-20260922164607.dmg
+      content:
+        artifact:
+          sha256: 6d0099f60bb4449ee9066160cb65a8a1f639650a3f48cddf13566fe0c520ac66
+          size: 308270960
+        filename: Bambu_Studio_mac_v02.08.04.57-20260922164607.dmg
+        mode: 420
+  stemma/v1alpha1/MacSoftware/blender:
+    source:
+      version: 1
+      resolver: blender
+      resolver_version: 932921851ef57e9290e7871892a2d86108840d2afba8dbcf16dfd6ac16112e17
+      declaration: c804a4b621c79e295ce90ef64097d592641877bf87f692ab420e0fe83afa5083
+      resolved_at: "2026-09-23T00:01:48Z"
+      observation:
+        filename: blender-5.2.2-macos-arm64.dmg
+        url: https://download.blender.org/release/Blender5.2/blender-5.2.2-macos-arm64.dmg
+        version: 5.2.2
+      content:
+        artifact:
+          sha256: dc4125399b8bfefe283cc1624d6cfc7809d1cac20ace51072127eb371f31f210
+          size: 346286611
+        filename: blender-5.2.2-macos-arm64.dmg
+        mode: 420
+      evidence:
+        blender:
+          version: 5.2.2
   stemma/v1alpha1/MacSoftware/company-portal:
     source:
       version: 1
-      resolver: http
-      resolver_version: "1"
-      declaration: 4dc6deb8addc7d09cfdacaaf43141579edf94d30f3c7fad12cc4139a513d05fb
+      resolver: microsoft
+      resolver_version: 932921851ef57e9290e7871892a2d86108840d2afba8dbcf16dfd6ac16112e17
+      declaration: 57b005d3ce8541a109b820cb630bc290ec15c6a0b72a9a3bb3fd3116eef51bb6
       resolved_at: "2026-09-12T13:20:43Z"
       observation:
-        last_modified: Thu, 03 Sep 2026 23:37:12 GMT
-        url: https://go.microsoft.com/fwlink/?linkid=853070
+        filename: CompanyPortal-Installer.pkg
+        url: https://res.public.onecdn.static.microsoft/mro1cdnstorage/C1297A47-86C4-4C1F-97FA-950631F94777/MacAutoupdate/CompanyPortal-Installer.pkg
+        version: ""
       content:
         artifact:
           sha256: 08f18b9b1c0db678ef80b5e560bb29aa45074218b56685765a6d964eb3dda9f7
           size: 85659163
         filename: CompanyPortal-Installer.pkg
+        mode: 420
+  stemma/v1alpha1/MacSoftware/cricut-design-space:
+    source:
+      version: 1
+      resolver: cricut
+      resolver_version: 932921851ef57e9290e7871892a2d86108840d2afba8dbcf16dfd6ac16112e17
+      declaration: 5d0b7971524b0688b5d02356b7abf764ae962aba9373bcd32801774de9e428f9
+      resolved_at: "2026-09-23T00:02:07Z"
+      observation:
+        filename: CricutDesignSpace-Install-v9.83.76.dmg
+        url: https://staticcontent.cricut.com/a/software/osx-native/CricutDesignSpace-Install-v9.83.76.dmg?Expires=1790125328&Signature=JQzlLgXpC-9g9k0zquPAoE5xKNJx9f3Sm9so7djYFsWXB2~ajeJ~3xerfeFfJ2A1MIyTZL2DmLaqlTbGif65mzyPRCDIRFOGu02m6ncINw1DWzsPBrRpnF7OxBEIncDfN7~40ILpeAaj51VlpqQvbac0TVV~LZp9~2VE65WdZ7AtD1iOPHsCGbh~mh73nvMsMEPQTFZl7px1JeUv8Rq1aSUGsWWLFbzsoK-XWshh1kY48SQ5zJAeFtbjTFPdVHLUYL88sLetUHBxu0rvWz~Z9QOmnBQrFspXqPm0bv6xI0-CVJiemV1hMIYn7Hdwge~9q7v2HOF9wFhvIGHOy~FQww__&Key-Pair-Id=K2W1AJ47IQWIOI
+        version: ""
+      content:
+        artifact:
+          sha256: a2b5cc505f5660e984cdc2f4cb7d6d81c5192ebdb505dc9b65b4fc09d3523851
+          size: 403839816
+        filename: CricutDesignSpace-Install-v9.83.76.dmg
+        mode: 420
+  stemma/v1alpha1/MacSoftware/docker-desktop:
+    source:
+      version: 1
+      resolver: http
+      resolver_version: "1"
+      declaration: 296efb5e6ca6d488e72356659af78a98490d3305fe4583308e9de2753ed075aa
+      resolved_at: "2026-09-23T00:02:29Z"
+      observation:
+        etag: '"ef11f2915f3acb65bb068b56b0374f36"'
+        last_modified: Mon, 21 Sep 2026 13:18:20 GMT
+        url: https://desktop.docker.com/mac/main/arm64/Docker.dmg
+      content:
+        artifact:
+          sha256: e513bbfeca246165595e2f17cabf6579936f36057f3f4fb689c619e6aac6d188
+          size: 586158615
+        filename: Docker.dmg
         mode: 420
   stemma/v1alpha1/MacSoftware/easyfind:
     source:
@@ -128,6 +297,26 @@ inputs:
           size: 5056310
         filename: EasyFind.app.zip
         mode: 420
+  stemma/v1alpha1/MacSoftware/epson-drivers:
+    source:
+      version: 1
+      resolver: epson
+      resolver_version: 932921851ef57e9290e7871892a2d86108840d2afba8dbcf16dfd6ac16112e17
+      declaration: befddb0176cdc80cf2158e6f1b039b60d6689f8a78bc3b3dd10fe493e743d1a2
+      resolved_at: "2026-09-23T00:04:24Z"
+      observation:
+        filename: AMC6000_AMC5000_AMC4000_1348AW_21.dmg
+        url: https://d21ceiiri21o6e.cloudfront.net/f/module/3d238dc5-9ccc-4d31-b74f-6ab6a284ad7f/AMC6000_AMC5000_AMC4000_1348AW_21.dmg
+        version: "13.48"
+      content:
+        artifact:
+          sha256: 0882e77c517e6941233d464a746b51200645f5ec9d58d417cfc7426241ce30cb
+          size: 67597622
+        filename: AMC6000_AMC5000_AMC4000_1348AW_21.dmg
+        mode: 420
+      evidence:
+        epson:
+          version: "13.48"
   stemma/v1alpha1/MacSoftware/gamemaker:
     source:
       version: 1
@@ -184,15 +373,15 @@ inputs:
       resolver: http
       resolver_version: "1"
       declaration: f8256e4340990b785cbabaa4fb0861cee091bfa32de2a0b8cb82b21b03d8cbb3
-      resolved_at: "2026-09-16T13:46:27Z"
+      resolved_at: "2026-09-23T00:04:52Z"
       observation:
-        etag: '"6c94e63"'
-        last_modified: Tue, 15 Sep 2026 20:30:59 GMT
+        etag: '"6d2e6c8"'
+        last_modified: Tue, 22 Sep 2026 18:21:47 GMT
         url: https://dl.google.com/dl/chrome/mac/universal/stable/gcem/GoogleChrome.pkg
       content:
         artifact:
-          sha256: c3f1da8e3555cd9f0c3921685fa9431f1b6ecf6bab00074ddd429b200905fc99
-          size: 263600111
+          sha256: 81fb269b937fae2f3da79a07a05d52e616b05c132e452f289e605f94c1a68b26
+          size: 264589035
         filename: GoogleChrome.pkg
         mode: 420
   stemma/v1alpha1/MacSoftware/google-earth-pro:
@@ -215,127 +404,145 @@ inputs:
   stemma/v1alpha1/MacSoftware/microsoft-365-business-pro-suite:
     source:
       version: 1
-      resolver: http
-      resolver_version: "1"
-      declaration: cda9009b752e6b4eee7187c66a6bd8e0364004ff60a92dca610ad6e7fcdf5f6e
-      resolved_at: "2026-09-12T13:21:08Z"
+      resolver: microsoft
+      resolver_version: 932921851ef57e9290e7871892a2d86108840d2afba8dbcf16dfd6ac16112e17
+      declaration: 3427a8c8405dd7b54b536bd3b91d66a0f110396fe26ac6ed7e9e3bc9b1a6b334
+      resolved_at: "2026-09-23T00:05:36Z"
       observation:
-        last_modified: Thu, 10 Sep 2026 16:04:14 GMT
-        url: https://go.microsoft.com/fwlink/?linkid=2009112
+        filename: Microsoft_365_and_Office_16.113.26092012_BusinessPro_Installer.pkg
+        url: https://res.public.onecdn.static.microsoft/mro1cdnstorage/C1297A47-86C4-4C1F-97FA-950631F94777/MacAutoupdate/Microsoft_365_and_Office_16.113.26092012_BusinessPro_Installer.pkg
+        version: ""
       content:
         artifact:
-          sha256: 0162f98e9c3caee824b3d91f93db3e44718f3ac58135c33af91a844b15bba2ab
-          size: 3271961941
-        filename: Microsoft_365_and_Office_16.112.26090911_BusinessPro_Installer.pkg
+          sha256: af7208b15f91a3ed11129643b0b0c3de54ec5adbb8c9aadfff0948a76d3c1819
+          size: 3223984488
+        filename: Microsoft_365_and_Office_16.113.26092012_BusinessPro_Installer.pkg
         mode: 420
   stemma/v1alpha1/MacSoftware/microsoft-defender:
     source:
       version: 1
-      resolver: http
-      resolver_version: "1"
-      declaration: fff0e4a9398911738317fc7ca45a9408e17bbe0265d9ad9d4dccfc8cd7f6504a
-      resolved_at: "2026-09-12T13:21:52Z"
+      resolver: microsoft
+      resolver_version: 932921851ef57e9290e7871892a2d86108840d2afba8dbcf16dfd6ac16112e17
+      declaration: 04ddabe065356a0c36b72ee2c0b1bf6063ef6e8bd0860858dd20ec6757423350
+      resolved_at: "2026-09-23T00:06:35Z"
       observation:
-        last_modified: Thu, 20 Aug 2026 20:22:03 GMT
-        url: https://go.microsoft.com/fwlink/?linkid=2097502
+        filename: wdav.pkg
+        url: https://res.public.onecdn.static.microsoft/mro1cdnstorage/C1297A47-86C4-4C1F-97FA-950631F94777/MacAutoupdate/wdav.pkg
+        version: ""
       content:
         artifact:
-          sha256: ceb615d5b436694a4897769fdc15a25961fc4845d21db6a07ef1c61f35211eb7
-          size: 471087239
+          sha256: 4f2670eb11eb080e864605ff41310277228991f4ebe16a651880cb3435e4f8b7
+          size: 475531754
         filename: wdav.pkg
         mode: 420
   stemma/v1alpha1/MacSoftware/microsoft-edge:
     source:
       version: 1
-      resolver: http
-      resolver_version: "1"
-      declaration: a5e3f659ec9367ab1972832070ec8f15106c6051da7b217a5ede1bb8fac6d213
-      resolved_at: "2026-09-12T13:21:59Z"
+      resolver: microsoft
+      resolver_version: 932921851ef57e9290e7871892a2d86108840d2afba8dbcf16dfd6ac16112e17
+      declaration: d956aada387ef75bf2fb0fe0bd97c798c490d054a44548d654141352d33ceb97
+      resolved_at: "2026-09-19T09:55:22Z"
       observation:
-        etag: '"FWDTh9US79aZgLxnTFQFtz9SbkY="'
-        last_modified: Fri, 11 Sep 2026 00:25:11 GMT
-        url: https://go.microsoft.com/fwlink/?linkid=2093504
+        filename: MicrosoftEdge-153.0.4234.48.pkg
+        url: https://msedge.sf.dl.delivery.mp.microsoft.com/filestreamingservice/files/8aa4efa6-ccfc-45df-9f57-bf678d2faf18/MicrosoftEdge-153.0.4234.48.pkg
+        version: ""
       content:
         artifact:
-          sha256: 8ccdfd126c8e80411108c8ec45cbc610779a08c54285d02d48681e8d8afed529
-          size: 429856524
-        filename: MicrosoftEdge-153.0.4234.32.pkg
+          sha256: b9302cbc5e0adb22a82568d62a18d34050192d11c4b1344575dc6b5c264b58af
+          size: 429993224
+        filename: MicrosoftEdge-153.0.4234.48.pkg
         mode: 420
   stemma/v1alpha1/MacSoftware/microsoft-excel:
     source:
       version: 1
-      resolver: http
-      resolver_version: "1"
-      declaration: 3a74d1c3215025fed8ce3b1e8f48bf4539bdf83a4ea98e17fce00871b686b265
-      resolved_at: "2026-09-12T13:22:04Z"
+      resolver: microsoft
+      resolver_version: 932921851ef57e9290e7871892a2d86108840d2afba8dbcf16dfd6ac16112e17
+      declaration: eaf7222edc7ff70db33673432452afab2166ed185eda8b0fa2ef5ab6b670351d
+      resolved_at: "2026-09-23T00:06:55Z"
       observation:
-        last_modified: Thu, 10 Sep 2026 15:56:25 GMT
-        url: https://go.microsoft.com/fwlink/?linkid=525135
+        filename: Microsoft_Excel_16.113.26092012_Installer.pkg
+        url: https://res.public.onecdn.static.microsoft/mro1cdnstorage/C1297A47-86C4-4C1F-97FA-950631F94777/MacAutoupdate/Microsoft_Excel_16.113.26092012_Installer.pkg
+        version: 16.113.26092012
       content:
         artifact:
-          sha256: c41c0b430ca99ffe6a328797f5247fbd4be8df8ca9b5229b1253c3a4efc3891d
-          size: 1171721911
-        filename: Microsoft_Excel_16.112.26090911_Installer.pkg
+          sha256: cfd6ef609fe96e5de049310f9410c18ee2c4e53825731095a940e9c6bcbcc79f
+          size: 1179109192
+        filename: Microsoft_Excel_16.113.26092012_Installer.pkg
         mode: 420
+      evidence:
+        microsoft:
+          version: 16.113.26092012
   stemma/v1alpha1/MacSoftware/microsoft-onenote:
     source:
       version: 1
-      resolver: http
-      resolver_version: "1"
-      declaration: 1239f5ebb7ce9746e5a704e103d2d56fc4f040c8a330e936f3aea3b423c3613a
-      resolved_at: "2026-09-17T01:08:27Z"
+      resolver: microsoft
+      resolver_version: 932921851ef57e9290e7871892a2d86108840d2afba8dbcf16dfd6ac16112e17
+      declaration: e1169584a74b40d552ccde05c15d68a488336719ef441658439aba4077accea7
+      resolved_at: "2026-09-23T00:07:14Z"
       observation:
-        last_modified: Wed, 16 Sep 2026 20:15:45 GMT
-        url: https://go.microsoft.com/fwlink/?linkid=820886
+        filename: Microsoft_OneNote_16.113.26092012_Updater.pkg
+        url: https://res.public.onecdn.static.microsoft/mro1cdnstorage/C1297A47-86C4-4C1F-97FA-950631F94777/MacAutoupdate/Microsoft_OneNote_16.113.26092012_Updater.pkg
+        version: 16.113.26092012
       content:
         artifact:
-          sha256: 20518656c1b28121d055122a2cca0d880ce379791da08045481075261b25e5cc
-          size: 627715218
-        filename: Microsoft_OneNote_16.113.26091433_Updater.pkg
+          sha256: 388282f207837bfff7663cf57681fea33cc32fcd878c84a12413253928ccfc03
+          size: 628254834
+        filename: Microsoft_OneNote_16.113.26092012_Updater.pkg
         mode: 420
+      evidence:
+        microsoft:
+          version: 16.113.26092012
   stemma/v1alpha1/MacSoftware/microsoft-outlook:
     source:
       version: 1
-      resolver: http
-      resolver_version: "1"
-      declaration: 7030f86a46f4ba7c316fc2dc52486e1f956eea7c0f6015625dcc5f1f399c379f
-      resolved_at: "2026-09-12T13:22:29Z"
+      resolver: microsoft
+      resolver_version: 932921851ef57e9290e7871892a2d86108840d2afba8dbcf16dfd6ac16112e17
+      declaration: af7038425c6324fab22b3e4ac5c48e355b9bebea80e35a30bcd0da726d55ebd5
+      resolved_at: "2026-09-23T00:07:23Z"
       observation:
-        last_modified: Tue, 18 Aug 2026 18:14:06 GMT
-        url: https://go.microsoft.com/fwlink/?linkid=525137
+        filename: Microsoft_Outlook_16.113.26092012_Installer.pkg
+        url: https://res.public.onecdn.static.microsoft/mro1cdnstorage/C1297A47-86C4-4C1F-97FA-950631F94777/MacAutoupdate/Microsoft_Outlook_16.113.26092012_Installer.pkg
+        version: 16.113.26092012
       content:
         artifact:
-          sha256: 5e01efb78c20a72ac0eaeed92386667959710f2489542692dda4d65e1ce09953
-          size: 1310339956
-        filename: Microsoft_Outlook_16.112.26081720_Installer.pkg
+          sha256: e036d4b1fee9ab1c341b00e929446667c24a72df2f72f5a7561ff96ba0a8faaf
+          size: 1238063728
+        filename: Microsoft_Outlook_16.113.26092012_Installer.pkg
         mode: 420
+      evidence:
+        microsoft:
+          version: 16.113.26092012
   stemma/v1alpha1/MacSoftware/microsoft-powerpoint:
     source:
       version: 1
-      resolver: http
-      resolver_version: "1"
-      declaration: 7a337931a41396bd6770c5d16dc89447025a0ef7cfb1bb9653a15f767457d148
-      resolved_at: "2026-09-12T13:22:46Z"
+      resolver: microsoft
+      resolver_version: 932921851ef57e9290e7871892a2d86108840d2afba8dbcf16dfd6ac16112e17
+      declaration: 94371a1c5d90baf3b1999052a36539079296bd270d51132389bdac7dd271b44b
+      resolved_at: "2026-09-23T00:07:41Z"
       observation:
-        last_modified: Thu, 10 Sep 2026 15:56:09 GMT
-        url: https://go.microsoft.com/fwlink/?linkid=525136
+        filename: Microsoft_PowerPoint_16.113.26092012_Installer.pkg
+        url: https://res.public.onecdn.static.microsoft/mro1cdnstorage/C1297A47-86C4-4C1F-97FA-950631F94777/MacAutoupdate/Microsoft_PowerPoint_16.113.26092012_Installer.pkg
+        version: 16.113.26092012
       content:
         artifact:
-          sha256: 91401619ea602be784a91091fbb5c779b25d0a01285be000cc339f87a7e28744
-          size: 1084672363
-        filename: Microsoft_PowerPoint_16.112.26090911_Installer.pkg
+          sha256: 62597acd30ca4f32b96aa8c15a1445fc34cac32c9b3eef057d5476efcbe7ce04
+          size: 1093720470
+        filename: Microsoft_PowerPoint_16.113.26092012_Installer.pkg
         mode: 420
+      evidence:
+        microsoft:
+          version: 16.113.26092012
   stemma/v1alpha1/MacSoftware/microsoft-teams:
     source:
       version: 1
-      resolver: http
-      resolver_version: "1"
-      declaration: cb71b347147a30fec4a76bd54ef9f4ab780adf106f79f01a12f6870046cca6ba
+      resolver: microsoft
+      resolver_version: 932921851ef57e9290e7871892a2d86108840d2afba8dbcf16dfd6ac16112e17
+      declaration: 3529326da253b87d7da01a5936d58816e1c49b2e469a85dd4367bcd0897bd7a4
       resolved_at: "2026-09-12T13:23:01Z"
       observation:
-        etag: '"0x8DF105C2D3EC023"'
-        last_modified: Fri, 11 Sep 2026 23:26:59 GMT
-        url: https://go.microsoft.com/fwlink/?linkid=2249065
+        filename: MicrosoftTeams.pkg
+        url: https://statics.teams.cdn.office.net/production-osx/enterprise/webview2/lkg/MicrosoftTeams.pkg
+        version: ""
       content:
         artifact:
           sha256: 7286fc72255c3f765024f6c08fc8e054b3426780d28b7c4b2b3deda99ea64728
@@ -345,19 +552,23 @@ inputs:
   stemma/v1alpha1/MacSoftware/microsoft-word:
     source:
       version: 1
-      resolver: http
-      resolver_version: "1"
-      declaration: 9d6bb26017e403487758ec08e11578e9363c3bc868f033cd5c48058e044872fd
-      resolved_at: "2026-09-12T13:23:06Z"
+      resolver: microsoft
+      resolver_version: 932921851ef57e9290e7871892a2d86108840d2afba8dbcf16dfd6ac16112e17
+      declaration: 410435cfc92bd8175e8c8cadb22af92eeab6f4f55138456a40ca7a2beab8adab
+      resolved_at: "2026-09-23T00:08:07Z"
       observation:
-        last_modified: Thu, 10 Sep 2026 15:56:13 GMT
-        url: https://go.microsoft.com/fwlink/?linkid=525134
+        filename: Microsoft_Word_16.113.26092012_Installer.pkg
+        url: https://res.public.onecdn.static.microsoft/mro1cdnstorage/C1297A47-86C4-4C1F-97FA-950631F94777/MacAutoupdate/Microsoft_Word_16.113.26092012_Installer.pkg
+        version: 16.113.26092012
       content:
         artifact:
-          sha256: b5a51125e57351f255a7a6387eb2b16f3c444e1740182f11bbbce6a9378e85e0
-          size: 1402502410
-        filename: Microsoft_Word_16.112.26090911_Installer.pkg
+          sha256: 747876ba0c52d2b1b6cc0abdc62716cda6fd2a2a5d5cff0358e3fae5a8f269c5
+          size: 1412907516
+        filename: Microsoft_Word_16.113.26092012_Installer.pkg
         mode: 420
+      evidence:
+        microsoft:
+          version: 16.113.26092012
   stemma/v1alpha1/MacSoftware/minecraft-education:
     source:
       version: 1
@@ -374,6 +585,24 @@ inputs:
           sha256: 8aaada426842ebc054acb70ecd0a44fcb9abe02988e98d5488f17376380e2960
           size: 866494212
         filename: Minecraft_Education_1.26.32.0.dmg
+        mode: 420
+  stemma/v1alpha1/MacSoftware/munki:
+    source:
+      version: 1
+      resolver: github
+      resolver_version: "1"
+      declaration: 4a33c3aa1118fc2541366df6c8ca288045a45754228eea17e6701ec1aabc18c4
+      resolved_at: "2026-09-23T00:08:27Z"
+      observation:
+        asset_id: 529357077
+        release: v7.3.0
+        release_id: 376493304
+        url: https://github.com/munki/munki/releases/download/v7.3.0/munkitools-7.3.0.5808.pkg
+      content:
+        artifact:
+          sha256: 4ed826bd32811ef54524a10300f66c9af4c9fdd8c243ada146d468485e1bffcc
+          size: 21389966
+        filename: munkitools-7.3.0.5808.pkg
         mode: 420
   stemma/v1alpha1/MacSoftware/nap-locked-down-browser:
     source:
@@ -395,19 +624,74 @@ inputs:
   stemma/v1alpha1/MacSoftware/onedrive:
     source:
       version: 1
-      resolver: http
-      resolver_version: "1"
-      declaration: f4b38bb67cb628d8ba70c6144b32db8c5d2c7c012d6dc387502cf8d1f8a00aff
+      resolver: microsoft
+      resolver_version: 932921851ef57e9290e7871892a2d86108840d2afba8dbcf16dfd6ac16112e17
+      declaration: 320a79396f607c13944f2186c535aaa4967658ce358e2617d93a2e18518be6f7
       resolved_at: "2026-09-12T13:25:46Z"
       observation:
-        etag: '"eec8db03f4da87174a65bf8fcc653d28:1787679454.910311"'
-        last_modified: Tue, 25 Aug 2026 17:37:34 GMT
-        url: https://go.microsoft.com/fwlink/?linkid=823060
+        filename: OneDrive.pkg
+        url: https://oneclient.sfx.ms/Mac/Installers/26.153.0809.0004/universal/OneDrive.pkg
+        version: ""
       content:
         artifact:
           sha256: 35d67e76de8579fa0b533fff7ff3b618ea54f574a8a557bb9d3d736b14029f78
           size: 313891319
         filename: OneDrive.pkg
+        mode: 420
+  stemma/v1alpha1/MacSoftware/plinth:
+    source:
+      version: 1
+      resolver: github
+      resolver_version: "1"
+      declaration: 834765ae89f572e3ca96df2309ea63c901857f9f5b9e297eb8d862a934321bc6
+      resolved_at: "2026-09-23T00:08:34Z"
+      observation:
+        asset_id: 532948753
+        release: 0.1.8
+        release_id: 378158752
+        url: https://github.com/woodleighschool/plinth/releases/download/0.1.8/Plinth-0.1.8.pkg
+      content:
+        artifact:
+          sha256: 47e1fd30fdca0c3d7229ee3f377c19a77acbd1243c7e87f2cc474bfb1536fbd4
+          size: 1947148
+        filename: Plinth-0.1.8.pkg
+        mode: 420
+  stemma/v1alpha1/MacSoftware/python:
+    source:
+      version: 1
+      resolver: python
+      resolver_version: 932921851ef57e9290e7871892a2d86108840d2afba8dbcf16dfd6ac16112e17
+      declaration: 3501e129389d0d032dfad059f8086ccf36e840b9311e07fd0763a9b870a76816
+      resolved_at: "2026-09-23T00:08:35Z"
+      observation:
+        filename: python-3.13.15-macos11.pkg
+        url: https://www.python.org/ftp/python/3.13.15/python-3.13.15-macos11.pkg
+        version: 3.13.15
+      content:
+        artifact:
+          sha256: 3b7eaf7f29825f796e8267024435540ddf1f17fc9a97ad58095daa7a75bfdcd3
+          size: 72078932
+        filename: python-3.13.15-macos11.pkg
+        mode: 420
+      evidence:
+        python:
+          version: 3.13.15
+  stemma/v1alpha1/MacSoftware/rekordbox-7:
+    source:
+      version: 1
+      resolver: http
+      resolver_version: "1"
+      declaration: b9d7a9a1bec9e2ca853c2748791cfa32b4384c2ac381f4d6d337393d721baf60
+      resolved_at: "2026-09-23T00:08:37Z"
+      observation:
+        etag: '"8ff9cafc99d47d9de391eabe81e88376"'
+        last_modified: Wed, 05 Aug 2026 03:35:12 GMT
+        url: https://cdn.rekordbox.com/files/20260805123505/Install_rekordbox_7_2_18.pkg_.zip
+      content:
+        artifact:
+          sha256: b5b74a5c35fa2ccc1bf6fbe51ee5315de2c7464b19ac7d46913276272adc6e05
+          size: 927041013
+        filename: Install_rekordbox_7_2_18.pkg_.zip
         mode: 420
   stemma/v1alpha1/MacSoftware/safe-exam-browser:
     source:
@@ -427,22 +711,110 @@ inputs:
           size: 11456688
         filename: SafeExamBrowser-3.7.1.dmg
         mode: 420
+  stemma/v1alpha1/MacSoftware/santa:
+    source:
+      version: 1
+      resolver: github
+      resolver_version: "1"
+      declaration: b0a572b4a0ec1c47d23197ed0248fcc134f25fba7daf5577c98d2b2e00d4754f
+      resolved_at: "2026-09-23T00:09:26Z"
+      observation:
+        asset_id: 568406356
+        release: "2026.8"
+        release_id: 390112701
+        url: https://github.com/northpolesec/santa/releases/download/2026.8/santa-2026.8.pkg
+      content:
+        artifact:
+          sha256: 0aaa970c7ddc63fe6a55c3144c825acb7f6bfa9cb15bcba1bffcaf2b5efc952a
+          size: 53569367
+        filename: santa-2026.8.pkg
+        mode: 420
   stemma/v1alpha1/MacSoftware/spotify:
     source:
       version: 1
       resolver: http
       resolver_version: "1"
       declaration: d4af667d4d1d3b061a84c51f69cdea7765e10beceae9629053c1f5fcc7d1b295
-      resolved_at: "2026-09-14T13:52:59Z"
+      resolved_at: "2026-09-18T10:43:49Z"
       observation:
-        etag: '"0b2e3ee8ab574f236be021ec1e226509"'
-        last_modified: Mon, 14 Sep 2026 07:40:24 GMT
+        etag: '"22f40d0d1465314ac95118373169656e"'
+        last_modified: Thu, 17 Sep 2026 15:26:57 GMT
         url: https://download.scdn.co/SpotifyARM64.dmg
       content:
         artifact:
-          sha256: 00bc6b9bd92bd2f75cd34b97b7aea234c6c221e8f1be719542bff73f5bc4dec4
-          size: 165724956
+          sha256: 30171cb041c07749ad41fc0487c6d9c0e283b97a945c347d6719ec6ffe21be07
+          size: 166001978
         filename: SpotifyARM64.dmg
+        mode: 420
+  stemma/v1alpha1/MacSoftware/swiftdialog:
+    source:
+      version: 1
+      resolver: github
+      resolver_version: "1"
+      declaration: 60e701156e0971fac33bb37b63185c9890713a77052fc8a164f14102e1cbf14b
+      resolved_at: "2026-09-23T00:09:29Z"
+      observation:
+        asset_id: 476624493
+        release: v3.1.0
+        release_id: 353749918
+        url: https://github.com/swiftDialog/swiftDialog/releases/download/v3.1.0/dialog-3.1.0-4994.pkg
+      content:
+        artifact:
+          sha256: 462921537425146b00b936448e518578b58d5177c039a609532cfea349c3e166
+          size: 21133559
+        filename: dialog-3.1.0-4994.pkg
+        mode: 420
+  stemma/v1alpha1/MacSoftware/ti-nspire-student:
+    source:
+      version: 1
+      resolver: http
+      resolver_version: "1"
+      declaration: 868870163a67845512cac87ee807e18438180aa3ef62fdf588087010933f7e06
+      resolved_at: "2026-09-23T00:09:30Z"
+      observation:
+        etag: '"7cf7e36d811b8d7d716840b39ed4c0d8-13"'
+        last_modified: Mon, 18 Aug 2025 20:59:15 GMT
+        url: https://education.ti.com/download/en/ed-tech/AFCFF2853BC34DEFB4C0B8B156F92404/C2917C2F3F26448CA245096925D9F715/TINspireCXStudentSoftware-6.3.0.119.dmg
+      content:
+        artifact:
+          sha256: 4366d0d9d424684dd8ec8cb9bd98aaa9f512ff39867d19e3d03867a03d452fe7
+          size: 214797658
+        filename: TINspireCXStudentSoftware-6.3.0.119.dmg
+        mode: 420
+  stemma/v1alpha1/MacSoftware/ti-nspire-teacher:
+    source:
+      version: 1
+      resolver: http
+      resolver_version: "1"
+      declaration: 6164b7a0ff74c4827391d5a091102c9d859a76331d8c2dbd26bce4eac7b1471a
+      resolved_at: "2026-09-23T00:09:36Z"
+      observation:
+        etag: '"56882d85a20a3b45954b07ed6eebe6a3-28"'
+        last_modified: Fri, 30 Jan 2026 18:02:43 GMT
+        url: https://education.ti.com/download/en/ed-tech/B993F3BD97D94D7EA35E5D514DD57FB5/293CCDED1CD94E5B85FA44E8C8B73833/TINspireCXPremiumTeacherSoftware-6.4.0.74.dmg
+      content:
+        artifact:
+          sha256: e7e8b666b1cb7de6c0d85064df5f85366ad0e3a4c411ee316b4daa02202d5d3f
+          size: 470947743
+        filename: TINspireCXPremiumTeacherSoftware-6.4.0.74.dmg
+        mode: 420
+  stemma/v1alpha1/MacSoftware/ultimaker-cura:
+    source:
+      version: 1
+      resolver: github
+      resolver_version: "1"
+      declaration: 597bbca4de804239a9ff281d18313825c68bdea7cec198e9f03decceeaebc74e
+      resolved_at: "2026-09-23T00:09:44Z"
+      observation:
+        asset_id: 431951372
+        release: 5.13.0
+        release_id: 330225040
+        url: https://github.com/Ultimaker/Cura/releases/download/5.13.0/UltiMaker-Cura-5.13.0-macos-ARM64.dmg
+      content:
+        artifact:
+          sha256: 1483806486a19728bc0f363f847d75be3f179ea43c7f074bfc327f5b5c6e05ad
+          size: 172070501
+        filename: UltiMaker-Cura-5.13.0-macos-ARM64.dmg
         mode: 420
   stemma/v1alpha1/MacSoftware/unity-hub:
     source:
@@ -512,38 +884,74 @@ inputs:
           size: 309559384
         filename: Vivi-3.12.0.pkg
         mode: 420
+  stemma/v1alpha1/MacSoftware/vlc:
+    source:
+      version: 1
+      resolver: http
+      resolver_version: "1"
+      declaration: 43196139a9dc3475328fc6174645fe4a0649dd1ccd4714bc42505a093ef29d91
+      resolved_at: "2026-09-23T00:09:56Z"
+      observation:
+        etag: '"365265d-65c0147c03d42"'
+        last_modified: Mon, 21 Sep 2026 17:07:08 GMT
+        url: https://get.videolan.org/vlc/3.0.24/macosx/vlc-3.0.24-arm64.dmg
+      content:
+        artifact:
+          sha256: 64a89d93cdd30b0e97131743e246373db82d6826ea882d265d46d74b136da2b7
+          size: 56960605
+        filename: vlc-3.0.24-arm64.dmg
+        mode: 420
   stemma/v1alpha1/MacSoftware/wacom-tablet-driver:
     source:
       version: 1
       resolver: http
       resolver_version: "1"
       declaration: 54b5017166324672c5551125d61ec62d07e97c9f0fbf34b8a9e299cba28e38bd
-      resolved_at: "2026-09-12T09:14:44Z"
+      resolved_at: "2026-09-23T00:10:01Z"
       observation:
-        etag: "0x8DF038A81F914FF"
-        last_modified: Wed, 26 Aug 2026 15:55:53 GMT
-        url: https://cdn.wacom.com/u/productsupport/drivers/mac/professional/WacomTablet_6.4.14-1.dmg
+        etag: "0x8DF18EB3C4D2BF8"
+        last_modified: Tue, 22 Sep 2026 20:51:11 GMT
+        url: https://cdn.wacom.com/u/productsupport/drivers/mac/professional/WacomTablet_6.4.14-2.dmg
       content:
         artifact:
-          sha256: 446c6889ad5602827fe1a6f597067428ffdbdd9b4e0cb00930385d99b876fb06
-          size: 192248401
-        filename: WacomTablet_6.4.14-1.dmg
+          sha256: 9165218f880057c9b95b3a8b450ad795e359cbb2bb7078e6c7a450bd119d0a10
+          size: 192238563
+        filename: WacomTablet_6.4.14-2.dmg
         mode: 420
   stemma/v1alpha1/MacSoftware/windows-app:
     source:
       version: 1
-      resolver: http
-      resolver_version: "1"
-      declaration: d7141a1b25dd7b23c1c955d03d6954a28083875caeeb4d72713532065ca51678
-      resolved_at: "2026-09-16T14:25:20Z"
+      resolver: microsoft
+      resolver_version: 932921851ef57e9290e7871892a2d86108840d2afba8dbcf16dfd6ac16112e17
+      declaration: 942bf334b59409af1fb6332da4b905c3d2d14c07f9d49588819a8a712063209a
+      resolved_at: "2026-09-23T00:10:11Z"
       observation:
-        last_modified: Wed, 09 Sep 2026 06:34:51 GMT
-        url: https://go.microsoft.com/fwlink/?linkid=868963
+        filename: Windows_App_11.4.2_installer.pkg
+        url: https://res.public.onecdn.static.microsoft/mro1cdnstorage/C1297A47-86C4-4C1F-97FA-950631F94777/MacAutoupdate/Windows_App_11.4.2_installer.pkg
+        version: ""
       content:
         artifact:
-          sha256: 346b9cc2e97ce9d82bdff7c565983b9061f27c3aec38831d3c46e64a1bdfbc75
-          size: 102919875
-        filename: Windows_App_11.4.1_installer.pkg
+          sha256: e6f97a8422adc8267ceb4e17a484192bd90b3ac9b2df2bc48923144f33371d4f
+          size: 106334625
+        filename: Windows_App_11.4.2_installer.pkg
+        mode: 420
+  stemma/v1alpha1/MacSoftware/woodsweep:
+    source:
+      version: 1
+      resolver: github
+      resolver_version: "1"
+      declaration: cab9cc03ad3068891b9cdb1d73c54136e3af205da5e147f91e77f1970536a4b0
+      resolved_at: "2026-09-23T00:10:13Z"
+      observation:
+        asset_id: 533213276
+        release: 0.2.3
+        release_id: 378248387
+        url: https://github.com/woodleighschool/woodsweep/releases/download/0.2.3/WoodSweep-0.2.3.zip
+      content:
+        artifact:
+          sha256: c2b1b555f68252717486038d5110f1873ca4f941c5167d2a2be497a1ed330a5c
+          size: 35126862
+        filename: WoodSweep-0.2.3.zip
         mode: 420
   stemma/v1alpha1/MacSoftware/zoom:
     source:
@@ -551,16 +959,50 @@ inputs:
       resolver: http
       resolver_version: "1"
       declaration: c55979850e795e033861595872ff599ab94a6389001ab7ae1f10eaf42e274994
-      resolved_at: "2026-09-12T09:14:48Z"
+      resolved_at: "2026-09-23T00:10:21Z"
       observation:
-        etag: '"c11132af038edc8dd3ec8305a0b1e777-44"'
-        last_modified: Mon, 20 Jul 2026 08:52:31 GMT
+        etag: '"c10049905dc835f28d4b67a6bac90919-46"'
+        last_modified: Mon, 21 Sep 2026 13:14:01 GMT
         url: https://zoom.us/client/latest/ZoomInstallerIT.pkg
       content:
         artifact:
-          sha256: 98b28adbe20c5ea17b05bd4091607813afb5d8fea9697a4895f1f06fb591c497
-          size: 363035127
+          sha256: bd5a3310a747a694011ba314cc8accd86396082f96ce9560c9d2d9f2b663df3d
+          size: 383120451
         filename: ZoomInstallerIT.pkg
+        mode: 420
+  stemma/v1alpha1/WindowsSoftware/google-chrome:
+    source:
+      version: 1
+      resolver: http
+      resolver_version: "1"
+      declaration: bce4ed5e78e6c91e0cd711908a02cd8314ae06ca16e7eac8e840f9069c7f93ee
+      resolved_at: "2026-09-23T00:10:28Z"
+      observation:
+        etag: '"6d2ce5f-6aa1e4d0"'
+        last_modified: Tue, 22 Sep 2026 18:19:51 GMT
+        url: https://dl.google.com/dl/chrome/install/googlechromestandaloneenterprise64.msi
+      content:
+        artifact:
+          sha256: 40de51d92ebbc3d2e9b434526ec6f937bf9a62df6de7ca385dd02d0648379051
+          size: 167686144
+        filename: googlechromestandaloneenterprise64.msi
+        mode: 420
+  stemma/v1alpha1/WindowsSoftware/zoom:
+    source:
+      version: 1
+      resolver: http
+      resolver_version: "1"
+      declaration: 3062bc012bac6be0b69c9174c3ff0269b88dc188a7b11d622af228ad2ceb55f8
+      resolved_at: "2026-09-23T00:10:53Z"
+      observation:
+        etag: '"063de845eb7bbaa67ffd5b9a45895bde-27"'
+        last_modified: Mon, 21 Sep 2026 12:35:43 GMT
+        url: https://zoom.us/client/latest/ZoomInstallerFull.msi?archType=x64
+      content:
+        artifact:
+          sha256: b0dac9fa5237d2e18144ca723644460e7cc26675e5d3db0f89fdfe47ad8c429b
+          size: 220297216
+        filename: ZoomInstallerFull.msi
         mode: 420
 plugins:
   downloads:
