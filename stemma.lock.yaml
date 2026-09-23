@@ -250,12 +250,12 @@ inputs:
     source:
       version: 1
       resolver: cricut
-      resolver_version: 932921851ef57e9290e7871892a2d86108840d2afba8dbcf16dfd6ac16112e17
+      resolver_version: b10e06f611fe82af7c236c4eb3e580c3a45bccf6659a4920c15774dd652d9be4
       declaration: 5d0b7971524b0688b5d02356b7abf764ae962aba9373bcd32801774de9e428f9
       resolved_at: "2026-09-23T00:02:07Z"
       observation:
         filename: CricutDesignSpace-Install-v9.83.76.dmg
-        url: https://staticcontent.cricut.com/a/software/osx-native/CricutDesignSpace-Install-v9.83.76.dmg?Expires=1790125328&Signature=JQzlLgXpC-9g9k0zquPAoE5xKNJx9f3Sm9so7djYFsWXB2~ajeJ~3xerfeFfJ2A1MIyTZL2DmLaqlTbGif65mzyPRCDIRFOGu02m6ncINw1DWzsPBrRpnF7OxBEIncDfN7~40ILpeAaj51VlpqQvbac0TVV~LZp9~2VE65WdZ7AtD1iOPHsCGbh~mh73nvMsMEPQTFZl7px1JeUv8Rq1aSUGsWWLFbzsoK-XWshh1kY48SQ5zJAeFtbjTFPdVHLUYL88sLetUHBxu0rvWz~Z9QOmnBQrFspXqPm0bv6xI0-CVJiemV1hMIYn7Hdwge~9q7v2HOF9wFhvIGHOy~FQww__&Key-Pair-Id=K2W1AJ47IQWIOI
+        url: https://staticcontent.cricut.com/a/software/osx-native/CricutDesignSpace-Install-v9.83.76.dmg?Expires=1790171430&Signature=kP22~XcfJAufdNCtVnDcpY1baoqxAx8i7OKYN01a~CPKL97Y~HFEDIinaDW6Etiq9RdBT8X743xGsEjMjRmm2tETPV4SWjAXVihlAjPC8dahB0fk24GxRC5w6OGPdaVOMT2oj4SIhnHnFNPYKLoTUykSGPfOPJZRp0V7FTpqNi15sq9Gdnlpk~Ov~Jla3hYB3viAnYLoWEfh0DvJfizcCiWXCXsVOZQ9V52opTakHNkkqNyIID3Pih-S-J35N8zXIL8yO-x7YxzSN7GWJPfyp-M5ybYluaBLLsDmXxIUzg8VBDRFWYCKIcFlKXifrHAyK0ZpfW4CVEff~9ba~icQ~Q__&Key-Pair-Id=K2W1AJ47IQWIOI
         version: ""
       content:
         artifact:
