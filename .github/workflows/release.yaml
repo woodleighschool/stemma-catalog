@@ -38,7 +38,7 @@ jobs:
           cache: false
           experimental: true
           working_directory: ${{ matrix.workdir }}
-          install_args: --locked go oras goreleaser
+          install_args: --locked go oras
 
       - name: Log in to GHCR
         working-directory: ${{ matrix.workdir }}
@@ -46,9 +46,18 @@ jobs:
         env:
           REGISTRY_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Release plugin bundles
+      - name: Resolve GoReleaser version
+        id: goreleaser-version
         working-directory: ${{ matrix.workdir }}
-        run: mise exec -- goreleaser release --clean --parallelism=2
+        run: echo "version=$(mise tool goreleaser --requested)" >> "$GITHUB_OUTPUT"
+
+      - name: Run GoReleaser
+        uses: goreleaser/goreleaser-action@f06c13b6b1a9625abc9e6e439d9c05a8f2190e94 # v7.2.3
+        with:
+          distribution: goreleaser
+          version: ${{ steps.goreleaser-version.outputs.version }}
+          args: release --clean --parallelism=2
+          workdir: ${{ matrix.workdir }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
