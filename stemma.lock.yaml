@@ -439,7 +439,7 @@ inputs:
     source:
       version: 1
       resolver: microsoft
-      resolver_version: 932921851ef57e9290e7871892a2d86108840d2afba8dbcf16dfd6ac16112e17
+      resolver_version: b10e06f611fe82af7c236c4eb3e580c3a45bccf6659a4920c15774dd652d9be4
       declaration: d956aada387ef75bf2fb0fe0bd97c798c490d054a44548d654141352d33ceb97
       resolved_at: "2026-09-19T09:55:22Z"
       observation:
