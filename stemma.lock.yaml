@@ -263,6 +263,26 @@ inputs:
           size: 403839816
         filename: CricutDesignSpace-Install-v9.83.76.dmg
         mode: 420
+  stemma/v1alpha1/MacSoftware/dante-controller:
+    source:
+      version: 1
+      resolver: audinate
+      resolver_version: b10e06f611fe82af7c236c4eb3e580c3a45bccf6659a4920c15774dd652d9be4
+      declaration: 8b167865f500d279610489c3a2f48af1dbfa7690252719e114e159c9d5f8fc8e
+      resolved_at: "2026-09-23T12:50:49Z"
+      observation:
+        filename: DanteController-4.18.1.1-macos-arm64.dmg
+        url: https://audinate-software-updates.sgp1.cdn.digitaloceanspaces.com/DanteController/4/4.18/apple_silicon/DanteController-4.18.1.1-macos-arm64.dmg
+        version: 4.18.1.1
+      content:
+        artifact:
+          sha256: 4515cd12b4b185e4b6317db6de7ea5306ba33381baa2fce4ee08f5fc1b6538ff
+          size: 568353173
+        filename: DanteController-4.18.1.1-macos-arm64.dmg
+        mode: 420
+      evidence:
+        audinate:
+          version: 4.18.1.1
   stemma/v1alpha1/MacSoftware/docker-desktop:
     source:
       version: 1
