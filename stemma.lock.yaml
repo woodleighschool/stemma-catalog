@@ -89,21 +89,6 @@ inputs:
         filename: Scripts
         tree: true
         mode: 493
-  stemma/v1alpha1/BuildMacPkg/sophos:
-    vendor:
-      version: 1
-      resolver: http
-      resolver_version: "1"
-      declaration: 4802a2ef7af946a75e3cd5761a92797e7a838aec16385f2c473599aca991d72d
-      resolved_at: "2026-09-23T00:01:18Z"
-      observation:
-        url: https://dzr-api-amzn-eu-west-1-9af7.api-upe.p.hmr.sophos.com/api/download/a51be3b1c689c4225374bdd797335f42/SophosInstall.zip
-      content:
-        artifact:
-          sha256: 3d4d6184436ea22b477740004280f80f5d156bf39762b347bea7266301953fbc
-          size: 6452809
-        filename: SophosInstall.zip
-        mode: 420
   stemma/v1alpha1/MacSoftware/1password:
     source:
       version: 1
