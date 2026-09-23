@@ -180,15 +180,15 @@ inputs:
       resolver: http
       resolver_version: "1"
       declaration: 07d652bb43c6c88cfe177f20373e416575d86548a092a6c8bc505c4718ab3bdd
-      resolved_at: "2026-09-12T13:19:50Z"
+      resolved_at: "2026-09-23T12:49:47Z"
       observation:
-        etag: '"0827622a2924ba69d5ac88d92d3e93fe:1788864448.344402"'
-        last_modified: Tue, 08 Sep 2026 10:49:15 GMT
+        etag: '"1b63e4e1ba8c82d5a78512b31f91737c:1790035014.086454"'
+        last_modified: Mon, 21 Sep 2026 23:58:36 GMT
         url: https://dl.appstreaming.autodesk.com/production/installers/Autodesk%20Fusion%20Admin%20Install.pkg
       content:
         artifact:
-          sha256: 91d55999618afd33de3bea0a81626648fda85324c5fabf8ff4290bfedb07bbba
-          size: 3798015585
+          sha256: c5887bdc49fd51f60c8e17f47688f72db67153253961f382d170dc9a680974a9
+          size: 3796327954
         filename: Autodesk Fusion Admin Install.pkg
         mode: 420
   stemma/v1alpha1/MacSoftware/bambustudio:
