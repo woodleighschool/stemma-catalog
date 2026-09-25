@@ -9,8 +9,14 @@ spec:
   destinations:
     woodstar:
       pkginfo:
-        description: Google Chrome for macOS.
+        category: Productivity
+        description: >-
+          Get more done with the new Google Chrome. A more simple, secure, and
+          faster web browser than ever, with Google's smarts built-in.
+        developer: Google
         name: Google Chrome
+        unattended_install: true
+        unattended_uninstall: true
         uninstall_method: removepackages
         uninstallable: true
       targets:

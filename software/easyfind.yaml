@@ -17,6 +17,7 @@ spec:
         developer: DEVONtechnologies
         name: EasyFind
         unattended_install: true
+        unattended_uninstall: true
       targets:
         exclude: []
         include:

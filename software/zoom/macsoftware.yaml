@@ -12,11 +12,14 @@ spec:
       pkginfo:
         blocking_applications:
           - zoom.us.app
-        category: Communication
-        description: Video meetings and collaboration.
+        category: Collaboration
+        description: >-
+          Zoom is a cloud-based video conferencing platform that can be used for video conferencing
+          meetings, audio conferencing, webinars, meeting recordings, and live chat.
         developer: Zoom Video Communications
         name: Zoom
         unattended_install: true
+        unattended_uninstall: true
         uninstall_method: removepackages
         uninstallable: true
       targets:

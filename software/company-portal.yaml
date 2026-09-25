@@ -4,10 +4,26 @@ kind: MacSoftware
 metadata:
   name: company-portal
 spec:
+  minimum_os: "14.0"
   application:
     bundle_id: com.microsoft.CompanyPortalMac
     installed_path: /Applications/Company Portal.app
   destinations:
+    intune:
+      display_name: Company Portal
+      description: The Company Portal provides access to corporate apps and resources from almost
+        any network. Your company must already subscribe to Microsoft Intune, and your IT admin
+        must set up your account before you can use this app.
+      publisher: Microsoft
+      ignore_version_detection: true
+      included_apps:
+        - id: "{{ evidence['macos.application'].app.bundle_id }}"
+          version: "{{ evidence['macos.application'].app.version }}"
+      assignments:
+        - intent: required
+          all_devices: true
+      retention:
+        keep: 1
     woodstar:
       pkginfo:
         category: Productivity

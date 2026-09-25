@@ -4,6 +4,7 @@ kind: MacSoftware
 metadata:
   name: microsoft-365-business-pro-suite
 spec:
+  minimum_os: "13.0"
   application:
     bundle_id: com.microsoft.Word
   destinations:
@@ -18,8 +19,9 @@ spec:
           - Microsoft Teams
           - Microsoft Word
         category: Productivity
-        description: Installs the Microsoft 365 suite. Individual applications and Microsoft
-          AutoUpdate own subsequent updates.
+        description: >-
+          This suite ties everything together, offering enhanced security, business-class email,
+          and additional tools designed to boost efficiency and collaboration.
         developer: Microsoft
         installs: []
         name: Microsoft 365 Business Pro Suite

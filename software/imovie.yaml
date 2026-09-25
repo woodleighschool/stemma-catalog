@@ -3,7 +3,6 @@ apiVersion: stemma/v1alpha1
 kind: MacSoftware
 metadata:
   name: imovie
-suspend: true
 spec:
   extends: mac-software
   destinations:

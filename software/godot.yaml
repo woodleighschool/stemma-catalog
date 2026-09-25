@@ -13,10 +13,13 @@ spec:
         blocking_applications:
           - Godot.app
         category: Programming
-        description: Game development editor and engine.
+        description: >-
+          Godot is a free and open-source game development engine for 2D and 3D games,
+          with a scene and node structure that can be extended with GDScript.
         developer: Godot Foundation
         name: Godot
         unattended_install: true
+        unattended_uninstall: true
         uninstallable: true
       targets:
         exclude: []

@@ -19,8 +19,9 @@ spec:
         blocking_applications:
           - WoodSweep
         category: Utilities
-        description: Snapshots a configured local account, resets Microsoft Office user
-          state and reconciles the account home after the snapshot succeeds.
+        description: >-
+          WoodSweep snapshots a configured local account, resets Microsoft Office
+          user state, and reconciles the account home after the snapshot succeeds.
         developer: Woodleigh School
         name: WoodSweep
         preinstall_script: |-

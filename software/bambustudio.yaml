@@ -8,7 +8,7 @@ spec:
   source:
     resolver: github
     repository: bambulab/BambuStudio
-    asset: Bambu_Studio_mac-*.dmg
+    asset: "*.dmg"
     include_prereleases: true
   application:
     bundle_id: com.bambulab.bambu-studio

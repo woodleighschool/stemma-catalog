@@ -19,8 +19,12 @@ spec:
       pkginfo:
         blocking_applications: []
         category: System
-        description: Connects audio applications to Dante devices over the network for
-          recording, processing and playback.
+        description: >-
+          Dante Virtual Soundcard turns your computer into a Dante-powered
+          workstation, seamlessly integrating your PC or Mac with Dante audio
+          devices on your network. Instantly connect to record, process and
+          playout using any audio application and any combination of
+          Dante-enabled devices.
         developer: Audinate
         name: Dante Virtual Soundcard
         preinstall_script: |-

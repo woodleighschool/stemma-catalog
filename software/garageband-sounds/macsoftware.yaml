@@ -8,6 +8,8 @@ spec:
   destinations:
     woodstar:
       pkginfo:
+        blocking_applications:
+          - GarageBand
         category: Creativity
         description: The complete collection of sounds and instruments for GarageBand.
         developer: Apple

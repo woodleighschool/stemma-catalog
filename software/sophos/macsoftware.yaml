@@ -1,0 +1,40 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/woodleighschool/stemma-catalog/main/stemma.schema.json
+apiVersion: stemma/v1alpha1
+kind: MacSoftware
+metadata:
+  name: sophos
+suspend: true
+spec:
+  minimum_os: "13.5"
+  extends: mac-software
+  icon: sophos
+  source:
+    resource:
+      kind: BuildMacPkg
+      name: sophos
+  destinations:
+    woodstar:
+      pkginfo:
+        category: Security
+        description: >-
+          By combining cutting-edge technologies, such as deep learning and
+          endpoint detection and response, Intercept X delivers unmatched
+          protection against unknown malware, exploits, and ransomware.
+        developer: Sophos
+        installcheck_script: |-
+          #!/bin/bash
+          service="/Library/Sophos Anti-Virus/SophosServiceManager.app/Contents/MacOS/SophosServiceManager"
+          if [[ ! -f "$service" ]] || ! /usr/bin/pgrep -f "$service" >/dev/null 2>&1; then
+            exit 0
+          fi
+          exit 1
+        name: Sophos
+        unattended_install: true
+        uninstallable: false
+      targets:
+        exclude:
+          - label_name: Defender Test
+        include:
+          - actions:
+              - managed_installs
+            label_name: All Hosts

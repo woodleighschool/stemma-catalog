@@ -9,8 +9,9 @@ spec:
     woodstar:
       pkginfo:
         category: Security
-        description: Identifies the signed-in user to Linewize Connect for school web-filtering
-          policy.
+        description: >-
+          The Linewize Authentication Agent identifies the signed-in user to
+          Linewize Connect for school web-filtering policy.
         developer: Qoria
         installcheck_script: |-
           #!/bin/bash
@@ -49,7 +50,9 @@ spec:
     woodstar:
       pkginfo:
         category: Security
-        description: School-managed web filtering and safety controls away from the school network.
+        description: >-
+          Linewize Connect provides school-managed web filtering and safety
+          controls for devices away from the school network.
         developer: Qoria
         installcheck_script: |-
           #!/bin/bash

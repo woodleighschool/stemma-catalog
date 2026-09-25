@@ -1,0 +1,30 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/woodleighschool/stemma-catalog/main/stemma.schema.json
+apiVersion: stemma/v1alpha1
+kind: BuildMacPkg
+metadata:
+  name: sophos
+suspend: true
+spec:
+  inputs:
+    vendor:
+      url: "{{ env.SOPHOS_DOWNLOAD_URL }}"
+      filename: SophosInstall.zip
+  package:
+    identifier: com.github.woodleighschool.pkg.Sophos
+    version: "{{ inputs.vendor.facts['Sophos Installer.app'].app.version }}-1"
+  scripts:
+    installer:
+      $input: vendor
+      path: .
+    postinstall: |-
+      #!/bin/bash
+      set -eu
+      until /usr/bin/pgrep -x Dock >/dev/null 2>&1; do
+        /bin/sleep 10
+      done
+      directory="$(/usr/bin/dirname "$0")/installer"
+      installer="$directory/Sophos Installer.app/Contents/MacOS/Sophos Installer"
+      helper="$directory/Sophos Installer.app/Contents/MacOS/tools/com.sophos.bootstrap.helper"
+      /bin/chmod a+x "$installer" "$helper"
+      cd "$directory"
+      "$installer" --quiet

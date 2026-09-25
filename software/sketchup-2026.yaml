@@ -3,7 +3,6 @@ apiVersion: stemma/v1alpha1
 kind: MacSoftware
 metadata:
   name: sketchup-2026
-suspend: true
 spec:
   extends: mac-software
   source:
@@ -23,7 +22,9 @@ spec:
           - SketchUp
           - LayOut
         category: STEAM
-        description: 3D modelling, documentation and presentation software.
+        description: >-
+          SketchUp is 3D modelling software for designing, documenting, and
+          communicating ideas.
         developer: Trimble
         name: SketchUp 2026
         unattended_install: true
