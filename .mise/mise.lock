@@ -3,27 +3,27 @@
 lockfile_version = 2
 
 [[tools."github:woodleighschool/stemma"]]
-version = "0.2.1"
+version = "0.3.0"
 backend = "github:woodleighschool/stemma"
-specifiers = ["0.2.1"]
+specifiers = ["0.3.0"]
 
 [tools."github:woodleighschool/stemma"."platforms.linux-arm64"]
-checksum = "sha256:af5f1764157f29a4ca83c9b2183b557fde83a5f1505087d8d35d5d0ee64de426"
-url = "https://github.com/woodleighschool/stemma/releases/download/0.2.1/stemma_0.2.1_linux_arm64.tar.gz"
-url_api = "https://api.github.com/repos/woodleighschool/stemma/releases/assets/561167785"
+checksum = "sha256:d2d4875871c7686ea87de7b877f57d998aed5edadef124939f26509a686072bf"
+url = "https://github.com/woodleighschool/stemma/releases/download/0.3.0/stemma_0.3.0_linux_arm64.tar.gz"
+url_api = "https://api.github.com/repos/woodleighschool/stemma/releases/assets/588213826"
 
 [tools."github:woodleighschool/stemma"."platforms.linux-x64"]
-checksum = "sha256:025c3b6c0b03db4e5a6d631a165cf7e5776df669664f98fb35b76ff83fd70837"
-url = "https://github.com/woodleighschool/stemma/releases/download/0.2.1/stemma_0.2.1_linux_amd64.tar.gz"
-url_api = "https://api.github.com/repos/woodleighschool/stemma/releases/assets/561167721"
+checksum = "sha256:82bde449ffcba8ec1190fa89028724a2e2c406a6d81c59a8dbdf198898a0c749"
+url = "https://github.com/woodleighschool/stemma/releases/download/0.3.0/stemma_0.3.0_linux_amd64.tar.gz"
+url_api = "https://api.github.com/repos/woodleighschool/stemma/releases/assets/588213825"
 
 [tools."github:woodleighschool/stemma"."platforms.macos-arm64"]
-checksum = "sha256:b7070d2619b1d92fc7e5072786f111c7b01e4e5594ba93d715a4100ce4b97259"
-url = "https://github.com/woodleighschool/stemma/releases/download/0.2.1/stemma_0.2.1_darwin_arm64.tar.gz"
-url_api = "https://api.github.com/repos/woodleighschool/stemma/releases/assets/561167749"
+checksum = "sha256:0ca01138634728469b1ac6881700cd8cdb2f003f5445d7aa60b52e97163e86b8"
+url = "https://github.com/woodleighschool/stemma/releases/download/0.3.0/stemma_0.3.0_darwin_arm64.tar.gz"
+url_api = "https://api.github.com/repos/woodleighschool/stemma/releases/assets/588213848"
 
 [[tools.oxfmt]]
-version = "0.67.0"
-aube = { path = "locks/oxfmt/0.67.0", digest = "sha256:64e490f245a4423f5cb4c512498bbceab63813c3a4e59a0032a19424ee93c126" }
+version = "0.70.0"
+aube = { path = "locks/oxfmt/0.70.0", digest = "sha256:6f43444e29a288a4c8eaae0fd4842397419f6bde12beb04d2be2216a275f96e2" }
 backend = "npm:oxfmt"
-specifiers = ["0.67.0"]
+specifiers = ["0.70.0"]

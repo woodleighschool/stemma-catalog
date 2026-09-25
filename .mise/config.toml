@@ -4,8 +4,8 @@ monorepo_root = true
 _.file = ["{{config_root}}/.env"]
 
 [tools]
-"github:woodleighschool/stemma" = "0.2.1"
-oxfmt = "0.67.0"
+"github:woodleighschool/stemma" = "0.3.0"
+oxfmt = "0.70.0"
 
 [settings]
 experimental = true
