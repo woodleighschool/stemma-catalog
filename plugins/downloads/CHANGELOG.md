@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.2.0](https://github.com/woodleighschool/stemma-catalog/compare/0.1.0...0.2.0) (2026-09-25)
+
+
+### ⚠ BREAKING CHANGES
+
+* **downloads:** discover releases without downloading
+
+### Features
+
+* **downloads:** discover releases without downloading ([ca8a921](https://github.com/woodleighschool/stemma-catalog/commit/ca8a92168fdc2de3a1fe107008589933f8462100))
+* **downloads:** update download function to report transfer progress ([d667443](https://github.com/woodleighschool/stemma-catalog/commit/d667443401985786f43117f6403aa63c82ea8b51))
+
 ## 0.1.0 (2026-09-23)
 
 
