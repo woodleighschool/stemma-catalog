@@ -14,9 +14,9 @@ import (
 	"net/url"
 	"os"
 	"path/filepath"
-	"reflect"
 	"strconv"
 	"strings"
+	"sync/atomic"
 	"testing"
 
 	"github.com/woodleighschool/stemma-catalog/plugins/downloads/internal/discovery"
@@ -61,11 +61,11 @@ func invoke(t *testing.T, registry *plugin.Registry, method, operation string, r
 	return result, err
 }
 
-func TestLockedRunsFetchOnlyRecordedArtifact(t *testing.T) {
+func TestRunFetchesOnlyTheObservedArtifact(t *testing.T) {
 	const body = "synthetic installer bytes"
 	client := fixtureClient(t, func(w http.ResponseWriter, r *http.Request) {
 		if r.URL.Path != "/releases/old.pkg" {
-			t.Errorf("locked run rediscovered %s", r.URL.Path)
+			t.Errorf("run rediscovered %s", r.URL.Path)
 			http.Error(w, "unexpected discovery", http.StatusGone)
 			return
 		}
@@ -87,7 +87,7 @@ func TestLockedRunsFetchOnlyRecordedArtifact(t *testing.T) {
 	hash := sha256.Sum256([]byte(body))
 	for operation, config := range configs {
 		t.Run(operation, func(t *testing.T) {
-			request := plugin.ResolveRequest[json.RawMessage]{Config: json.RawMessage(config), Root: t.TempDir(), Workspace: t.TempDir(), Locked: true, Observation: observation}
+			request := plugin.ResolveRequest[json.RawMessage]{Config: json.RawMessage(config), Root: t.TempDir(), Workspace: t.TempDir(), Observation: observation}
 			result, err := invoke(t, registry, "run", operation, request)
 			if err != nil {
 				t.Fatal(err)
@@ -99,13 +99,42 @@ func TestLockedRunsFetchOnlyRecordedArtifact(t *testing.T) {
 			if result.Artifact.Path != filepath.Join(request.Workspace, "old.pkg") || string(result.Artifact.Evidence[operation]) != `{"version":"1.2.3"}` {
 				t.Fatalf("artifact=%+v", result.Artifact)
 			}
-			var before, after any
-			_ = json.Unmarshal(observation, &before)
-			_ = json.Unmarshal(result.Observation, &after)
-			if !reflect.DeepEqual(before, after) {
-				t.Fatalf("locked observation changed: %s", result.Observation)
-			}
 		})
+	}
+}
+
+func TestSignedDownloadsAreDiscoveredAgainRatherThanRecorded(t *testing.T) {
+	const filename = "CricutDesignSpace-Install-v9.1.2.dmg"
+	var signed atomic.Int32
+	client := fixtureClient(t, func(w http.ResponseWriter, r *http.Request) {
+		switch r.URL.Path {
+		case "/desktopdownload/UpdateJson":
+			_, _ = fmt.Fprint(w, `{"result":"https://static.cricut.com/desktop/update.json"}`)
+		case "/desktop/update.json":
+			_, _ = fmt.Fprintf(w, `{"rolloutInstallFile":%q}`, filename)
+		case "/desktopdownload/InstallerFile":
+			_, _ = fmt.Fprintf(w, `{"result":"https://static.cricut.com/desktop/%s?token=%d"}`, filename, signed.Add(1))
+		case "/desktop/" + filename:
+			if r.URL.Query().Get("token") != strconv.Itoa(int(signed.Load())) {
+				http.Error(w, "expired", http.StatusForbidden)
+				return
+			}
+			_, _ = fmt.Fprint(w, "installer")
+		default:
+			http.NotFound(w, r)
+		}
+	})
+	registry := plugin.New("test", "1")
+	if err := Register(registry, client); err != nil {
+		t.Fatal(err)
+	}
+	found, err := invoke(t, registry, "discover", "cricut", plugin.ResolveRequest[json.RawMessage]{Config: json.RawMessage(`{}`)})
+	if err != nil || found.Immutable || strings.Contains(string(found.Observation), "token") || !strings.Contains(string(found.Observation), filename) {
+		t.Fatalf("discover: %v observation=%s immutable=%v", err, found.Observation, found.Immutable)
+	}
+	fetched, err := invoke(t, registry, "run", "cricut", plugin.ResolveRequest[json.RawMessage]{Config: json.RawMessage(`{}`), Workspace: t.TempDir(), Observation: found.Observation})
+	if err != nil || fetched.Artifact.Filename != filename || signed.Load() != 2 {
+		t.Fatalf("run: %v artifact=%+v signed=%d", err, fetched.Artifact, signed.Load())
 	}
 }
 
@@ -139,8 +168,8 @@ func TestValidationRejectsInvalidConfigurationWithoutNetwork(t *testing.T) {
 		{"cricut", `{"operating_system":"windows"}`},
 		{"epson", `{"device_id":"Printer","os":"MAC26","cti":2001}`},
 	} {
-		for _, method := range []string{"validate", "run"} {
-			if _, err := invoke(t, registry, method, test.operation, plugin.ResolveRequest[json.RawMessage]{Config: json.RawMessage(test.config), Locked: true}); err == nil {
+		for _, method := range []string{"validate", "discover", "run"} {
+			if _, err := invoke(t, registry, method, test.operation, plugin.ResolveRequest[json.RawMessage]{Config: json.RawMessage(test.config)}); err == nil {
 				t.Fatalf("accepted %s %s on %s", test.operation, test.config, method)
 			}
 		}

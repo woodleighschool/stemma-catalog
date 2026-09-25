@@ -25,8 +25,11 @@ source:
   cti: "2001"
 ```
 
-Discovery records the selected URL, filename and available vendor version. Locked
-runs fetch that URL without rediscovery; Stemma verifies the reviewed content hash.
+Discovery records the selected URL, filename and available vendor version without
+downloading. A vendor version names one build, so Stemma reuses what it already
+fetched for that release. Downloads fetch the recorded URL without rediscovery;
+Cricut's signed URLs expire, so Cricut records only the filename and finds a fresh
+URL for each download. Stemma verifies the reviewed content hash.
 Blender, Python and Epson expose their version as evidence, such as
 `{{ evidence.epson.version }}`. Cricut's version comes from inspecting the application.
 Keep installer signature requirements on the software resource.

@@ -18,10 +18,13 @@ const metadataLimit = 4 << 20
 
 // Release identifies one installer selected from vendor metadata.
 // Version is empty when the vendor does not supply an authoritative version.
+// Signed URLs expire, so they are discovered again for each download instead
+// of being recorded.
 type Release struct {
-	URL      string `json:"url"`
+	URL      string `json:"url,omitempty"`
 	Filename string `json:"filename"`
 	Version  string `json:"version"`
+	Signed   bool   `json:"-"`
 }
 
 func metadata(ctx context.Context, client *http.Client, target *url.URL, allowed func(*url.URL) bool) ([]byte, error) {

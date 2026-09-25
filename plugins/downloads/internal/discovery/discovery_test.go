@@ -119,7 +119,7 @@ func TestCricutResolvesRolloutInstaller(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	want := Release{URL: "https://static.cricut.com/desktop/" + url.PathEscape(filename) + "?token=a%2Fb", Filename: filename}
+	want := Release{URL: "https://static.cricut.com/desktop/" + url.PathEscape(filename) + "?token=a%2Fb", Filename: filename, Signed: true}
 	if got != want {
 		t.Fatalf("release = %+v, want %+v", got, want)
 	}

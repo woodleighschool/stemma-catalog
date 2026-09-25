@@ -56,7 +56,7 @@ func Cricut(ctx context.Context, client *http.Client, config CricutConfig) (Rele
 	if !validFilename(filename) || filename != rollout.InstallFile || strings.HasSuffix(download.Path, "/") || path.Clean(download.Path) != download.Path {
 		return Release{}, errors.New("cricut: installer URL does not match rollout filename")
 	}
-	return Release{URL: download.String(), Filename: filename}, nil
+	return Release{URL: download.String(), Filename: filename, Signed: true}, nil
 }
 
 func cricutURL(u *url.URL) bool {
