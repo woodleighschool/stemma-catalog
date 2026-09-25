@@ -1,0 +1,28 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/woodleighschool/stemma-catalog/main/stemma.schema.json
+apiVersion: stemma/v1alpha1
+kind: MacSoftware
+metadata:
+  name: plinth
+spec:
+  icon: plinth
+  minimum_os: "26.0"
+  source:
+    resolver: github
+    repository: woodleighschool/plinth
+    asset: Plinth-*.pkg
+  signature:
+    signer: apple:developer-id:SMLKBTR495 # Woodleigh School
+  application:
+    bundle_id: au.edu.vic.woodleigh.Plinth
+    installed_path: "/Applications/Plinth.app"
+  destinations:
+    intune:
+      display_name: Plinth
+      description: Plinth is a managed kiosk browser for Woodleigh School library iMacs.
+      publisher: Woodleigh School
+      ignore_version_detection: false
+      assignments:
+        - intent: required
+          group: 1cf8b79a-f545-4e84-98d7-154e2efec27a # Intune - Library Kiosk iMacs
+      retention:
+        keep: 1
