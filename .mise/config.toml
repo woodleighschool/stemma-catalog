@@ -2,9 +2,9 @@ monorepo_root = true
 
 [env]
 _.file = ["{{config_root}}/.env"]
-STEMMA_CACHE_DIR = "{{ config_root }}/.stemma/cache"
 
 [tools]
+"github:woodleighschool/stemma" = "0.2.1"
 oxfmt = "0.67.0"
 
 [settings]
