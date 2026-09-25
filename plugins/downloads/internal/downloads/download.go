@@ -97,7 +97,7 @@ func download(ctx context.Context, client *http.Client, release discovery.Releas
 		}
 	}()
 	hash := sha256.New()
-	size, err := io.Copy(io.MultiWriter(file, hash), io.LimitReader(response.Body, maxSize+1))
+	size, err := io.Copy(io.MultiWriter(file, hash), io.LimitReader(plugin.ProgressReader(ctx, response.Body, response.ContentLength), maxSize+1))
 	if err != nil {
 		return artifact, fmt.Errorf("read download: %w", err)
 	}

@@ -1,18 +1,21 @@
 package downloads
 
 import (
+	"bytes"
 	"context"
 	"crypto/sha256"
 	"encoding/hex"
 	"encoding/json"
 	"errors"
 	"fmt"
+	"log/slog"
 	"net/http"
 	"net/http/httptest"
 	"net/url"
 	"os"
 	"path/filepath"
 	"reflect"
+	"strconv"
 	"strings"
 	"testing"
 
@@ -191,6 +194,31 @@ func TestFailedDownloadLeavesNoArtifact(t *testing.T) {
 				t.Fatalf("partial files: %v, %v", entries, err)
 			}
 		})
+	}
+}
+
+func TestDownloadReportsTransferProgress(t *testing.T) {
+	body := strings.Repeat("x", 4096)
+	client := fixtureClient(t, func(w http.ResponseWriter, _ *http.Request) {
+		w.Header().Set("Content-Length", strconv.Itoa(len(body)))
+		_, _ = fmt.Fprint(w, body)
+	})
+	var logs bytes.Buffer
+	ctx := plugin.WithLogger(t.Context(), slog.New(slog.NewJSONHandler(&logs, nil)))
+	if _, err := download(ctx, client, discovery.Release{URL: "https://example.test/app.pkg", Filename: "app.pkg"}, t.TempDir()); err != nil {
+		t.Fatal(err)
+	}
+	var last struct {
+		Progress       bool
+		Current, Total int64
+	}
+	for line := range strings.Lines(logs.String()) {
+		if err := json.Unmarshal([]byte(line), &last); err != nil {
+			t.Fatal(err)
+		}
+	}
+	if !last.Progress || last.Current != int64(len(body)) || last.Total != int64(len(body)) {
+		t.Fatalf("final progress %+v from %s", last, logs.String())
 	}
 }
 

@@ -45,12 +45,12 @@ func configured[C any](client *http.Client, name string, discover func(context.C
 			done := plugin.Stage(ctx, "Discovering vendor release")
 			var err error
 			release, err = discover(ctx, client, request.Config)
-			done(err)
+			done(err, plugin.Detail(release.Version))
 			if err != nil {
 				return plugin.ResolveResponse{}, err
 			}
 		}
-		done := plugin.Stage(ctx, "Downloading release")
+		done := plugin.Stage(ctx, "Downloading release", plugin.Detail(release.Filename))
 		artifact, err := download(ctx, client, release, request.Workspace)
 		done(err)
 		if err != nil {
