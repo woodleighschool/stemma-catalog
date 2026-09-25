@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.1](https://github.com/woodleighschool/stemma-catalog/compare/0.2.0...0.2.1) (2026-09-25)
+
+
+### Bug Fixes
+
+* **deps:** update stemma dependency to latest version ([809137b](https://github.com/woodleighschool/stemma-catalog/commit/809137b3953e11ecfa984f18845873dc55767a9d))
+
 ## [0.2.0](https://github.com/woodleighschool/stemma-catalog/compare/0.1.0...0.2.0) (2026-09-25)
 
 
