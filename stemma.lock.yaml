@@ -1006,8 +1006,8 @@ inputs:
         mode: 420
 plugins:
   downloads:
-    image: ghcr.io/woodleighschool/stemma-catalog/downloads@sha256:d16232bcd8ab55b0e9aba7ad5dbd0204a51b6006b75f32dfb8990d5bfaa10ef7
-    digest: sha256:d16232bcd8ab55b0e9aba7ad5dbd0204a51b6006b75f32dfb8990d5bfaa10ef7
+    image: ghcr.io/woodleighschool/stemma-catalog/downloads:0.2.1@sha256:eaf90b3ed90012ca7f0e9d902829797fbde5011df1ae2966e093f4f69c912bc6
+    digest: sha256:eaf90b3ed90012ca7f0e9d902829797fbde5011df1ae2966e093f4f69c912bc6
     size: 1605
   woodstar:
     image: ghcr.io/woodleighschool/woodstar/stemma@sha256:9c0af2b397eb7e212b8d3602cab1879790588dbdf770a1db5e9159c199eb41c2
