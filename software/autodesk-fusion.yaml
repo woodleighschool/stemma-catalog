@@ -4,9 +4,15 @@ kind: MacSoftware
 metadata:
   name: autodesk-fusion
 spec:
+  extends: mac-software
+  source:
+    url: https://dl.appstreaming.autodesk.com/production/installers/Autodesk%20Fusion%20Admin%20Install.pkg
   application:
     bundle_id: com.autodesk.edu.fusion360
     installed_path: /Applications/Autodesk Fusion.app
+  signature:
+    signer: apple:developer-id:XXKJ396S2Y # Autodesk
+  icon: autodesk-fusion
   destinations:
     woodstar:
       pkginfo:
@@ -20,15 +26,9 @@ spec:
         uninstall_method: removepackages
         uninstallable: true
       targets:
-        exclude: []
         include:
-          - actions:
+          - label_name: All Hosts
+            actions:
               - optional_installs
               - managed_updates
-            label_name: All Hosts
-  extends: mac-software
-  icon: autodesk-fusion
-  signature:
-    signer: apple:developer-id:XXKJ396S2Y # Autodesk
-  source:
-    url: https://dl.appstreaming.autodesk.com/production/installers/Autodesk%20Fusion%20Admin%20Install.pkg
+        exclude: []

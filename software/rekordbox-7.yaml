@@ -5,6 +5,17 @@ metadata:
   name: rekordbox-7
 spec:
   extends: mac-software
+  source:
+    url: https://rekordbox.com/en/download/
+    match: https://cdn\.rekordbox\.com/files/[^"\s<>]+/Install_rekordbox_7_[^"\s<>]+\.pkg_\.zip
+    headers:
+      User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15
+        (KHTML, like Gecko) Version/16.6 Safari/605.1.15
+  package_path: "*.pkg"
+  application:
+    installed_path: "/Applications/rekordbox 7/rekordbox.app"
+  signature:
+    signer: apple:developer-id:6BRHGXQ6VU # AlphaTheta Corporation
   destinations:
     woodstar:
       pkginfo:
@@ -34,20 +45,9 @@ spec:
           /bin/rm -rf "/Applications/rekordbox 7"
         uninstallable: true
       targets:
-        exclude: []
         include:
-          - actions:
+          - label_name: All Hosts
+            actions:
               - optional_installs
               - managed_updates
-            label_name: All Hosts
-  source:
-    url: https://rekordbox.com/en/download/
-    match: https://cdn\.rekordbox\.com/files/[^"\s<>]+/Install_rekordbox_7_[^"\s<>]+\.pkg_\.zip
-    headers:
-      User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15
-        (KHTML, like Gecko) Version/16.6 Safari/605.1.15
-  application:
-    installed_path: "/Applications/rekordbox 7/rekordbox.app"
-  signature:
-    signer: apple:developer-id:6BRHGXQ6VU # AlphaTheta Corporation
-  package_path: "*.pkg"
+        exclude: []

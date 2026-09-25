@@ -5,6 +5,10 @@ metadata:
   name: keynote
 spec:
   extends: mac-software
+  source:
+    path: /Applications/Keynote Creator Studio.app
+  application:
+    installed_path: "/Applications/Keynote Creator Studio.app"
   destinations:
     woodstar:
       pkginfo:
@@ -24,13 +28,9 @@ spec:
         uninstall_method: remove_copied_items
         uninstallable: true
       targets:
-        exclude: []
         include:
-          - actions:
+          - label_name: All Hosts
+            actions:
               - optional_installs
               - managed_updates
-            label_name: All Hosts
-  source:
-    path: /Applications/Keynote Creator Studio.app
-  application:
-    installed_path: "/Applications/Keynote Creator Studio.app"
+        exclude: []

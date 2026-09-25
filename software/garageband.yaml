@@ -5,6 +5,10 @@ metadata:
   name: garageband
 spec:
   extends: mac-software
+  source:
+    path: /Applications/GarageBand.app
+  application:
+    installed_path: "/Applications/GarageBand.app"
   destinations:
     woodstar:
       pkginfo:
@@ -20,13 +24,9 @@ spec:
         uninstall_method: remove_copied_items
         uninstallable: true
       targets:
-        exclude: []
         include:
-          - actions:
+          - label_name: All Hosts
+            actions:
               - optional_installs
               - managed_updates
-            label_name: All Hosts
-  source:
-    path: /Applications/GarageBand.app
-  application:
-    installed_path: "/Applications/GarageBand.app"
+        exclude: []

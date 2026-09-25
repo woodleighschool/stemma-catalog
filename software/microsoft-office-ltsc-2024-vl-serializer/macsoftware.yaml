@@ -5,8 +5,10 @@ metadata:
   name: microsoft-office-ltsc-2024-vl-serializer
 suspend: true
 spec:
-  minimum_os: "10.15"
   extends: mac-software
+  source:
+    path: Assets/Microsoft_Office_LTSC_2024_VL_Serializer.pkg
+  minimum_os: "10.15"
   icon: microsoft-office-ltsc-2024-vl-serializer
   destinations:
     woodstar:
@@ -148,13 +150,11 @@ spec:
         uninstallable: false
         version: 16.89.24080626
       targets:
-        exclude: []
         include:
-          - actions:
+          - label_name: CRT/Spare Shared MacBooks
+            actions:
               - managed_installs
-            label_name: CRT/Spare Shared MacBooks
-          - actions:
+          - label_name: SAC MacBooks
+            actions:
               - managed_installs
-            label_name: SAC MacBooks
-  source:
-    path: Assets/Microsoft_Office_LTSC_2024_VL_Serializer.pkg
+        exclude: []

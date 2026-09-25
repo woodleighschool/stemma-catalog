@@ -4,8 +4,15 @@ kind: MacSoftware
 metadata:
   name: easyfind
 spec:
+  extends: mac-software
+  source:
+    url: https://www.devontechnologies.com/apps/freeware
+    match: https://[^"\s]+EasyFind\.app\.zip
   application:
     path: EasyFind.app
+  signature:
+    signer: apple:developer-id:679S2QUWR8 # DEVONtechnologies, LLC
+  icon: easyfind
   destinations:
     woodstar:
       pkginfo:
@@ -19,16 +26,9 @@ spec:
         unattended_install: true
         unattended_uninstall: true
       targets:
-        exclude: []
         include:
-          - actions:
+          - label_name: All Hosts
+            actions:
               - optional_installs
               - managed_updates
-            label_name: All Hosts
-  extends: mac-software
-  icon: easyfind
-  signature:
-    signer: apple:developer-id:679S2QUWR8 # DEVONtechnologies, LLC
-  source:
-    match: https://[^"\s]+EasyFind\.app\.zip
-    url: https://www.devontechnologies.com/apps/freeware
+        exclude: []

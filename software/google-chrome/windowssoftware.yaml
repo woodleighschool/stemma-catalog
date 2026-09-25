@@ -4,13 +4,13 @@ kind: WindowsSoftware
 metadata:
   name: google-chrome
 spec:
+  extends: windows-win32
+  source:
+    url: https://dl.google.com/dl/chrome/install/googlechromestandaloneenterprise64.msi
+  signature:
+    signer: authenticode:4a6519d3c145fc3838df20b3009980fe59b9bc68ee5871e59aaa0097a523e333 # Google LLC
   destinations:
     intune:
       display_name: Google Chrome
       description: Google Chrome Enterprise for Windows.
       publisher: Google LLC
-  extends: windows-win32
-  signature:
-    signer: authenticode:4a6519d3c145fc3838df20b3009980fe59b9bc68ee5871e59aaa0097a523e333 # Google LLC
-  source:
-    url: https://dl.google.com/dl/chrome/install/googlechromestandaloneenterprise64.msi

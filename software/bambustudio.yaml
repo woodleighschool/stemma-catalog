@@ -31,9 +31,9 @@ spec:
         uninstall_method: remove_copied_items
         uninstallable: true
       targets:
-        exclude: []
         include:
-          - actions:
+          - label_name: All Hosts
+            actions:
               - optional_installs
               - managed_updates
-            label_name: All Hosts
+        exclude: []

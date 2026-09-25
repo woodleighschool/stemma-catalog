@@ -4,9 +4,18 @@ kind: MacSoftware
 metadata:
   name: swiftdialog
 spec:
-  icon: swiftdialog
-  minimum_os: "15.0"
   extends: mac-software
+  source:
+    resolver: github
+    repository: swiftDialog/swiftDialog
+    asset: dialog-*-*.pkg
+  application:
+    path: tmp-package.pkg/Payload/Library/Application Support/Dialog/Dialog.app
+    installed_path: "/Library/Application Support/Dialog/Dialog.app"
+  signature:
+    signer: apple:developer-id:PWA5E9TQ59 # Commonwealth Scientific and Industrial Research Organisation
+  minimum_os: "15.0"
+  icon: swiftdialog
   destinations:
     intune:
       display_name: swiftDialog
@@ -32,17 +41,8 @@ spec:
         name: swiftDialog
         unattended_install: true
       targets:
-        exclude: []
         include:
-          - actions:
+          - label_name: All Hosts
+            actions:
               - managed_installs
-            label_name: All Hosts
-  source:
-    resolver: github
-    repository: swiftDialog/swiftDialog
-    asset: dialog-*-*.pkg
-  application:
-    path: tmp-package.pkg/Payload/Library/Application Support/Dialog/Dialog.app
-    installed_path: "/Library/Application Support/Dialog/Dialog.app"
-  signature:
-    signer: apple:developer-id:PWA5E9TQ59 # Commonwealth Scientific and Industrial Research Organisation
+        exclude: []

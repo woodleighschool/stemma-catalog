@@ -4,10 +4,17 @@ kind: MacSoftware
 metadata:
   name: google-earth-pro
 spec:
+  extends: mac-software
+  source:
+    url: https://dl.google.com/dl/earth/client/advanced/current/googleearthpromac-intel.dmg
+  package_path: Install Google Earth Pro *.pkg
   application:
     bundle_id: com.Google.GoogleEarthPro
-    installed_path: /Applications/Google Earth Pro.app
     version_key: CFBundleVersion
+    installed_path: /Applications/Google Earth Pro.app
+  signature:
+    signer: apple:developer-id:EQHXZ8M8AV # Google LLC
+  icon: google-earth-pro
   destinations:
     woodstar:
       pkginfo:
@@ -22,15 +29,8 @@ spec:
         uninstall_method: removepackages
         uninstallable: true
       targets:
-        exclude: []
         include:
-          - actions:
+          - label_name: All Hosts
+            actions:
               - managed_uninstalls
-            label_name: All Hosts
-  extends: mac-software
-  icon: google-earth-pro
-  package_path: Install Google Earth Pro *.pkg
-  signature:
-    signer: apple:developer-id:EQHXZ8M8AV # Google LLC
-  source:
-    url: https://dl.google.com/dl/earth/client/advanced/current/googleearthpromac-intel.dmg
+        exclude: []

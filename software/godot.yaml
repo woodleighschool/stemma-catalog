@@ -4,9 +4,16 @@ kind: MacSoftware
 metadata:
   name: godot
 spec:
+  extends: mac-software
+  source:
+    url: https://godotengine.org/download/macos/
+    match: https://downloads\.godotengine\.org/\?version=4\.[0-9.]+&flavor=stable&slug=macos\.universal\.zip&platform=macos\.universal
   application:
-    bundle_id: org.godotengine.godot
     path: Godot.app
+    bundle_id: org.godotengine.godot
+  signature:
+    signer: apple:developer-id:6K46PWY5DM # Prehensile Tales B.V.
+  icon: godot
   destinations:
     woodstar:
       pkginfo:
@@ -22,16 +29,9 @@ spec:
         unattended_uninstall: true
         uninstallable: true
       targets:
-        exclude: []
         include:
-          - actions:
+          - label_name: All Hosts
+            actions:
               - optional_installs
               - managed_updates
-            label_name: All Hosts
-  extends: mac-software
-  icon: godot
-  signature:
-    signer: apple:developer-id:6K46PWY5DM # Prehensile Tales B.V.
-  source:
-    match: https://downloads\.godotengine\.org/\?version=4\.[0-9.]+&flavor=stable&slug=macos\.universal\.zip&platform=macos\.universal
-    url: https://godotengine.org/download/macos/
+        exclude: []

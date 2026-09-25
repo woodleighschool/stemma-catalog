@@ -4,6 +4,8 @@ kind: MacSoftware
 metadata:
   name: windows-app-rds
 spec:
+  extends: mac-software
+  icon: windows-app-rds
   destinations:
     woodstar:
       pkginfo:
@@ -95,7 +97,5 @@ spec:
               name: windows-app
         version: "1.0"
       targets:
-        exclude: []
         include: []
-  extends: mac-software
-  icon: windows-app-rds
+        exclude: []

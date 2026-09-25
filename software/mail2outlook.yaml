@@ -4,6 +4,8 @@ kind: MacSoftware
 metadata:
   name: mail2outlook
 spec:
+  extends: mac-software
+  icon: mail2outlook
   destinations:
     woodstar:
       pkginfo:
@@ -89,7 +91,5 @@ spec:
               name: microsoft-outlook
         version: "1.0"
       targets:
-        exclude: []
         include: []
-  extends: mac-software
-  icon: mail2outlook
+        exclude: []

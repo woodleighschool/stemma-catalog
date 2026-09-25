@@ -4,10 +4,17 @@ kind: MacSoftware
 metadata:
   name: nap-locked-down-browser
 spec:
-  minimum_os: "14.0"
+  extends: mac-software
+  source:
+    url: https://www.assessform.edu.au/naplan-online/locked-down-browser
+    match: https://[^"\s]+\.pkg
   application:
     bundle_id: au.com.janison.mac.naplan
     installed_path: /Applications/NAP Locked down browser.app
+  signature:
+    signer: apple:developer-id:KU9HRE5GET # Janison
+  minimum_os: "14.0"
+  icon: nap-locked-down-browser
   destinations:
     woodstar:
       pkginfo:
@@ -29,18 +36,11 @@ spec:
         uninstall_method: removepackages
         uninstallable: true
       targets:
-        exclude: []
         include:
-          - actions:
+          - label_name: SAC MacBooks
+            actions:
               - managed_installs
-            label_name: SAC MacBooks
-          - actions:
+          - label_name: NAPLAN Students
+            actions:
               - managed_installs
-            label_name: NAPLAN Students
-  extends: mac-software
-  icon: nap-locked-down-browser
-  signature:
-    signer: apple:developer-id:KU9HRE5GET # Janison
-  source:
-    match: https://[^"\s]+\.pkg
-    url: https://www.assessform.edu.au/naplan-online/locked-down-browser
+        exclude: []

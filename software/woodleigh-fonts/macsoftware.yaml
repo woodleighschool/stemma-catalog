@@ -5,6 +5,12 @@ metadata:
   name: woodleigh-fonts
 suspend: true
 spec:
+  extends: mac-software
+  source:
+    resource:
+      kind: BuildMacPkg
+      name: woodleigh-fonts
+      output: installer
   destinations:
     woodstar:
       pkginfo:
@@ -15,14 +21,8 @@ spec:
         name: Woodleigh Fonts
         unattended_install: true
       targets:
-        exclude: []
         include:
-          - actions:
+          - label_name: All Hosts
+            actions:
               - managed_installs
-            label_name: All Hosts
-  extends: mac-software
-  source:
-    resource:
-      kind: BuildMacPkg
-      name: woodleigh-fonts
-      output: installer
+        exclude: []

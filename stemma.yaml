@@ -4,6 +4,15 @@ kind: Project
 metadata:
   name: woodleigh-catalog
 spec:
+  imports:
+    - software/**/*.yaml
+  plugins:
+    downloads:
+      image: ghcr.io/woodleighschool/stemma-catalog/downloads:0.2.1@sha256:eaf90b3ed90012ca7f0e9d902829797fbde5011df1ae2966e093f4f69c912bc6
+      trusted: true
+    woodstar:
+      image: ghcr.io/woodleighschool/woodstar/stemma@sha256:9c0af2b397eb7e212b8d3602cab1879790588dbdf770a1db5e9159c199eb41c2
+      trusted: true
   components:
     mac-software:
       destinations:
@@ -14,12 +23,10 @@ spec:
       destinations:
         intune:
           architecture: x64
-          install_experience:
-            restart: based_on_return_code
-            run_as: system
           minimum_windows_release: Windows11_24H2
-          retention:
-            keep: 1
+          install_experience:
+            run_as: system
+            restart: based_on_return_code
           return_codes:
             - code: 0
               type: success
@@ -31,27 +38,20 @@ spec:
               type: hard_reboot
             - code: 1618
               type: retry
+          retention:
+            keep: 1
   destinations:
     intune:
+      operation: intune
       config:
         client_id: "{{ env.INTUNE_CLIENT_ID }}"
         client_secret: "{{ env.INTUNE_CLIENT_SECRET }}"
         tenant_id: "{{ env.INTUNE_TENANT_ID }}"
-      operation: intune
     woodstar:
+      operation: woodstar.munki
       config:
         api_key: "{{ env.WOODSTAR_API_KEY }}"
         url: https://woodstar.woodleigh.vic.edu.au
-      operation: woodstar.munki
-  imports:
-    - software/**/*.yaml
-  plugins:
-    downloads:
-      image: ghcr.io/woodleighschool/stemma-catalog/downloads:0.2.1@sha256:eaf90b3ed90012ca7f0e9d902829797fbde5011df1ae2966e093f4f69c912bc6
-      trusted: true
-    woodstar:
-      image: ghcr.io/woodleighschool/woodstar/stemma@sha256:9c0af2b397eb7e212b8d3602cab1879790588dbdf770a1db5e9159c199eb41c2
-      trusted: true
   reconcile:
     source_control:
       type: github

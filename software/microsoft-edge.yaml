@@ -4,9 +4,16 @@ kind: MacSoftware
 metadata:
   name: microsoft-edge
 spec:
+  extends: mac-software
+  source:
+    resolver: microsoft
+    product: edge
   application:
     bundle_id: com.microsoft.edgemac
     installed_path: /Applications/Microsoft Edge.app
+  signature:
+    signer: apple:developer-id:UBF8T346G9 # Microsoft Corporation
+  icon: microsoft-edge
   destinations:
     woodstar:
       pkginfo:
@@ -24,15 +31,8 @@ spec:
         uninstall_method: removepackages
         uninstallable: true
       targets:
-        exclude: []
         include:
-          - actions:
+          - label_name: All Hosts
+            actions:
               - optional_installs
-            label_name: All Hosts
-  extends: mac-software
-  icon: microsoft-edge
-  signature:
-    signer: apple:developer-id:UBF8T346G9 # Microsoft Corporation
-  source:
-    resolver: microsoft
-    product: edge
+        exclude: []

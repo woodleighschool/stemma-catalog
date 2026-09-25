@@ -4,10 +4,16 @@ kind: MacSoftware
 metadata:
   name: spotify
 spec:
+  extends: mac-software
+  source:
+    url: https://download.scdn.co/SpotifyARM64.dmg
   application:
+    path: Spotify.app
     bundle_id: com.spotify.client
     installed_path: /Applications/Spotify.app
-    path: Spotify.app
+  signature:
+    signer: apple:developer-id:2FNC3A47ZF # Spotify
+  icon: spotify
   destinations:
     woodstar:
       pkginfo:
@@ -23,15 +29,9 @@ spec:
         uninstall_method: remove_copied_items
         uninstallable: true
       targets:
-        exclude: []
         include:
-          - actions:
+          - label_name: All Hosts
+            actions:
               - optional_installs
               - managed_updates
-            label_name: All Hosts
-  extends: mac-software
-  icon: spotify
-  signature:
-    signer: apple:developer-id:2FNC3A47ZF # Spotify
-  source:
-    url: https://download.scdn.co/SpotifyARM64.dmg
+        exclude: []

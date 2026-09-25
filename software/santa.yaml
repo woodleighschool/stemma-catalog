@@ -5,6 +5,16 @@ metadata:
   name: santa
 spec:
   extends: mac-software
+  source:
+    resolver: github
+    repository: northpolesec/santa
+    asset: santa-*.pkg
+  application:
+    path: app.pkg/Payload/var/db/santa/migration/Santa.app
+    version_key: CFBundleVersion
+    installed_path: "/Applications/Santa.app"
+  signature:
+    signer: apple:developer-id:ZMCG7MLDV9 # North Pole Security, Inc.
   destinations:
     woodstar:
       pkginfo:
@@ -17,18 +27,8 @@ spec:
         name: Santa
         unattended_install: true
       targets:
-        exclude: []
         include:
-          - actions:
+          - label_name: All Hosts
+            actions:
               - managed_installs
-            label_name: All Hosts
-  source:
-    resolver: github
-    repository: northpolesec/santa
-    asset: santa-*.pkg
-  application:
-    path: app.pkg/Payload/var/db/santa/migration/Santa.app
-    installed_path: "/Applications/Santa.app"
-    version_key: CFBundleVersion
-  signature:
-    signer: apple:developer-id:ZMCG7MLDV9 # North Pole Security, Inc.
+        exclude: []

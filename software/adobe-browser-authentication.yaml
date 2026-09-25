@@ -4,7 +4,9 @@ kind: MacSoftware
 metadata:
   name: adobe-browser-authentication
 spec:
+  extends: mac-software
   minimum_os: "11.0"
+  icon: adobe-browser-authentication
   destinations:
     woodstar:
       pkginfo:
@@ -46,7 +48,5 @@ spec:
           - Adobe Creative Cloud
         version: "1.0"
       targets:
-        exclude: []
         include: []
-  extends: mac-software
-  icon: adobe-browser-authentication
+        exclude: []

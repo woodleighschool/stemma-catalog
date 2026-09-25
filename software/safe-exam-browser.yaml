@@ -4,11 +4,20 @@ kind: MacSoftware
 metadata:
   name: safe-exam-browser
 spec:
-  minimum_os: "12.0"
+  extends: mac-software
+  source:
+    resolver: github
+    repository: SafeExamBrowser/seb-mac
+    release: latest
+    asset: SafeExamBrowser-*.dmg
   application:
+    path: Safe Exam Browser.app
     bundle_id: org.safeexambrowser.SafeExamBrowser
     installed_path: /Applications/Safe Exam Browser.app
-    path: Safe Exam Browser.app
+  signature:
+    signer: apple:developer-id:6F38DNSC7X # Daniel Schneider
+  minimum_os: "12.0"
+  icon: safe-exam-browser
   destinations:
     woodstar:
       pkginfo:
@@ -22,12 +31,3 @@ spec:
         unattended_uninstall: true
         uninstall_method: remove_copied_items
         uninstallable: true
-  extends: mac-software
-  icon: safe-exam-browser
-  signature:
-    signer: apple:developer-id:6F38DNSC7X # Daniel Schneider
-  source:
-    resolver: github
-    repository: SafeExamBrowser/seb-mac
-    release: latest
-    asset: SafeExamBrowser-*.dmg

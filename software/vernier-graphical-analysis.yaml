@@ -4,10 +4,16 @@ kind: MacSoftware
 metadata:
   name: vernier-graphical-analysis
 spec:
+  extends: mac-software
+  source:
+    url: https://software-releases.graphicalanalysis.com/ga/mac/release/latest/Vernier-Graphical-Analysis.dmg
   application:
+    path: Vernier Graphical Analysis.app
     bundle_id: Vernier.GraphicalAnalysis
     installed_path: /Applications/Vernier Graphical Analysis.app
-    path: Vernier Graphical Analysis.app
+  signature:
+    signer: apple:developer-id:75WN2B2WR8 # Vernier Software & Technology
+  icon: vernier-graphical-analysis
   destinations:
     woodstar:
       pkginfo:
@@ -21,15 +27,9 @@ spec:
         uninstall_method: remove_copied_items
         uninstallable: true
       targets:
-        exclude: []
         include:
-          - actions:
+          - label_name: All Hosts
+            actions:
               - optional_installs
               - managed_updates
-            label_name: All Hosts
-  extends: mac-software
-  icon: vernier-graphical-analysis
-  signature:
-    signer: apple:developer-id:75WN2B2WR8 # Vernier Software & Technology
-  source:
-    url: https://software-releases.graphicalanalysis.com/ga/mac/release/latest/Vernier-Graphical-Analysis.dmg
+        exclude: []

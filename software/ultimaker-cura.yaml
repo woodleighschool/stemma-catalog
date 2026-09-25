@@ -5,6 +5,14 @@ metadata:
   name: ultimaker-cura
 spec:
   extends: mac-software
+  source:
+    resolver: github
+    repository: Ultimaker/Cura
+    asset: "*-ARM64.dmg"
+  application:
+    bundle_id: nl.ultimaker.cura_UltiMaker_Cura
+  signature:
+    signer: apple:developer-id:V4B3JXRRQS # UltiMaker
   destinations:
     woodstar:
       pkginfo:
@@ -21,17 +29,9 @@ spec:
         uninstall_method: remove_copied_items
         uninstallable: true
       targets:
-        exclude: []
         include:
-          - actions:
+          - label_name: All Hosts
+            actions:
               - optional_installs
               - managed_updates
-            label_name: All Hosts
-  source:
-    resolver: github
-    repository: Ultimaker/Cura
-    asset: "*-ARM64.dmg"
-  application:
-    bundle_id: nl.ultimaker.cura_UltiMaker_Cura
-  signature:
-    signer: apple:developer-id:V4B3JXRRQS # UltiMaker
+        exclude: []

@@ -4,7 +4,9 @@ kind: MacSoftware
 metadata:
   name: minimbah-campus-printers
 spec:
+  extends: mac-software
   minimum_os: "11.0"
+  icon: printers
   destinations:
     woodstar:
       pkginfo:
@@ -64,13 +66,11 @@ spec:
         uninstallable: true
         version: "1.2"
       targets:
-        exclude: []
         include:
-          - actions:
+          - label_name: Minimbah Campus
+            actions:
               - managed_installs
-            label_name: Minimbah Campus
-          - actions:
+          - label_name: All Hosts
+            actions:
               - optional_installs
-            label_name: All Hosts
-  extends: mac-software
-  icon: printers
+        exclude: []

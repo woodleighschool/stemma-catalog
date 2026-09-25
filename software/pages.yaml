@@ -5,6 +5,10 @@ metadata:
   name: pages
 spec:
   extends: mac-software
+  source:
+    path: /Applications/Pages Creator Studio.app
+  application:
+    installed_path: "/Applications/Pages Creator Studio.app"
   destinations:
     woodstar:
       pkginfo:
@@ -24,13 +28,9 @@ spec:
         uninstall_method: remove_copied_items
         uninstallable: true
       targets:
-        exclude: []
         include:
-          - actions:
+          - label_name: All Hosts
+            actions:
               - optional_installs
               - managed_updates
-            label_name: All Hosts
-  source:
-    path: /Applications/Pages Creator Studio.app
-  application:
-    installed_path: "/Applications/Pages Creator Studio.app"
+        exclude: []

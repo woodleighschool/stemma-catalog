@@ -4,10 +4,17 @@ kind: MacSoftware
 metadata:
   name: company-portal
 spec:
-  minimum_os: "14.0"
+  extends: mac-software
+  source:
+    resolver: microsoft
+    product: company-portal
   application:
     bundle_id: com.microsoft.CompanyPortalMac
     installed_path: /Applications/Company Portal.app
+  signature:
+    signer: apple:developer-id:UBF8T346G9 # Microsoft Corporation
+  minimum_os: "14.0"
+  icon: company-portal
   destinations:
     intune:
       display_name: Company Portal
@@ -35,16 +42,9 @@ spec:
         unattended_install: true
         uninstallable: false
       targets:
-        exclude: []
         include:
-          - actions:
+          - label_name: All Hosts
+            actions:
               - optional_installs
               - managed_updates
-            label_name: All Hosts
-  extends: mac-software
-  icon: company-portal
-  signature:
-    signer: apple:developer-id:UBF8T346G9 # Microsoft Corporation
-  source:
-    resolver: microsoft
-    product: company-portal
+        exclude: []

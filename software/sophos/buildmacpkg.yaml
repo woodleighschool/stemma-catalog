@@ -9,13 +9,7 @@ spec:
     vendor:
       url: "{{ env.SOPHOS_DOWNLOAD_URL }}"
       filename: SophosInstall.zip
-  package:
-    identifier: com.github.woodleighschool.pkg.Sophos
-    version: "{{ inputs.vendor.facts['Sophos Installer.app'].app.version }}-1"
   scripts:
-    installer:
-      $input: vendor
-      path: .
     postinstall: |-
       #!/bin/bash
       set -eu
@@ -28,3 +22,9 @@ spec:
       /bin/chmod a+x "$installer" "$helper"
       cd "$directory"
       "$installer" --quiet
+    installer:
+      $input: vendor
+      path: .
+  package:
+    identifier: com.github.woodleighschool.pkg.Sophos
+    version: "{{ inputs.vendor.facts['Sophos Installer.app'].app.version }}-1"

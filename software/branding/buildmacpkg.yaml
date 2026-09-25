@@ -9,17 +9,17 @@ spec:
       path: Scripts
     wallpaper:
       url: https://r2-d2.woodleigh.vic.edu.au/Woodleigh.jpg
-  package:
-    identifier: au.edu.vic.woodleigh.branding
-    version: "1.1"
   payload:
     /Library/Desktop Pictures/Woodleigh.jpg:
       $input: wallpaper
       mode: "0644"
   scripts:
-    postinstall:
-      $input: scripts
-      path: postinstall
     preinstall:
       $input: scripts
       path: preinstall
+    postinstall:
+      $input: scripts
+      path: postinstall
+  package:
+    identifier: au.edu.vic.woodleigh.branding
+    version: "1.1"

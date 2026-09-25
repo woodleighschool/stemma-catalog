@@ -8,12 +8,12 @@ spec:
   source:
     url: https://www.activsoftware.co.uk/update/Inspire/updatemac.txt
     match: 'https?://www\.activsoftware\.co\.uk/update/Inspire/update/mac/ActivInspire_Application_v[0-9.]+_MAC\.dmg'
-  signature:
-    signer: apple:developer-id:PQ96WVYU2E # Promethean
   package_path: ActivInspire_Application_*_MAC.pkg
   application:
     path: InspireInstaller.pkg/Payload/Applications/Promethean/Activsoftware Inspire/Inspire.app
     installed_path: /Applications/Promethean/Activsoftware Inspire/Inspire.app
+  signature:
+    signer: apple:developer-id:PQ96WVYU2E # Promethean
   destinations:
     woodstar:
       pkginfo:
@@ -45,9 +45,9 @@ spec:
         uninstall_method: removepackages
         uninstallable: true
       targets:
-        exclude: []
         include:
-          - actions:
+          - label_name: All Staff
+            actions:
               - optional_installs
               - managed_updates
-            label_name: All Staff
+        exclude: []

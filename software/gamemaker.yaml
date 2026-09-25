@@ -4,8 +4,14 @@ kind: MacSoftware
 metadata:
   name: gamemaker
 spec:
+  extends: mac-software
+  source:
+    url: https://gamemaker.io/en/download/mac/monthly/GameMaker.pkg
   application:
     bundle_id: com.yoyogames.gms2
+  signature:
+    signer: apple:developer-id:C9E7J7HL3D # YoYo Games Ltd
+  icon: gamemaker
   destinations:
     woodstar:
       pkginfo:
@@ -19,15 +25,9 @@ spec:
         uninstall_method: removepackages
         uninstallable: true
       targets:
-        exclude: []
         include:
-          - actions:
+          - label_name: All Hosts
+            actions:
               - optional_installs
               - managed_updates
-            label_name: All Hosts
-  extends: mac-software
-  icon: gamemaker
-  signature:
-    signer: apple:developer-id:C9E7J7HL3D # YoYo Games Ltd
-  source:
-    url: https://gamemaker.io/en/download/mac/monthly/GameMaker.pkg
+        exclude: []

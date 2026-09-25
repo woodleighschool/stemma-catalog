@@ -4,17 +4,17 @@ kind: MacSoftware
 metadata:
   name: plinth
 spec:
-  icon: plinth
-  minimum_os: "26.0"
   source:
     resolver: github
     repository: woodleighschool/plinth
     asset: Plinth-*.pkg
-  signature:
-    signer: apple:developer-id:SMLKBTR495 # Woodleigh School
   application:
     bundle_id: au.edu.vic.woodleigh.Plinth
     installed_path: "/Applications/Plinth.app"
+  signature:
+    signer: apple:developer-id:SMLKBTR495 # Woodleigh School
+  minimum_os: "26.0"
+  icon: plinth
   destinations:
     intune:
       display_name: Plinth

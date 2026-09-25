@@ -4,17 +4,17 @@ kind: MacSoftware
 metadata:
   name: munki
 spec:
-  icon: munki
-  minimum_os: "11.0"
   source:
     resolver: github
     repository: munki/munki
     asset: munkitools-*.pkg
-  signature:
-    signer: apple:developer-id:T4SK8ZXCXG # Mac Admins Open Source
   application:
     bundle_id: com.googlecode.munki.ManagedSoftwareCenter
     installed_path: "/Applications/Managed Software Center.app"
+  signature:
+    signer: apple:developer-id:T4SK8ZXCXG # Mac Admins Open Source
+  minimum_os: "11.0"
+  icon: munki
   destinations:
     intune:
       display_name: Munki

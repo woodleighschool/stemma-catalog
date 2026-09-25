@@ -5,6 +5,11 @@ metadata:
   name: linewize-authentication-agent
 suspend: true
 spec:
+  extends: mac-software
+  source:
+    path: Assets/auth-agent.pkg
+  signature:
+    signer: apple:developer-id:5S77G864UH # B Communications Pty Ltd
   destinations:
     woodstar:
       pkginfo:
@@ -32,13 +37,8 @@ spec:
         uninstallable: false
         version: 1.4.1
       targets:
-        exclude: []
         include: []
-  extends: mac-software
-  signature:
-    signer: apple:developer-id:5S77G864UH # B Communications Pty Ltd
-  source:
-    path: Assets/auth-agent.pkg
+        exclude: []
 ---
 apiVersion: stemma/v1alpha1
 kind: MacSoftware
@@ -46,6 +46,11 @@ metadata:
   name: linewize-connect
 suspend: true
 spec:
+  extends: mac-software
+  source:
+    url: https://qoria-mza-installers.linewize.net/Connect%20Installer.pkg
+  signature:
+    signer: apple:developer-id:5S77G864UH # FAMILY ZONE CYBER SAFETY LIMITED
   destinations:
     woodstar:
       pkginfo:
@@ -78,19 +83,14 @@ spec:
         unattended_install: true
         uninstallable: false
       targets:
-        exclude: []
         include:
-          - actions:
+          - label_name: All Students
+            actions:
               - managed_installs
-            label_name: All Students
-          - actions:
+          - label_name: CRT/Spare Shared MacBooks
+            actions:
               - managed_installs
-            label_name: CRT/Spare Shared MacBooks
-          - actions:
+          - label_name: SAC MacBooks
+            actions:
               - managed_installs
-            label_name: SAC MacBooks
-  extends: mac-software
-  signature:
-    signer: apple:developer-id:5S77G864UH # FAMILY ZONE CYBER SAFETY LIMITED
-  source:
-    url: https://qoria-mza-installers.linewize.net/Connect%20Installer.pkg
+        exclude: []

@@ -10,11 +10,11 @@ spec:
     filename: SketchUp2026.dmg
     headers:
       User-Agent: Mozilla/5.0
-  signature:
-    signer: apple:developer-id:J8PVMCY7KL # Trimble Inc.
   application:
     path: SketchUp 2026/SketchUp.app
     installed_path: /Applications/SketchUp 2026/SketchUp.app
+  signature:
+    signer: apple:developer-id:J8PVMCY7KL # Trimble Inc.
   destinations:
     woodstar:
       pkginfo:
@@ -26,18 +26,18 @@ spec:
           SketchUp is 3D modelling software for designing, documenting, and
           communicating ideas.
         developer: Trimble
+        items_to_copy:
+          - destination_path: /Applications
+            source_item: SketchUp 2026
         name: SketchUp 2026
         unattended_install: true
         unattended_uninstall: true
-        items_to_copy:
-          - source_item: SketchUp 2026
-            destination_path: /Applications
         uninstall_method: remove_copied_items
         uninstallable: true
       targets:
-        exclude: []
         include:
-          - actions:
+          - label_name: All Hosts
+            actions:
               - optional_installs
               - managed_updates
-            label_name: All Hosts
+        exclude: []

@@ -4,9 +4,16 @@ kind: MacSoftware
 metadata:
   name: microsoft-onenote
 spec:
+  extends: mac-software
+  source:
+    resolver: microsoft
+    product: onenote
   application:
     bundle_id: com.microsoft.onenote.mac
     installed_path: /Applications/Microsoft OneNote.app
+  signature:
+    signer: apple:developer-id:UBF8T346G9 # Microsoft Corporation
+  icon: microsoft-onenote
   destinations:
     woodstar:
       pkginfo:
@@ -22,15 +29,8 @@ spec:
         unattended_install: true
         uninstallable: false
       targets:
-        exclude: []
         include:
-          - actions:
+          - label_name: All Hosts
+            actions:
               - optional_installs
-            label_name: All Hosts
-  extends: mac-software
-  icon: microsoft-onenote
-  signature:
-    signer: apple:developer-id:UBF8T346G9 # Microsoft Corporation
-  source:
-    resolver: microsoft
-    product: onenote
+        exclude: []

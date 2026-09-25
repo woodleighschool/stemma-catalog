@@ -4,7 +4,9 @@ kind: MacSoftware
 metadata:
   name: rosetta
 spec:
+  extends: mac-software
   minimum_os: "11.0"
+  icon: rosetta
   destinations:
     woodstar:
       pkginfo:
@@ -25,10 +27,8 @@ spec:
         uninstallable: false
         version: "1.0"
       targets:
-        exclude: []
         include:
-          - actions:
+          - label_name: All Hosts
+            actions:
               - managed_installs
-            label_name: All Hosts
-  extends: mac-software
-  icon: rosetta
+        exclude: []

@@ -5,6 +5,12 @@ metadata:
   name: cricut-design-space
 spec:
   extends: mac-software
+  source:
+    resolver: cricut
+  application:
+    bundle_id: com.cricut.design
+  signature:
+    signer: apple:developer-id:25627ZFVT7 # Cricut
   destinations:
     woodstar:
       pkginfo:
@@ -23,15 +29,9 @@ spec:
         uninstall_method: remove_copied_items
         uninstallable: true
       targets:
-        exclude: []
         include:
-          - actions:
+          - label_name: All Hosts
+            actions:
               - optional_installs
               - managed_updates
-            label_name: All Hosts
-  source:
-    resolver: cricut
-  signature:
-    signer: apple:developer-id:25627ZFVT7 # Cricut
-  application:
-    bundle_id: com.cricut.design
+        exclude: []

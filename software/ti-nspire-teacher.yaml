@@ -8,6 +8,10 @@ spec:
   source:
     url: https://education.ti.com/en/software/details/en/B993F3BD97D94D7EA35E5D514DD57FB5/ti-nspirecx-tps_sda?sc_lang=en
     match: /download/en/ed-tech/[^"\s<>]+/TINspireCXPremiumTeacherSoftware-[^"\s<>]+\.dmg
+  package_path: TINspireCXPremiumTeacherSoftware-*.pkg
+  application:
+    path: Applications/TI-Nspire CX Premium Teacher Software.app
+    installed_path: "/Applications/TI-Nspire CX Premium Teacher Software.app"
   signature:
     signer: apple:developer-id:TLEVLB8B5D # Texas Instruments
   destinations:
@@ -26,13 +30,9 @@ spec:
         uninstall_method: removepackages
         uninstallable: true
       targets:
-        exclude: []
         include:
-          - actions:
+          - label_name: All Staff
+            actions:
               - optional_installs
               - managed_updates
-            label_name: All Staff
-  package_path: TINspireCXPremiumTeacherSoftware-*.pkg
-  application:
-    path: Applications/TI-Nspire CX Premium Teacher Software.app
-    installed_path: "/Applications/TI-Nspire CX Premium Teacher Software.app"
+        exclude: []

@@ -4,8 +4,17 @@ kind: MacSoftware
 metadata:
   name: python
 spec:
-  minimum_os: "11.0"
   extends: mac-software
+  source:
+    resolver: python
+    branch: "3.13"
+  application:
+    path: Python_Framework.pkg/Payload/Versions/3.13/Resources/Python.app
+    version_key: CFBundleVersion
+    installed_path: "/Library/Frameworks/Python.framework/Versions/3.13/Resources/Python.app"
+  signature:
+    signer: apple:developer-id:BMM5U3QVKW # Python Software Foundation
+  minimum_os: "11.0"
   destinations:
     woodstar:
       pkginfo:
@@ -28,18 +37,9 @@ spec:
         uninstall_method: removepackages
         uninstallable: true
       targets:
-        exclude: []
         include:
-          - actions:
+          - label_name: All Hosts
+            actions:
               - optional_installs
               - managed_updates
-            label_name: All Hosts
-  source:
-    resolver: python
-    branch: "3.13"
-  signature:
-    signer: apple:developer-id:BMM5U3QVKW # Python Software Foundation
-  application:
-    path: Python_Framework.pkg/Payload/Versions/3.13/Resources/Python.app
-    installed_path: "/Library/Frameworks/Python.framework/Versions/3.13/Resources/Python.app"
-    version_key: CFBundleVersion
+        exclude: []

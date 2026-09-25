@@ -4,7 +4,14 @@ kind: MacSoftware
 metadata:
   name: garageband-all-sounds
 spec:
+  extends: mac-software
+  source:
+    resource:
+      kind: BuildMacPkg
+      name: garageband-all-sounds
+      output: installer
   minimum_os: "14.0"
+  icon: garageband-sounds
   destinations:
     woodstar:
       pkginfo:
@@ -184,26 +191,26 @@ spec:
         uninstallable: true
         version: 2.0.3.1
       targets:
-        exclude: []
         include:
-          - actions:
+          - label_name: All Hosts
+            actions:
               - optional_installs
               - managed_updates
-            label_name: All Hosts
-  extends: mac-software
-  icon: garageband-sounds
-  source:
-    resource:
-      kind: BuildMacPkg
-      name: garageband-all-sounds
-      output: installer
+        exclude: []
 ---
 apiVersion: stemma/v1alpha1
 kind: MacSoftware
 metadata:
   name: garageband-essential-sounds
 spec:
+  extends: mac-software
+  source:
+    resource:
+      kind: BuildMacPkg
+      name: garageband-essential-sounds
+      output: installer
   minimum_os: "14.0"
+  icon: garageband-sounds
   destinations:
     woodstar:
       pkginfo:
@@ -285,12 +292,5 @@ spec:
           - GarageBand
         version: 2.0.3.2
       targets:
-        exclude: []
         include: []
-  extends: mac-software
-  icon: garageband-sounds
-  source:
-    resource:
-      kind: BuildMacPkg
-      name: garageband-essential-sounds
-      output: installer
+        exclude: []

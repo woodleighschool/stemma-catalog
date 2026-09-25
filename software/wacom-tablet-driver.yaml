@@ -4,10 +4,18 @@ kind: MacSoftware
 metadata:
   name: wacom-tablet-driver
 spec:
+  extends: mac-software
+  source:
+    url: https://www.wacom.com/en-us/support/product-support/drivers
+    match: https://cdn\.wacom\.com/u/productsupport/drivers/mac/professional/WacomTablet_[0-9]+(?:\.[0-9]+)*(?:-[0-9]+)?\.dmg
+  package_path: Install Wacom Tablet.pkg
   application:
     bundle_id: com.wacom.WacomCenter
-    installed_path: /Applications/Wacom Tablet.localized/Wacom Center.app
     version_key: CFBundleVersion
+    installed_path: /Applications/Wacom Tablet.localized/Wacom Center.app
+  signature:
+    signer: apple:developer-id:EG27766DY7 # Wacom Technology Corp.
+  icon: wacom-tablet-driver
   destinations:
     woodstar:
       pkginfo:
@@ -26,17 +34,9 @@ spec:
         uninstall_method: removepackages
         uninstallable: true
       targets:
-        exclude: []
         include:
-          - actions:
+          - label_name: All Hosts
+            actions:
               - optional_installs
               - managed_updates
-            label_name: All Hosts
-  extends: mac-software
-  icon: wacom-tablet-driver
-  package_path: Install Wacom Tablet.pkg
-  signature:
-    signer: apple:developer-id:EG27766DY7 # Wacom Technology Corp.
-  source:
-    match: https://cdn\.wacom\.com/u/productsupport/drivers/mac/professional/WacomTablet_[0-9]+(?:\.[0-9]+)*(?:-[0-9]+)?\.dmg
-    url: https://www.wacom.com/en-us/support/product-support/drivers
+        exclude: []

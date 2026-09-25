@@ -4,9 +4,15 @@ kind: MacSoftware
 metadata:
   name: zoom
 spec:
+  extends: mac-software
+  source:
+    url: https://zoom.us/client/latest/ZoomInstallerIT.pkg
   application:
     bundle_id: us.zoom.xos
     installed_path: /Applications/zoom.us.app
+  signature:
+    signer: apple:developer-id:BJ4HAAB9B3 # Zoom Video Communications, Inc.
+  icon: zoom
   destinations:
     woodstar:
       pkginfo:
@@ -23,15 +29,9 @@ spec:
         uninstall_method: removepackages
         uninstallable: true
       targets:
-        exclude: []
         include:
-          - actions:
+          - label_name: All Hosts
+            actions:
               - optional_installs
               - managed_updates
-            label_name: All Hosts
-  extends: mac-software
-  icon: zoom
-  signature:
-    signer: apple:developer-id:BJ4HAAB9B3 # Zoom Video Communications, Inc.
-  source:
-    url: https://zoom.us/client/latest/ZoomInstallerIT.pkg
+        exclude: []

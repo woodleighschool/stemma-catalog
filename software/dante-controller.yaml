@@ -8,12 +8,12 @@ spec:
   source:
     resolver: audinate
     product: dante-controller
-  signature:
-    signer: apple:developer-id:P4WCR6Y822 # Audinate Pty Ltd
   package_path: DanteController.pkg
   application:
     path: DanteController.pkg/Payload/Dante Controller.app
     installed_path: /Applications/Dante Controller.app
+  signature:
+    signer: apple:developer-id:P4WCR6Y822 # Audinate Pty Ltd
   destinations:
     woodstar:
       pkginfo:
@@ -32,8 +32,8 @@ spec:
         uninstall_method: removepackages
         uninstallable: true
       targets:
-        exclude: []
         include:
-          - actions:
+          - label_name: All Hosts
+            actions:
               - optional_installs
-            label_name: All Hosts
+        exclude: []

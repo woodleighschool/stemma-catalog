@@ -8,6 +8,8 @@ spec:
   source:
     url: https://www.videolan.org/vlc/download-macosx.html
     match: "//get\\.videolan\\.org/vlc/[0-9.]+/macosx/vlc-[0-9.]+-arm64\\.dmg"
+  application:
+    bundle_id: org.videolan.vlc
   signature:
     signer: apple:developer-id:75GAHG3SZQ # VideoLAN
   destinations:
@@ -25,11 +27,9 @@ spec:
         uninstall_method: remove_copied_items
         uninstallable: true
       targets:
-        exclude: []
         include:
-          - actions:
+          - label_name: All Hosts
+            actions:
               - optional_installs
               - managed_updates
-            label_name: All Hosts
-  application:
-    bundle_id: org.videolan.vlc
+        exclude: []

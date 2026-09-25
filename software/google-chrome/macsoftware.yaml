@@ -4,8 +4,14 @@ kind: MacSoftware
 metadata:
   name: google-chrome
 spec:
+  extends: mac-software
+  source:
+    url: https://dl.google.com/dl/chrome/mac/universal/stable/gcem/GoogleChrome.pkg
   application:
     bundle_id: com.google.Chrome
+  signature:
+    signer: apple:developer-id:EQHXZ8M8AV # Google LLC
+  icon: google-chrome
   destinations:
     woodstar:
       pkginfo:
@@ -20,15 +26,9 @@ spec:
         uninstall_method: removepackages
         uninstallable: true
       targets:
+        include:
+          - label_name: All Hosts
+            actions:
+              - managed_installs
         exclude:
           - label_name: SAC MacBooks
-        include:
-          - actions:
-              - managed_installs
-            label_name: All Hosts
-  extends: mac-software
-  icon: google-chrome
-  signature:
-    signer: apple:developer-id:EQHXZ8M8AV # Google LLC
-  source:
-    url: https://dl.google.com/dl/chrome/mac/universal/stable/gcem/GoogleChrome.pkg

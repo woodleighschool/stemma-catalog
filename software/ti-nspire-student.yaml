@@ -8,6 +8,10 @@ spec:
   source:
     url: https://education.ti.com/en/software/details/en/AFCFF2853BC34DEFB4C0B8B156F92404/ti-nspirecx_pc_full
     match: /download/en/ed-tech/[^"\s<>]+/TINspireCX[^"\s<>]*\.dmg
+  package_path: TINspireCXStudentSoftware-*.pkg
+  application:
+    path: Applications/TI-Nspire CX Student Software.app
+    installed_path: "/Applications/TI-Nspire CX Student Software.app"
   signature:
     signer: apple:developer-id:TLEVLB8B5D # Texas Instruments
   destinations:
@@ -26,13 +30,9 @@ spec:
         uninstall_method: removepackages
         uninstallable: true
       targets:
-        exclude: []
         include:
-          - actions:
+          - label_name: All Students
+            actions:
               - optional_installs
               - managed_updates
-            label_name: All Students
-  package_path: TINspireCXStudentSoftware-*.pkg
-  application:
-    path: Applications/TI-Nspire CX Student Software.app
-    installed_path: "/Applications/TI-Nspire CX Student Software.app"
+        exclude: []

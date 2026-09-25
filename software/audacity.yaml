@@ -5,6 +5,14 @@ metadata:
   name: audacity
 spec:
   extends: mac-software
+  source:
+    resolver: github
+    repository: audacity/audacity
+    asset: audacity-macOS-*-arm64.dmg
+  application:
+    bundle_id: org.audacityteam.audacity
+  signature:
+    signer: apple:developer-id:AWEYX923UX # Audacity
   destinations:
     woodstar:
       pkginfo:
@@ -21,17 +29,9 @@ spec:
         uninstall_method: remove_copied_items
         uninstallable: true
       targets:
-        exclude: []
         include:
-          - actions:
+          - label_name: All Hosts
+            actions:
               - optional_installs
               - managed_updates
-            label_name: All Hosts
-  source:
-    resolver: github
-    repository: audacity/audacity
-    asset: audacity-macOS-*-arm64.dmg
-  application:
-    bundle_id: org.audacityteam.audacity
-  signature:
-    signer: apple:developer-id:AWEYX923UX # Audacity
+        exclude: []

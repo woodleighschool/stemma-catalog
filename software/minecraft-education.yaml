@@ -4,9 +4,15 @@ kind: MacSoftware
 metadata:
   name: minecraft-education
 spec:
+  extends: mac-software
+  source:
+    url: https://aka.ms/meeclientmacos
   application:
-    bundle_id: com.microsoft.minecraft-edu
     path: minecraft-edu.app
+    bundle_id: com.microsoft.minecraft-edu
+  signature:
+    signer: apple:developer-id:UBF8T346G9 # Microsoft Corporation
+  icon: minecraft-education
   destinations:
     woodstar:
       pkginfo:
@@ -21,19 +27,13 @@ spec:
         uninstall_method: remove_copied_items
         uninstallable: true
       targets:
-        exclude: []
         include:
-          - actions:
+          - label_name: Minecraft Education Licence
+            actions:
               - optional_installs
               - managed_updates
-            label_name: Minecraft Education Licence
-          - actions:
+          - label_name: All Staff
+            actions:
               - optional_installs
               - managed_updates
-            label_name: All Staff
-  extends: mac-software
-  icon: minecraft-education
-  signature:
-    signer: apple:developer-id:UBF8T346G9 # Microsoft Corporation
-  source:
-    url: https://aka.ms/meeclientmacos
+        exclude: []

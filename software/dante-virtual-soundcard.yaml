@@ -8,12 +8,12 @@ spec:
   source:
     resolver: audinate
     product: dante-virtual-soundcard
-  signature:
-    signer: apple:developer-id:P4WCR6Y822 # Audinate Pty Ltd
   package_path: DanteVirtualSoundcard.pkg
   application:
     path: DVS_User_Interface.pkg/Payload/Dante Virtual Soundcard.app
     installed_path: /Applications/Dante Virtual Soundcard.app
+  signature:
+    signer: apple:developer-id:P4WCR6Y822 # Audinate Pty Ltd
   destinations:
     woodstar:
       pkginfo:
@@ -44,8 +44,8 @@ spec:
           "$uninstaller"
         uninstallable: true
       targets:
-        exclude: []
         include:
-          - actions:
+          - label_name: All Hosts
+            actions:
               - optional_installs
-            label_name: All Hosts
+        exclude: []

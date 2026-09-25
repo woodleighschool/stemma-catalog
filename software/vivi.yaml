@@ -4,8 +4,14 @@ kind: MacSoftware
 metadata:
   name: vivi
 spec:
+  extends: mac-software
+  source:
+    url: https://api.vivi.io/mac
   application:
     installed_path: /Applications/Vivi.app
+  signature:
+    signer: apple:developer-id:3NRCUJ8TJC # VIVI AUSTRALIA PTY LTD
+  icon: vivi
   destinations:
     woodstar:
       pkginfo:
@@ -20,15 +26,9 @@ spec:
         uninstall_method: removepackages
         uninstallable: true
       targets:
-        exclude: []
         include:
-          - actions:
+          - label_name: All Hosts
+            actions:
               - optional_installs
               - managed_updates
-            label_name: All Hosts
-  extends: mac-software
-  icon: vivi
-  signature:
-    signer: apple:developer-id:3NRCUJ8TJC # VIVI AUSTRALIA PTY LTD
-  source:
-    url: https://api.vivi.io/mac
+        exclude: []

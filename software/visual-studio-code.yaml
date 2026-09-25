@@ -4,10 +4,16 @@ kind: MacSoftware
 metadata:
   name: visual-studio-code
 spec:
+  extends: mac-software
+  source:
+    url: https://code.visualstudio.com/sha/download?build=stable&os=darwin-arm64-dmg
   application:
+    path: Visual Studio Code.app
     bundle_id: com.microsoft.VSCode
     installed_path: /Applications/Visual Studio Code.app
-    path: Visual Studio Code.app
+  signature:
+    signer: apple:developer-id:UBF8T346G9 # Microsoft Corporation
+  icon: visual-studio-code
   destinations:
     woodstar:
       pkginfo:
@@ -31,15 +37,9 @@ spec:
         uninstall_method: remove_copied_items
         uninstallable: true
       targets:
-        exclude: []
         include:
-          - actions:
+          - label_name: All Hosts
+            actions:
               - optional_installs
               - managed_updates
-            label_name: All Hosts
-  extends: mac-software
-  icon: visual-studio-code
-  signature:
-    signer: apple:developer-id:UBF8T346G9 # Microsoft Corporation
-  source:
-    url: https://code.visualstudio.com/sha/download?build=stable&os=darwin-arm64-dmg
+        exclude: []

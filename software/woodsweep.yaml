@@ -5,14 +5,14 @@ metadata:
   name: woodsweep
 spec:
   extends: mac-software
-  application:
-    bundle_id: au.edu.vic.woodleigh.WoodSweep
-  signature:
-    signer: apple:developer-id:SMLKBTR495 # Woodleigh School
   source:
     resolver: github
     repository: woodleighschool/woodsweep
     asset: WoodSweep-*.zip
+  application:
+    bundle_id: au.edu.vic.woodleigh.WoodSweep
+  signature:
+    signer: apple:developer-id:SMLKBTR495 # Woodleigh School
   destinations:
     woodstar:
       pkginfo:
@@ -24,13 +24,6 @@ spec:
           user state, and reconciles the account home after the snapshot succeeds.
         developer: Woodleigh School
         name: WoodSweep
-        preinstall_script: |-
-          #!/bin/zsh --no-rcs
-          logged_in_user="$(/usr/bin/stat -f '%Su' /dev/console)"
-          if [[ -z "${logged_in_user}" || "${logged_in_user}" == "root" || "${logged_in_user}" == "loginwindow" ]]; then
-            echo "WoodSweep bootstrap requires a logged-in user. Deferring installation." >&2
-            exit 1
-          fi
         postinstall_script: |-
           #!/bin/zsh --no-rcs
           set -euo pipefail
@@ -47,13 +40,20 @@ spec:
             --server-url '{{ env.WOODSWEEP_SERVER_URL }}' \
             --bootstrap-user '{{ env.WOODSWEEP_BOOTSTRAP_USER }}' \
             --bootstrap-password '{{ env.WOODSWEEP_BOOTSTRAP_PASSWORD }}'
+        preinstall_script: |-
+          #!/bin/zsh --no-rcs
+          logged_in_user="$(/usr/bin/stat -f '%Su' /dev/console)"
+          if [[ -z "${logged_in_user}" || "${logged_in_user}" == "root" || "${logged_in_user}" == "loginwindow" ]]; then
+            echo "WoodSweep bootstrap requires a logged-in user. Deferring installation." >&2
+            exit 1
+          fi
         unattended_install: true
         unattended_uninstall: true
         uninstall_method: remove_copied_items
         uninstallable: true
       targets:
-        exclude: []
         include:
-          - actions:
+          - label_name: SAC MacBooks
+            actions:
               - managed_installs
-            label_name: SAC MacBooks
+        exclude: []

@@ -5,6 +5,16 @@ metadata:
   name: epson-drivers
 spec:
   extends: mac-software
+  source:
+    resolver: epson
+    device_id: AM-C6000 Series
+    os: MAC26
+    region: GB
+    cti: "2001"
+  package_path: EPSON Printer.pkg
+  signature:
+    signer: apple:developer-id:TXAEAV5RN4 # Seiko Epson Corporation
+  icon: epson-drivers
   destinations:
     woodstar:
       pkginfo:
@@ -12,31 +22,21 @@ spec:
         category: Utilities
         description: Installs the Epson AM-C6000 Series printer driver.
         developer: Epson
+        installs:
+          - CFBundleIdentifier: com.epson.ijprinter.data.AM-C6000 Series
+            CFBundleName: AM-C6000 Series
+            CFBundleShortVersionString: "{{ evidence.epson.version }}"
+            path: "/Library/Printers/EPSON/InkjetPrinter2/SupportPrinters/AM-C6000 Series.data"
+            type: bundle
         name: EPSON Drivers
         unattended_install: true
         unattended_uninstall: true
         uninstall_method: removepackages
         uninstallable: true
         version: "{{ evidence.epson.version }}"
-        installs:
-          - type: bundle
-            path: "/Library/Printers/EPSON/InkjetPrinter2/SupportPrinters/AM-C6000 Series.data"
-            CFBundleIdentifier: com.epson.ijprinter.data.AM-C6000 Series
-            CFBundleName: AM-C6000 Series
-            CFBundleShortVersionString: "{{ evidence.epson.version }}"
       targets:
-        exclude: []
         include:
-          - actions:
+          - label_name: All Hosts
+            actions:
               - managed_updates
-            label_name: All Hosts
-  source:
-    resolver: epson
-    device_id: AM-C6000 Series
-    os: MAC26
-    region: GB
-    cti: "2001"
-  signature:
-    signer: apple:developer-id:TXAEAV5RN4 # Seiko Epson Corporation
-  package_path: EPSON Printer.pkg
-  icon: epson-drivers
+        exclude: []

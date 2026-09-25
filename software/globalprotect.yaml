@@ -4,8 +4,14 @@ kind: MacSoftware
 metadata:
   name: globalprotect
 spec:
+  extends: mac-software
+  source:
+    url: https://access.woodleigh.vic.edu.au/global-protect/getmsi.esp?platform=mac
   application:
     installed_path: /Applications/GlobalProtect.app
+  signature:
+    signer: apple:developer-id:PXPZ95SK77 # Palo Alto Networks
+  icon: globalprotect
   destinations:
     woodstar:
       pkginfo:
@@ -23,15 +29,9 @@ spec:
           exec /Applications/GlobalProtect.app/Contents/Resources/uninstall_gp.sh
         uninstallable: true
       targets:
-        exclude: []
         include:
-          - actions:
+          - label_name: All Staff
+            actions:
               - optional_installs
               - managed_updates
-            label_name: All Staff
-  extends: mac-software
-  icon: globalprotect
-  signature:
-    signer: apple:developer-id:PXPZ95SK77 # Palo Alto Networks
-  source:
-    url: https://access.woodleigh.vic.edu.au/global-protect/getmsi.esp?platform=mac
+        exclude: []

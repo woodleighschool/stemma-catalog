@@ -4,9 +4,16 @@ kind: MacSoftware
 metadata:
   name: windows-app
 spec:
+  extends: mac-software
+  source:
+    resolver: microsoft
+    product: windows-app
   application:
     bundle_id: com.microsoft.rdc.macos
     installed_path: /Applications/Windows App.app
+  signature:
+    signer: apple:developer-id:UBF8T346G9 # Microsoft Corporation
+  icon: windows-app
   destinations:
     woodstar:
       pkginfo:
@@ -21,16 +28,9 @@ spec:
         uninstall_method: removepackages
         uninstallable: true
       targets:
-        exclude: []
         include:
-          - actions:
+          - label_name: All Staff
+            actions:
               - optional_installs
               - managed_updates
-            label_name: All Staff
-  extends: mac-software
-  icon: windows-app
-  signature:
-    signer: apple:developer-id:UBF8T346G9 # Microsoft Corporation
-  source:
-    resolver: microsoft
-    product: windows-app
+        exclude: []
