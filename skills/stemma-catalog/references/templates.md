@@ -5,6 +5,9 @@ Each is the smallest complete document: Stemma derives the rest from the prepare
 destination keys name Project connections; use the repository's names and its destination
 vocabulary, and extend its components.
 
+Add `signature` once `stemma signature` prints it, never before: a declared signer is checked
+every time the artifact is prepared.
+
 ## Vendor PKG at a stable URL
 
 ```yaml
@@ -15,8 +18,6 @@ metadata:
 spec:
   source:
     url: https://vendor.example/downloads/Example.pkg
-  signature:
-    signer: apple:developer-id:ABCDE12345 # Example Inc
   destinations:
     munki:
       pkginfo:
@@ -33,8 +34,6 @@ spec:
   source:
     url: https://vendor.example/download
     match: https://[^"\s]+Example-[0-9.]+\.dmg
-  signature:
-    signer: apple:developer-id:ABCDE12345 # Example Inc
 ```
 
 `match` selects the one link on the page. With one app in the image, Stemma selects it; add
@@ -48,8 +47,6 @@ spec:
     resolver: github
     repository: example/example
     asset: Example-*-universal.zip
-  signature:
-    signer: apple:developer-id:ABCDE12345 # Example Inc
 ```
 
 The latest release's single matching asset is the input. An app in a ZIP, TAR or tree publishes
@@ -62,8 +59,6 @@ spec:
   source:
     url: https://vendor.example/downloads/Example.dmg
   package_path: Install Example.pkg
-  signature:
-    signer: apple:developer-id:ABCDE12345 # Example Inc
 ```
 
 The selected PKG is published as if it had been downloaded directly.
