@@ -323,6 +323,19 @@ inputs:
       evidence:
         epson:
           version: "13.48"
+  stemma/v1alpha1/MacSoftware/firefox:
+    source:
+      version: 1
+      resolver: http
+      resolver_version: "1"
+      declaration: c374ff4d384218b6cf6a07741442f4599a5b6c91885afdad18a1ff1fb4c60c21
+      observation: {}
+      content:
+        artifact:
+          sha256: e333ec6c98cd58ac807b8ed83eff6e45467cb2a1451b22d654c4add63b0af4e7
+          size: 146204885
+        filename: Firefox 156.0.1.pkg
+        mode: 420
   stemma/v1alpha1/MacSoftware/gamemaker:
     source:
       version: 1
@@ -987,6 +1000,19 @@ inputs:
           sha256: bd5a3310a747a694011ba314cc8accd86396082f96ce9560c9d2d9f2b663df3d
           size: 383120451
         filename: ZoomInstallerIT.pkg
+        mode: 420
+  stemma/v1alpha1/WindowsSoftware/firefox:
+    source:
+      version: 1
+      resolver: http
+      resolver_version: "1"
+      declaration: bdacec7e73f252ceb8e8a92dfb7a5c1c2ef5ffc5e98450b3fe838ceedcb03019
+      observation: {}
+      content:
+        artifact:
+          sha256: d5975a753af9131068fd78835ee3492bd62e5c043d053f6f701f883d02d6a0dc
+          size: 92909568
+        filename: Firefox Setup 156.0.1.msi
         mode: 420
   stemma/v1alpha1/WindowsSoftware/google-chrome:
     source:
