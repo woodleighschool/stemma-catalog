@@ -1016,12 +1016,3 @@ inputs:
           size: 220297216
         filename: ZoomInstallerFull.msi
         mode: 420
-plugins:
-  downloads:
-    image: ghcr.io/woodleighschool/stemma-catalog/downloads:0.2.1@sha256:eaf90b3ed90012ca7f0e9d902829797fbde5011df1ae2966e093f4f69c912bc6
-    digest: sha256:eaf90b3ed90012ca7f0e9d902829797fbde5011df1ae2966e093f4f69c912bc6
-    size: 1605
-  woodstar:
-    image: ghcr.io/woodleighschool/woodstar/stemma:dev-925541f4-20260925145639@sha256:d34a27b46bee3b0ea4a5e84c66ef0d474ae13d89a3936a3a6069d87de4be8375
-    digest: sha256:d34a27b46bee3b0ea4a5e84c66ef0d474ae13d89a3936a3a6069d87de4be8375
-    size: 1605
