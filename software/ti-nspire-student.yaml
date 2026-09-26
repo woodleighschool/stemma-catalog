@@ -10,7 +10,7 @@ spec:
     match: /download/en/ed-tech/[^"\s<>]+/TINspireCX[^"\s<>]*\.dmg
   package_path: TINspireCXStudentSoftware-*.pkg
   application:
-    path: Applications/TI-Nspire CX Student Software.app
+    path: TI-NspireCXStudent.pkg/Payload/Applications/TI-Nspire CX Student Software.app
     installed_path: "/Applications/TI-Nspire CX Student Software.app"
   signature:
     signer: apple:developer-id:TLEVLB8B5D # Texas Instruments

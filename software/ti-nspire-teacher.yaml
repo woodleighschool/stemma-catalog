@@ -10,7 +10,7 @@ spec:
     match: /download/en/ed-tech/[^"\s<>]+/TINspireCXPremiumTeacherSoftware-[^"\s<>]+\.dmg
   package_path: TINspireCXPremiumTeacherSoftware-*.pkg
   application:
-    path: Applications/TI-Nspire CX Premium Teacher Software.app
+    path: TI-NspireCXNavPrm.pkg/Payload/Applications/TI-Nspire CX Premium Teacher Software.app
     installed_path: "/Applications/TI-Nspire CX Premium Teacher Software.app"
   signature:
     signer: apple:developer-id:TLEVLB8B5D # Texas Instruments
