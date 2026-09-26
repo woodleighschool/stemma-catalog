@@ -22,9 +22,6 @@ spec:
         Munki is a set of tools that, used together with a webserver-based  repository of packages and package metadata, can be used by macOS  administrators to manage software installs (and in many cases removals)  on macOS client machines.
       publisher: Mac Admins Open Source
       ignore_version_detection: false
-      included_apps:
-        - id: "{{ evidence['macos.application'].app.bundle_id }}"
-          version: "{{ evidence['macos.application'].app.version }}"
       assignments:
         - intent: required
           all_devices: true

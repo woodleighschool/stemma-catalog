@@ -22,7 +22,8 @@ spec:
     windows-win32:
       destinations:
         intune:
-          architecture: x64
+          architectures:
+            - x64
           minimum_windows_release: Windows11_24H2
           install_experience:
             run_as: system

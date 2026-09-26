@@ -15,7 +15,7 @@ spec:
   destinations:
     woodstar:
       pkginfo:
-        blocking_applications: []
+        blocking_applications: [] # installer auto-quits
         category: Security
         description: The Palo Alto VPN client is required to access organizational resources outside
           of the school network.
