@@ -80,12 +80,42 @@ jobs:
       - name: Check formatting
         run: mise run fmt-check
 
+  agentic-workflows:
+    if: >-
+      ${{ !(startsWith(github.head_ref, 'release-please--')
+      && github.event.pull_request.head.repo.full_name == github.repository) }}
+    name: Agentic Workflows
+    runs-on: ubuntu-26.04
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Setup Mise
+        uses: jdx/mise-action@c2a87611a18de5b3828c5652fe268e992400cb5c # v4.3.0
+        with:
+          experimental: true
+          install_args: --locked github:github/gh-aw
+
+      # The lock files are generated, so a gh-aw bump or a source edit has to
+      # come with a recompile.
+      - name: Compile
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: mise run aw
+
+      - name: Check compiled workflows
+        run: git diff --exit-code -- .github/workflows .github/aw
+
   status:
     if: ${{ !cancelled() }}
     name: Build Success
     needs:
       - workflow-lint
       - format
+      - agentic-workflows
     runs-on: ubuntu-26.04
     permissions: {}
     steps:
