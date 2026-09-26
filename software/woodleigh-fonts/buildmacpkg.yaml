@@ -14,4 +14,4 @@ spec:
       mode: "0755"
   package:
     identifier: au.edu.vic.woodleigh.fonts
-    version: 1.0.0
+    version: 1.0.2
