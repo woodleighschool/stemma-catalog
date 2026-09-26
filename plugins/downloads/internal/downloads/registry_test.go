@@ -53,7 +53,7 @@ func invoke(t *testing.T, registry *plugin.Registry, method, operation string, r
 	if err != nil {
 		t.Fatal(err)
 	}
-	response, err := registry.Handle(t.Context(), plugin.Request{Protocol: plugin.ProtocolVersion, Method: method, Operation: operation, Input: data})
+	response, err := registry.Handle(t.Context(), plugin.Request{Method: method, Operation: operation, Input: data})
 	var result plugin.ResolveResponse
 	if err == nil && len(response.Output) > 0 {
 		err = json.Unmarshal(response.Output, &result)

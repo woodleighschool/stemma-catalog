@@ -92,6 +92,8 @@ plugins:
     trusted: true
 ```
 
+Run `stemma plugins update downloads` after each build to lock it.
+
 ## 📦 Packaging
 
 GoReleaser builds static executables and tar.zst bundles for macOS, Linux and

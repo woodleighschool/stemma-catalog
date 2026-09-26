@@ -4,7 +4,7 @@ go 1.27.0
 
 require (
 	github.com/invopop/jsonschema v0.14.0
-	github.com/woodleighschool/stemma v0.0.0-20260925082331-1baf04f3b0b9
+	github.com/woodleighschool/stemma v0.0.0-20260926120212-7f7777f04f0f
 	howett.net/plist v1.0.1
 )
 
