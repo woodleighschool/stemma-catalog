@@ -20,12 +20,8 @@ env:
 
 jobs:
   goreleaser:
-    name: GoReleaser (${{ matrix.workdir }})
+    name: GoReleaser
     runs-on: ubuntu-26.04
-    strategy:
-      fail-fast: false
-      matrix:
-        workdir: ["plugins/downloads"]
     permissions:
       contents: write
       packages: write
@@ -41,18 +37,19 @@ jobs:
         with:
           cache: false
           experimental: true
-          working_directory: ${{ matrix.workdir }}
-          install_args: --locked go oras
+          working_directory: plugins/downloads
+          install_args: --locked go
 
       - name: Log in to GHCR
-        working-directory: ${{ matrix.workdir }}
-        run: printf '%s' "$REGISTRY_TOKEN" | mise exec -- oras login ghcr.io --username "$GITHUB_ACTOR" --password-stdin
-        env:
-          REGISTRY_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: docker/login-action@dbcb813823bdd20940b903addbd779551569679f # v4.6.0
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Resolve GoReleaser version
         id: goreleaser-version
-        working-directory: ${{ matrix.workdir }}
+        working-directory: plugins/downloads
         run: echo "version=$(mise tool goreleaser --requested)" >> "$GITHUB_OUTPUT"
 
       - name: Run GoReleaser
@@ -61,12 +58,12 @@ jobs:
           distribution: goreleaser
           version: ${{ steps.goreleaser-version.outputs.version }}
           args: release --clean --parallelism=2
-          workdir: ${{ matrix.workdir }}
+          workdir: plugins/downloads
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Publish plugin index
-        working-directory: ${{ matrix.workdir }}
-        run: mise run publish-index "$RELEASE_TAG"
-        env:
-          RELEASE_TAG: ${{ github.event.release.tag_name }}
+      - name: Publish plugin
+        uses: woodleighschool/stemma/actions/publish-plugin@65c604b143dcddc35309538b672004809e27451b # 0.3.0
+        with:
+          dist: plugins/downloads/dist
+          image: ghcr.io/woodleighschool/stemma-catalog/downloads:${{ github.ref_name }}

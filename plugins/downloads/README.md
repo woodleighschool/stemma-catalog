@@ -98,9 +98,9 @@ GoReleaser builds static executables and tar.zst bundles for macOS, Linux and
 Windows on amd64 and arm64. Each bundle contains the executable and licence at
 its root. Run `mise run snapshot` to build all bundles locally.
 
-The release workflow publishes platform bundles to
-`ghcr.io/woodleighschool/stemma-catalog/downloads`, then publishes their OCI index
-under the release tag. Registry authentication uses the standard credential store.
+The release workflow publishes the bundles with Stemma's publish-plugin action as
+one OCI platform index at `ghcr.io/woodleighschool/stemma-catalog/downloads`,
+tagged with the release.
 
 Consumers can use the published image in place of `path`:
 
