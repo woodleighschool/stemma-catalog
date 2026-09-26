@@ -139,13 +139,14 @@ mcp-scripts:
       Run Stemma on the runner, where vendor downloads and the catalog's plugins are reachable, against
       a copy of the working tree. artifact prepares a resource from its sources as they are now and
       prints its inspection; update records its sources and writes the new lockfile to
-      /opt/stemma/stemma.lock.yaml; signature prints the verified signer from the lockfile; check runs
-      the pull request checks against main.
+      /opt/stemma/stemma.lock.yaml; signature prints the verified signer from the lockfile; icon
+      creates the declared icon from the software's own artwork and writes it to /opt/stemma/icons;
+      check runs the pull request checks against main.
     inputs:
       command:
         type: string
         required: true
-        description: artifact, update, signature or check.
+        description: artifact, update, signature, icon or check.
       resource:
         type: string
         description: Kind/name, such as MacSoftware/example. check takes none.
@@ -154,7 +155,7 @@ mcp-scripts:
       set -euo pipefail
 
       case "$INPUT_COMMAND" in
-        artifact | update | signature)
+        artifact | update | signature | icon)
           if [[ ! ${INPUT_RESOURCE:-} =~ ^[A-Za-z][A-Za-z0-9]*/[A-Za-z0-9][A-Za-z0-9._-]*$ ]]; then
             echo "resource must be Kind/name" >&2
             exit 2
@@ -203,6 +204,20 @@ mcp-scripts:
         signature)
           stemma signature "$INPUT_RESOURCE"
           ;;
+        icon)
+          touch "$work/started"
+          stemma icon "$INPUT_RESOURCE"
+          mkdir -p /opt/stemma/icons
+          created=0
+          while IFS= read -r -d '' icon; do
+            cp "$icon" "/opt/stemma/icons/${icon##*/}"
+            echo "Copy /opt/stemma/icons/${icon##*/} to icons/${icon##*/} to keep it."
+            created=1
+          done < <(find "$work/catalog/icons" -type f -newer "$work/started" -print0)
+          if [[ $created -eq 0 ]]; then
+            echo "No icon was created: the declared icon already exists."
+          fi
+          ;;
         check)
           stemma validate
           stemma prepare --changed-since "$(cat /opt/stemma/base)"
@@ -246,7 +261,7 @@ checked out; use the AutoPkg index instead. The runner's tools do the rest:
 - `fetch` returns an HTTPS page, API response or file as curl, and Stemma's `url` source, see it,
   with the final URL and the headers of each redirect. Installers over 5 MiB show headers only.
 - `stemma` runs Stemma on a copy of your working tree, in place of the `stemma` commands in the skill
-  and `AGENTS.md`: `artifact`, `update` and `signature` with `Kind/name`, and `check`.
+  and `AGENTS.md`: `artifact`, `update`, `signature` and `icon` with `Kind/name`, and `check`.
 
 `stemma operations` output is in `/tmp/gh-aw/agent/stemma-operations.json` and the schema in
 `stemma.schema.json`; run the skill's `jq` filters on those files. The `stemma` tool refuses a
@@ -256,15 +271,19 @@ inspecting the file yourself.
 
 ## Steps
 
-1. Draft the document without `signature` or `icon`; a maintainer adds icons on a Mac. Set the
-   descriptive metadata and targets only. Stemma derives versions, identifiers, the application when
-   there's one, receipts, installs, detection, minimum OS, installed size, the uninstall method and
-   whether the item is uninstallable: leave these out even where a neighbour sets them.
+1. Draft the document without `signature`. Set `icon` to the product's name, which its Mac and
+   Windows documents share, and the descriptive metadata and targets. Stemma derives versions,
+   identifiers, the application when there's one, receipts, installs, detection, minimum OS,
+   installed size, the uninstall method and whether the item is uninstallable: leave these out even
+   where a neighbour sets them.
 2. Run `artifact` and fix the document until it prepares what the vendor publishes.
 3. Run `update`, then copy `/opt/stemma/stemma.lock.yaml` over `stemma.lock.yaml`.
 4. Run `signature` and add the fragment it prints.
-5. Run `mise run format`, then `check`.
-6. Commit without trailers and request one pull request titled as a Conventional Commit, such as
+5. Run `icon` and copy the file it names into `icons/`. It renders on Linux, so for Mac software
+   add a bullet saying `mise exec -- stemma icon --force MacSoftware/<name>` on a Mac replaces it
+   with the native one.
+6. Run `mise run format`, then `check`.
+7. Commit without trailers and request one pull request titled as a Conventional Commit, such as
    `feat: add Zoom`.
 
 Decide ordinary choices yourself. When the request can't become a checked document, such as an
