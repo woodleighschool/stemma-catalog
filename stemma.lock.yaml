@@ -988,6 +988,19 @@ inputs:
           size: 383120451
         filename: ZoomInstallerIT.pkg
         mode: 420
+  stemma/v1alpha1/WindowsSoftware/firefox:
+    source:
+      version: 1
+      resolver: http
+      resolver_version: "1"
+      declaration: bdacec7e73f252ceb8e8a92dfb7a5c1c2ef5ffc5e98450b3fe838ceedcb03019
+      observation: {}
+      content:
+        artifact:
+          sha256: d5975a753af9131068fd78835ee3492bd62e5c043d053f6f701f883d02d6a0dc
+          size: 92909568
+        filename: Firefox Setup 156.0.1.msi
+        mode: 420
   stemma/v1alpha1/WindowsSoftware/google-chrome:
     source:
       version: 1
