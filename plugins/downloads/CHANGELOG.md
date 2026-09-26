@@ -1,5 +1,21 @@
 # Changelog
 
+## [0.3.0](https://github.com/woodleighschool/stemma-catalog/compare/0.2.2...0.3.0) (2026-09-26)
+
+
+### ⚠ BREAKING CHANGES
+
+* **deps:** update stemma to the per-kind plugin interfaces
+
+### Bug Fixes
+
+* **deps:** update stemma to the per-kind plugin interfaces ([4a49f34](https://github.com/woodleighschool/stemma-catalog/commit/4a49f34a737991648d80a2bc5df8fd53c26b6fba))
+
+
+### Miscellaneous Chores
+
+* **mise:** update tool goreleaser (2.18.0 → 2.18.2) ([#32](https://github.com/woodleighschool/stemma-catalog/issues/32)) ([f342a93](https://github.com/woodleighschool/stemma-catalog/commit/f342a935642078692804c93c05592de8324ad95e))
+
 ## [0.2.2](https://github.com/woodleighschool/stemma-catalog/compare/0.2.1...0.2.2) (2026-09-26)
 
 
