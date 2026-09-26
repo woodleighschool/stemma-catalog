@@ -31,19 +31,19 @@ backend = "github:woodleighschool/stemma"
 specifiers = ["0.3.0"]
 
 [tools."github:woodleighschool/stemma"."platforms.linux-arm64"]
-checksum = "sha256:0ed50ce296c602b7efffbff1c43e3469dc4ae008c05abd0aa57fa90bad60fd7b"
+checksum = "sha256:a977bb2cb156880d7c158807d1574715ed9d6d2c107bb189c8e0e67795721ae8"
 url = "https://github.com/woodleighschool/stemma/releases/download/0.3.0/stemma_0.3.0_linux_arm64.tar.gz"
-url_api = "https://api.github.com/repos/woodleighschool/stemma/releases/assets/590245118"
+url_api = "https://api.github.com/repos/woodleighschool/stemma/releases/assets/590440428"
 
 [tools."github:woodleighschool/stemma"."platforms.linux-x64"]
-checksum = "sha256:70704b47a52f7c61265d59ea205265ce2b30fb13253d37fbdc20525638279111"
+checksum = "sha256:629fe7e5a547649a397af994d576c0bc6b6198bf4bc9d93621195256a1f943eb"
 url = "https://github.com/woodleighschool/stemma/releases/download/0.3.0/stemma_0.3.0_linux_amd64.tar.gz"
-url_api = "https://api.github.com/repos/woodleighschool/stemma/releases/assets/590245117"
+url_api = "https://api.github.com/repos/woodleighschool/stemma/releases/assets/590440431"
 
 [tools."github:woodleighschool/stemma"."platforms.macos-arm64"]
-checksum = "sha256:ffa11e0371578970bf20ddb57096a51a768f1278082dbae8549045d1801a8579"
+checksum = "sha256:f14efe9b11283d76860616d9d798892c8d26592c2f041cb6091e4b8166066d23"
 url = "https://github.com/woodleighschool/stemma/releases/download/0.3.0/stemma_0.3.0_darwin_arm64.tar.gz"
-url_api = "https://api.github.com/repos/woodleighschool/stemma/releases/assets/590245147"
+url_api = "https://api.github.com/repos/woodleighschool/stemma/releases/assets/590440396"
 
 [[tools.lefthook]]
 version = "2.1.14"
