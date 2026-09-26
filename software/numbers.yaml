@@ -12,8 +12,6 @@ spec:
   destinations:
     woodstar:
       pkginfo:
-        blocking_applications:
-          - Numbers
         category: Productivity
         description: Numbers is Apple's spreadsheet app for creating tables, charts,
           and collaborative workbooks.

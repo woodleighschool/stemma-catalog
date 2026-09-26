@@ -17,8 +17,6 @@ spec:
   destinations:
     woodstar:
       pkginfo:
-        blocking_applications:
-          - TI-Nspire CX Premium Teacher Software
         category: Education
         description: Powerful teacher software that turns a teacher's PC or Mac into
           a virtual TI-Nspire CX graphing calculator environment and supports classroom

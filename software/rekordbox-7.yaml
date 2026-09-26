@@ -19,8 +19,6 @@ spec:
   destinations:
     woodstar:
       pkginfo:
-        blocking_applications:
-          - rekordbox.app
         category: Creativity
         description: rekordbox is Pioneer DJ's all-in-one software for track preparation,
           performance, and management, used for DJ and music production.

@@ -16,8 +16,6 @@ spec:
   destinations:
     woodstar:
       pkginfo:
-        blocking_applications:
-          - WoodSweep
         category: Utilities
         description: >-
           WoodSweep snapshots a configured local account, resets Microsoft Office

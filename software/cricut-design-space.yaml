@@ -14,8 +14,6 @@ spec:
   destinations:
     woodstar:
       pkginfo:
-        blocking_applications:
-          - Cricut Design Space
         category: Creativity
         description: Enjoy total creative freedom over your next DIY project with
           Cricut Design Space. Design, cut, or draw by connecting to Cricut Explore

@@ -12,8 +12,6 @@ spec:
   destinations:
     woodstar:
       pkginfo:
-        blocking_applications:
-          - Pages
         category: Productivity
         description: Pages is Apple's word processor for creating documents and collaborating
           with others.

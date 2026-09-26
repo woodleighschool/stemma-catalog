@@ -17,8 +17,6 @@ spec:
   destinations:
     woodstar:
       pkginfo:
-        blocking_applications:
-          - TI-Nspire CX Student Software
         category: Education
         description: Powerful computer software with a Computer Algebra System (CAS)
           that satisfies math and science curriculum needs from middle school through

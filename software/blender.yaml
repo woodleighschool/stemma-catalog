@@ -16,8 +16,6 @@ spec:
   destinations:
     woodstar:
       pkginfo:
-        blocking_applications:
-          - Blender
         category: Creativity
         description: Blender is a free and open-source 3D computer graphics software
           tool set used for creating animated films, visual effects, art, 3D-printed

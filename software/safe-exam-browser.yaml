@@ -21,8 +21,6 @@ spec:
   destinations:
     woodstar:
       pkginfo:
-        blocking_applications:
-          - Safe Exam Browser.app
         category: Education
         description: Safe Exam Browser provides a secure browser environment for carrying out online assessments.
         developer: ETH Zurich

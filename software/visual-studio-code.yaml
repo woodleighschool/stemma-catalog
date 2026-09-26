@@ -17,8 +17,6 @@ spec:
   destinations:
     woodstar:
       pkginfo:
-        blocking_applications:
-          - Visual Studio Code.app
         category: Programming
         description: >-
           Visual Studio Code is a code editor redefined and optimized for building

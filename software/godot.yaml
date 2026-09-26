@@ -17,8 +17,6 @@ spec:
   destinations:
     woodstar:
       pkginfo:
-        blocking_applications:
-          - Godot.app
         category: Programming
         description: >-
           Godot is a free and open-source game development engine for 2D and 3D games,

@@ -12,8 +12,6 @@ spec:
   destinations:
     woodstar:
       pkginfo:
-        blocking_applications:
-          - Keynote
         category: Productivity
         description: Keynote is Apple's presentation app for creating and delivering
           presentations.

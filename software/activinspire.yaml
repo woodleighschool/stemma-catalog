@@ -17,8 +17,6 @@ spec:
   destinations:
     woodstar:
       pkginfo:
-        blocking_applications:
-          - Inspire
         category: Education
         description: >-
           ActivInspire lesson delivery software is a free teaching software tool

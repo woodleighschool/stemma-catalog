@@ -16,8 +16,6 @@ spec:
   destinations:
     woodstar:
       pkginfo:
-        blocking_applications:
-          - zoom.us
         category: Collaboration
         description: >-
           Zoom is a cloud-based video conferencing platform that can be used for video conferencing

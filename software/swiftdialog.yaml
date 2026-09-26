@@ -31,8 +31,6 @@ spec:
         keep: 1
     woodstar:
       pkginfo:
-        blocking_applications:
-          - Dialog
         category: Utilities
         description: swiftDialog is an open source admin utility for macOS 12 or later
           written in SwiftUI that presents custom dialogs, displays informative messages
