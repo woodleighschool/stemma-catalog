@@ -2,4 +2,15 @@
   $schema: "https://docs.renovatebot.com/renovate-schema.json",
   extends: ["local>woodleighschool/renovate-config"],
   postUpdateOptions: ["gomodTidy", "gomodUpdateImportPaths"],
+  customManagers: [
+    {
+      customType: "regex",
+      description: "Stemma plugin images that name their digest",
+      managerFilePatterns: ["/(^|/)stemma\\.yaml$/"],
+      matchStrings: [
+        "image:\\s*[\"']?(?<depName>[^\\s\"'@]+):(?<currentValue>[^\\s\"'@:/]+)@(?<currentDigest>sha256:[a-f0-9]{64})",
+      ],
+      datasourceTemplate: "docker",
+    },
+  ],
 }
