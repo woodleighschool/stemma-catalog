@@ -1,12 +1,13 @@
 # Download resolvers
 
-Find Audinate, Blender, Python, Cricut, Epson and Microsoft installers. Vendor discovery lives here;
-Stemma owns source locks, cached content and software preparation.
+Find Adobe, Audinate, Blender, Python, Cricut, Epson and Microsoft installers. Vendor discovery
+lives here; Stemma owns source locks, cached content and software preparation.
 
 ## 🧩 Operations
 
 | Resolver    | Configuration                                            | Selection                                                 |
 | ----------- | -------------------------------------------------------- | --------------------------------------------------------- |
+| `adobe`     | None                                                     | Newest Apple silicon Creative Cloud desktop app installer |
 | `audinate`  | `product: dante-controller` or `dante-virtual-soundcard` | First full installer from the product's macOS appcast     |
 | `blender`   | `major`; `architecture: arm64` or `x64`                  | Latest stable macOS DMG within the major                  |
 | `python`    | `branch`, such as `"3.13"`                               | Latest stable macOS PKG within the branch; 3.10 and later |
@@ -30,9 +31,12 @@ downloading. A vendor version names one build, so Stemma reuses what it already
 fetched for that release. Downloads fetch the recorded URL without rediscovery;
 Cricut's signed URLs expire, so Cricut records only the filename and finds a fresh
 URL for each download. Stemma verifies the reviewed content hash.
-Blender, Python and Epson expose their version as evidence, such as
+Adobe, Blender, Python and Epson expose their version as evidence, such as
 `{{ evidence.epson.version }}`. Cricut's version comes from inspecting the application.
 Keep installer signature requirements on the software resource.
+
+Adobe's version joins the release and build directories of the installer URL, which
+is the version the installer's `ApplicationInfo.xml` states.
 
 Audinate uses the Apple Silicon Controller feed and the macOS Virtual Soundcard
 feed. Delta updates are skipped.

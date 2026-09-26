@@ -28,6 +28,13 @@ type Release struct {
 }
 
 func metadata(ctx context.Context, client *http.Client, target *url.URL, allowed func(*url.URL) bool) ([]byte, error) {
+	return metadataAs(ctx, client, target, allowed, "stemma-catalog-downloads")
+}
+
+// metadataAs reads metadata with the given User-Agent. Vendor edges disagree:
+// Epson's rejects Go's default agent and Adobe's accepts little else. An empty
+// agent keeps Go's default.
+func metadataAs(ctx context.Context, client *http.Client, target *url.URL, allowed func(*url.URL) bool, agent string) ([]byte, error) {
 	if !allowed(target) {
 		return nil, errors.New("unexpected metadata URL")
 	}
@@ -54,7 +61,9 @@ func metadata(ctx context.Context, client *http.Client, target *url.URL, allowed
 		return nil, fmt.Errorf("create metadata request: %w", err)
 	}
 	req.Header.Set("Accept", "application/json, text/html;q=0.9, */*;q=0.1")
-	req.Header.Set("User-Agent", "stemma-catalog-downloads")
+	if agent != "" {
+		req.Header.Set("User-Agent", agent)
+	}
 	resp, err := bounded.Do(req)
 	if err != nil {
 		return nil, fmt.Errorf("request metadata: %w", err)

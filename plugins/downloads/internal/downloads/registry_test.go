@@ -76,6 +76,7 @@ func TestRunFetchesOnlyTheObservedArtifact(t *testing.T) {
 		t.Fatal(err)
 	}
 	configs := map[string]string{
+		"adobe":     `{}`,
 		"audinate":  `{"product":"dante-controller"}`,
 		"microsoft": `{"product":"outlook"}`,
 		"blender":   `{"major":5}`,
