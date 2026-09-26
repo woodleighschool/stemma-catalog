@@ -91,7 +91,8 @@ A resource `spec`:
 2. what is acquired: `source` or `inputs`
 3. what is selected or built from it, such as `package_path`, `application`, `content`,
    `setup_file`, `payload`, `scripts` and the built `package`
-4. what is verified: `signature`
+4. what is verified: `signature`. A package build verifies an input before it builds, so its
+   `signature` follows `inputs`
 5. what is published: `minimum_os`, `icon`, `subjects`, then `destinations` last
 
 The Project `spec`: `imports`, `plugins`, `components`, `destinations`, `reconcile`. A destination
