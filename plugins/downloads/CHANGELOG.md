@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.1](https://github.com/woodleighschool/stemma-catalog/compare/0.3.0...0.3.1) (2026-09-26)
+
+
+### Features
+
+* **downloads:** add an Adobe Creative Cloud resolver ([021674b](https://github.com/woodleighschool/stemma-catalog/commit/021674b07e1560aaa9150e6325a99a8161eaa1c2))
+
 ## [0.3.0](https://github.com/woodleighschool/stemma-catalog/compare/0.2.2...0.3.0) (2026-09-26)
 
 
