@@ -15,3 +15,6 @@
 .AppleDouble
 .LSOverride
 ._*
+
+# gh-aw workflow skills
+/.github/skills/
