@@ -1,0 +1,19 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/woodleighschool/stemma-catalog/main/stemma.schema.json
+apiVersion: stemma/v1alpha1
+kind: WindowsSoftware
+metadata:
+  name: firefox
+spec:
+  extends: windows-win32
+  source:
+    url: https://download.mozilla.org/?product=firefox-msi-latest-ssl&os=win64&lang=en-US
+  signature:
+    signer: authenticode:0d65685b2313f545c9f73bd9e4f64ce1cc37f25d4967562b87dc9d83dae61f73 # Mozilla Corporation
+  icon: firefox
+  destinations:
+    intune:
+      display_name: Firefox
+      description: >-
+        Firefox is a free and open-source web browser developed by Mozilla, built to be fast,
+        private and secure.
+      publisher: Mozilla
