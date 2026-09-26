@@ -719,6 +719,23 @@ inputs:
       evidence:
         python:
           version: 3.13.15
+  stemma/v1alpha1/MacSoftware/rectangle:
+    source:
+      version: 1
+      resolver: github
+      resolver_version: "1"
+      declaration: deedb0d1f8172879690f7ddd2fa5a5f80894a21b2c5e4128528969bd6768c2b7
+      observation:
+        asset_id: 588973683
+        release: v2.0
+        release_id: 396835367
+        url: https://github.com/rxhanson/Rectangle/releases/download/v2.0/Rectangle.pkg
+      content:
+        artifact:
+          sha256: fa58fb2f9d85557851f9e67dbe6267f74b52651c2b05b9c78fd50c42fd6db499
+          size: 4693844
+        filename: Rectangle.pkg
+        mode: 420
   stemma/v1alpha1/MacSoftware/rekordbox-7:
     source:
       version: 1
