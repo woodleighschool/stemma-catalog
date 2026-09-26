@@ -149,17 +149,26 @@ mcp-scripts:
         description: artifact, update, signature, icon or check.
       resource:
         type: string
-        description: Kind/name, such as MacSoftware/example. check takes none.
+        description: >-
+          One or more Kind/name separated by spaces, such as MacSoftware/example
+          WindowsSoftware/example. check takes none.
     timeout: 900
     run: |
       set -euo pipefail
 
       case "$INPUT_COMMAND" in
         artifact | update | signature | icon)
-          if [[ ! ${INPUT_RESOURCE:-} =~ ^[A-Za-z][A-Za-z0-9]*/[A-Za-z0-9][A-Za-z0-9._-]*$ ]]; then
-            echo "resource must be Kind/name" >&2
+          read -ra resources <<< "${INPUT_RESOURCE:-}"
+          if [[ ${#resources[@]} -eq 0 ]]; then
+            echo "resource must name at least one Kind/name" >&2
             exit 2
           fi
+          for resource in "${resources[@]}"; do
+            if [[ ! $resource =~ ^[A-Za-z][A-Za-z0-9]*/[A-Za-z0-9][A-Za-z0-9._-]*$ ]]; then
+              echo "resource must be Kind/name: $resource" >&2
+              exit 2
+            fi
+          done
           ;;
         check) ;;
         *)
@@ -190,23 +199,25 @@ mcp-scripts:
 
       case "$INPUT_COMMAND" in
         artifact)
-          artifact=$(stemma artifact "$INPUT_RESOURCE" --no-input-lock)
-          stemma inspect "$artifact"
+          for resource in "${resources[@]}"; do
+            artifact=$(stemma artifact "$resource" --no-input-lock)
+            stemma inspect "$artifact"
+          done
           ;;
         update)
           cp "$work/catalog/stemma.lock.yaml" "$work/previous.lock.yaml"
-          stemma update "$INPUT_RESOURCE"
+          stemma update "${resources[@]}"
           cp "$work/catalog/stemma.lock.yaml" /opt/stemma/stemma.lock.yaml
           diff -u --label a/stemma.lock.yaml --label b/stemma.lock.yaml \
             "$work/previous.lock.yaml" /opt/stemma/stemma.lock.yaml || true
           echo "Copy /opt/stemma/stemma.lock.yaml over stemma.lock.yaml to keep this change."
           ;;
         signature)
-          stemma signature "$INPUT_RESOURCE"
+          stemma signature "${resources[@]}"
           ;;
         icon)
           touch "$work/started"
-          stemma icon "$INPUT_RESOURCE"
+          stemma icon "${resources[@]}"
           mkdir -p /opt/stemma/icons
           created=0
           while IFS= read -r -d '' icon; do
@@ -261,7 +272,9 @@ checked out; use the AutoPkg index instead. The runner's tools do the rest:
 - `fetch` returns an HTTPS page, API response or file as curl, and Stemma's `url` source, see it,
   with the final URL and the headers of each redirect. Installers over 5 MiB show headers only.
 - `stemma` runs Stemma on a copy of your working tree, in place of the `stemma` commands in the skill
-  and `AGENTS.md`: `artifact`, `update`, `signature` and `icon` with `Kind/name`, and `check`.
+  and `AGENTS.md`: `artifact`, `update`, `signature` and `icon` with one or more `Kind/name`, and
+  `check`. Pass all of the request's documents in one call: each call starts from your working tree,
+  so a second `update` would drop the first one's lock entries.
 
 `stemma operations` output is in `/tmp/gh-aw/agent/stemma-operations.json` and the schema in
 `stemma.schema.json`; run the skill's `jq` filters on those files. The `stemma` tool refuses a
@@ -272,10 +285,10 @@ inspecting the file yourself.
 ## Steps
 
 1. Draft the document without `signature`. Set `icon` to the product's name, which its Mac and
-   Windows documents share, and the descriptive metadata and targets. Stemma derives versions,
-   identifiers, the application when there's one, receipts, installs, detection, minimum OS,
-   installed size, the uninstall method and whether the item is uninstallable: leave these out even
-   where a neighbour sets them.
+   Windows documents share, the descriptive metadata, and targets from the `AGENTS.md` defaults
+   rather than a neighbour's. Stemma derives versions, identifiers, the application when there's
+   one, receipts, installs, detection, minimum OS, installed size, the uninstall method and whether
+   the item is uninstallable: leave these out even where a neighbour sets them.
 2. Run `artifact` and fix the document until it prepares what the vendor publishes.
 3. Run `update`, then copy `/opt/stemma/stemma.lock.yaml` over `stemma.lock.yaml`.
 4. Run `signature` and add the fragment it prints.
@@ -283,8 +296,8 @@ inspecting the file yourself.
    add a bullet saying `mise exec -- stemma icon --force MacSoftware/<name>` on a Mac replaces it
    with the native one.
 6. Run `mise run format`, then `check`.
-7. Commit without trailers and request one pull request titled as a Conventional Commit, such as
-   `feat: add Zoom`.
+7. Check your documents against step 1 once more, then commit without trailers and request one
+   pull request titled as a Conventional Commit, such as `feat: add Zoom`.
 
 Decide ordinary choices yourself. When the request can't become a checked document, such as an
 ambiguous product, no sustainable verified source, a needed plugin or project change, or a value
