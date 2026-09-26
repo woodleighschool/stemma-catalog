@@ -75,7 +75,11 @@ steps:
       mkdir -p /tmp/gh-aw/agent
       /opt/stemma/bin/stemma --cache-dir /opt/stemma/cache operations > /tmp/gh-aw/agent/stemma-operations.json
       rm -rf "$DOCKER_CONFIG"
-      echo "MISE_OFFLINE=1" >> "$GITHUB_ENV"
+      {
+        echo "MISE_OFFLINE=1"
+        echo "MISE_AUTO_INSTALL=false"
+        echo "MISE_DISABLE_TOOLS=github:woodleighschool/stemma"
+      } >> "$GITHUB_ENV"
 
 tools:
   edit:
@@ -103,7 +107,6 @@ mcp-scripts:
         required: true
     timeout: 90
     run: |
-      set -uo pipefail
       case "$INPUT_URL" in
         https://*) ;;
         *)
@@ -114,14 +117,14 @@ mcp-scripts:
       # Files stay in the runner's private directory: the agent can write /tmp.
       work=$(mktemp -d /opt/stemma/work/fetch.XXXXXX) || exit 1
       trap 'rm -rf "$work"' EXIT
+      status=0
       url=$(curl --silent --show-error --location --proto '=https' --proto-redir '=https' \
         --connect-timeout 15 --max-time 60 --max-filesize 5242880 \
         --dump-header "$work/headers" --output "$work/body" --write-out '%{url_effective}' \
-        "$INPUT_URL" 2> "$work/error")
-      status=$?
+        "$INPUT_URL" 2> "$work/error") || status=$?
       echo "URL: $url"
       grep -i -E '^(HTTP/|location:|content-type:|content-length:|content-disposition:|last-modified:)' \
-        "$work/headers"
+        "$work/headers" || true
       if [[ $status -eq 0 ]]; then
         echo && cat "$work/body"
       elif grep -q "Maximum file size exceeded" "$work/error"; then
@@ -254,7 +257,9 @@ inspecting the file yourself.
 ## Steps
 
 1. Draft the document without `signature` or `icon`; a maintainer adds icons on a Mac. Set the
-   descriptive metadata and targets, and leave out what Stemma derives even when a neighbour sets it.
+   descriptive metadata and targets only. Stemma derives versions, identifiers, the application when
+   there's one, receipts, installs, detection, minimum OS, installed size, the uninstall method and
+   whether the item is uninstallable: leave these out even where a neighbour sets them.
 2. Run `artifact` and fix the document until it prepares what the vendor publishes.
 3. Run `update`, then copy `/opt/stemma/stemma.lock.yaml` over `stemma.lock.yaml`.
 4. Run `signature` and add the fragment it prints.
@@ -269,7 +274,8 @@ this runner doesn't have, change nothing and say why on the issue.
 ## Output
 
 Start the pull request description with `Closes #N` when it delivers the whole request, or
-`Refs #N` when it delivers part. Follow with at most five short bullets: the source and why it won,
+`Refs #N` when it delivers part; each requested platform counts, so a missing Mac or Windows
+document makes it partial. Follow with at most five short bullets: the source and why it won,
 the version and identifiers, the signer, and anything a reviewer must decide. Leave out headings,
 URLs (the diff has them) and the checks you ran (the pull request runs its own).
 
