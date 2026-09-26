@@ -1,6 +1,6 @@
 # stemma-catalog
 
-Our software catalog and Stemma plugins.
+Our software catalog, its Stemma plugins and an agent skill for Stemma catalogs.
 
 ## 📚 Catalog
 
@@ -24,6 +24,18 @@ stemma validate --offline
 
 See the [download resolvers](plugins/downloads/README.md) for configuration and
 packaging. Keep credentials and local tool paths in `.env` or the shell environment.
+
+## 🤖 Agent skill
+
+`skills/stemma-catalog` guides coding agents through adding and maintaining software
+in a Stemma catalog: finding vendor sources, writing and ordering documents, checking
+prepared artifacts and deciding when a vendor needs a resolver plugin. It works from
+the installed Stemma's operations and schema, so it suits catalogs with other plugins.
+Install it for another catalog with:
+
+```sh
+pnpm dlx skills add woodleighschool/stemma-catalog
+```
 
 ## 📝 Editor schema
 
