@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.2.2](https://github.com/woodleighschool/stemma-catalog/compare/0.2.1...0.2.2) (2026-09-26)
+
+
+### Continuous Integration
+
+* **downloads:** publish the plugin with the Stemma action ([df2cf21](https://github.com/woodleighschool/stemma-catalog/commit/df2cf21a6fa9ee49a9483dc734e9612577cbb891))
+
+
+### Miscellaneous Chores
+
+* align repository tooling ([ee31ada](https://github.com/woodleighschool/stemma-catalog/commit/ee31adad5bbfcf07cd128ad1315cf57341974e15))
+
 ## [0.2.1](https://github.com/woodleighschool/stemma-catalog/compare/0.2.0...0.2.1) (2026-09-25)
 
 
