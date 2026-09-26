@@ -27,4 +27,4 @@ spec:
       path: .
   package:
     identifier: com.github.woodleighschool.pkg.Sophos
-    version: "{{ inputs.vendor.facts['Sophos Installer.app'].app.version }}-1"
+    version: "{{ inputs.vendor.facts['Sophos Installer.app'].app.version }}-2"
