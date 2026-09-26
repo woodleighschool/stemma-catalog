@@ -2153,8 +2153,8 @@
               "type": "string"
             }
           ],
-          "default": "https://graph.microsoft.com/v1.0",
-          "description": "Graph base URL ending in /v1.0. macOS apps select /beta automatically. HTTPS is required."
+          "default": "https://graph.microsoft.com",
+          "description": "Graph service origin, such as https://graph.microsoft.us for a national cloud. HTTPS is required; app management uses the beta API."
         },
         "tenant_id": {
           "anyOf": [
@@ -2336,6 +2336,12 @@
       "anyOf": [
         {
           "additionalProperties": false,
+          "not": {
+            "required": [
+              "install_command",
+              "msi_properties"
+            ]
+          },
           "properties": {
             "app_id": {
               "anyOf": [
@@ -2350,14 +2356,33 @@
               ],
               "description": "Pin this software to an existing Intune app, which must exist and must not carry another software's identity marker. Omit to find the app by the identity marker in its notes, or create one."
             },
-            "architecture": {
+            "architectures": {
               "anyOf": [
                 {
-                  "enum": [
-                    "x86",
-                    "x64",
-                    "arm64",
-                    null
+                  "anyOf": [
+                    {
+                      "items": {
+                        "anyOf": [
+                          {
+                            "enum": [
+                              "x86",
+                              "x64",
+                              "arm64"
+                            ]
+                          },
+                          {
+                            "pattern": "^\\{\\{[\\s\\S]+\\}\\}$",
+                            "type": "string"
+                          }
+                        ]
+                      },
+                      "minItems": 1,
+                      "type": "array",
+                      "uniqueItems": true
+                    },
+                    {
+                      "type": "null"
+                    }
                   ]
                 },
                 {
@@ -2365,7 +2390,7 @@
                   "type": "string"
                 }
               ],
-              "description": "Supported processor architecture; null clears it on an existing app. A non-null value is required for creation."
+              "description": "Processor architectures the app installs on, such as [x64, arm64] for an x64 app that also runs emulated on Arm. Null clears the restriction on an existing app; a list is required for creation."
             },
             "assignments": {
               "anyOf": [
@@ -2374,6 +2399,11 @@
                     "anyOf": [
                       {
                         "additionalProperties": false,
+                        "if": {
+                          "required": [
+                            "exclude_group"
+                          ]
+                        },
                         "oneOf": [
                           {
                             "required": [
@@ -2434,6 +2464,66 @@
                             ],
                             "description": "Entra group object ID to exclude."
                           },
+                          "filter": {
+                            "anyOf": [
+                              {
+                                "anyOf": [
+                                  {
+                                    "additionalProperties": false,
+                                    "properties": {
+                                      "id": {
+                                        "anyOf": [
+                                          {
+                                            "minLength": 1,
+                                            "type": "string"
+                                          },
+                                          {
+                                            "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                                            "type": "string"
+                                          }
+                                        ],
+                                        "description": "Intune assignment filter ID."
+                                      },
+                                      "mode": {
+                                        "anyOf": [
+                                          {
+                                            "enum": [
+                                              "include",
+                                              "exclude"
+                                            ],
+                                            "type": "string"
+                                          },
+                                          {
+                                            "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                                            "type": "string"
+                                          }
+                                        ],
+                                        "description": "Include or exclude the devices the filter matches."
+                                      }
+                                    },
+                                    "propertyNames": {
+                                      "not": {
+                                        "pattern": "\\{\\{"
+                                      }
+                                    },
+                                    "required": [
+                                      "id",
+                                      "mode"
+                                    ],
+                                    "type": "object"
+                                  },
+                                  {
+                                    "type": "null"
+                                  }
+                                ]
+                              },
+                              {
+                                "pattern": "^\\{\\{[\\s\\S]+\\}\\}$",
+                                "type": "string"
+                              }
+                            ],
+                            "description": "Assignment filter for an included target; null removes it. Omit to keep the assignment's filter."
+                          },
                           "group": {
                             "anyOf": [
                               {
@@ -2464,6 +2554,23 @@
                               }
                             ],
                             "description": "Deployment intent."
+                          },
+                          "notifications": {
+                            "anyOf": [
+                              {
+                                "enum": [
+                                  "show_all",
+                                  "show_reboot",
+                                  "hide_all"
+                                ],
+                                "type": "string"
+                              },
+                              {
+                                "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                                "type": "string"
+                              }
+                            ],
+                            "description": "Win32 end-user notifications for an included target. Omit to keep the assignment's setting."
                           }
                         },
                         "propertyNames": {
@@ -2474,6 +2581,22 @@
                         "required": [
                           "intent"
                         ],
+                        "then": {
+                          "not": {
+                            "anyOf": [
+                              {
+                                "required": [
+                                  "filter"
+                                ]
+                              },
+                              {
+                                "required": [
+                                  "notifications"
+                                ]
+                              }
+                            ]
+                          }
+                        },
                         "type": "object"
                       },
                       {
@@ -2490,42 +2613,7 @@
                   "type": "string"
                 }
               ],
-              "description": "Own the complete assignment collection. Omission preserves targeting; [] clears assignments. Each assignment has one target. Existing settings on matching targets are preserved. Filters and custom assignment settings cannot be configured."
-            },
-            "content": {
-              "anyOf": [
-                {
-                  "additionalProperties": false,
-                  "properties": {
-                    "setup_file": {
-                      "anyOf": [
-                        {
-                          "minLength": 1,
-                          "type": "string"
-                        },
-                        {
-                          "pattern": "\\{\\{[\\s\\S]+\\}\\}",
-                          "type": "string"
-                        }
-                      ],
-                      "description": "Relative entrypoint inside the immutable setup tree. Defaults to the artifact entrypoint, or the filename for a single file; conflicting entries are rejected. All tree members are included in the provider-prepared Intune envelope."
-                    }
-                  },
-                  "propertyNames": {
-                    "not": {
-                      "pattern": "\\{\\{"
-                    }
-                  },
-                  "required": [
-                    "setup_file"
-                  ],
-                  "type": "object"
-                },
-                {
-                  "pattern": "^\\{\\{[\\s\\S]+\\}\\}$",
-                  "type": "string"
-                }
-              ]
+              "description": "Own the complete assignment collection. Omission preserves targeting; [] clears assignments. Each assignment has one target, and settings it omits keep their values on a matching target."
             },
             "dependencies": {
               "anyOf": [
@@ -2924,10 +3012,32 @@
                           {
                             "additionalProperties": false,
                             "else": {
-                              "required": [
-                                "operator",
-                                "value"
-                              ]
+                              "else": {
+                                "required": [
+                                  "operator",
+                                  "value"
+                                ]
+                              },
+                              "if": {
+                                "properties": {
+                                  "property": {
+                                    "anyOf": [
+                                      {
+                                        "const": "version"
+                                      },
+                                      {
+                                        "pattern": "^\\{\\{[\\s\\S]+\\}\\}$",
+                                        "type": "string"
+                                      }
+                                    ]
+                                  }
+                                },
+                                "propertyNames": {
+                                  "not": {
+                                    "pattern": "\\{\\{"
+                                  }
+                                }
+                              }
                             },
                             "if": {
                               "properties": {
@@ -2993,7 +3103,7 @@
                                     "type": "string"
                                   }
                                 ],
-                                "description": "Comparison operator."
+                                "description": "Comparison operator. A version comparison defaults to greater_than_or_equal."
                               },
                               "path": {
                                 "anyOf": [
@@ -3049,7 +3159,7 @@
                                     "type": "string"
                                   }
                                 ],
-                                "description": "Compared value. A stable file path with version greater_than_or_equal detects already-newer installations; equal intentionally does not."
+                                "description": "Compared value. A version comparison defaults to the managed version. A stable file path with version greater_than_or_equal detects already-newer installations; equal intentionally does not."
                               }
                             },
                             "propertyNames": {
@@ -3084,10 +3194,32 @@
                           {
                             "additionalProperties": false,
                             "else": {
-                              "required": [
-                                "operator",
-                                "value"
-                              ]
+                              "else": {
+                                "required": [
+                                  "operator",
+                                  "value"
+                                ]
+                              },
+                              "if": {
+                                "properties": {
+                                  "property": {
+                                    "anyOf": [
+                                      {
+                                        "const": "version"
+                                      },
+                                      {
+                                        "pattern": "^\\{\\{[\\s\\S]+\\}\\}$",
+                                        "type": "string"
+                                      }
+                                    ]
+                                  }
+                                },
+                                "propertyNames": {
+                                  "not": {
+                                    "pattern": "\\{\\{"
+                                  }
+                                }
+                              }
                             },
                             "if": {
                               "properties": {
@@ -3156,7 +3288,7 @@
                                     "type": "string"
                                   }
                                 ],
-                                "description": "Comparison operator."
+                                "description": "Comparison operator. A version comparison defaults to greater_than_or_equal."
                               },
                               "property": {
                                 "anyOf": [
@@ -3198,7 +3330,7 @@
                                     "type": "string"
                                   }
                                 ],
-                                "description": "Compared value. Version greater_than_or_equal can detect already-newer installations at a stable vendor registry value."
+                                "description": "Compared value. A version comparison defaults to the managed version. Version greater_than_or_equal can detect already-newer installations at a stable vendor registry value."
                               },
                               "value_name": {
                                 "anyOf": [
@@ -3642,6 +3774,43 @@
               ],
               "description": "MSI information. The selected setup MSI supplies it; declared fields override it."
             },
+            "msi_properties": {
+              "anyOf": [
+                {
+                  "additionalProperties": {
+                    "anyOf": [
+                      {
+                        "pattern": "^[^\\r\\n\\x00]*$",
+                        "type": "string"
+                      },
+                      {
+                        "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                        "type": "string"
+                      }
+                    ]
+                  },
+                  "minProperties": 1,
+                  "propertyNames": {
+                    "allOf": [
+                      {
+                        "pattern": "^[A-Za-z_][A-Za-z0-9_.]*$"
+                      },
+                      {
+                        "not": {
+                          "pattern": "\\{\\{"
+                        }
+                      }
+                    ]
+                  },
+                  "type": "object"
+                },
+                {
+                  "pattern": "^\\{\\{[\\s\\S]+\\}\\}$",
+                  "type": "string"
+                }
+              ],
+              "description": "Windows Installer properties the derived install command passes to the selected setup MSI, such as PORTAL for GlobalProtect. Values are quoted in name order. Use instead of install_command."
+            },
             "notes": {
               "anyOf": [
                 {
@@ -3983,6 +4152,11 @@
                     "anyOf": [
                       {
                         "additionalProperties": false,
+                        "if": {
+                          "required": [
+                            "exclude_group"
+                          ]
+                        },
                         "oneOf": [
                           {
                             "required": [
@@ -4043,6 +4217,66 @@
                             ],
                             "description": "Entra group object ID to exclude."
                           },
+                          "filter": {
+                            "anyOf": [
+                              {
+                                "anyOf": [
+                                  {
+                                    "additionalProperties": false,
+                                    "properties": {
+                                      "id": {
+                                        "anyOf": [
+                                          {
+                                            "minLength": 1,
+                                            "type": "string"
+                                          },
+                                          {
+                                            "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                                            "type": "string"
+                                          }
+                                        ],
+                                        "description": "Intune assignment filter ID."
+                                      },
+                                      "mode": {
+                                        "anyOf": [
+                                          {
+                                            "enum": [
+                                              "include",
+                                              "exclude"
+                                            ],
+                                            "type": "string"
+                                          },
+                                          {
+                                            "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                                            "type": "string"
+                                          }
+                                        ],
+                                        "description": "Include or exclude the devices the filter matches."
+                                      }
+                                    },
+                                    "propertyNames": {
+                                      "not": {
+                                        "pattern": "\\{\\{"
+                                      }
+                                    },
+                                    "required": [
+                                      "id",
+                                      "mode"
+                                    ],
+                                    "type": "object"
+                                  },
+                                  {
+                                    "type": "null"
+                                  }
+                                ]
+                              },
+                              {
+                                "pattern": "^\\{\\{[\\s\\S]+\\}\\}$",
+                                "type": "string"
+                              }
+                            ],
+                            "description": "Assignment filter for an included target; null removes it. Omit to keep the assignment's filter."
+                          },
                           "group": {
                             "anyOf": [
                               {
@@ -4073,6 +4307,23 @@
                               }
                             ],
                             "description": "Deployment intent."
+                          },
+                          "notifications": {
+                            "anyOf": [
+                              {
+                                "enum": [
+                                  "show_all",
+                                  "show_reboot",
+                                  "hide_all"
+                                ],
+                                "type": "string"
+                              },
+                              {
+                                "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                                "type": "string"
+                              }
+                            ],
+                            "description": "Win32 end-user notifications for an included target. Omit to keep the assignment's setting."
                           }
                         },
                         "propertyNames": {
@@ -4083,6 +4334,22 @@
                         "required": [
                           "intent"
                         ],
+                        "then": {
+                          "not": {
+                            "anyOf": [
+                              {
+                                "required": [
+                                  "filter"
+                                ]
+                              },
+                              {
+                                "required": [
+                                  "notifications"
+                                ]
+                              }
+                            ]
+                          }
+                        },
                         "type": "object"
                       },
                       {
@@ -4099,7 +4366,7 @@
                   "type": "string"
                 }
               ],
-              "description": "Own the complete assignment collection. Omission preserves targeting; [] clears assignments. Each assignment has one target. Existing settings on matching targets are preserved. Filters and custom assignment settings cannot be configured."
+              "description": "Own the complete assignment collection. Omission preserves targeting; [] clears assignments. Each assignment has one target, and settings it omits keep their values on a matching target."
             },
             "description": {
               "anyOf": [
@@ -4184,7 +4451,7 @@
                                 "type": "string"
                               }
                             ],
-                            "description": "Application bundle identifier or unmanaged PKG receipt identifier."
+                            "description": "Application bundle identifier, or package receipt identifier for a PKG app."
                           },
                           "version": {
                             "anyOf": [
@@ -4227,7 +4494,7 @@
                   "type": "string"
                 }
               ],
-              "description": "Identifiers and versions that detect the installation; the first identifies the app. Derived from applications, selected first, or receipts for an unmanaged PKG without applications, including payloadless packages. Line-of-business apps only include applications installed under /Applications. Explicit entries replace the derived list. Identifiers must be unique."
+              "description": "Identifiers and versions that detect the installation; the first identifies the app. A PKG app accepts package receipts as well as applications. Derived from applications, selected first, or from receipts when a PKG installs no applications, as a payloadless package does. Line-of-business apps only include applications installed under /Applications. Explicit entries replace the derived list. Identifiers must be unique."
             },
             "information_url": {
               "anyOf": [
@@ -4392,6 +4659,11 @@
                     "anyOf": [
                       {
                         "additionalProperties": false,
+                        "if": {
+                          "required": [
+                            "exclude_group"
+                          ]
+                        },
                         "oneOf": [
                           {
                             "required": [
@@ -4452,6 +4724,66 @@
                             ],
                             "description": "Entra group object ID to exclude."
                           },
+                          "filter": {
+                            "anyOf": [
+                              {
+                                "anyOf": [
+                                  {
+                                    "additionalProperties": false,
+                                    "properties": {
+                                      "id": {
+                                        "anyOf": [
+                                          {
+                                            "minLength": 1,
+                                            "type": "string"
+                                          },
+                                          {
+                                            "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                                            "type": "string"
+                                          }
+                                        ],
+                                        "description": "Intune assignment filter ID."
+                                      },
+                                      "mode": {
+                                        "anyOf": [
+                                          {
+                                            "enum": [
+                                              "include",
+                                              "exclude"
+                                            ],
+                                            "type": "string"
+                                          },
+                                          {
+                                            "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                                            "type": "string"
+                                          }
+                                        ],
+                                        "description": "Include or exclude the devices the filter matches."
+                                      }
+                                    },
+                                    "propertyNames": {
+                                      "not": {
+                                        "pattern": "\\{\\{"
+                                      }
+                                    },
+                                    "required": [
+                                      "id",
+                                      "mode"
+                                    ],
+                                    "type": "object"
+                                  },
+                                  {
+                                    "type": "null"
+                                  }
+                                ]
+                              },
+                              {
+                                "pattern": "^\\{\\{[\\s\\S]+\\}\\}$",
+                                "type": "string"
+                              }
+                            ],
+                            "description": "Assignment filter for an included target; null removes it. Omit to keep the assignment's filter."
+                          },
                           "group": {
                             "anyOf": [
                               {
@@ -4482,6 +4814,23 @@
                               }
                             ],
                             "description": "Deployment intent."
+                          },
+                          "notifications": {
+                            "anyOf": [
+                              {
+                                "enum": [
+                                  "show_all",
+                                  "show_reboot",
+                                  "hide_all"
+                                ],
+                                "type": "string"
+                              },
+                              {
+                                "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                                "type": "string"
+                              }
+                            ],
+                            "description": "Win32 end-user notifications for an included target. Omit to keep the assignment's setting."
                           }
                         },
                         "propertyNames": {
@@ -4492,6 +4841,22 @@
                         "required": [
                           "intent"
                         ],
+                        "then": {
+                          "not": {
+                            "anyOf": [
+                              {
+                                "required": [
+                                  "filter"
+                                ]
+                              },
+                              {
+                                "required": [
+                                  "notifications"
+                                ]
+                              }
+                            ]
+                          }
+                        },
                         "type": "object"
                       },
                       {
@@ -4508,7 +4873,7 @@
                   "type": "string"
                 }
               ],
-              "description": "Own the complete assignment collection. Omission preserves targeting; [] clears assignments. Each assignment has one target. Existing settings on matching targets are preserved. Filters and custom assignment settings cannot be configured."
+              "description": "Own the complete assignment collection. Omission preserves targeting; [] clears assignments. Each assignment has one target, and settings it omits keep their values on a matching target."
             },
             "description": {
               "anyOf": [
@@ -4593,7 +4958,7 @@
                                 "type": "string"
                               }
                             ],
-                            "description": "Application bundle identifier or unmanaged PKG receipt identifier."
+                            "description": "Application bundle identifier, or package receipt identifier for a PKG app."
                           },
                           "version": {
                             "anyOf": [
@@ -4636,7 +5001,7 @@
                   "type": "string"
                 }
               ],
-              "description": "Identifiers and versions that detect the installation; the first identifies the app. Derived from applications, selected first, or receipts for an unmanaged PKG without applications, including payloadless packages. Line-of-business apps only include applications installed under /Applications. Explicit entries replace the derived list. Identifiers must be unique."
+              "description": "Identifiers and versions that detect the installation; the first identifies the app. A PKG app accepts package receipts as well as applications. Derived from applications, selected first, or from receipts when a PKG installs no applications, as a payloadless package does. Line-of-business apps only include applications installed under /Applications. Explicit entries replace the derived list. Identifiers must be unique."
             },
             "information_url": {
               "anyOf": [
@@ -9686,18 +10051,6 @@
                             }
                           ],
                           "description": "Additional files keyed by their relative paths in the setup tree. Each value selects its own input."
-                        },
-                        "setup_file": {
-                          "anyOf": [
-                            {
-                              "type": "string"
-                            },
-                            {
-                              "pattern": "\\{\\{[\\s\\S]+\\}\\}",
-                              "type": "string"
-                            }
-                          ],
-                          "description": "Relative Windows payload path of the executable to run. Required when the source tree has no selected entrypoint."
                         }
                       },
                       "propertyNames": {
@@ -9712,7 +10065,7 @@
                       "type": "string"
                     }
                   ],
-                  "description": "Assemble a setup tree from the vendor installer and optional supporting files."
+                  "description": "Supporting files added to the setup directory beside the vendor installer."
                 },
                 "destinations": {
                   "additionalProperties": false,
@@ -9740,6 +10093,18 @@
                     }
                   ],
                   "description": "Name of the icon asset icons/\u003cname\u003e.png that destinations publish. Create it with stemma icon or commit a square PNG."
+                },
+                "setup_file": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                      "type": "string"
+                    }
+                  ],
+                  "description": "Setup-relative path or glob selecting the file Intune records as the setup entry point. It may name any file, such as a wrapper script. Omit to use the installer of a single-file source, the entry point of a resource output, or the only MSI or EXE in a setup directory or archive."
                 },
                 "signature": {
                   "anyOf": [
@@ -9778,7 +10143,7 @@
                 },
                 "source": {
                   "$ref": "https://stemma.invalid/catalog.schema.json#/$defs/Input",
-                  "description": "Vendor installer or a resource output. A WindowsSoftware document requires a source."
+                  "description": "Vendor installer, setup directory or ZIP or TAR archive holding a setup directory, or a resource output. A WindowsSoftware document requires a source."
                 },
                 "subjects": {
                   "anyOf": [
@@ -9863,6 +10228,18 @@
                     }
                   ],
                   "description": "Named inspection subjects exposed in destination expressions as facts.\u003cname\u003e."
+                },
+                "version_file": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                      "type": "string"
+                    }
+                  ],
+                  "description": "Name of the file the setup MSI installs whose File table version is the managed version, such as Zoom.exe. It must name one versioned file. Omit to use the MSI ProductVersion."
                 }
               },
               "propertyNames": {
@@ -9906,18 +10283,6 @@
                                 }
                               ],
                               "description": "Additional files keyed by their relative paths in the setup tree. Each value selects its own input."
-                            },
-                            "setup_file": {
-                              "anyOf": [
-                                {
-                                  "type": "string"
-                                },
-                                {
-                                  "pattern": "\\{\\{[\\s\\S]+\\}\\}",
-                                  "type": "string"
-                                }
-                              ],
-                              "description": "Relative Windows payload path of the executable to run. Required when the source tree has no selected entrypoint."
                             }
                           },
                           "propertyNames": {
@@ -9932,7 +10297,7 @@
                           "type": "string"
                         }
                       ],
-                      "description": "Assemble a setup tree from the vendor installer and optional supporting files."
+                      "description": "Supporting files added to the setup directory beside the vendor installer."
                     },
                     "destinations": {
                       "additionalProperties": false,
@@ -9964,6 +10329,18 @@
                         }
                       ],
                       "description": "Name of the icon asset icons/\u003cname\u003e.png that destinations publish. Create it with stemma icon or commit a square PNG."
+                    },
+                    "setup_file": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                          "type": "string"
+                        }
+                      ],
+                      "description": "Setup-relative path or glob selecting the file Intune records as the setup entry point. It may name any file, such as a wrapper script. Omit to use the installer of a single-file source, the entry point of a resource output, or the only MSI or EXE in a setup directory or archive."
                     },
                     "signature": {
                       "anyOf": [
@@ -9999,7 +10376,7 @@
                     },
                     "source": {
                       "$ref": "https://stemma.invalid/catalog.schema.json#/$defs/PartialInput",
-                      "description": "Vendor installer or a resource output. A WindowsSoftware document requires a source."
+                      "description": "Vendor installer, setup directory or ZIP or TAR archive holding a setup directory, or a resource output. A WindowsSoftware document requires a source."
                     },
                     "subjects": {
                       "anyOf": [
@@ -10084,6 +10461,18 @@
                         }
                       ],
                       "description": "Named inspection subjects exposed in destination expressions as facts.\u003cname\u003e."
+                    },
+                    "version_file": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                          "type": "string"
+                        }
+                      ],
+                      "description": "Name of the file the setup MSI installs whose File table version is the managed version, such as Zoom.exe. It must name one versioned file. Omit to use the MSI ProductVersion."
                     }
                   },
                   "propertyNames": {
