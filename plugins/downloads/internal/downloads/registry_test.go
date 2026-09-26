@@ -40,9 +40,9 @@ func fixtureClient(t *testing.T, handler http.HandlerFunc) *http.Client {
 	transport := server.Client().Transport
 	client := Client()
 	client.Transport = transportFunc(func(request *http.Request) (*http.Response, error) {
-		copy := request.Clone(request.Context())
-		copy.URL.Scheme, copy.URL.Host = target.Scheme, target.Host
-		return transport.RoundTrip(copy)
+		clone := request.Clone(request.Context())
+		clone.URL.Scheme, clone.URL.Host = target.Scheme, target.Host
+		return transport.RoundTrip(clone)
 	})
 	return client
 }

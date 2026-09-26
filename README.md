@@ -32,3 +32,12 @@ YAML files reference the tracked root `stemma.schema.json` through its
 in their `$schema` modelines. Run `mise run schema` after changing plugin types,
 registrations or destination names, then commit the regenerated schema. The command
 uses the plugins configured in `stemma.yaml`; `.stemma/` contains disposable cache.
+
+## 🧑‍💻 Development
+
+Mise owns the toolchain and commands; `mise install` also installs the Git hooks:
+
+```sh
+mise install
+mise run format
+```
