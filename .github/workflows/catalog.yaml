@@ -11,6 +11,7 @@ on:
       - stemma.lock.yaml
       - .mise/**
       - .github/workflows/catalog.yaml
+      - .github/actions/stemma-dev/**
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number }}
@@ -38,12 +39,9 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
 
-      - name: Setup Mise
-        uses: jdx/mise-action@c2a87611a18de5b3828c5652fe268e992400cb5c # v4.3.0
-        with:
-          cache: false
-          experimental: true
-          install_args: --locked github:woodleighschool/stemma
+      # Stemma dev until it's released; then install the mise pin again.
+      - name: Setup Stemma
+        uses: $/.github/actions/stemma-dev
 
       # Stemma pulls plugin images with Docker credentials.
       - name: Log in to GHCR

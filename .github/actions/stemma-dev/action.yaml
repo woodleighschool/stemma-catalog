@@ -1,0 +1,32 @@
+---
+# yaml-language-server: $schema=https://json.schemastore.org/github-action.json
+name: Stemma from dev
+description: Build Stemma from its dev branch into /usr/local/bin until dev is released
+
+runs:
+  using: composite
+  steps:
+    - name: Checkout Stemma
+      uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      with:
+        repository: woodleighschool/stemma
+        ref: dev
+        path: .stemma-dev
+        persist-credentials: false
+
+    - name: Setup Go
+      uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7.0.0
+      with:
+        go-version-file: .stemma-dev/go.mod
+        cache-dependency-path: .stemma-dev/go.sum
+
+    - name: Build Stemma
+      shell: bash
+      env:
+        CGO_ENABLED: "0"
+      run: |
+        commit=$(git -C .stemma-dev rev-parse --short HEAD)
+        go build -C .stemma-dev -trimpath -ldflags "-s -w -X main.version=dev -X main.commit=$commit" \
+          -o "$RUNNER_TEMP/stemma" ./cmd/stemma
+        sudo install -m 0755 "$RUNNER_TEMP/stemma" /usr/local/bin/stemma
+        rm -rf .stemma-dev "$RUNNER_TEMP/stemma"
