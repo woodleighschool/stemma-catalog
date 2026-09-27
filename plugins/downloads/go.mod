@@ -1,10 +1,10 @@
 module github.com/woodleighschool/stemma-catalog/plugins/downloads
 
-go 1.27.0
+go 1.27.1
 
 require (
 	github.com/invopop/jsonschema v0.14.0
-	github.com/woodleighschool/stemma v0.0.0-20260927014057-f029a477be92
+	github.com/woodleighschool/stemma v0.0.0-20260927072409-d6b6c84ec3bc
 	howett.net/plist v1.0.1
 )
 
