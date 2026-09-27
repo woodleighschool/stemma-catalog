@@ -23,8 +23,8 @@ github.com/santhosh-tekuri/jsonschema/v6 v6.0.3 h1:1EYB5IzjZawrrnELUi78f9fPu57Hu
 github.com/santhosh-tekuri/jsonschema/v6 v6.0.3/go.mod h1:JXeL+ps8p7/KNMjDQk3TCwPpBy0wYklyWTfbkIzdIFU=
 github.com/stretchr/testify v1.11.1 h1:7s2iGBzp5EwR7/aIZr8ao5+dra3wiQyKjjFuvgVKu7U=
 github.com/stretchr/testify v1.11.1/go.mod h1:wZwfW3scLgRK+23gO65QZefKpKQRnfz6sD981Nm4B6U=
-github.com/woodleighschool/stemma v0.0.0-20260927130015-66a52ad80f75 h1:5W29LweZKm4XWKwlmy6tnLOPc9BGmuPFYekGHfCngms=
-github.com/woodleighschool/stemma v0.0.0-20260927130015-66a52ad80f75/go.mod h1:f837Rkbgxx8vFziSlmxG72dQKPTwJcR/pvf2Ws0OkNU=
+github.com/woodleighschool/stemma v0.0.0-20260927173420-a9934e51b095 h1:FLnSVGgBLzRXm3Klv2Gw6jLAxl5x1s7Y+SKLPIu2Y+s=
+github.com/woodleighschool/stemma v0.0.0-20260927173420-a9934e51b095/go.mod h1:QjIzUe22uczk/H0MSRJGfHt5UDpzMEiqH5JTeV0mBaw=
 github.com/yosida95/uritemplate/v3 v3.0.2 h1:Ed3Oyj9yrmi9087+NczuL5BwkIc4wvTb5zIM+UJPGz4=
 github.com/yosida95/uritemplate/v3 v3.0.2/go.mod h1:ILOh0sOhIJR3+L/8afwt/kE++YT040gmv5BQTMR2HP4=
 go.yaml.in/yaml/v4 v4.0.0-rc.6 h1:1h7H1ohdUh93/FyE4YaDa1Zh64K6VVbjF4K6WUxMtH4=
