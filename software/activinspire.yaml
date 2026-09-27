@@ -12,8 +12,10 @@ spec:
   application:
     path: InspireInstaller.pkg/Payload/Applications/Promethean/Activsoftware Inspire/Inspire.app
     installed_path: /Applications/Promethean/Activsoftware Inspire/Inspire.app
-  signature:
-    signer: apple:developer-id:PQ96WVYU2E # Promethean
+  signatures:
+    - subject:
+        path: .
+      signer: apple:developer-id:PQ96WVYU2E # Promethean
   destinations:
     woodstar:
       pkginfo:

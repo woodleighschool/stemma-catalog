@@ -11,8 +11,10 @@ spec:
   application:
     path: Godot.app
     bundle_id: org.godotengine.godot
-  signature:
-    signer: apple:developer-id:6K46PWY5DM # Prehensile Tales B.V.
+  signatures:
+    - subject:
+        path: Godot.app
+      signer: apple:developer-id:6K46PWY5DM # Prehensile Tales B.V.
   icon: godot
   destinations:
     woodstar:

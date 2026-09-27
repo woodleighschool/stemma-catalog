@@ -14,8 +14,10 @@ spec:
   package_path: "*.pkg"
   application:
     installed_path: "/Applications/rekordbox 7/rekordbox.app"
-  signature:
-    signer: apple:developer-id:6BRHGXQ6VU # AlphaTheta Corporation
+  signatures:
+    - subject:
+        path: .
+      signer: apple:developer-id:6BRHGXQ6VU # AlphaTheta Corporation
   destinations:
     woodstar:
       pkginfo:

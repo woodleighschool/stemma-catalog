@@ -11,8 +11,10 @@ spec:
   application:
     bundle_id: au.com.janison.mac.naplan
     installed_path: /Applications/NAP Locked down browser.app
-  signature:
-    signer: apple:developer-id:KU9HRE5GET # Janison
+  signatures:
+    - subject:
+        path: .
+      signer: apple:developer-id:KU9HRE5GET # Janison
   minimum_os: "14.0"
   icon: nap-locked-down-browser
   destinations:

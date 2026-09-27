@@ -11,8 +11,10 @@ spec:
   application:
     bundle_id: com.microsoft.CompanyPortalMac
     installed_path: /Applications/Company Portal.app
-  signature:
-    signer: apple:developer-id:UBF8T346G9 # Microsoft Corporation
+  signatures:
+    - subject:
+        path: .
+      signer: apple:developer-id:UBF8T346G9 # Microsoft Corporation
   minimum_os: "14.0"
   icon: company-portal
   destinations:

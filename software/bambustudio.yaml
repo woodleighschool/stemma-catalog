@@ -12,8 +12,10 @@ spec:
     include_prereleases: true
   application:
     bundle_id: com.bambulab.bambu-studio
-  signature:
-    signer: apple:developer-id:T3UBR9Y3B2 # Shanghai Lunkuo Technology Co., Ltd
+  signatures:
+    - subject:
+        bundle_id: com.bambulab.bambu-studio
+      signer: apple:developer-id:T3UBR9Y3B2 # Shanghai Lunkuo Technology Co., Ltd
   destinations:
     woodstar:
       pkginfo:

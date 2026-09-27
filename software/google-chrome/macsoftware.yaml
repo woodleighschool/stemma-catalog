@@ -9,8 +9,10 @@ spec:
     url: https://dl.google.com/dl/chrome/mac/universal/stable/gcem/GoogleChrome.pkg
   application:
     bundle_id: com.google.Chrome
-  signature:
-    signer: apple:developer-id:EQHXZ8M8AV # Google LLC
+  signatures:
+    - subject:
+        path: .
+      signer: apple:developer-id:EQHXZ8M8AV # Google LLC
   icon: google-chrome
   destinations:
     woodstar:

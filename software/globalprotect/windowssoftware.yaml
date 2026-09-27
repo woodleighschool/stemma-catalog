@@ -8,8 +8,10 @@ spec:
   source:
     url: https://access.woodleigh.vic.edu.au/global-protect/getmsi.esp?version=64&platform=windows
   version_file: PanGPA.exe
-  signature:
-    signer: authenticode:6c26b954d3c9e9a3115da75a2928c3ba9fcc9729771f26caa17e358844059477 # Palo Alto Networks, Inc
+  signatures:
+    - subject:
+        path: .
+      signer: authenticode:6c26b954d3c9e9a3115da75a2928c3ba9fcc9729771f26caa17e358844059477 # Palo Alto Networks, Inc
   icon: globalprotect
   destinations:
     intune:

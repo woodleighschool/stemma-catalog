@@ -11,8 +11,10 @@ spec:
     asset: "*-ARM64.dmg"
   application:
     bundle_id: nl.ultimaker.cura_UltiMaker_Cura
-  signature:
-    signer: apple:developer-id:V4B3JXRRQS # UltiMaker
+  signatures:
+    - subject:
+        bundle_id: nl.ultimaker.cura_UltiMaker_Cura
+      signer: apple:developer-id:V4B3JXRRQS # UltiMaker
   destinations:
     woodstar:
       pkginfo:

@@ -9,9 +9,11 @@ spec:
     vendor:
       url: "{{ env.SOPHOS_DOWNLOAD_URL }}"
       filename: SophosInstall.zip
-  signature:
-    input: vendor
-    signer: apple:developer-id:2H5GFH3774 # Sophos
+  signatures:
+    - input: vendor
+      subject:
+        path: Sophos Installer.app
+      signer: apple:developer-id:2H5GFH3774 # Sophos
   scripts:
     postinstall: |-
       #!/bin/bash

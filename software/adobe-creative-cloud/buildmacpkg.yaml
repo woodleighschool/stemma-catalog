@@ -7,9 +7,11 @@ spec:
   inputs:
     vendor:
       resolver: adobe
-  signature:
-    input: vendor
-    signer: apple:developer-id:JQ525L2MZD # Adobe Inc.
+  signatures:
+    - input: vendor
+      subject:
+        path: Install.app
+      signer: apple:developer-id:JQ525L2MZD # Adobe Inc.
   scripts:
     postinstall: |-
       #!/bin/sh

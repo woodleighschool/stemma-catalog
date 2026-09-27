@@ -10,6 +10,10 @@ spec:
       kind: BuildMacPkg
       name: branding
       output: installer
+  signatures:
+    - subject:
+        path: .
+      unsigned: true
   icon: branding
   destinations:
     woodstar:

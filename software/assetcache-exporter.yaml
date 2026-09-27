@@ -8,8 +8,10 @@ spec:
     resolver: github
     repository: woodleighschool/assetcache-exporter
     asset: assetcache-exporter-*.pkg
-  signature:
-    signer: apple:developer-id:SMLKBTR495 # Woodleigh School
+  signatures:
+    - subject:
+        path: .
+      signer: apple:developer-id:SMLKBTR495 # Woodleigh School
   minimum_os: "11.0"
   destinations:
     intune:

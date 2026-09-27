@@ -13,8 +13,13 @@ spec:
   application:
     path: SketchUp 2026/SketchUp.app
     installed_path: /Applications/SketchUp 2026/SketchUp.app
-  signature:
-    signer: apple:developer-id:J8PVMCY7KL # Trimble Inc.
+  signatures:
+    - subject:
+        path: SketchUp 2026/LayOut.app
+      signer: apple:developer-id:J8PVMCY7KL # Trimble Inc.
+    - subject:
+        path: SketchUp 2026/SketchUp.app
+      signer: apple:developer-id:J8PVMCY7KL # Trimble Inc.
   destinations:
     woodstar:
       pkginfo:

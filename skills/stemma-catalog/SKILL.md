@@ -46,9 +46,9 @@ rather than reading further.
    destination's fields when you set more than the template shows.
 5. **Prepare it.** `prepare` fetches the sources as they are now without writing the lockfile, and
    reports each artifact's version, inspected applications, packages or installers, and the
-   `signature` block to declare. It also checks destination metadata. Compare the result with what
+   `signatures` block to declare. It also checks destination metadata. Compare the result with what
    the vendor publishes, fix the document and prepare again until they match, then add the
-   `signature` block.
+   `signatures` block.
 6. **Lock it.** `update` records the sources in the lockfile, and `icon` creates a declared icon
    that the repository doesn't have yet. If the repository leaves lock updates to a person, or the
    vendor is unreachable from here, stop before this step and list the resources that need it.

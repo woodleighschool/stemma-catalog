@@ -13,8 +13,10 @@ spec:
     path: app.pkg/Payload/var/db/santa/migration/Santa.app
     version_key: CFBundleVersion
     installed_path: "/Applications/Santa.app"
-  signature:
-    signer: apple:developer-id:ZMCG7MLDV9 # North Pole Security, Inc.
+  signatures:
+    - subject:
+        path: .
+      signer: apple:developer-id:ZMCG7MLDV9 # North Pole Security, Inc.
   destinations:
     woodstar:
       pkginfo:

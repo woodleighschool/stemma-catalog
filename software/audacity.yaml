@@ -11,8 +11,10 @@ spec:
     asset: audacity-macOS-*-arm64.dmg
   application:
     bundle_id: org.audacityteam.audacity
-  signature:
-    signer: apple:developer-id:AWEYX923UX # Audacity
+  signatures:
+    - subject:
+        bundle_id: org.audacityteam.audacity
+      signer: apple:developer-id:AWEYX923UX # Audacity
   destinations:
     woodstar:
       pkginfo:

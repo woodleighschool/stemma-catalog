@@ -11,8 +11,10 @@ spec:
     asset: WoodSweep-*.zip
   application:
     bundle_id: au.edu.vic.woodleigh.WoodSweep
-  signature:
-    signer: apple:developer-id:SMLKBTR495 # Woodleigh School
+  signatures:
+    - subject:
+        bundle_id: au.edu.vic.woodleigh.WoodSweep
+      signer: apple:developer-id:SMLKBTR495 # Woodleigh School
   destinations:
     woodstar:
       pkginfo:

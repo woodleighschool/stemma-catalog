@@ -9,8 +9,10 @@ spec:
     resolver: cricut
   application:
     bundle_id: com.cricut.design
-  signature:
-    signer: apple:developer-id:25627ZFVT7 # Cricut
+  signatures:
+    - subject:
+        path: Cricut Design Space.app
+      signer: apple:developer-id:25627ZFVT7 # Cricut
   destinations:
     woodstar:
       pkginfo:

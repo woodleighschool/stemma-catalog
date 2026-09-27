@@ -9,8 +9,10 @@ spec:
     url: https://access.woodleigh.vic.edu.au/global-protect/getmsi.esp?platform=mac
   application:
     installed_path: /Applications/GlobalProtect.app
-  signature:
-    signer: apple:developer-id:PXPZ95SK77 # Palo Alto Networks
+  signatures:
+    - subject:
+        path: .
+      signer: apple:developer-id:PXPZ95SK77 # Palo Alto Networks
   icon: globalprotect
   destinations:
     woodstar:

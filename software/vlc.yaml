@@ -10,8 +10,10 @@ spec:
     match: "//get\\.videolan\\.org/vlc/[0-9.]+/macosx/vlc-[0-9.]+-arm64\\.dmg"
   application:
     bundle_id: org.videolan.vlc
-  signature:
-    signer: apple:developer-id:75GAHG3SZQ # VideoLAN
+  signatures:
+    - subject:
+        path: VLC.app
+      signer: apple:developer-id:75GAHG3SZQ # VideoLAN
   destinations:
     woodstar:
       pkginfo:

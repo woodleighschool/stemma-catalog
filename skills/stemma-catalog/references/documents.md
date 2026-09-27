@@ -32,9 +32,9 @@
   `installs` when `blocking_applications` is absent.
 - Set descriptive fields yourself: display name, description, publisher or developer, category. Base
   the description on the vendor's wording, cut to what an end user needs.
-- Require a signature wherever the kind supports one. `prepare` reports the verified signer as the
-  block to declare, with a comment naming it. Report an unsigned or unverifiable artifact rather
-  than leaving the requirement out.
+- Declare explicit signing expectations wherever the kind supports them. `stemma signature` reports
+  each subject with its signer or `unsigned: true`. Review intentionally unsigned sources before
+  declaring them; report invalid or unsupported signatures rather than omitting the assertion.
 - Declare an icon by name (`icon: <name>` publishes `icons/<name>.png`) and create it with `icon`,
   unless the repository already has artwork for it.
 - Refer to other catalog resources by `kind` and `name`, not by native names. `source.resource`
@@ -87,8 +87,8 @@ A resource `spec`:
 2. what is acquired: `source` or `inputs`
 3. what is selected or built from it, such as `package_path`, `application`, `content`,
    `setup_file`, `payload`, `scripts` and the built `package`
-4. what is verified: `signature`. A package build verifies an input before it builds, so its
-   `signature` follows `inputs`
+4. what is verified: `signatures`. A package build verifies an input before it builds, so its
+   `signatures` follows `inputs`
 5. what is published: `minimum_os`, `icon`, `subjects`, then `destinations` last
 
 The Project `spec`: `imports`, `plugins`, `components`, `destinations`, `reconcile`. A destination

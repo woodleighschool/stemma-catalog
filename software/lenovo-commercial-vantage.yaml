@@ -8,8 +8,10 @@ spec:
   source:
     url: https://download.lenovo.com/pccbbs/thinkvantage_en/metroapps/Vantage/LenovoCommercialVantage_20.2606.24.0.20260917014203.zip
   setup_file: VantageInstaller.exe
-  signature:
-    signer: authenticode:04dba096bb63419f5446ad1aecc0ab35c68795ef3b7a65bc9a563a7c56ef044d # Lenovo
+  signatures:
+    - subject:
+        path: VantageInstaller.exe
+      signer: authenticode:04dba096bb63419f5446ad1aecc0ab35c68795ef3b7a65bc9a563a7c56ef044d # Lenovo
   destinations:
     intune:
       display_name: Lenovo Commercial Vantage

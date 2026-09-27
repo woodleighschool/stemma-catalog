@@ -12,8 +12,10 @@ spec:
     bundle_id: com.Google.GoogleEarthPro
     version_key: CFBundleVersion
     installed_path: /Applications/Google Earth Pro.app
-  signature:
-    signer: apple:developer-id:EQHXZ8M8AV # Google LLC
+  signatures:
+    - subject:
+        path: .
+      signer: apple:developer-id:EQHXZ8M8AV # Google LLC
   icon: google-earth-pro
   destinations:
     woodstar:

@@ -11,8 +11,10 @@ spec:
     path: Spotify.app
     bundle_id: com.spotify.client
     installed_path: /Applications/Spotify.app
-  signature:
-    signer: apple:developer-id:2FNC3A47ZF # Spotify
+  signatures:
+    - subject:
+        path: Spotify.app
+      signer: apple:developer-id:2FNC3A47ZF # Spotify
   icon: spotify
   destinations:
     woodstar:

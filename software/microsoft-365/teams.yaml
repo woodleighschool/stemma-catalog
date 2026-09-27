@@ -11,8 +11,10 @@ spec:
   application:
     bundle_id: com.microsoft.teams2
     installed_path: /Applications/Microsoft Teams.app
-  signature:
-    signer: apple:developer-id:UBF8T346G9 # Microsoft Corporation
+  signatures:
+    - subject:
+        path: .
+      signer: apple:developer-id:UBF8T346G9 # Microsoft Corporation
   icon: microsoft-teams
   destinations:
     woodstar:

@@ -9,8 +9,10 @@ spec:
     url: https://gamemaker.io/en/download/mac/monthly/GameMaker.pkg
   application:
     bundle_id: com.yoyogames.gms2
-  signature:
-    signer: apple:developer-id:C9E7J7HL3D # YoYo Games Ltd
+  signatures:
+    - subject:
+        path: .
+      signer: apple:developer-id:C9E7J7HL3D # YoYo Games Ltd
   icon: gamemaker
   destinations:
     woodstar:

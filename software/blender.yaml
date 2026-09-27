@@ -11,8 +11,10 @@ spec:
     architecture: arm64
   application:
     bundle_id: org.blenderfoundation.blender
-  signature:
-    signer: apple:developer-id:68UA947AUU # Stichting Blender Foundation
+  signatures:
+    - subject:
+        bundle_id: org.blenderfoundation.blender
+      signer: apple:developer-id:68UA947AUU # Stichting Blender Foundation
   destinations:
     woodstar:
       pkginfo:

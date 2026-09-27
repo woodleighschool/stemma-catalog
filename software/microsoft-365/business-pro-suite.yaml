@@ -10,8 +10,10 @@ spec:
     product: office
   application:
     bundle_id: com.microsoft.Word
-  signature:
-    signer: apple:developer-id:UBF8T346G9 # Microsoft Corporation
+  signatures:
+    - subject:
+        path: .
+      signer: apple:developer-id:UBF8T346G9 # Microsoft Corporation
   minimum_os: "13.0"
   icon: microsoft-365-business-pro-suite
   destinations:

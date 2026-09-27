@@ -11,8 +11,10 @@ spec:
     path: Vernier Graphical Analysis.app
     bundle_id: Vernier.GraphicalAnalysis
     installed_path: /Applications/Vernier Graphical Analysis.app
-  signature:
-    signer: apple:developer-id:75WN2B2WR8 # Vernier Software & Technology
+  signatures:
+    - subject:
+        path: Vernier Graphical Analysis.app
+      signer: apple:developer-id:75WN2B2WR8 # Vernier Software & Technology
   icon: vernier-graphical-analysis
   destinations:
     woodstar:

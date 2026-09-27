@@ -9,8 +9,10 @@ spec:
     url: https://desktop.docker.com/mac/main/arm64/Docker.dmg
   application:
     bundle_id: com.docker.docker
-  signature:
-    signer: apple:developer-id:9BNSXJN65R # Docker Inc
+  signatures:
+    - subject:
+        path: Docker.app
+      signer: apple:developer-id:9BNSXJN65R # Docker Inc
   destinations:
     woodstar:
       pkginfo:
