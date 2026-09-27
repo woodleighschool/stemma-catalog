@@ -13,8 +13,52 @@ body:
     validations:
       required: true
 
+  - type: dropdown
+    id: available
+    attributes:
+      label: Available to
+      description: Offered in Managed Software Center or Company Portal.
+      multiple: true
+      options:
+        - "Mac: All Hosts"
+        - "Mac: All Staff"
+        - "Mac: All Students"
+        - "Mac: CRT/Spare Shared MacBooks"
+        - "Mac: SAC MacBooks"
+        - "Mac: NAPLAN Students"
+        - "Mac: Minecraft Education Licence"
+        - "Mac: Senior Campus"
+        - "Mac: Minimbah Campus"
+        - "Mac: Penbank Campus"
+        - "Windows: All devices"
+        - "Windows: All users"
+        - "Windows: Lenovo devices"
+
+  - type: dropdown
+    id: required
+    attributes:
+      label: Required for
+      description: Installed without asking. Leave both empty to add the software unassigned.
+      multiple: true
+      options:
+        - "Mac: All Hosts"
+        - "Mac: All Staff"
+        - "Mac: All Students"
+        - "Mac: CRT/Spare Shared MacBooks"
+        - "Mac: SAC MacBooks"
+        - "Mac: NAPLAN Students"
+        - "Mac: Minecraft Education Licence"
+        - "Mac: Senior Campus"
+        - "Mac: Minimbah Campus"
+        - "Mac: Penbank Campus"
+        - "Windows: All devices"
+        - "Windows: All users"
+        - "Windows: Lenovo devices"
+
   - type: textarea
     id: details
     attributes:
       label: Details
-      description: Who needs it and why, plus any edition, channel or link that helps.
+      placeholder: |
+        Music staff write scores in it. We need MuseScore Studio 4, not MuseScore 3.
+        https://musescore.org/en/download
