@@ -2,3 +2,6 @@
 /dist/
 go.work
 go.work.sum
+
+# Generated dependency licenses
+/third_party_licenses/

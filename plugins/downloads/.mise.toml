@@ -1,5 +1,6 @@
 [tools]
 go = "1.27.1"
+"go:github.com/google/go-licenses/v2" = "v2.0.1"
 golangci-lint = "2.13.2"
 "go:golang.org/x/vuln/cmd/govulncheck" = "v1.8.0"
 goreleaser = "2.18.2"
@@ -23,6 +24,10 @@ run = "go build -trimpath -o build/plugin ./cmd/plugin"
 [tasks.test]
 description = "Run plugin checks"
 run = ["go vet ./...", "go test -race -count=1 ./..."]
+
+[tasks.notices]
+description = "Collect dependency licenses and notices"
+run = "go-licenses save ./cmd/plugin --save_path third_party_licenses --ignore github.com/woodleighschool/stemma-catalog/plugins/downloads --force"
 
 [tasks.tidy]
 description = "Tidy the plugin module"

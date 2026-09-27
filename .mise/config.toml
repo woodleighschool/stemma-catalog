@@ -20,6 +20,10 @@ lockfile = true
 [monorepo]
 config_roots = ["plugins/*"]
 
+[tasks.notices]
+description = "Collect plugin dependency licenses and notices"
+run = { task = "//plugins/downloads:notices" }
+
 [tasks.schema]
 description = "Generate the editor schema from the local Stemma registry"
 depends = ["//plugins/downloads:build"]
