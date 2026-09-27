@@ -48,14 +48,11 @@ steps:
       cache: false
       experimental: true
       install_args: --locked oxfmt
-  - name: Setup Stemma
-    uses: ./.github/actions/setup-stemma
-  # The stemma MCP server runs this binary in its own container. The agent
+  # The stemma MCP server reads this copy of main's stemma.yaml. The agent
   # finds no Stemma or online mise of its own.
   - name: Prepare Stemma
     run: |
       sudo install -d -o "$(id -u)" -g "$(id -g)" /opt/stemma /opt/fetch
-      sudo mv /usr/local/bin/stemma /opt/stemma/stemma
       cp stemma.yaml /opt/stemma/stemma.yaml
       {
         echo "MISE_OFFLINE=1"
@@ -79,15 +76,14 @@ tools:
   timeout: 900
 
 mcp-servers:
-  # The container runs the reviewed binary and plugin declarations. Its cache
-  # stays private; only catalog files are shared with the agent.
+  # The released image runs with main's plugin declarations and the runner's
+  # user. Its cache stays private; only catalog files are shared with the agent.
+  # Move the tag with the Stemma pin in .mise/config.toml.
   stemma:
-    container: ghcr.io/woodleighschool/stemma:0.3.0
-    entrypoint: /opt/stemma/stemma
+    container: ghcr.io/woodleighschool/stemma:0.4.0
     entrypointArgs: [--root, "${{ github.workspace }}", --cache-dir, /tmp/stemma, mcp]
     args: [--user, "1001:1001"]
     mounts:
-      - /opt/stemma:/opt/stemma:ro
       - ${{ github.workspace }}:${{ github.workspace }}:rw
       - /opt/stemma/stemma.yaml:${{ github.workspace }}/stemma.yaml:ro
     allowed: [describe, prepare, update, icon, check]
