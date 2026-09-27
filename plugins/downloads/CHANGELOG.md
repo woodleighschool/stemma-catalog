@@ -1,5 +1,22 @@
 # Changelog
 
+## [0.3.2](https://github.com/woodleighschool/stemma-catalog/compare/0.3.1...0.3.2) (2026-09-27)
+
+
+### Bug Fixes
+
+* **deps:** repin Stemma SDK ([ee77c79](https://github.com/woodleighschool/stemma-catalog/commit/ee77c7947e6f75ec97d7bd75310ed77d9d342b65))
+
+
+### Code Refactoring
+
+* use HTTP discovery for Creative Cloud ([18aacd1](https://github.com/woodleighschool/stemma-catalog/commit/18aacd16e20b6fcce7668bed9d7c14d91af87899))
+
+
+### Miscellaneous Chores
+
+* pin reviewed Stemma tooling ([a942adc](https://github.com/woodleighschool/stemma-catalog/commit/a942adc0ebe5c0cc5955ad3d2d79c04772d6bf01))
+
 ## [0.3.1](https://github.com/woodleighschool/stemma-catalog/compare/0.3.0...0.3.1) (2026-09-26)
 
 
