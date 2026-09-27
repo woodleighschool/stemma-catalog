@@ -161,7 +161,8 @@ This sandbox reaches only GitHub. Sibling repositories such as `../autopkg` aren
 the AutoPkg index instead. The runner does the rest:
 
 - `fetch` returns an HTTPS page, API response or file as curl and Stemma's `url` source see it,
-  with the final URL and the headers of each redirect. Installers over 5 MiB show headers only.
+  with the final URL and the headers of each redirect, in place of the skill's `curl`. Installers
+  over 5 MiB show headers only.
 - The `stemma` tools work on your working tree and stand in for the `stemma` commands in
   `AGENTS.md`. They read main's `stemma.yaml`: project and plugin changes are reviewed on their
   own. Name all of the request's resources in each call.
@@ -171,14 +172,16 @@ valid, report that rather than inspecting the file yourself.
 
 ## Steps
 
-1. Ask `describe` about the kinds you need, then draft the documents without `signature`. Set
-   `icon` to the product's name, which its Mac and Windows documents share, and the descriptive
-   metadata. Mac targets are `All Hosts` with `optional_installs` and `managed_updates`, as
-   `AGENTS.md` says, whatever a neighbour has. Stemma derives versions, identifiers, the application
-   when there's one, receipts, installs, detection, minimum OS, installed size, the uninstall method
-   and whether the item is uninstallable: leave these out even where a neighbour sets them.
+1. Ask `describe` about the kinds you need, then draft the documents without `signature`, even
+   one an earlier pull request had. Set `icon` to the product's name in every document, Windows
+   included, and the descriptive metadata. Mac targets are `All Hosts` with `optional_installs` and
+   `managed_updates`, as `AGENTS.md` says. Stemma derives versions, identifiers, receipts, installs,
+   detection, minimum OS, installed size, the uninstall method and whether the item is
+   uninstallable, and selects the application; `prepare`'s evidence names the one it chose.
+   Neighbouring documents still set some of these, along with `application`, `uninstall_method`,
+   `uninstallable` and `exclude: []`: leave them out.
 2. `prepare` the documents and fix them until they prepare what the vendor publishes, then add the
-   `signature` block it reports.
+   `signature` block it reports; `check` verifies it.
 3. `update` the documents, then `icon` them.
 4. Run `mise run format`, then `check` since `origin/main`.
 5. Check your documents against step 1 once more, then commit without trailers and request one
@@ -190,14 +193,25 @@ this runner doesn't have, change nothing and say why on the issue.
 
 ## Output
 
-Start the pull request description with `Closes #N` when it delivers the whole request, or
-`Refs #N` when it delivers part; each requested platform counts, so a missing Mac or Windows
-document makes it partial. Follow with at most five short bullets: the source and why it won,
-the version and identifiers, the signer and anything a reviewer must decide. Mac software ends with
-this one, as icons render on Linux here: "Icon rendered on Linux;
-`mise exec -- stemma icon --force MacSoftware/<name>` on a Mac replaces it with the native one."
-Nothing else: no headings, no URLs or hostnames (the diff has them) and no check results (the pull
-request runs its own).
+The pull request description has this shape and nothing else: no headings, no URLs or hostnames
+(the diff has them), no history of earlier runs and no check results (the pull request runs its
+own).
+
+```markdown
+Closes #N
+
+- Source: what it is and why it won.
+- Version and identifiers.
+- Signer.
+- Anything a reviewer must decide.
+
+Icon rendered on Linux; `mise exec -- stemma icon --force MacSoftware/<name>` on a Mac replaces it
+with the native one.
+```
+
+Use `Refs #N` when it delivers part of the request; each requested platform counts, so a missing
+Mac or Windows document makes it partial. Leave out the last bullet when nothing needs deciding,
+and the icon line without Mac software.
 
 Comment on the issue only when there's no pull request or part of the request is missing: two or
 three plain sentences on what's missing and why. If `create_pull_request` fails, say so there: the

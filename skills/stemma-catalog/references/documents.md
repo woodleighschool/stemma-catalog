@@ -19,9 +19,10 @@
 
 - Extend a Project component when it holds the shared defaults for this kind of item, and don't
   repeat what it sets; `describe` lists what each component sets.
-- Let Stemma select the application or installer when there is one candidate. Set a selection only
-  when inspection shows several or picks the wrong one, and prefer identifiers that survive
-  upgrades, such as a bundle ID or product code, over paths that contain a version.
+- Let Stemma select the application or installer. `prepare`'s evidence names the one it chose, even
+  when helpers are nested inside it; set a selection only when that choice is wrong, and prefer
+  identifiers that survive upgrades, such as a bundle ID or product code, over paths that contain a
+  version.
 - Let Stemma derive what the artifact states: version, identifiers, detection, receipts, removal
   method, installed size, minimum OS. Set a derived field only to correct it, even when neighbouring
   documents set it. When a derived value comes from the wrong application or file, fix the selection
