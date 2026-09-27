@@ -15,8 +15,10 @@ linters:
     - exhaustive
     - gocheckcompilerdirectives
     - gocritic
+    - gomoddirectives
     - modernize
     - nilerr
+    - nilnesserr
     - nolintlint
     - revive
     - sloglint

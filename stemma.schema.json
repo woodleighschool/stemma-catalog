@@ -280,6 +280,54 @@
                     }
                   ],
                   "description": "Literal script text or input selections in the temporary installer Scripts area. Root preinstall and postinstall files are hooks; other entries are resources used by those hooks. Never executed by Stemma."
+                },
+                "signature": {
+                  "anyOf": [
+                    {
+                      "additionalProperties": false,
+                      "properties": {
+                        "input": {
+                          "anyOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                              "type": "string"
+                            }
+                          ],
+                          "description": "Declared input to verify: a PKG by its package signature, or every application in a disk image, archive or folder outside another application."
+                        },
+                        "signer": {
+                          "anyOf": [
+                            {
+                              "pattern": "^apple:developer-id:[A-Z0-9]{10}$",
+                              "type": "string"
+                            },
+                            {
+                              "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                              "type": "string"
+                            }
+                          ],
+                          "description": "Expected publisher identity: apple:developer-id:\u003cTEAMID\u003e. Omit it only to derive the value with stemma signature."
+                        }
+                      },
+                      "propertyNames": {
+                        "not": {
+                          "pattern": "\\{\\{"
+                        }
+                      },
+                      "required": [
+                        "input"
+                      ],
+                      "type": "object"
+                    },
+                    {
+                      "pattern": "^\\{\\{[\\s\\S]+\\}\\}$",
+                      "type": "string"
+                    }
+                  ],
+                  "description": "Require one input to carry a complete Developer ID signature from an expected team before building. The built package itself is unsigned."
                 }
               },
               "propertyNames": {
@@ -551,6 +599,51 @@
                         }
                       ],
                       "description": "Literal script text or input selections in the temporary installer Scripts area. Root preinstall and postinstall files are hooks; other entries are resources used by those hooks. Never executed by Stemma."
+                    },
+                    "signature": {
+                      "anyOf": [
+                        {
+                          "additionalProperties": false,
+                          "properties": {
+                            "input": {
+                              "anyOf": [
+                                {
+                                  "type": "string"
+                                },
+                                {
+                                  "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                                  "type": "string"
+                                }
+                              ],
+                              "description": "Declared input to verify: a PKG by its package signature, or every application in a disk image, archive or folder outside another application."
+                            },
+                            "signer": {
+                              "anyOf": [
+                                {
+                                  "pattern": "^apple:developer-id:[A-Z0-9]{10}$",
+                                  "type": "string"
+                                },
+                                {
+                                  "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                                  "type": "string"
+                                }
+                              ],
+                              "description": "Expected publisher identity: apple:developer-id:\u003cTEAMID\u003e. Omit it only to derive the value with stemma signature."
+                            }
+                          },
+                          "propertyNames": {
+                            "not": {
+                              "pattern": "\\{\\{"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        {
+                          "pattern": "^\\{\\{[\\s\\S]+\\}\\}$",
+                          "type": "string"
+                        }
+                      ],
+                      "description": "Require one input to carry a complete Developer ID signature from an expected team before building. The built package itself is unsigned."
                     }
                   },
                   "propertyNames": {
@@ -1169,6 +1262,25 @@
           "type": "object"
         },
         {
+          "$id": "https://stemma.invalid/editor/adobe/input",
+          "additionalProperties": false,
+          "properties": {
+            "resolver": {
+              "const": "adobe",
+              "description": "Loaded resolver selecting this input."
+            }
+          },
+          "propertyNames": {
+            "not": {
+              "pattern": "\\{\\{"
+            }
+          },
+          "required": [
+            "resolver"
+          ],
+          "type": "object"
+        },
+        {
           "$id": "https://stemma.invalid/editor/audinate/input",
           "additionalProperties": false,
           "properties": {
@@ -1631,7 +1743,7 @@
                       "type": "string"
                     }
                   ],
-                  "description": "Minimum macOS release, such as 14.0. Destinations receive the latest of this, the installer's requirement and the selected application's, so it raises their requirements but never lowers them."
+                  "description": "Minimum macOS release, such as 14.0. Destinations receive this instead of the installer's and the selected application's requirements. Omit to use the latest of those."
                 },
                 "package_path": {
                   "anyOf": [
@@ -1896,7 +2008,7 @@
                           "type": "string"
                         }
                       ],
-                      "description": "Minimum macOS release, such as 14.0. Destinations receive the latest of this, the installer's requirement and the selected application's, so it raises their requirements but never lowers them."
+                      "description": "Minimum macOS release, such as 14.0. Destinations receive this instead of the installer's and the selected application's requirements. Omit to use the latest of those."
                     },
                     "package_path": {
                       "anyOf": [
@@ -2154,7 +2266,7 @@
             }
           ],
           "default": "https://graph.microsoft.com",
-          "description": "Graph service origin, such as https://graph.microsoft.us for a national cloud. HTTPS is required; app management uses the beta API."
+          "description": "Graph service origin. HTTPS is required; app management uses the beta API."
         },
         "tenant_id": {
           "anyOf": [
@@ -4307,23 +4419,6 @@
                               }
                             ],
                             "description": "Deployment intent."
-                          },
-                          "notifications": {
-                            "anyOf": [
-                              {
-                                "enum": [
-                                  "show_all",
-                                  "show_reboot",
-                                  "hide_all"
-                                ],
-                                "type": "string"
-                              },
-                              {
-                                "pattern": "\\{\\{[\\s\\S]+\\}\\}",
-                                "type": "string"
-                              }
-                            ],
-                            "description": "Win32 end-user notifications for an included target. Omit to keep the assignment's setting."
                           }
                         },
                         "propertyNames": {
@@ -4814,23 +4909,6 @@
                               }
                             ],
                             "description": "Deployment intent."
-                          },
-                          "notifications": {
-                            "anyOf": [
-                              {
-                                "enum": [
-                                  "show_all",
-                                  "show_reboot",
-                                  "hide_all"
-                                ],
-                                "type": "string"
-                              },
-                              {
-                                "pattern": "\\{\\{[\\s\\S]+\\}\\}",
-                                "type": "string"
-                              }
-                            ],
-                            "description": "Win32 end-user notifications for an included target. Omit to keep the assignment's setting."
                           }
                         },
                         "propertyNames": {
@@ -5141,7 +5219,7 @@
                   "type": "string"
                 }
               ],
-              "description": "Publish the signed PKG as a line-of-business app."
+              "description": "Publish the signed PKG as a line-of-business app. The PKG must install an application under /Applications."
             }
           },
           "propertyNames": {
@@ -6200,7 +6278,7 @@
                       "type": "string"
                     }
                   ],
-                  "description": "Applications that block installation. Empty list disables inferred blocking."
+                  "description": "Applications that block installation or removal while they run. Munki uses the applications in installs when this is absent; an empty list blocks nothing."
                 },
                 "catalogs": {
                   "anyOf": [
@@ -7353,7 +7431,7 @@
                       "type": "string"
                     }
                   ],
-                  "description": "Applications that must quit before installation."
+                  "description": "Applications that block installation or removal while they run. Munki uses the applications in installs when this is absent; an empty list blocks nothing."
                 },
                 "blocking_applications_manual_quit_only": {
                   "anyOf": [
@@ -9416,6 +9494,22 @@
           "$id": "https://stemma.invalid/editor/partial-input/resource/1",
           "additionalProperties": false,
           "properties": {
+            "resolver": {
+              "const": "adobe",
+              "description": "Loaded resolver selecting this input."
+            }
+          },
+          "propertyNames": {
+            "not": {
+              "pattern": "\\{\\{"
+            }
+          },
+          "type": "object"
+        },
+        {
+          "$id": "https://stemma.invalid/editor/partial-input/resource/2",
+          "additionalProperties": false,
+          "properties": {
             "product": {
               "anyOf": [
                 {
@@ -9445,7 +9539,7 @@
           "type": "object"
         },
         {
-          "$id": "https://stemma.invalid/editor/partial-input/resource/2",
+          "$id": "https://stemma.invalid/editor/partial-input/resource/3",
           "additionalProperties": false,
           "properties": {
             "architecture": {
@@ -9491,7 +9585,7 @@
           "type": "object"
         },
         {
-          "$id": "https://stemma.invalid/editor/partial-input/resource/3",
+          "$id": "https://stemma.invalid/editor/partial-input/resource/4",
           "additionalProperties": false,
           "properties": {
             "resolver": {
@@ -9521,7 +9615,7 @@
           "type": "object"
         },
         {
-          "$id": "https://stemma.invalid/editor/partial-input/resource/4",
+          "$id": "https://stemma.invalid/editor/partial-input/resource/5",
           "additionalProperties": false,
           "properties": {
             "cti": {
@@ -9604,7 +9698,7 @@
           "type": "object"
         },
         {
-          "$id": "https://stemma.invalid/editor/partial-input/resource/5",
+          "$id": "https://stemma.invalid/editor/partial-input/resource/6",
           "additionalProperties": false,
           "properties": {
             "channel": {
@@ -9681,7 +9775,7 @@
           "type": "object"
         },
         {
-          "$id": "https://stemma.invalid/editor/partial-input/resource/6",
+          "$id": "https://stemma.invalid/editor/partial-input/resource/7",
           "additionalProperties": false,
           "properties": {
             "branch": {
