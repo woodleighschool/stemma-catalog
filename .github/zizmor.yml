@@ -1,0 +1,9 @@
+rules:
+  template-injection:
+    ignore:
+      # gh aw compile writes its guard settings from its own step outputs.
+      - software-request.lock.yml
+  self-repository:
+    ignore:
+      # gh aw compile takes local actions only as ./ paths.
+      - software-request.lock.yml

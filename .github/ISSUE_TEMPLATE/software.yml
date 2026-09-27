@@ -1,0 +1,20 @@
+name: Software request
+description: Request software to be added to the catalog.
+labels: [software-request]
+body:
+  - type: dropdown
+    id: platforms
+    attributes:
+      label: Platforms
+      multiple: true
+      options:
+        - Mac
+        - Windows
+    validations:
+      required: true
+
+  - type: textarea
+    id: details
+    attributes:
+      label: Details
+      description: Who needs it and why, plus any edition, channel or link that helps.

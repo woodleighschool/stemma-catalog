@@ -1,4 +1,9 @@
 {
-  "ignorePatterns": ["stemma.schema.json", "**/CHANGELOG.md", ".mise/locks/**"],
+  "ignorePatterns": [
+    "stemma.schema.json",
+    "**/CHANGELOG.md",
+    ".mise/locks/**",
+    ".github/workflows/*.lock.yml",
+  ],
   "printWidth": 100,
 }
