@@ -11,7 +11,6 @@
       "include-component-in-tag": false,
       "include-v-in-tag": false,
       "include-v-in-release-name": false,
-      "initial-version": "0.1.0",
       "component": "downloads"
     }
   },
