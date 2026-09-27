@@ -52,7 +52,8 @@ A destination field you omit keeps its current value unless Stemma derives it. A
 replaces the whole collection, an empty list clears it and a supported `null` clears a value. So:
 
 - deleting a field from the YAML doesn't clear it on the destination; set `null` or `[]`;
-- a new resource has nothing to clear, so leave out empty lists such as `exclude: []`;
+- declare a managed block whole: beside an `include`, `exclude: []` states that nothing is excluded
+  instead of leaving exclusions to the destination;
 - add a field when you mean to own its value, not to repeat the value you expect.
 
 ## Gaps

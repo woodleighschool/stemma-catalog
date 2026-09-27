@@ -175,11 +175,11 @@ valid, report that rather than inspecting the file yourself.
 1. Ask `describe` about the kinds you need, then draft the documents without `signature`, even
    one an earlier pull request had. Set `icon` to the product's name in every document, Windows
    included, and the descriptive metadata. Mac targets are `All Hosts` with `optional_installs` and
-   `managed_updates`, as `AGENTS.md` says. Stemma derives versions, identifiers, receipts, installs,
-   detection, minimum OS, installed size, the uninstall method and whether the item is
-   uninstallable, and selects the application; `prepare`'s evidence names the one it chose.
-   Neighbouring documents still set some of these, along with `application`, `uninstall_method`,
-   `uninstallable` and `exclude: []`: leave them out.
+   `managed_updates`, as `AGENTS.md` says, declared whole with `exclude: []`. Stemma derives
+   versions, identifiers, receipts, installs, detection, minimum OS, installed size, the uninstall
+   method and whether the item is uninstallable, and selects the application; `prepare`'s evidence
+   names the one it chose. Neighbouring documents still set some of these, such as `application`,
+   `uninstall_method` and `uninstallable`: leave them out.
 2. `prepare` the documents and fix them until they prepare what the vendor publishes, then add the
    `signature` block it reports; `check` verifies it.
 3. `update` the documents, then `icon` them.
