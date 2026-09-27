@@ -123,6 +123,8 @@ mcp-scripts:
 safe-outputs:
   threat-detection: false
   report-failure-as-issue: false
+  # The pull request's Development link reports the result; the agent comments when there's none.
+  activation-comments: false
   footer: false
   github-app:
     client-id: ${{ secrets.BOT_CLIENT_ID }}
@@ -166,15 +168,16 @@ valid, report that rather than inspecting the file yourself.
 
 ## Steps
 
-1. Ask `describe` about the kinds you need, then draft the documents without `signature`, even
-   one an earlier pull request had. Set `icon` to the product's name in every document, Windows
-   included, and the descriptive metadata. Assign exactly the audiences the issue names, as
-   `AGENTS.md` maps them, with Woodstar targets declared whole (`exclude: []`). When it names none,
-   leave `targets` and `assignments` out, whatever neighbouring documents set. Stemma derives
-   versions, identifiers, receipts, installs, detection, minimum OS, installed size, the uninstall
-   method and whether the item is uninstallable, and selects the application; `prepare`'s evidence
-   names the one it chose. Neighbouring documents still set some of these, such as `application`,
-   `uninstall_method` and `uninstallable`: leave them out.
+1. Ask `describe` about the kinds you need, then draft the documents without `signature`. Start
+   afresh rather than from an earlier pull request's branch. Set `icon` to the product's name in
+   every document, Windows included, and the descriptive metadata. Assign the audiences picked
+   under Available to and Required for, as `AGENTS.md` maps them, with Woodstar targets declared
+   whole (`exclude: []`). With none picked, leave `targets` and `assignments` out, whatever the
+   details or neighbouring documents suggest. Stemma derives versions, identifiers, receipts,
+   installs, detection, minimum OS, installed size, the uninstall method and whether the item is
+   uninstallable, and selects the application; `prepare`'s evidence names the one it chose.
+   Neighbouring documents still set some of these, such as `application`, `uninstall_method` and
+   `uninstallable`: leave them out.
 2. `prepare` the documents and fix them until they prepare what the vendor publishes, then add the
    `signature` block it reports; `check` verifies it.
 3. `update` the documents, then `icon` them.
@@ -205,9 +208,9 @@ with the native one.
 ```
 
 Use `Refs #N` when it delivers part of the request, and say what's missing in the last bullet; each
-requested platform counts, so a missing Mac or Windows document makes it partial. An audience
-`AGENTS.md` doesn't list also goes in that bullet. Leave out the last bullet when nothing needs
-deciding, and the icon line without Mac software.
+requested platform counts, so a missing Mac or Windows document makes it partial. An audience only
+the details mention, or one `AGENTS.md` doesn't list, also goes in that bullet. Leave out the last
+bullet when nothing needs deciding, and the icon line without Mac software.
 
 Comment on the issue only when there's no pull request: two or three plain sentences on why. If
 `create_pull_request` fails, say so there: the runner keeps nothing.
