@@ -5,7 +5,6 @@ go 1.27.0
 require (
 	github.com/invopop/jsonschema v0.14.0
 	github.com/woodleighschool/stemma v0.0.0-20260927014057-f029a477be92
-	golang.org/x/net v0.59.0
 	howett.net/plist v1.0.1
 )
 
@@ -19,5 +18,6 @@ require (
 	github.com/santhosh-tekuri/jsonschema/v6 v6.0.3 // indirect
 	github.com/yosida95/uritemplate/v3 v3.0.2 // indirect
 	go.yaml.in/yaml/v4 v4.0.0-rc.6 // indirect
+	golang.org/x/net v0.59.0 // indirect
 	golang.org/x/text v0.42.0 // indirect
 )

@@ -6,7 +6,10 @@ metadata:
 spec:
   inputs:
     vendor:
-      resolver: adobe
+      url: https://helpx.adobe.com/download-install/apps/download-install-apps/creative-cloud-apps/download-creative-cloud-desktop-app-using-direct-links.html
+      match: https://ccmdls\.adobe\.com/AdobeProducts/StandaloneBuilds/ACCC/ESD/[0-9.]+/[0-9.]+/macarm64/ACCCx[0-9_]+\.dmg
+      headers:
+        User-Agent: Go-http-client/1.1
   signatures:
     - input: vendor
       subject:
@@ -21,4 +24,4 @@ spec:
       path: .
   package:
     identifier: com.github.woodleighschool.pkg.AdobeCreativeCloud
-    version: "{{ inputs.vendor.evidence.adobe.version }}"
+    version: "{{ inputs.vendor.filename.replace('ACCCx', '').replace('.dmg', '').replace('_', '.') }}"

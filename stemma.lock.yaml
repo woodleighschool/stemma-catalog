@@ -3,22 +3,17 @@ inputs:
   stemma/v1alpha1/BuildMacPkg/adobe-creative-cloud:
     vendor:
       version: 1
-      resolver: adobe
+      resolver: http
       resolver_version: "1"
-      declaration: 5d0b7971524b0688b5d02356b7abf764ae962aba9373bcd32801774de9e428f9
+      declaration: b64ebbee3f0b78318b44677c1f251ce022c56b48a77cf9d2ba393363d05de15a
       observation:
-        filename: ACCCx6_10_0_252_41.dmg
         url: https://ccmdls.adobe.com/AdobeProducts/StandaloneBuilds/ACCC/ESD/6.10.0/252.41/macarm64/ACCCx6_10_0_252_41.dmg
-        version: 6.10.0.252.41
       content:
         artifact:
           sha256: 5115a16e2ecddade5d37e50fc55721521f92882bf3796ff0fa6fc345719801f7
           size: 311485111
         filename: ACCCx6_10_0_252_41.dmg
         mode: 420
-      evidence:
-        adobe:
-          version: 6.10.0.252.41
   stemma/v1alpha1/BuildMacPkg/branding:
     scripts:
       version: 1
