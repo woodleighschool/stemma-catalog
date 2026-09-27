@@ -5,7 +5,7 @@ Each is the smallest complete document: Stemma derives the rest from the prepare
 destination keys name Project connections; use the repository's names and its destination
 vocabulary, and extend its components.
 
-Add `signature` once `stemma signature` prints it, never before: a declared signer is checked
+Add the `signature` block `prepare` reports, never one you expect: a declared signer is checked
 every time the artifact is prepared.
 
 ## Vendor PKG at a stable URL
@@ -25,7 +25,7 @@ spec:
 ```
 
 Stemma derives the version, receipts, installs, minimum OS and installed size. You set the
-descriptive fields and the signer `stemma signature` prints.
+descriptive fields and the `signature` block `prepare` reports.
 
 ## App in a DMG found on a download page
 

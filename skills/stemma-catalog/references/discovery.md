@@ -3,8 +3,8 @@
 A good source is official and keeps finding the vendor's current release without edits to the
 document. Every fetch of one release returns the same bytes.
 
-Use the cheapest check that answers the question: `curl` for pages and redirects, then
-`stemma artifact` for the real result. The `http` resolver reads the HTML that `curl` receives,
+Use the cheapest check that answers the question: `curl` for pages and redirects, then `prepare`
+for the real result. The `http` resolver reads the HTML that `curl` receives,
 without running scripts, so a link that only a browser shows isn't available to it. Judge pages with
 `curl`, not a browser.
 
@@ -12,9 +12,9 @@ without running scripts, so a link that only a browser shows isn't available to 
 
 Take the first that fits, and stop there:
 
-1. **An installed resolver made for this vendor that lists the product.** The operations query in
-   the skill's first step shows its product, channel or architecture values. It already solves
-   version discovery for that vendor.
+1. **An installed resolver made for this vendor that lists the product.** `describe` lists each
+   resolver with its product, channel or architecture values. It already solves version discovery
+   for that vendor.
 2. **A stable official URL.** One URL on the vendor's domain or CDN that always serves the current
    release, such as a `latest` link. Use `url`.
 3. **Official GitHub releases.** Use the `github` resolver with an `asset` glob that matches exactly
@@ -27,11 +27,7 @@ Take the first that fits, and stop there:
 6. **A resolver plugin**, when none of the above gives a declaration that will keep working. See
    [plugin-gaps.md](plugin-gaps.md).
 
-To read one source form's fields:
-
-```sh
-stemma schema --output-file - | jq -r '."$defs".Input.oneOf[] | select(.properties.resolver.const == "github") | .properties | to_entries[] | "\(.key): \(.value.description // "")"'
-```
+`describe` with a `resolver` lists that source form's fields.
 
 ## Check a candidate
 
@@ -58,8 +54,8 @@ The first shows the redirect chain, final filename and content type. The second 
 - **Anonymous.** No login or click-through. A source that needs credentials takes a `token` or
   headers from the environment; a file nobody may redistribute stays out of Git.
 
-Then declare it and run `stemma artifact Kind/name --no-input-lock`. The resolver reports a `match`
-that selects no URL or several, and `stemma inspect` shows what it fetched.
+Then declare it and `prepare` it. The resolver reports a `match` that selects no URL or several,
+and `prepare` shows what it fetched.
 
 ## Learn from community automation
 

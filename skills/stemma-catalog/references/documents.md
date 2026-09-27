@@ -5,15 +5,9 @@
 - Pick the kind from what is delivered: an existing vendor installer or application uses the
   platform's software kind, files you assemble use the package builder, and a policy with no
   installer uses the software kind's source-free form where the destination supports one.
-- Read a kind's or destination's fields with their descriptions:
-
-  ```sh
-  stemma operations | jq -r --arg n MacSoftware '.operations[] | select(.name == $n or .resource.kind == $n) | (.config_schema, .metadata_schema) | .properties // {} | to_entries[] | "\(.key): \(.value.description // "")"'
-  ```
-
-  Pass a kind such as `MacSoftware` or a destination operation such as `munki`. Drill into a nested
-  block, such as a pkginfo, with a narrower path rather than printing the whole operation.
-
+- `describe` gives a kind's or destination's fields, one line each with `*` marking required ones,
+  their types, allowed values, defaults and descriptions. Name a `field`, such as `pkginfo` or
+  `targets.include`, to narrow to one block rather than reading the whole destination.
 - `metadata.name` is the resource's identity in every destination, and renaming it creates a new
   item. Use the product's plain name in lowercase kebab case, such as `google-chrome`. Add a major
   version only when majors install side by side as separate products.
@@ -24,7 +18,7 @@
 ## Declare what you mean
 
 - Extend a Project component when it holds the shared defaults for this kind of item, and don't
-  repeat what it sets. `stemma validate --resolved` shows the merged result.
+  repeat what it sets; `describe` lists what each component sets.
 - Let Stemma select the application or installer when there is one candidate. Set a selection only
   when inspection shows several or picks the wrong one, and prefer identifiers that survive
   upgrades, such as a bundle ID or product code, over paths that contain a version.
@@ -37,11 +31,11 @@
   `installs` when `blocking_applications` is absent.
 - Set descriptive fields yourself: display name, description, publisher or developer, category. Base
   the description on the vendor's wording, cut to what an end user needs.
-- Require a signature wherever the kind supports one. `stemma signature Kind/name` prints the
-  verified signer with a comment naming it. Report an unsigned or unverifiable artifact rather than
-  leaving the requirement out.
-- Declare an icon by name (`icon: <name>` publishes `icons/<name>.png`) and create it with
-  `stemma icon Kind/name`, unless the repository already has artwork for it.
+- Require a signature wherever the kind supports one. `prepare` reports the verified signer as the
+  block to declare, with a comment naming it. Report an unsigned or unverifiable artifact rather
+  than leaving the requirement out.
+- Declare an icon by name (`icon: <name>` publishes `icons/<name>.png`) and create it with `icon`,
+  unless the repository already has artwork for it.
 - Refer to other catalog resources by `kind` and `name`, not by native names. `source.resource`
   consumes another resource's output, which is a build dependency. Destination relationships, such
   as Munki `requires` or Intune `dependencies`, are publication dependencies. Don't use one for the
@@ -57,7 +51,7 @@ A destination field you omit keeps its current value unless Stemma derives it. A
 replaces the whole collection, an empty list clears it and a supported `null` clears a value. So:
 
 - deleting a field from the YAML doesn't clear it on the destination; set `null` or `[]`;
-- keep an explicit empty list, such as `exclude: []`, when the list must stay empty;
+- a new resource has nothing to clear, so leave out empty lists such as `exclude: []`;
 - add a field when you mean to own its value, not to repeat the value you expect.
 
 ## Gaps

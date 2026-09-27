@@ -1,36 +1,35 @@
 # How Stemma behaves
 
-The installed binary is the authority on fields: read them with `stemma operations` and
-`stemma schema`. This page covers what the schema can't say.
+Stemma's `describe` is the authority on fields. This page covers what a field list can't say.
 
 ## The lockfile
 
-- `stemma update [Kind/name]` resolves sources and records them in `stemma.lock.yaml`. It is the
-  only command that writes input entries.
-- Every other command uses the lockfile as it is. An input without a current entry fails with
-  "run stemma update", and plugins must match their entries.
-- `stemma artifact Kind/name --no-input-lock` resolves the sources as they are now without writing
-  anything: use it to try a draft.
-- `stemma prepare --changed-since REV` prepares only what a change affects, as pull request checks
-  do. Destination metadata never counts, so a description edit prepares nothing. A changed plugin
-  fails it: plugin changes are reviewed and verified on their own.
+- `update` resolves sources and records them in `stemma.lock.yaml`. It is the only tool that
+  writes input entries, and it keeps other resources' entries.
+- `icon` and `check` use the lockfile as it is. An input without a current entry fails with "run
+  stemma update", and plugins must match their entries.
+- `prepare` resolves the sources as they are now and writes nothing: use it to try a draft. Its
+  input changes are what `update` would record.
+- `check` validates the catalog, then prepares only what a change affects since a revision, as pull
+  request checks do. Destination metadata never counts, so a description edit prepares nothing. A
+  changed plugin fails it: plugin changes are reviewed and verified on their own.
 
 ## Environment values
 
-`{{ env.NAME }}` is read only by a command that uses the value: `validate` reads none, and `update`
-or `artifact` read only those of the resources they fetch. When a command reports a missing value
-you don't have, stop and report it; never set a placeholder or dummy value to get past it.
+`{{ env.NAME }}` is read only where the value is used: validation reads none, and `prepare` or
+`update` read only those of the resources they fetch. When Stemma reports a missing value you don't
+have, stop and report it; never set a placeholder or dummy value to get past it.
 
 ## Composition
 
 `extends` names a Project component. Maps merge recursively; lists and `null` replace what the
-component set. `stemma validate --resolved` prints the merged result, which can contain secrets.
+component set. `describe` lists what each component sets.
 
 ## What comes from the artifact
 
 Software kinds inspect the prepared artifact and derive what it states: version, identifiers,
 receipts and installed applications, detection, minimum OS, installed size and signer evidence.
-Destinations turn these into their own fields. An explicit value replaces a derived one. Destination
+`prepare` reports these as the artifact's subjects. Destinations turn them into their own fields. An explicit value replaces a derived one. Destination
 metadata can also use expressions:
 
 - `facts` for inspected subjects, such as `{{ facts.app.app.version }}`;
