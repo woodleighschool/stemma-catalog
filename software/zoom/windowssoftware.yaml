@@ -7,10 +7,20 @@ spec:
   extends: windows-win32
   source:
     url: https://zoom.us/client/latest/ZoomInstallerFull.msi?archType=x64
+  version_file: Zoom.exe
   signature:
     signer: authenticode:dabb2081eb1d52bf60d812d955f60279629167729ab8fd13708b0f66502e4795 # Zoom Communications, Inc.
+  icon: zoom
   destinations:
     intune:
       display_name: Zoom Workplace
       description: Zoom Workplace for Windows.
       publisher: Zoom Communications, Inc.
+      msi_properties:
+        MSIRestartManagerControl: Disable
+        zConfig: AU2_EnableAutoUpdate=true;AU2_SetUpdateChannel=0;AU2_InstallAtIdleTime=true
+      detection:
+        - type: file
+          path: C:\Program Files\Zoom\bin
+          name: Zoom.exe
+          property: version

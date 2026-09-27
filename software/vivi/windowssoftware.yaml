@@ -1,0 +1,25 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/woodleighschool/stemma-catalog/main/stemma.schema.json
+apiVersion: stemma/v1alpha1
+kind: WindowsSoftware
+metadata:
+  name: vivi
+spec:
+  extends: windows-win32
+  source:
+    url: https://api.vivi.io/windows-msi64
+  signature:
+    signer: authenticode:e117afa2fa737e283c9613a90de10923364c5f6dfe8323711bb3fd6e920c9794 # Vivi International Pty Ltd
+  icon: vivi
+  destinations:
+    intune:
+      display_name: Vivi
+      description: Wireless screen sharing for classrooms.
+      publisher: Vivi
+      detection:
+        - type: registry
+          key: HKEY_LOCAL_MACHINE\SOFTWARE\Vivi Corporation\Vivi
+          value_name: Version
+          property: version
+      assignments:
+        - intent: required
+          all_devices: true

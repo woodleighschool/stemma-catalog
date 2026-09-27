@@ -1,0 +1,38 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/woodleighschool/stemma-catalog/main/stemma.schema.json
+apiVersion: stemma/v1alpha1
+kind: WindowsSoftware
+metadata:
+  name: lenovo-commercial-vantage
+spec:
+  extends: windows-win32
+  source:
+    url: https://download.lenovo.com/pccbbs/thinkvantage_en/metroapps/Vantage/LenovoCommercialVantage_20.2606.24.0.20260917014203.zip
+  setup_file: VantageInstaller.exe
+  signature:
+    signer: authenticode:04dba096bb63419f5446ad1aecc0ab35c68795ef3b7a65bc9a563a7c56ef044d # Lenovo
+  destinations:
+    intune:
+      display_name: Lenovo Commercial Vantage
+      description: Lenovo Commercial Vantage with the Lenovo Vantage Service and add-ins, which keep
+        the app, drivers and firmware current on Lenovo devices.
+      publisher: Lenovo
+      install_command: VantageInstaller.exe Install -Vantage
+      uninstall_command: VantageInstaller.exe Uninstall -Vantage
+      detection:
+        - type: script
+          script: |
+            $service = Get-ChildItem -Path "${env:ProgramFiles(x86)}\Lenovo\VantageService" -Filter LenovoVantageService.exe -File -Recurse -ErrorAction SilentlyContinue |
+                Where-Object { [version]$_.VersionInfo.FileVersion -ge [version]'3.8.23.0' } |
+                Select-Object -First 1
+            $package = Get-AppxPackage -Name E046963F.LenovoSettingsforEnterprise -AllUsers -ErrorAction SilentlyContinue
+            if ($service -and $package -and (Test-Path -LiteralPath "$env:ProgramData\Lenovo\Vantage\Addins" -PathType Container)) {
+                Write-Output 'Detected'
+                exit 0
+            }
+            exit 1
+      assignments:
+        - intent: available
+          all_devices: true
+          filter:
+            id: cd983881-4372-48e5-bee3-182ab8c9ded5 # Lenovo devices
+            mode: include

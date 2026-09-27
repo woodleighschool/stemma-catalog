@@ -1,5 +1,24 @@
 version: 3
 inputs:
+  stemma/v1alpha1/BuildMacPkg/adobe-creative-cloud:
+    vendor:
+      version: 1
+      resolver: adobe
+      resolver_version: "1"
+      declaration: 5d0b7971524b0688b5d02356b7abf764ae962aba9373bcd32801774de9e428f9
+      observation:
+        filename: ACCCx6_10_0_252_41.dmg
+        url: https://ccmdls.adobe.com/AdobeProducts/StandaloneBuilds/ACCC/ESD/6.10.0/252.41/macarm64/ACCCx6_10_0_252_41.dmg
+        version: 6.10.0.252.41
+      content:
+        artifact:
+          sha256: 5115a16e2ecddade5d37e50fc55721521f92882bf3796ff0fa6fc345719801f7
+          size: 311485111
+        filename: ACCCx6_10_0_252_41.dmg
+        mode: 420
+      evidence:
+        adobe:
+          version: 6.10.0.252.41
   stemma/v1alpha1/BuildMacPkg/branding:
     scripts:
       version: 1
@@ -19,8 +38,7 @@ inputs:
       resolver: http
       resolver_version: "1"
       declaration: 877a7da1fd412b71ac4080072804bc41f5b0d28732341f859e303a22ca666acc
-      observation:
-        url: https://r2-d2.woodleigh.vic.edu.au/Woodleigh.jpg
+      observation: {}
       content:
         artifact:
           sha256: 0797320d16824611e9fc413b9e642f14adf550134a51cb4f2efa5af07df5ab76
@@ -87,12 +105,11 @@ inputs:
       resolver: http
       resolver_version: "1"
       declaration: 4802a2ef7af946a75e3cd5761a92797e7a838aec16385f2c473599aca991d72d
-      observation:
-        url: https://dzr-api-amzn-eu-west-1-9af7.api-upe.p.hmr.sophos.com/api/download/a51be3b1c689c4225374bdd797335f42/SophosInstall.zip
+      observation: {}
       content:
         artifact:
-          sha256: 3d4d6184436ea22b477740004280f80f5d156bf39762b347bea7266301953fbc
-          size: 6452809
+          sha256: 4500602e80500112ba6eb158d9283c5ad369e9e3d5ef0fddfdc2000582734800
+          size: 6452810
         filename: SophosInstall.zip
         mode: 420
   stemma/v1alpha1/MacSoftware/1password:
@@ -101,8 +118,7 @@ inputs:
       resolver: http
       resolver_version: "1"
       declaration: 14c6add12f958da5086f434b0d8ee6c148611f20de34d8676a061541dc72573d
-      observation:
-        url: https://downloads.1password.com/mac/1Password.pkg
+      observation: {}
       content:
         artifact:
           sha256: 48e383a0b754e133d44dc900130c09266435f0f2fbf6aa2f40f7e0946ed9def8
@@ -163,12 +179,11 @@ inputs:
       resolver: http
       resolver_version: "1"
       declaration: 07d652bb43c6c88cfe177f20373e416575d86548a092a6c8bc505c4718ab3bdd
-      observation:
-        url: https://dl.appstreaming.autodesk.com/production/installers/Autodesk%20Fusion%20Admin%20Install.pkg
+      observation: {}
       content:
         artifact:
-          sha256: 91d55999618afd33de3bea0a81626648fda85324c5fabf8ff4290bfedb07bbba
-          size: 3798015585
+          sha256: c5887bdc49fd51f60c8e17f47688f72db67153253961f382d170dc9a680974a9
+          size: 3796327954
         filename: Autodesk Fusion Admin Install.pkg
         mode: 420
   stemma/v1alpha1/MacSoftware/bambustudio:
@@ -282,8 +297,7 @@ inputs:
       resolver: http
       resolver_version: "1"
       declaration: 296efb5e6ca6d488e72356659af78a98490d3305fe4583308e9de2753ed075aa
-      observation:
-        url: https://desktop.docker.com/mac/main/arm64/Docker.dmg
+      observation: {}
       content:
         artifact:
           sha256: e513bbfeca246165595e2f17cabf6579936f36057f3f4fb689c619e6aac6d188
@@ -329,8 +343,7 @@ inputs:
       resolver: http
       resolver_version: "1"
       declaration: a38e9a34969899ddf6c73418a94d1fd0e5d2fdda8c3047d5c38cb821a501c4f1
-      observation:
-        url: https://gamemaker.io/en/download/mac/monthly/GameMaker.pkg
+      observation: {}
       content:
         artifact:
           sha256: 8cbd33a9a92ed60ebd53734413b33afdeb8c677326ada0c80971e9f91555cc7f
@@ -346,7 +359,7 @@ inputs:
       observation: {}
       content:
         artifact:
-          sha256: b257a8da6f78d196fe1050089c7b15ef2ec7d0443d385be063a2d30d45080e9b
+          sha256: a7ab1a25bcb9fac56fb5a9a2f3532d9585f290e381bb6ba74c108a17ee37da7f
           size: 1516154880
         filename: GarageBand.app
         tree: true
@@ -357,8 +370,7 @@ inputs:
       resolver: http
       resolver_version: "1"
       declaration: a98e54abc224f1e9c372a4040578efc9c436ae7ee96caccdf359b0e91734cbf6
-      observation:
-        url: https://access.woodleigh.vic.edu.au/global-protect/getmsi.esp?platform=mac
+      observation: {}
       content:
         artifact:
           sha256: 4136c718caf3cbe8bb29e16cc21b92efea1dbb7851f19e508d857d246644ead2
@@ -385,8 +397,7 @@ inputs:
       resolver: http
       resolver_version: "1"
       declaration: f8256e4340990b785cbabaa4fb0861cee091bfa32de2a0b8cb82b21b03d8cbb3
-      observation:
-        url: https://dl.google.com/dl/chrome/mac/universal/stable/gcem/GoogleChrome.pkg
+      observation: {}
       content:
         artifact:
           sha256: 81fb269b937fae2f3da79a07a05d52e616b05c132e452f289e605f94c1a68b26
@@ -399,8 +410,7 @@ inputs:
       resolver: http
       resolver_version: "1"
       declaration: b9a2bb608d5ccc7306532ef7acc7befccc9e3e775576146f922c05239b17fac6
-      observation:
-        url: https://dl.google.com/dl/earth/client/advanced/current/googleearthpromac-intel.dmg
+      observation: {}
       content:
         artifact:
           sha256: 20df0f4927f312f8d47e60294b9a77fd60e44be61476a581fb9195c029ba0893
@@ -416,7 +426,7 @@ inputs:
       observation: {}
       content:
         artifact:
-          sha256: bee72ae1fd11351c0e17c8cd22e1a1ca4c59743581d791c80c3a3d28306b5396
+          sha256: c1063ab9fe565377eb970a009d842212c47253f9cc0158b649c1afe0c9f3a38f
           size: 4358283264
         filename: iMovie.app
         tree: true
@@ -600,8 +610,7 @@ inputs:
       resolver: http
       resolver_version: "1"
       declaration: 2a16778cc9327a3f6551d1c34c8a38a62f6598a8991b6a472b8c146f1efd28c8
-      observation:
-        url: https://aka.ms/meeclientmacos
+      observation: {}
       content:
         artifact:
           sha256: 8aaada426842ebc054acb70ecd0a44fcb9abe02988e98d5488f17376380e2960
@@ -773,8 +782,7 @@ inputs:
       resolver: http
       resolver_version: "1"
       declaration: c1b9baf463643ba228eafe725f05825ba0655910604a834a183c47c099c656a2
-      observation:
-        url: https://sketchup.trimble.com/sketchup/2026/SketchUpPro-dmg
+      observation: {}
       content:
         artifact:
           sha256: 3a89d6ea7a5eddbd97521bde884f528f2dd6348b6408b74651551fb89d27c344
@@ -787,8 +795,7 @@ inputs:
       resolver: http
       resolver_version: "1"
       declaration: d4af667d4d1d3b061a84c51f69cdea7765e10beceae9629053c1f5fcc7d1b295
-      observation:
-        url: https://download.scdn.co/SpotifyARM64.dmg
+      observation: {}
       content:
         artifact:
           sha256: 30171cb041c07749ad41fc0487c6d9c0e283b97a945c347d6719ec6ffe21be07
@@ -863,8 +870,7 @@ inputs:
       resolver: http
       resolver_version: "1"
       declaration: ab711f838eba210554cb462d671513ae8dff4cc2d7191ed2a4294aaf251cf84e
-      observation:
-        url: https://public-cdn.cloud.unity3d.com/hub/prod/UnityHubSetup-arm64.dmg
+      observation: {}
       content:
         artifact:
           sha256: 15c1c3b03f036845d727047364358ca821c88ee4108b666db5368417053a154e
@@ -877,8 +883,7 @@ inputs:
       resolver: http
       resolver_version: "1"
       declaration: dd0ae3433758942b619c363306541a4dd4323f09237ae0f7e76f69e833a92a40
-      observation:
-        url: https://software-releases.graphicalanalysis.com/ga/mac/release/latest/Vernier-Graphical-Analysis.dmg
+      observation: {}
       content:
         artifact:
           sha256: a242c182adbe8bfc8ec4ea9fd50dba2ed6a692e75cf79cf41e05a448a5fd7a6f
@@ -891,12 +896,11 @@ inputs:
       resolver: http
       resolver_version: "1"
       declaration: 6f113c46478ef79c97a521f218037bbe906df1c1c98628f803cb14e3457314eb
-      observation:
-        url: https://code.visualstudio.com/sha/download?build=stable&os=darwin-arm64-dmg
+      observation: {}
       content:
         artifact:
-          sha256: ac59e4375a493d87edef35d91ebe9ad0635fd31914821bf303bf0161fc42ac39
-          size: 283980347
+          sha256: 474dc8042e5c371018701aaa10e17e5b39f11173fef4ac7e7540125d9275c819
+          size: 281312596
         filename: VSCode-darwin-arm64.dmg
         mode: 420
   stemma/v1alpha1/MacSoftware/vivi:
@@ -905,13 +909,12 @@ inputs:
       resolver: http
       resolver_version: "1"
       declaration: 67e4194a8106f7b3037621b4a391f859ed73c0fa9a5de7533d96f078def3aaa4
-      observation:
-        url: https://api.vivi.io/mac
+      observation: {}
       content:
         artifact:
-          sha256: 8783b30c8da0c920e93573d3d54ae64825d97da274f012111ede14a4761465bf
-          size: 309559384
-        filename: Vivi-3.12.0.pkg
+          sha256: 6d76da9b5c118dcf60b8bff73a9112a63430b2fffbaacc8e26c22579803f43e4
+          size: 309562634
+        filename: Vivi-3.12.2.pkg
         mode: 420
   stemma/v1alpha1/MacSoftware/vlc:
     source:
@@ -980,13 +983,25 @@ inputs:
       resolver: http
       resolver_version: "1"
       declaration: c55979850e795e033861595872ff599ab94a6389001ab7ae1f10eaf42e274994
-      observation:
-        url: https://zoom.us/client/latest/ZoomInstallerIT.pkg
+      observation: {}
       content:
         artifact:
-          sha256: bd5a3310a747a694011ba314cc8accd86396082f96ce9560c9d2d9f2b663df3d
-          size: 383120451
+          sha256: 422f801771ef0c3db68bdf1a47a9c44e18b6f822b2f5d751adc3242270dc6417
+          size: 383113783
         filename: ZoomInstallerIT.pkg
+        mode: 420
+  stemma/v1alpha1/WindowsSoftware/globalprotect:
+    source:
+      version: 1
+      resolver: http
+      resolver_version: "1"
+      declaration: 1019f743806cbe7daf68e2b993dafdb57f9155d0763c40ac8389d8e7186cc048
+      observation: {}
+      content:
+        artifact:
+          sha256: 6c67253fba0da8d1c6ee18d5f96de16ea2ba7a49bdabadb7d3ac27b7e44154e8
+          size: 69154304
+        filename: GlobalProtect64.msi
         mode: 420
   stemma/v1alpha1/WindowsSoftware/google-chrome:
     source:
@@ -994,13 +1009,38 @@ inputs:
       resolver: http
       resolver_version: "1"
       declaration: bce4ed5e78e6c91e0cd711908a02cd8314ae06ca16e7eac8e840f9069c7f93ee
-      observation:
-        url: https://dl.google.com/dl/chrome/install/googlechromestandaloneenterprise64.msi
+      observation: {}
       content:
         artifact:
           sha256: 40de51d92ebbc3d2e9b434526ec6f937bf9a62df6de7ca385dd02d0648379051
           size: 167686144
         filename: googlechromestandaloneenterprise64.msi
+        mode: 420
+  stemma/v1alpha1/WindowsSoftware/lenovo-commercial-vantage:
+    source:
+      version: 1
+      resolver: http
+      resolver_version: "1"
+      declaration: 54adc1b6b4597d3c14987715759cfd57646a47412bdf9354bccbaa868343318e
+      observation: {}
+      content:
+        artifact:
+          sha256: 9e1d02be669fed2eb8c0e964bac3ce6a01ecd8a094904cdc87a063eed0ac87fe
+          size: 656868862
+        filename: LenovoCommercialVantage_20.2606.24.0.20260917014203.zip
+        mode: 420
+  stemma/v1alpha1/WindowsSoftware/vivi:
+    source:
+      version: 1
+      resolver: http
+      resolver_version: "1"
+      declaration: 0062d540b624fb66501fc959ae83d38d32c1ac530a5ffbb8829b8abb52f5bfce
+      observation: {}
+      content:
+        artifact:
+          sha256: 356f0632a17a86a624bc752e911141d143a56bf7269c37dbdb87d17847fd4cd2
+          size: 397292544
+        filename: ViviSetup64-3.12.2.msi
         mode: 420
   stemma/v1alpha1/WindowsSoftware/zoom:
     source:
@@ -1008,8 +1048,7 @@ inputs:
       resolver: http
       resolver_version: "1"
       declaration: 3062bc012bac6be0b69c9174c3ff0269b88dc188a7b11d622af228ad2ceb55f8
-      observation:
-        url: https://zoom.us/client/latest/ZoomInstallerFull.msi?archType=x64
+      observation: {}
       content:
         artifact:
           sha256: b0dac9fa5237d2e18144ca723644460e7cc26675e5d3db0f89fdfe47ad8c429b

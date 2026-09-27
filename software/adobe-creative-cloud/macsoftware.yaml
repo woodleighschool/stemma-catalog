@@ -1,0 +1,55 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/woodleighschool/stemma-catalog/main/stemma.schema.json
+apiVersion: stemma/v1alpha1
+kind: MacSoftware
+metadata:
+  name: adobe-creative-cloud
+spec:
+  extends: mac-software
+  source:
+    resource:
+      kind: BuildMacPkg
+      name: adobe-creative-cloud
+  icon: adobe-creative-cloud
+  destinations:
+    woodstar:
+      pkginfo:
+        blocking_applications:
+          - Creative Cloud
+          - Creative Cloud Desktop App
+          - Creative Cloud Installer
+        category: Creativity
+        description: Adobe Creative Cloud installs and manages Adobe desktop apps.
+        developer: Adobe
+        installs:
+          - path: /Applications/Utilities/Adobe Creative Cloud/ACC/Creative Cloud.app
+            type: file
+        name: Adobe Creative Cloud
+        unattended_install: true
+        unattended_uninstall: true
+        uninstall_method: uninstall_script
+        uninstall_script: |-
+          #!/bin/sh
+          app="/Applications/Utilities/Adobe Creative Cloud/ACC/Creative Cloud.app"
+          uninstaller="/Applications/Utilities/Adobe Creative Cloud/Utils/Creative Cloud Uninstaller.app/Contents/MacOS/Creative Cloud Uninstaller"
+          if [ ! -d "$app" ]; then
+            exit 0
+          fi
+          if [ ! -x "$uninstaller" ]; then
+            echo "Adobe Creative Cloud uninstaller not found: $uninstaller"
+            exit 1
+          fi
+          "$uninstaller" --uninstall=1
+          status=$?
+          if [ -d "$app" ]; then
+            echo "Adobe Creative Cloud is still installed."
+            exit 1
+          fi
+          exit "$status"
+        uninstallable: true
+      targets:
+        include:
+          - label_name: All Hosts
+            actions:
+              - optional_installs
+              - managed_updates
+        exclude: []
