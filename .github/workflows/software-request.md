@@ -85,7 +85,7 @@ mcp-servers:
   # reads main's stemma.yaml in place of the workspace's, so the plugins that
   # run are the reviewed ones.
   stemma:
-    container: ghcr.io/woodleighschool/stemma:0.3.0@sha256:3e0161efdc3101f986e7c35c93506d7dea7113b1aaccb8e27434bea51342afbe
+    container: ghcr.io/woodleighschool/stemma:0.3.0
     entrypoint: /opt/stemma/stemma
     entrypointArgs: [--root, "${{ github.workspace }}", --cache-dir, /tmp/stemma, mcp]
     args: [--user, "1001:1001"]
