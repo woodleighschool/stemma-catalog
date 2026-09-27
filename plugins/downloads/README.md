@@ -89,7 +89,6 @@ The catalog loads the built bundle:
 plugins:
   downloads:
     path: plugins/downloads/build
-    trusted: true
 ```
 
 Run `stemma plugins update downloads` after each build to lock it.
@@ -110,7 +109,6 @@ Consumers can use the published image in place of `path`:
 plugins:
   downloads:
     image: ghcr.io/woodleighschool/stemma-catalog/downloads:TAG
-    trusted: true
 ```
 
 Resolver names and software declarations stay the same.

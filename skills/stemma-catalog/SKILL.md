@@ -25,8 +25,7 @@ rather than reading further.
   use what it reveals, not how it does it.
 - Stemma reads environment values only where it uses them; never set a placeholder or dummy value to
   get past a missing one. Never read or print credential files.
-- Leave `stemma.yaml` and plugins out of software changes. Pull request checks refuse changed
-  plugins, which are reviewed and verified on their own.
+- Keep plugin dependency updates separate from unrelated software changes.
 - Stay local. Publishing (`plan`, `apply`, `reconcile`), commits and pushes need an explicit
   request.
 

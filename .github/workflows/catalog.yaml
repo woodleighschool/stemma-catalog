@@ -53,8 +53,6 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      # Runs before validation, which loads plugins: it refuses changed plugins
-      # before any plugin code runs. Preparation needs no destination credentials.
       - name: Prepare changes
         run: stemma prepare --changed-since "$BASE"
         env:

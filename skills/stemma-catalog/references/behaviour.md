@@ -7,12 +7,13 @@ Stemma's `describe` is the authority on fields. This page covers what a field li
 - `update` resolves sources and records them in `stemma.lock.yaml`. It is the only tool that
   writes input entries, and it keeps other resources' entries.
 - `icon` and `check` use the lockfile as it is. An input without a current entry fails with "run
-  stemma update", and plugins must match their entries.
+  stemma update". Plugin tags and local paths use lock entries; digest-pinned images select their code directly.
 - `prepare` resolves the sources as they are now and writes nothing: use it to try a draft. Its
   input changes are what `update` would record.
-- `check` rejects plugin changes, prepares what a change affects since a revision, then validates
-  the catalog, as pull request checks do. Destination metadata never counts, so a description edit prepares nothing. A
-  changed plugin fails it: plugin changes are reviewed and verified on their own.
+- `check` prepares what a change affects since a revision, then validates the catalog, as pull
+  request checks do. Each revision uses its own plugin implementations. Changes to resource or
+  input resolver operation identities affect preparation and downstream consumers. Destination
+  metadata and destination operation identities do not select resources for preparation.
 
 ## Environment values
 
