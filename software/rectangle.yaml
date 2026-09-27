@@ -1,0 +1,35 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/woodleighschool/stemma-catalog/main/stemma.schema.json
+apiVersion: stemma/v1alpha1
+kind: MacSoftware
+metadata:
+  name: rectangle
+spec:
+  extends: mac-software
+  source:
+    resolver: github
+    repository: rxhanson/Rectangle
+    asset: Rectangle.pkg
+  application:
+    bundle_id: com.knollsoft.Rectangle
+  signature:
+    signer: apple:developer-id:XSYZ3E4B7D # Ryan Hanson
+  icon: rectangle
+  destinations:
+    woodstar:
+      pkginfo:
+        category: Utilities
+        description: Rectangle moves and resizes windows on macOS using keyboard shortcuts
+          or snap areas, giving staff a fast way to arrange windows without a mouse.
+        developer: Ryan Hanson
+        name: Rectangle
+        unattended_install: true
+        unattended_uninstall: true
+        uninstall_method: removepackages
+        uninstallable: true
+      targets:
+        include:
+          - label_name: All Hosts
+            actions:
+              - optional_installs
+              - managed_updates
+        exclude: []
