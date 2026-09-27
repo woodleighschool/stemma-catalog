@@ -85,8 +85,8 @@ A resource `spec`:
 
 1. `extends`
 2. what is acquired: `source` or `inputs`
-3. what is selected or built from it, such as `package_path`, `application`, `content`,
-   `setup_file`, `payload`, `scripts` and the built `package`
+3. what is selected or built from it, such as `package_path`, `application`, `disk_image`,
+   `content`, `setup_file`, `payload`, `scripts` and the built `package`
 4. what is verified: `signatures`. A package build verifies an input before it builds, so its
    `signatures` follows `inputs`
 5. what is published: `minimum_os`, `icon`, `subjects`, then `destinations` last
