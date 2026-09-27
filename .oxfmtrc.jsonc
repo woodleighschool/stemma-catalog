@@ -1,8 +1,9 @@
 {
   "ignorePatterns": [
+    "CHANGELOG.md",
+    ".release-please-manifest.json",
+    ".mise/locks/",
     "stemma.schema.json",
-    "**/CHANGELOG.md",
-    ".mise/locks/**",
     ".github/workflows/*.lock.yml",
   ],
   "printWidth": 100,

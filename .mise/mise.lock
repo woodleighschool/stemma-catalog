@@ -93,7 +93,7 @@ provenance = "github-attestations"
 
 [[tools."npm:@commitlint/cli"]]
 version = "21.2.3"
-aube = { path = "locks/npm-commitlint-cli/21.2.3", digest = "sha256:54b54479dc2edce48b66b114dd3e2626a79878425cdcdc1a8cc7f0e041ce46e9" }
+aube = { path = "locks/npm-commitlint-cli/21.2.3", digest = "sha256:12a11928e975b49de8e705ed557300597f5cec2368decae192dcea8bb613873a" }
 backend = "npm:@commitlint/cli"
 specifiers = ["21.2.3"]
 
