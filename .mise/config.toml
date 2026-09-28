@@ -4,7 +4,7 @@ monorepo_root = true
 _.file = ["{{config_root}}/.env"]
 
 [tools]
-"github:woodleighschool/stemma" = "v0.7.1"
+"github:woodleighschool/stemma" = "v0.8.0"
 lefthook = "2.1.14"
 actionlint = "1.7.12"
 zizmor = "1.30.1"
