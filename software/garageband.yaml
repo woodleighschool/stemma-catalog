@@ -12,9 +12,9 @@ spec:
   destinations:
     woodstar:
       pkginfo:
-        category: Creativity
-        description: GarageBand is Apple's music creation studio for recording, playing,
-          and producing music.
+        category: Media
+        description: GarageBand is Apple's music creation studio for recording, playing, and
+          producing music.
         developer: Apple
         name: GarageBand
         unattended_install: true

@@ -15,7 +15,9 @@ spec:
   destinations:
     intune:
       display_name: Vivi
-      description: Wireless screen sharing for classrooms.
+      description: Vivi is the only scalable, easy-to-use wireless screensharing and student
+        engagement platform engineered for, and by, the education sector. Any device, any number of
+        users or classrooms, any media type, any learning type, any display.
       publisher: &publisher Vivi
       developer: *publisher
       detection:

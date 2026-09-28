@@ -18,10 +18,10 @@ spec:
   destinations:
     woodstar:
       pkginfo:
-        category: STEAM
-        description: UltiMaker Cura is free, easy-to-use 3D printing software trusted
-          by millions of users. Fine-tune your 3D model with 400+ settings for the
-          best slicing and printing results.
+        category: Graphics & Design
+        description: UltiMaker Cura is free, easy-to-use 3D printing software trusted by millions of
+          users. Fine-tune your 3D model with 400+ settings for the best slicing and printing
+          results.
         developer: UltiMaker
         name: UltiMaker Cura
         unattended_install: true

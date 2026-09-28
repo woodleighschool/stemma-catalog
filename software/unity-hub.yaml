@@ -14,9 +14,9 @@ spec:
   destinations:
     woodstar:
       pkginfo:
-        category: Programming
-        description: Unity Hub manages Unity installs, templates, and projects so students can
-          quickly switch between versions and collaborate on creations.
+        category: Developer Tools
+        description: Unity Hub manages Unity Editor installations and projects, making it easy to
+          install and switch between Editor versions.
         developer: Unity Technologies
         name: Unity Hub
         unattended_install: true

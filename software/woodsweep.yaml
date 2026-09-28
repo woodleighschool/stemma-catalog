@@ -18,10 +18,9 @@ spec:
   destinations:
     woodstar:
       pkginfo:
-        category: Utilities
-        description: >-
-          WoodSweep snapshots a configured local account, resets Microsoft Office
-          user state, and reconciles the account home after the snapshot succeeds.
+        category: System
+        description: WoodSweep snapshots a configured local account, resets Microsoft Office user
+          state, and reconciles the account home after the snapshot succeeds.
         developer: Woodleigh School
         name: WoodSweep
         postinstall_script: |-

@@ -19,11 +19,10 @@ spec:
   destinations:
     woodstar:
       pkginfo:
-        category: STEAM
-        description: Bambu Studio is an open-source, cutting-edge, feature-rich slicing
-          software. It contains project-based workflows, systematically optimized
-          slicing algorithms, and an easy-to-use graphical interface, bringing users
-          an incredibly smooth printing experience.
+        category: Graphics & Design
+        description: Bambu Studio is an open-source, cutting-edge, feature-rich slicing software. It
+          contains project-based workflows, systematically optimized slicing algorithms, and an
+          easy-to-use graphical interface, bringing users an incredibly smooth printing experience.
         developer: Bambu Lab
         name: BambuStudio
         unattended_install: true

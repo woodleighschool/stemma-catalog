@@ -20,9 +20,8 @@ spec:
     woodstar:
       pkginfo:
         category: Education
-        description: >-
-          ActivInspire lesson delivery software is a free teaching software tool
-          for classroom Interactive touchboards, displays, and whiteboards.
+        description: ActivInspire lesson delivery software is a free teaching software tool for
+          classroom interactive touchboards, displays, and whiteboards.
         developer: Promethean
         name: ActivInspire
         postinstall_script: |-

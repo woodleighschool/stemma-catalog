@@ -19,15 +19,13 @@ spec:
   destinations:
     woodstar:
       pkginfo:
-        category: Utilities
-        description: >-
-          Dante Controller provides essential device status information and
-          powerful real-time network monitoring, including device-level latency
-          and clock stability stats, multicast bandwidth usage, and customized
-          event logging, enabling you to quickly identify and resolve any
-          potential network issues. You can also quickly and easily backup,
-          restore, move, and reuse Dante network configurations using Presets,
-          and edit Dante routing configurations offline.
+        category: Media
+        description: Dante Controller provides essential device status information and powerful
+          real-time network monitoring, including device-level latency and clock stability stats,
+          multicast bandwidth usage, and customized event logging, enabling you to quickly identify
+          and resolve any potential network issues. You can also quickly and easily backup, restore,
+          move, and reuse Dante network configurations using Presets, and edit Dante routing
+          configurations offline.
         developer: Audinate
         name: Dante Controller
         unattended_install: true

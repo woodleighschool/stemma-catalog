@@ -11,7 +11,8 @@ spec:
     woodstar:
       pkginfo:
         category: System
-        description: Installs Apple's Rosetta translation software on Apple silicon Macs.
+        description: Installs Rosetta, Apple's translation technology for running Intel-based apps
+          on Apple silicon Macs.
         developer: Apple
         installcheck_script: |
           #!/bin/sh

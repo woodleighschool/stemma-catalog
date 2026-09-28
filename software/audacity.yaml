@@ -18,10 +18,10 @@ spec:
   destinations:
     woodstar:
       pkginfo:
-        category: Creativity
-        description: Audacity is the world's most popular free software for recording
-          and editing audio. So if you're producing music, a podcast, or just playing
-          around with audio, Audacity is for you.
+        category: Media
+        description: Audacity is the world's most popular free software for recording and editing
+          audio. So if you're producing music, a podcast, or just playing around with audio,
+          Audacity is for you.
         developer: Audacity
         name: Audacity
         unattended_install: true

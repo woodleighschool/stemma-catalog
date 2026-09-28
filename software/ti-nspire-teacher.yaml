@@ -20,9 +20,9 @@ spec:
     woodstar:
       pkginfo:
         category: Education
-        description: Powerful teacher software that turns a teacher's PC or Mac into
-          a virtual TI-Nspire CX graphing calculator environment and supports classroom
-          presentation and management workflows.
+        description: Powerful teacher software that turns a teacher's PC or Mac into a virtual
+          TI-Nspire CX graphing calculator environment and supports classroom presentation and
+          management workflows.
         developer: Texas Instruments
         name: TI-Nspire CX Premium Teacher Software
         unattended_install: true

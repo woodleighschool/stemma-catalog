@@ -22,7 +22,7 @@ spec:
         blocking_applications:
           - Microsoft Teams
           - Microsoft Teams (work or school)
-        category: Productivity
+        category: Communication
         description: Microsoft Teams is your modern solution for seamless collaboration and
           communication in the digital workplace. This platform brings together chat, video
           meetings, file collaboration, and integrated app functionalities in one place.

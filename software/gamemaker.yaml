@@ -17,7 +17,7 @@ spec:
   destinations:
     woodstar:
       pkginfo:
-        category: Programming
+        category: Developer Tools
         description: GameMaker makes designing games easy, regardless of your background or skill
           level. All you need is an idea!
         developer: YoYo Games

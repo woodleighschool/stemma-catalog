@@ -26,10 +26,9 @@ spec:
         blocking_applications:
           - SketchUp
           - LayOut
-        category: STEAM
-        description: >-
-          SketchUp is 3D modelling software for designing, documenting, and
-          communicating ideas.
+        category: Graphics & Design
+        description: SketchUp is 3D modelling software for designing, documenting, and communicating
+          ideas.
         developer: Trimble
         items_to_copy:
           - destination_path: /Applications

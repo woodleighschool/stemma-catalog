@@ -15,7 +15,8 @@ spec:
   destinations:
     intune:
       display_name: Google Chrome
-      description: Google Chrome Enterprise for Windows.
+      description: Get more done with the new Google Chrome. A more simple, secure, and faster web
+        browser than ever, with Google's smarts built-in.
       publisher: &publisher Google LLC
       developer: *publisher
       detection:

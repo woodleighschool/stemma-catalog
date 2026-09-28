@@ -138,7 +138,7 @@ spec:
   destinations:
     munki:
       pkginfo:
-        description: Fonts for every Mac.
+        description: Installs the Example font collection.
 ```
 
 The build makes the PKG and the software publishes it. Raise the package version when the payload

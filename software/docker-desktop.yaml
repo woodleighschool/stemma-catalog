@@ -18,9 +18,8 @@ spec:
       pkginfo:
         blocking_applications:
           - Docker Desktop
-        category: Programming
-        description: Docker Desktop is collaborative containerization software for
-          developers.
+        category: Developer Tools
+        description: Docker Desktop is collaborative containerization software for developers.
         developer: Docker
         name: Docker Desktop
         postinstall_script: |-

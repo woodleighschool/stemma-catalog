@@ -16,7 +16,8 @@ spec:
   destinations:
     intune:
       display_name: GlobalProtect
-      description: Connect to the school network from outside campus.
+      description: GlobalProtect secures intranet, private cloud, public cloud, and internet traffic
+        and allows access to company resources from anywhere in the world.
       publisher: &publisher Palo Alto Networks
       developer: *publisher
       msi_properties:

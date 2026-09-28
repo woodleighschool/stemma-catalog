@@ -13,9 +13,8 @@ spec:
   destinations:
     woodstar:
       pkginfo:
-        category: Productivity
-        description: Applies Woodleigh's Microsoft Office LTSC 2024 volume license
-          to shared devices.
+        category: System
+        description: Activates volume-licensed installations of Microsoft Office LTSC 2024 for Mac.
         developer: Microsoft
         name: Microsoft Office LTSC 2024 VL Serializer
         preinstall_script: |-

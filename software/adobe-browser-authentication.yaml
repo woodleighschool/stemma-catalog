@@ -14,7 +14,7 @@ spec:
           - Creative Cloud
           - Creative Cloud Desktop App
           - Creative Cloud Installer
-        category: Creativity
+        category: System
         description: Enables browser-based authentication for Adobe Creative Cloud.
         developer: Adobe
         installcheck_script: |-

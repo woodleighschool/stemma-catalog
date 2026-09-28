@@ -21,7 +21,7 @@ spec:
       pkginfo:
         category: Education
         description: Vernier Graphical Analysis pairs with sensors to let students collect,
-          visualise, and analyse lab data directly on their Mac.
+          visualise, and analyse lab data.
         developer: Vernier
         name: Vernier Graphical Analysis
         unattended_install: true

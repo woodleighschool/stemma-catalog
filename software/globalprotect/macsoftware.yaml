@@ -19,8 +19,8 @@ spec:
       pkginfo:
         blocking_applications: [] # installer auto-quits
         category: Security
-        description: The Palo Alto VPN client is required to access organizational resources outside
-          of the school network.
+        description: GlobalProtect secures intranet, private cloud, public cloud, and internet
+          traffic and allows access to company resources from anywhere in the world.
         developer: Palo Alto
         name: GlobalProtect
         unattended_install: true

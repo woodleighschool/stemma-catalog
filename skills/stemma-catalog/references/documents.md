@@ -30,8 +30,22 @@
 - Leave out a field the destination fills in from other fields, as its description says, unless
   that default is wrong for this software. Munki, for example, blocks on the applications in
   `installs` when `blocking_applications` is absent.
-- Set descriptive fields yourself: display name, description, publisher or developer, category. Base
-  the description on the vendor's wording, cut to what an end user needs.
+- Set descriptive fields yourself: display name, description, publisher or developer, category.
+- Describe the software itself. Start from the vendor's short product description and trim it for
+  grammar, repetition, marketing or length; write a short factual one only when the vendor has
+  nothing usable. Keep good vendor copy rather than rewriting it into a house voice.
+- Leave deployment context to the fields that carry it: management state, who deploys or requires
+  the item, audiences, policy, the destination, and the platform unless it distinguishes the item.
+  Name the organisation only when the item is its own, such as its branding, fonts or a
+  configuration of its systems. A product that takes part in a local policy, such as a filtering
+  agent, is still described as the product.
+- Say what an application does, not that it is installed. Installs, adds or configures belong to
+  items where that action is the item: a driver, content pack, printer, configuration or other
+  custom payload.
+- Treat categories as a short browsing list. Pick the one that fits the item's main purpose from the
+  repository's list, or from those its documents already use. Don't add a near-duplicate such as
+  `Browser` beside `Browsers`, adopt a vendor's narrower term or keep a category the list no longer
+  has; a new category is a repository decision.
 - Declare explicit signing expectations wherever the kind supports them. `stemma signature` reports
   each subject with its signer or `unsigned: true`. Review intentionally unsigned sources before
   declaring them; report invalid or unsupported signatures rather than omitting the assertion.
@@ -71,7 +85,9 @@ that would express it. See [plugin-gaps.md](plugin-gaps.md).
   in single quotes when it needs quoting, so its backslashes stay single.
 - Repeat a value within one document with an anchor and alias rather than copying it, such as
   `publisher: &publisher Vendor` and `developer: *publisher`. Merge keys (`<<`) are rejected.
-- Write long descriptions as wrapped plain text or a folded block, matching neighbouring files.
+- Keep a description on its key's line when it fits the formatter's print width. Otherwise wrap it
+  as plain text at that width, continuing two spaces deeper than the key, and use a folded block
+  (`>-`) only for text plain YAML would misread.
 - Comment only what a reviewer needs and the YAML can't say, such as the name behind a signer or
   group ID.
 - Leave unrelated documents as they are.

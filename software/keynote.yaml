@@ -13,8 +13,7 @@ spec:
     woodstar:
       pkginfo:
         category: Productivity
-        description: Keynote is Apple's presentation app for creating and delivering
-          presentations.
+        description: Keynote is Apple's presentation app for creating and delivering presentations.
         developer: Apple
         name: Keynote
         preinstall_script: |-

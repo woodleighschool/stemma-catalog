@@ -18,7 +18,7 @@ spec:
   destinations:
     woodstar:
       pkginfo:
-        category: STEAM
+        category: Graphics & Design
         description: Fusion is software for 3D CAD, modelling, manufacturing, industrial design,
           electronics & mechanical engineering.
         developer: Autodesk Inc.

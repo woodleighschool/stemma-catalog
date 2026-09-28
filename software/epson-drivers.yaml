@@ -21,7 +21,7 @@ spec:
     woodstar:
       pkginfo:
         blocking_applications: []
-        category: Utilities
+        category: Printing
         description: Installs the Epson AM-C6000 Series printer driver.
         developer: Epson
         installs:

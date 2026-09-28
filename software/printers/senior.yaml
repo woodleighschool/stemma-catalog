@@ -11,7 +11,7 @@ spec:
     woodstar:
       pkginfo:
         blocking_applications: []
-        category: Printers
+        category: Printing
         description: Adds the Senior Campus print queue.
         developer: Woodleigh School
         installcheck_script: |-

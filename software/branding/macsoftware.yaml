@@ -18,7 +18,7 @@ spec:
   destinations:
     woodstar:
       pkginfo:
-        category: Utilities
+        category: System
         description: Applies the Woodleigh wallpaper and initial Dock layout once. The Dock and
           wallpaper remain customisable after setup.
         developer: Woodleigh School

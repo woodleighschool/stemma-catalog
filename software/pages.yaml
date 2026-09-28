@@ -13,8 +13,8 @@ spec:
     woodstar:
       pkginfo:
         category: Productivity
-        description: Pages is Apple's word processor for creating documents and collaborating
-          with others.
+        description: Pages is Apple's word processor for creating documents and collaborating with
+          others.
         developer: Apple
         name: Pages
         preinstall_script: |-

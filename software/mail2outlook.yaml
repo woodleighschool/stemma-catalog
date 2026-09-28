@@ -9,8 +9,8 @@ spec:
   destinations:
     woodstar:
       pkginfo:
-        category: Productivity
-        description: Sets Microsoft Outlook as the default application for email links.
+        category: System
+        description: Sets Microsoft Outlook as the default app for email links.
         developer: Woodleigh School
         installcheck_script: |-
           #!/bin/zsh --no-rcs

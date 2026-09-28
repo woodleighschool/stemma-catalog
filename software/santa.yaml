@@ -22,9 +22,8 @@ spec:
       pkginfo:
         blocking_applications: []
         category: Security
-        description: Santa is a binary and file access authorization system for macOS.
-          It consists of a system extension that monitors for executions and file
-          access.
+        description: Santa is a binary and file access authorization system for macOS. It consists
+          of a system extension that monitors for executions and file access.
         developer: North Pole Security
         name: Santa
         unattended_install: true

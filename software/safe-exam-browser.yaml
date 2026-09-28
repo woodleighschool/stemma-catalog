@@ -24,7 +24,8 @@ spec:
     woodstar:
       pkginfo:
         category: Education
-        description: Safe Exam Browser provides a secure browser environment for carrying out online assessments.
+        description: Safe Exam Browser provides a secure browser environment for carrying out online
+          assessments.
         developer: ETH Zurich
         name: Safe Exam Browser
         unattended_install: true

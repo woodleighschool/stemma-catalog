@@ -15,8 +15,8 @@ spec:
   destinations:
     intune:
       display_name: Lenovo Commercial Vantage
-      description: Lenovo Commercial Vantage with the Lenovo Vantage Service and add-ins, which keep
-        the app, drivers and firmware current on Lenovo devices.
+      description: Lenovo Commercial Vantage, together with the Lenovo Vantage Service and add-ins,
+        helps keep Lenovo devices, drivers, and firmware up to date.
       publisher: &publisher Lenovo
       developer: *publisher
       install_command: VantageInstaller.exe Install -Vantage

@@ -18,11 +18,10 @@ spec:
   destinations:
     woodstar:
       pkginfo:
-        category: Creativity
-        description: Blender is a free and open-source 3D computer graphics software
-          tool set used for creating animated films, visual effects, art, 3D-printed
-          models, motion graphics, interactive 3D applications, virtual reality, and,
-          formerly, video games.
+        category: Graphics & Design
+        description: Blender is a free and open-source 3D computer graphics software tool set used
+          for creating animated films, visual effects, art, 3D-printed models, motion graphics,
+          interactive 3D applications, virtual reality, and, formerly, video games.
         developer: The Blender Foundation
         name: Blender
         unattended_install: true

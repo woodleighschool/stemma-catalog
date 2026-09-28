@@ -12,7 +12,7 @@ spec:
   destinations:
     woodstar:
       pkginfo:
-        category: Creativity
+        category: Media
         description: iMovie is Apple's video editor for creating and sharing movies.
         developer: Apple
         name: iMovie

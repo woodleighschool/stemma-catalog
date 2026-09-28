@@ -23,7 +23,7 @@ spec:
           - Microsoft AutoUpdate
           - Microsoft Edge
           - Microsoft Error Reporting
-        category: Productivity
+        category: Browsers
         description: Get Microsoft Edge, your AI-powered browser, and explore a smarter way to
           browse, find, create and do beyond what you ever thought possible.
         developer: Microsoft

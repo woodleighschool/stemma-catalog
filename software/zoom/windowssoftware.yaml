@@ -16,7 +16,8 @@ spec:
   destinations:
     intune:
       display_name: Zoom Workplace
-      description: Zoom Workplace for Windows.
+      description: Zoom is a cloud-based video conferencing platform that can be used for video
+        conferencing meetings, audio conferencing, webinars, meeting recordings, and live chat.
       publisher: &publisher Zoom Communications, Inc.
       developer: *publisher
       msi_properties:

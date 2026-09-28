@@ -20,10 +20,9 @@ spec:
     woodstar:
       pkginfo:
         category: Security
-        description: >-
-          By combining cutting-edge technologies, such as deep learning and
-          endpoint detection and response, Intercept X delivers unmatched
-          protection against unknown malware, exploits, and ransomware.
+        description: By combining cutting-edge technologies, such as deep learning and endpoint
+          detection and response, Intercept X delivers unmatched protection against unknown malware,
+          exploits, and ransomware.
         developer: Sophos
         installcheck_script: |-
           #!/bin/bash

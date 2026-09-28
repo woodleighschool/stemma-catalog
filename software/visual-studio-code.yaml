@@ -19,10 +19,9 @@ spec:
   destinations:
     woodstar:
       pkginfo:
-        category: Programming
-        description: >-
-          Visual Studio Code is a code editor redefined and optimized for building
-          and debugging modern web and cloud applications.
+        category: Developer Tools
+        description: Visual Studio Code is a code editor redefined and optimized for building and
+          debugging modern web and cloud applications.
         developer: Microsoft
         name: Visual Studio Code
         postinstall_script: |-

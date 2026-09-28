@@ -21,7 +21,7 @@ spec:
           - Creative Cloud
           - Creative Cloud Desktop App
           - Creative Cloud Installer
-        category: Creativity
+        category: Graphics & Design
         description: Adobe Creative Cloud installs and manages Adobe desktop apps.
         developer: Adobe
         installs:

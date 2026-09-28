@@ -28,9 +28,8 @@ spec:
           - Microsoft Teams
           - Microsoft Word
         category: Productivity
-        description: >-
-          This suite ties everything together, offering enhanced security, business-class email,
-          and additional tools designed to boost efficiency and collaboration.
+        description: This suite ties everything together, offering enhanced security, business-class
+          email, and additional tools designed to boost efficiency and collaboration.
         developer: Microsoft
         installs: []
         name: Microsoft 365 Business Pro Suite

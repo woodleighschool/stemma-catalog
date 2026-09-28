@@ -20,8 +20,9 @@ spec:
   destinations:
     intune:
       display_name: Munki
-      description: >-
-        Munki is a set of tools that, used together with a webserver-based  repository of packages and package metadata, can be used by macOS  administrators to manage software installs (and in many cases removals)  on macOS client machines.
+      description: Munki is a set of tools that, used together with a webserver-based repository of
+        packages and package metadata, can be used by macOS administrators to manage software
+        installs (and in many cases removals) on macOS client machines.
       publisher: &publisher Mac Admins Open Source
       developer: *publisher
       ignore_version_detection: false

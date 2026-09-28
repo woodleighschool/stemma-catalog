@@ -25,10 +25,8 @@ spec:
           - Wacom Center
           - Wacom Display Settings
           - Wacom Tablet Utility
-        category: Creativity
-        description: >-
-          These are the drivers needed to use any Wacom pad or display. You may
-          need to reinstall these when you update your MacBook's OS.
+        category: Graphics & Design
+        description: The Wacom Tablet Driver enables Wacom pen tablets and pen displays.
         developer: Wacom
         name: Wacom Tablet Driver
         unattended_install: true

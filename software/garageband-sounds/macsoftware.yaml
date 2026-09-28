@@ -21,7 +21,7 @@ spec:
       pkginfo:
         blocking_applications:
           - GarageBand
-        category: Creativity
+        category: Media
         description: The complete collection of sounds and instruments for GarageBand.
         developer: Apple
         installcheck_script: |-
@@ -224,7 +224,7 @@ spec:
       pkginfo:
         blocking_applications:
           - GarageBand
-        category: Creativity
+        category: Media
         description: Essential sounds and instruments for GarageBand.
         developer: Apple
         installcheck_script: |-

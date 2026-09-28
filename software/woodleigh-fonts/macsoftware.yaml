@@ -18,9 +18,8 @@ spec:
   destinations:
     woodstar:
       pkginfo:
-        category: Fonts
-        description: >-
-          Woodleigh School managed font bundle.
+        category: Graphics & Design
+        description: Installs the Woodleigh School font collection.
         developer: Woodleigh
         name: Woodleigh Fonts
         unattended_install: true

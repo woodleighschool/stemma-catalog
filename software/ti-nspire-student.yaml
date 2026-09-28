@@ -20,9 +20,8 @@ spec:
     woodstar:
       pkginfo:
         category: Education
-        description: Powerful computer software with a Computer Algebra System (CAS)
-          that satisfies math and science curriculum needs from middle school through
-          college.
+        description: Powerful computer software with a Computer Algebra System (CAS) that satisfies
+          math and science curriculum needs from middle school through college.
         developer: Texas Instruments
         name: TI-Nspire CX Student Software
         unattended_install: true

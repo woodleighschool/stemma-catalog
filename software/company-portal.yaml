@@ -20,9 +20,9 @@ spec:
   destinations:
     intune:
       display_name: Company Portal
-      description: The Company Portal provides access to corporate apps and resources from almost
-        any network. Your company must already subscribe to Microsoft Intune, and your IT admin
-        must set up your account before you can use this app.
+      description: &description The Company Portal provides access to corporate apps and resources
+        from almost any network. Your company must already subscribe to Microsoft Intune, and your
+        IT admin must set up your account before you can use this app.
       publisher: &publisher Microsoft
       developer: *publisher
       ignore_version_detection: true
@@ -34,11 +34,9 @@ spec:
           all_devices: true
     woodstar:
       pkginfo:
-        category: Productivity
-        description: The Company Portal provides access to corporate apps and resources from almost
-          any network. Your company must already subscribe to Microsoft Intune, and your IT admin
-          must set up your account before you can use this app.
-        developer: Microsoft
+        category: System
+        description: *description
+        developer: *publisher
         name: Company Portal
         unattended_install: true
         uninstallable: false

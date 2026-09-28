@@ -21,7 +21,7 @@ spec:
         category: Education
         description: Engage students in game-based learning across the curriculum. Minecraft
           Education is a game-based platform that inspires creative, inclusive learning through
-          play. Explore blocky words that unlock new ways to take on any subject or challenge.
+          play. Explore blocky worlds that unlock new ways to take on any subject or challenge.
         developer: Microsoft
         name: Minecraft Education
         unattended_install: true
