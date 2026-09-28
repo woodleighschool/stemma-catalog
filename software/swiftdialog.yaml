@@ -29,8 +29,6 @@ spec:
       assignments:
         - intent: required
           all_devices: true
-      retention:
-        keep: 1
     woodstar:
       pkginfo:
         category: Utilities

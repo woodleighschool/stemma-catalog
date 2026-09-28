@@ -37,8 +37,6 @@ spec:
               type: hard_reboot
             - code: 1618
               type: retry
-          retention:
-            keep: 1
   destinations:
     intune:
       operation: intune

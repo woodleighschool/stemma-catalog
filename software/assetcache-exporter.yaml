@@ -23,5 +23,3 @@ spec:
       assignments:
         - intent: required
           group: 88208ef5-07a0-4627-ad8f-e9c1c0ff5f15 # Intune - Apple Content Caches
-      retention:
-        keep: 1

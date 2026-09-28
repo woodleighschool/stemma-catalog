@@ -26,5 +26,3 @@ spec:
       assignments:
         - intent: required
           group: 1cf8b79a-f545-4e84-98d7-154e2efec27a # Intune - Library Kiosk iMacs
-      retention:
-        keep: 1
