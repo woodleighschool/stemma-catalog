@@ -26,6 +26,8 @@ spec:
         user input.
       publisher: &publisher CSIRO
       developer: *publisher
+      categories:
+        - Computer Management
       ignore_version_detection: true
       assignments:
         - intent: required

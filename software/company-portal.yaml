@@ -25,6 +25,8 @@ spec:
         IT admin must set up your account before you can use this app.
       publisher: &publisher Microsoft
       developer: *publisher
+      categories:
+        - Other Apps
       ignore_version_detection: true
       included_apps:
         - id: "{{ evidence['macos.application'].app.bundle_id }}"

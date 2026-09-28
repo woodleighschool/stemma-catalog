@@ -25,6 +25,8 @@ spec:
         installs (and in many cases removals) on macOS client machines.
       publisher: &publisher Mac Admins Open Source
       developer: *publisher
+      categories:
+        - Computer Management
       ignore_version_detection: false
       assignments:
         - intent: required

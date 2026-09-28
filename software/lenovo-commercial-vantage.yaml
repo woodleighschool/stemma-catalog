@@ -19,6 +19,8 @@ spec:
         helps keep Lenovo devices, drivers, and firmware up to date.
       publisher: &publisher Lenovo
       developer: *publisher
+      categories:
+        - Computer Management
       install_command: VantageInstaller.exe Install -Vantage
       uninstall_command: VantageInstaller.exe Uninstall -Vantage
       detection:

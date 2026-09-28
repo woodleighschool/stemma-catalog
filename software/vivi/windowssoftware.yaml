@@ -20,6 +20,8 @@ spec:
         users or classrooms, any media type, any learning type, any display.
       publisher: &publisher Vivi
       developer: *publisher
+      categories:
+        - Collaboration & Social
       detection:
         - type: registry
           key: HKEY_LOCAL_MACHINE\SOFTWARE\Vivi Corporation\Vivi

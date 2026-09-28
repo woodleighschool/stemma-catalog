@@ -20,6 +20,8 @@ spec:
         and allows access to company resources from anywhere in the world.
       publisher: &publisher Palo Alto Networks
       developer: *publisher
+      categories:
+        - Other Apps
       msi_properties:
         CANCHANGEPORTAL: "no"
         CONNECTMETHOD: on-demand

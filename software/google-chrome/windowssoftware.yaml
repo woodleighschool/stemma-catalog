@@ -19,6 +19,8 @@ spec:
         browser than ever, with Google's smarts built-in.
       publisher: &publisher Google LLC
       developer: *publisher
+      categories:
+        - Productivity
       detection:
         - type: file
           path: C:\Program Files\Google\Chrome\Application
