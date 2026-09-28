@@ -1,5 +1,27 @@
 # Changelog
 
+## [0.3.3](https://github.com/woodleighschool/stemma-catalog/compare/0.3.2...0.3.3) (2026-09-28)
+
+
+### Bug Fixes
+
+* **go:** update module github.com/woodleighschool/stemma (66a52ad → a9934e5) ([#64](https://github.com/woodleighschool/stemma-catalog/issues/64)) ([ca5e270](https://github.com/woodleighschool/stemma-catalog/commit/ca5e270c573584ee022942862a919f9362c24dd6))
+* **go:** update module github.com/woodleighschool/stemma (a9934e5 → 3d2a64f) ([#65](https://github.com/woodleighschool/stemma-catalog/issues/65)) ([f208b05](https://github.com/woodleighschool/stemma-catalog/commit/f208b055d5bd45f368321ae2a01f37c802fd623d))
+* **go:** update module github.com/woodleighschool/stemma (d6b6c84 → 66a52ad) ([#63](https://github.com/woodleighschool/stemma-catalog/issues/63)) ([1e41add](https://github.com/woodleighschool/stemma-catalog/commit/1e41addd60b0b08cbc8503c91482ab08bb268544))
+* **go:** update module github.com/woodleighschool/stemma (f029a47 → d6b6c84) ([#59](https://github.com/woodleighschool/stemma-catalog/issues/59)) ([fd10df2](https://github.com/woodleighschool/stemma-catalog/commit/fd10df22e78e9513305d48107b196f332b4ad618))
+
+
+### Code Refactoring
+
+* remove plugin trust declarations ([868e4a0](https://github.com/woodleighschool/stemma-catalog/commit/868e4a03c587b9cc2c18e139223aee328feb5fdb))
+
+
+### Miscellaneous Chores
+
+* include dependency licenses in release artifacts ([d8c2acf](https://github.com/woodleighschool/stemma-catalog/commit/d8c2acfe5ca972e937720182b1c6f4d5633e3fcf))
+* **mise:** update tool golangci-lint (2.13.2 → 2.14.0) ([#62](https://github.com/woodleighschool/stemma-catalog/issues/62)) ([3f35882](https://github.com/woodleighschool/stemma-catalog/commit/3f35882bef10985d7bf5721f93b0b9850a2f04f1))
+* tidy modules directly in GoReleaser ([d65379c](https://github.com/woodleighschool/stemma-catalog/commit/d65379c75698bf41c9b07a9d65949dc0dcc98975))
+
 ## [0.3.2](https://github.com/woodleighschool/stemma-catalog/compare/0.3.1...0.3.2) (2026-09-27)
 
 
