@@ -332,6 +332,19 @@ inputs:
       evidence:
         epson:
           version: "13.48"
+  stemma/v1alpha1/MacSoftware/firefox:
+    source:
+      version: 1
+      resolver: http
+      resolver_version: "1"
+      declaration: a4d37788a5c9b108b6d8ad634541724710ab2bc7d9cd7b469339e4aba2fdc322
+      observation: {}
+      content:
+        artifact:
+          sha256: 7eda94829670b892524eddfee575d16fe74b9329d3d0795367cce035207d34a4
+          size: 160451034
+        filename: Firefox 156.0.1.dmg
+        mode: 420
   stemma/v1alpha1/MacSoftware/gamemaker:
     source:
       version: 1
