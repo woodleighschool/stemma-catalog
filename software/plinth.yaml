@@ -21,7 +21,8 @@ spec:
     intune:
       display_name: Plinth
       description: Plinth is a managed kiosk browser for Woodleigh School library iMacs.
-      publisher: Woodleigh School
+      publisher: &publisher Woodleigh School
+      developer: *publisher
       ignore_version_detection: false
       assignments:
         - intent: required

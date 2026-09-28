@@ -17,7 +17,8 @@ spec:
     intune:
       display_name: GlobalProtect
       description: Connect to the school network from outside campus.
-      publisher: Palo Alto Networks
+      publisher: &publisher Palo Alto Networks
+      developer: *publisher
       msi_properties:
         CANCHANGEPORTAL: "no"
         CONNECTMETHOD: on-demand

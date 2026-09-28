@@ -18,7 +18,8 @@ spec:
       type: pkg
       display_name: assetcache-exporter
       description: assetcache-exporter exposes Apple Content Caching metrics for Prometheus.
-      publisher: Woodleigh School
+      publisher: &publisher Woodleigh School
+      developer: *publisher
       ignore_version_detection: false
       assignments:
         - intent: required

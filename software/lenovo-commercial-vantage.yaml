@@ -17,7 +17,8 @@ spec:
       display_name: Lenovo Commercial Vantage
       description: Lenovo Commercial Vantage with the Lenovo Vantage Service and add-ins, which keep
         the app, drivers and firmware current on Lenovo devices.
-      publisher: Lenovo
+      publisher: &publisher Lenovo
+      developer: *publisher
       install_command: VantageInstaller.exe Install -Vantage
       uninstall_command: VantageInstaller.exe Uninstall -Vantage
       detection:

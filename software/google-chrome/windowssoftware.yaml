@@ -16,7 +16,8 @@ spec:
     intune:
       display_name: Google Chrome
       description: Google Chrome Enterprise for Windows.
-      publisher: Google LLC
+      publisher: &publisher Google LLC
+      developer: *publisher
       detection:
         - type: file
           path: C:\Program Files\Google\Chrome\Application

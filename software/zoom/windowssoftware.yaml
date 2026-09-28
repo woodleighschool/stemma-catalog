@@ -17,7 +17,8 @@ spec:
     intune:
       display_name: Zoom Workplace
       description: Zoom Workplace for Windows.
-      publisher: Zoom Communications, Inc.
+      publisher: &publisher Zoom Communications, Inc.
+      developer: *publisher
       msi_properties:
         MSIRestartManagerControl: Disable
         zConfig: AU2_EnableAutoUpdate=true;AU2_SetUpdateChannel=0;AU2_InstallAtIdleTime=true

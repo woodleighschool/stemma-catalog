@@ -16,7 +16,8 @@ spec:
     intune:
       display_name: Vivi
       description: Wireless screen sharing for classrooms.
-      publisher: Vivi
+      publisher: &publisher Vivi
+      developer: *publisher
       detection:
         - type: registry
           key: HKEY_LOCAL_MACHINE\SOFTWARE\Vivi Corporation\Vivi

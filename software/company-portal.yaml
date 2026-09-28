@@ -23,7 +23,8 @@ spec:
       description: The Company Portal provides access to corporate apps and resources from almost
         any network. Your company must already subscribe to Microsoft Intune, and your IT admin
         must set up your account before you can use this app.
-      publisher: Microsoft
+      publisher: &publisher Microsoft
+      developer: *publisher
       ignore_version_detection: true
       included_apps:
         - id: "{{ evidence['macos.application'].app.bundle_id }}"

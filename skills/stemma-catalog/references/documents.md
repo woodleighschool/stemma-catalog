@@ -68,7 +68,9 @@ that would express it. See [plugin-gaps.md](plugin-gaps.md).
   whitespace. Run the repository's formatter on the files you change.
 - Quote only values YAML would misread: versions such as `"1.0"`, octal modes such as `"0644"`,
   expressions, and strings starting with a special character. Write a regular expression plain, or
-  in single quotes when it needs quoting, so its backslashes stay single. No anchors or aliases.
+  in single quotes when it needs quoting, so its backslashes stay single.
+- Repeat a value within one document with an anchor and alias rather than copying it, such as
+  `publisher: &publisher Vendor` and `developer: *publisher`. Merge keys (`<<`) are rejected.
 - Write long descriptions as wrapped plain text or a folded block, matching neighbouring files.
 - Comment only what a reviewer needs and the YAML can't say, such as the name behind a signer or
   group ID.
