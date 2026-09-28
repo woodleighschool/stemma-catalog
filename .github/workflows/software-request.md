@@ -42,6 +42,9 @@ steps:
       cache: false
       experimental: true
       install_args: --locked oxfmt
+  - name: Resolve Stemma version
+    run: |
+      echo "STEMMA_VERSION=$(mise config get --file .mise/config.toml tools.github:woodleighschool/stemma)" >> "$GITHUB_ENV"
   # The stemma MCP server reads this copy of main's stemma.yaml. The agent
   # finds no Stemma or online mise of its own.
   - name: Prepare Stemma
@@ -72,9 +75,9 @@ tools:
 mcp-servers:
   # The released image runs with main's plugin declarations and the runner's
   # user. Its cache stays private; only catalog files are shared with the agent.
-  # Move the tag with the Stemma pin in .mise/config.toml.
   stemma:
-    container: ghcr.io/woodleighschool/stemma:0.4.0
+    container: ghcr.io/woodleighschool/stemma
+    version: ${{ env.STEMMA_VERSION }}
     entrypointArgs: [--root, "${{ github.workspace }}", --cache-dir, /tmp/stemma, mcp]
     args: [--user, "1001:1001"]
     mounts:
