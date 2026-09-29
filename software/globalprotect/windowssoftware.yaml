@@ -20,6 +20,8 @@ spec:
         and allows access to company resources from anywhere in the world.
       publisher: &publisher Palo Alto Networks
       developer: *publisher
+      information_url: https://www.paloaltonetworks.com/sase/globalprotect
+      privacy_url: https://www.paloaltonetworks.com/legal/privacy.html
       categories:
         - Other Apps
       msi_properties:

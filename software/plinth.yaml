@@ -23,6 +23,7 @@ spec:
       description: Plinth is a kiosk browser.
       publisher: &publisher Woodleigh School
       developer: *publisher
+      information_url: https://github.com/woodleighschool/plinth
       categories:
         - Other Apps
       ignore_version_detection: false

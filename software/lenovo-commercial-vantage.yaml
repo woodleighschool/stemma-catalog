@@ -19,6 +19,8 @@ spec:
         helps keep Lenovo devices, drivers, and firmware up to date.
       publisher: &publisher Lenovo
       developer: *publisher
+      information_url: https://www.lenovo.com/us/en/software/commercialvantage/
+      privacy_url: https://www.lenovo.com/us/en/privacy/
       categories:
         - Computer Management
       install_command: VantageInstaller.exe Install -Vantage

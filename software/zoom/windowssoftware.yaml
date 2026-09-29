@@ -20,6 +20,8 @@ spec:
         conferencing meetings, audio conferencing, webinars, meeting recordings, and live chat.
       publisher: &publisher Zoom Communications, Inc.
       developer: *publisher
+      information_url: https://www.zoom.com/en/products/collaboration-tools/
+      privacy_url: https://www.zoom.com/en/trust/privacy/privacy-statement/
       categories:
         - Collaboration & Social
       msi_properties:

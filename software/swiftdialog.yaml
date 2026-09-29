@@ -26,6 +26,7 @@ spec:
         user input.
       publisher: &publisher CSIRO
       developer: *publisher
+      information_url: https://swiftdialog.app/
       categories:
         - Computer Management
       ignore_version_detection: true

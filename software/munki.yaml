@@ -25,6 +25,7 @@ spec:
         installs (and in many cases removals) on macOS client machines.
       publisher: &publisher Mac Admins Open Source
       developer: *publisher
+      information_url: https://www.munki.org/munki/
       categories:
         - Computer Management
       ignore_version_detection: false

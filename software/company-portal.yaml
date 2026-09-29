@@ -25,6 +25,8 @@ spec:
         IT admin must set up your account before you can use this app.
       publisher: &publisher Microsoft
       developer: *publisher
+      information_url: https://learn.microsoft.com/en-us/intune/user-help/
+      privacy_url: https://www.microsoft.com/en-us/privacy/privacystatement
       categories:
         - Other Apps
       ignore_version_detection: true

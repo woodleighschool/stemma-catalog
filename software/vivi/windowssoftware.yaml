@@ -20,6 +20,8 @@ spec:
         users or classrooms, any media type, any learning type, any display.
       publisher: &publisher Vivi
       developer: *publisher
+      information_url: https://www.vivi.io/
+      privacy_url: https://www.vivi.io/privacy-policy/
       categories:
         - Collaboration & Social
       detection:
