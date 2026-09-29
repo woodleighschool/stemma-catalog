@@ -2,19 +2,18 @@
 apiVersion: stemma/v1alpha1
 kind: MacSoftware
 metadata:
-  name: audacity
+  name: audacity-3
 spec:
   extends: mac-software
   source:
     resolver: github
     repository: audacity/audacity
+    release: Audacity-3.*
     asset: audacity-macOS-*-arm64.dmg
-  application:
-    bundle_id: org.audacityteam.audacity
   signatures:
     - subject:
-        bundle_id: org.audacityteam.audacity
-      signer: apple:developer-id:AWEYX923UX # Audacity
+        path: Audacity.app
+      signer: apple:developer-id:6EPAF2X3PR # MuseScore
   destinations:
     woodstar:
       pkginfo:
@@ -23,11 +22,9 @@ spec:
           audio. So if you're producing music, a podcast, or just playing around with audio,
           Audacity is for you.
         developer: Audacity
-        name: Audacity
+        name: Audacity 3
         unattended_install: true
         unattended_uninstall: true
-        uninstall_method: remove_copied_items
-        uninstallable: true
       targets:
         include:
           - label_name: All Hosts

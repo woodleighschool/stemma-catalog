@@ -18,7 +18,8 @@ Take the first that fits, and stop there:
 2. **A stable official URL.** One URL on the vendor's domain or CDN that always serves the current
    release, such as a `latest` link. Use `url`.
 3. **Official GitHub releases.** Use the `github` resolver with an `asset` glob that matches exactly
-   one asset of each release. Set `include_prereleases` only for a prerelease channel.
+   one asset of each release. Set `include_prereleases` only for a prerelease channel, and `release`
+   to a tag glob such as `v3.*` only to hold one major version.
 4. **A vendor page or feed that names the current download.** Use `url` with a `match` expression.
    HTML pages match element attribute values and plain-text feeds match the body; all matches must
    resolve to one URL.

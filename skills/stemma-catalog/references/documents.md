@@ -12,8 +12,8 @@
   item. Use the product's plain name in lowercase kebab case, such as `google-chrome`. Add a major
   version only when majors install side by side as separate products.
 - Place the file as the repository's instructions say. Otherwise use one resource per file, named
-  after it; documents that belong together, such as platform editions or a build and the software
-  that publishes it, can share a folder.
+  after it; documents that belong together, such as platform editions, major versions installed
+  side by side, or a build and the software that publishes it, can share a folder.
 
 ## Declare what you mean
 
