@@ -151,23 +151,6 @@ inputs:
           size: 6396295
         filename: assetcache-exporter-1.3.0.pkg
         mode: 420
-  stemma/v1alpha1/MacSoftware/audacity-4:
-    source:
-      version: 1
-      resolver: github
-      resolver_version: "1"
-      declaration: 96e5d38cd6a40ec0c8c219aeefda60ccdf6fc138b37e17679a8ec27be837334d
-      observation:
-        asset_id: 542511135
-        release: Audacity-4.0.0
-        release_id: 381877760
-        url: https://github.com/audacity/audacity/releases/download/Audacity-4.0.0/audacity-macOS-4.0.0-arm64.dmg
-      content:
-        artifact:
-          sha256: 266201f3151b09e46a5ab8e0ce1a16cefdd53a66fc7c979e943b2c88d6500c51
-          size: 46806707
-        filename: audacity-macOS-4.0.0-arm64.dmg
-        mode: 420
   stemma/v1alpha1/MacSoftware/audacity-3:
     source:
       version: 1
@@ -184,6 +167,23 @@ inputs:
           sha256: fafeb7fa963d3e2ba05ee7aba5290c966362ac5f5feca86eb8b1f61c7819d499
           size: 31370830
         filename: audacity-macOS-3.7.9-arm64.dmg
+        mode: 420
+  stemma/v1alpha1/MacSoftware/audacity-4:
+    source:
+      version: 1
+      resolver: github
+      resolver_version: "1"
+      declaration: 96e5d38cd6a40ec0c8c219aeefda60ccdf6fc138b37e17679a8ec27be837334d
+      observation:
+        asset_id: 542511135
+        release: Audacity-4.0.0
+        release_id: 381877760
+        url: https://github.com/audacity/audacity/releases/download/Audacity-4.0.0/audacity-macOS-4.0.0-arm64.dmg
+      content:
+        artifact:
+          sha256: 266201f3151b09e46a5ab8e0ce1a16cefdd53a66fc7c979e943b2c88d6500c51
+          size: 46806707
+        filename: audacity-macOS-4.0.0-arm64.dmg
         mode: 420
   stemma/v1alpha1/MacSoftware/autodesk-fusion:
     source:
@@ -312,8 +312,8 @@ inputs:
       observation: {}
       content:
         artifact:
-          sha256: e513bbfeca246165595e2f17cabf6579936f36057f3f4fb689c619e6aac6d188
-          size: 586158615
+          sha256: bf062f45334c711bd2fc2ed47a5588d050fbb950be3ae3aa4ac9826f04ad4dba
+          size: 586074635
         filename: Docker.dmg
         mode: 420
   stemma/v1alpha1/MacSoftware/easyfind:
