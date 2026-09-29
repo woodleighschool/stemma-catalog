@@ -1253,7 +1253,7 @@
                   "type": "string"
                 }
               ],
-              "description": "Include prereleases when discovering latest; select the newest published non-draft release. Explicit release tags are unchanged."
+              "description": "Include prereleases when discovering latest or a tag glob; select the newest published non-draft release. Explicit release tags are unchanged."
             },
             "release": {
               "anyOf": [
@@ -1265,7 +1265,7 @@
                   "type": "string"
                 }
               ],
-              "description": "GitHub release tag, or latest. Omitted or empty values select latest."
+              "description": "GitHub release tag, tag glob, or latest. Omitted or empty values select latest. A value containing *, ? or [ selects the newest published release whose tag matches, using doublestar semantics."
             },
             "repository": {
               "anyOf": [
@@ -5120,7 +5120,7 @@
                   "type": "string"
                 }
               ],
-              "description": "Identifiers and versions that detect the installation; the first identifies the app. A PKG app accepts package receipts as well as applications. Derived from applications, selected first, or from receipts when a PKG installs no applications, as a payloadless package does. Line-of-business apps only include applications installed under /Applications. Explicit entries replace the derived list. Identifiers must be unique."
+              "description": "Identifiers and versions that detect the installation; every entry must be installed and the first identifies the app. A PKG app accepts package receipts as well as applications. Derived from the selected application, or from receipts when a PKG selects no application, as a payloadless package does. DMG and line-of-business apps only include applications installed under /Applications. Explicit entries replace the derived list. Identifiers must be unique."
             },
             "information_url": {
               "anyOf": [
@@ -5600,7 +5600,7 @@
                   "type": "string"
                 }
               ],
-              "description": "Identifiers and versions that detect the installation; the first identifies the app. A PKG app accepts package receipts as well as applications. Derived from applications, selected first, or from receipts when a PKG installs no applications, as a payloadless package does. Line-of-business apps only include applications installed under /Applications. Explicit entries replace the derived list. Identifiers must be unique."
+              "description": "Identifiers and versions that detect the installation; every entry must be installed and the first identifies the app. A PKG app accepts package receipts as well as applications. Derived from the selected application, or from receipts when a PKG selects no application, as a payloadless package does. DMG and line-of-business apps only include applications installed under /Applications. Explicit entries replace the derived list. Identifiers must be unique."
             },
             "information_url": {
               "anyOf": [
@@ -9981,7 +9981,7 @@
                   "type": "string"
                 }
               ],
-              "description": "Include prereleases when discovering latest; select the newest published non-draft release. Explicit release tags are unchanged."
+              "description": "Include prereleases when discovering latest or a tag glob; select the newest published non-draft release. Explicit release tags are unchanged."
             },
             "release": {
               "anyOf": [
@@ -9993,7 +9993,7 @@
                   "type": "string"
                 }
               ],
-              "description": "GitHub release tag, or latest. Omitted or empty values select latest."
+              "description": "GitHub release tag, tag glob, or latest. Omitted or empty values select latest. A value containing *, ? or [ selects the newest published release whose tag matches, using doublestar semantics."
             },
             "repository": {
               "anyOf": [

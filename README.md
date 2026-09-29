@@ -14,12 +14,11 @@ and Epson drivers remain standalone. Resource identities do not depend on direct
 ## 🧩 Plugins
 
 `plugins/` contains separate plugin projects with their own Mise tools and tasks.
-Build the download resolvers before validating the catalog:
+The catalog uses the plugin images pinned in `stemma.yaml`:
 
 ```sh
-mise run //plugins/downloads:build
-stemma schema --offline --output-file stemma.schema.json
-stemma validate --offline
+mise run schema
+mise exec -- stemma validate --offline
 ```
 
 See the [download resolvers](plugins/downloads/README.md) for configuration and

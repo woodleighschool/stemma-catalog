@@ -21,14 +21,9 @@ minimum_release_age_excludes = ["github:woodleighschool/stemma"]
 [monorepo]
 config_roots = ["plugins/*"]
 
-[tasks.notices]
-description = "Collect plugin dependency licenses and notices"
-run = { task = "//plugins/downloads:notices" }
-
 [tasks.schema]
-description = "Generate the editor schema from the local Stemma registry"
-depends = ["//plugins/downloads:build"]
-run = "stemma schema --offline --output-file stemma.schema.json"
+description = "Generate the editor schema using the pinned Stemma release"
+run = "stemma schema --output-file stemma.schema.json"
 
 [tasks.aw]
 description = "Compile the agentic workflows"
