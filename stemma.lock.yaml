@@ -168,6 +168,23 @@ inputs:
           size: 46806707
         filename: audacity-macOS-4.0.0-arm64.dmg
         mode: 420
+  stemma/v1alpha1/MacSoftware/audacity-3:
+    source:
+      version: 1
+      resolver: github
+      resolver_version: "1"
+      declaration: a4712f2799ee638da8eb89e2b7f68a601c71271011e8afc076e1791df140e679
+      observation:
+        asset_id: 539711906
+        release: Audacity-3.7.9
+        release_id: 380599665
+        url: https://github.com/audacity/audacity/releases/download/Audacity-3.7.9/audacity-macOS-3.7.9-arm64.dmg
+      content:
+        artifact:
+          sha256: fafeb7fa963d3e2ba05ee7aba5290c966362ac5f5feca86eb8b1f61c7819d499
+          size: 31370830
+        filename: audacity-macOS-3.7.9-arm64.dmg
+        mode: 420
   stemma/v1alpha1/MacSoftware/autodesk-fusion:
     source:
       version: 1
