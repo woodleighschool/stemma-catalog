@@ -28,9 +28,6 @@ spec:
       categories:
         - Other Apps
       ignore_version_detection: true
-      included_apps:
-        - id: "{{ evidence['macos.application'].app.bundle_id }}"
-          version: "{{ evidence['macos.application'].app.version }}"
       assignments:
         - intent: required
           all_devices: true
