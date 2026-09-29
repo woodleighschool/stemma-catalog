@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.6](https://github.com/woodleighschool/stemma-catalog/compare/0.3.5...0.3.6) (2026-09-29)
+
+
+### Bug Fixes
+
+* **go:** update module github.com/woodleighschool/stemma (v0.8.1 → v0.8.2) ([#79](https://github.com/woodleighschool/stemma-catalog/issues/79)) ([8859a68](https://github.com/woodleighschool/stemma-catalog/commit/8859a68ff02e26aca3f6739598f42f37dc556ddd))
+
 ## [0.3.5](https://github.com/woodleighschool/stemma-catalog/compare/0.3.4...0.3.5) (2026-09-29)
 
 
