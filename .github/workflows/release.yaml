@@ -63,7 +63,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Publish plugin
-        uses: woodleighschool/stemma/actions/publish-plugin@971d98b107619aab412d600dc574350034d58e26 # 0.3.0
+        uses: woodleighschool/stemma/actions/publish-plugin@dc48fbee890e39966d4b8b626d2c8acf8536c79b # v0.8.1
         with:
           workdir: plugins/downloads
           image: ghcr.io/woodleighschool/stemma-catalog/downloads:${{ github.ref_name }}
