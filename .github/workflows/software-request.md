@@ -63,11 +63,11 @@ tools:
   github:
     toolsets: [issues, pull_requests, search]
     min-integrity: approved
-    trusted-users: ["woodmin[bot]"]
+    trusted-users: ["woodmin[bot]", "bot-bilby[bot]"]
     integrity-proxy: false
     github-app:
-      client-id: ${{ secrets.BOT_CLIENT_ID }}
-      private-key: ${{ secrets.BOT_APP_PRIVATE_KEY }}
+      client-id: ${{ secrets.STEMMA_CLIENT_ID }}
+      private-key: ${{ secrets.STEMMA_APP_PRIVATE_KEY }}
       owner: woodleighschool
       repositories: [stemma-catalog]
   timeout: 900
@@ -130,8 +130,8 @@ safe-outputs:
   activation-comments: false
   footer: false
   github-app:
-    client-id: ${{ secrets.BOT_CLIENT_ID }}
-    private-key: ${{ secrets.BOT_APP_PRIVATE_KEY }}
+    client-id: ${{ secrets.STEMMA_CLIENT_ID }}
+    private-key: ${{ secrets.STEMMA_APP_PRIVATE_KEY }}
     owner: woodleighschool
     repositories: [stemma-catalog]
   create-pull-request:
