@@ -371,7 +371,7 @@ inputs:
       observation: {}
       content:
         artifact:
-          sha256: a7ab1a25bcb9fac56fb5a9a2f3532d9585f290e381bb6ba74c108a17ee37da7f
+          sha256: 6059e19b5f39fc494f71112dc51bcfb85a6327c7265c40a4a42e4620e3ccd2ab
           size: 1516154880
         filename: GarageBand.app
         tree: true
