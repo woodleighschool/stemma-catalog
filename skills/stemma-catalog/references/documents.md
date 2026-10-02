@@ -5,20 +5,22 @@
 - Pick the kind from what is delivered: an existing vendor installer or application uses the
   platform's software kind, files you assemble use the package builder, and a policy with no
   installer uses the software kind's source-free form where the destination supports one.
-- `describe` gives a kind's or destination's fields, one line each with `*` marking required ones,
-  their types, allowed values, defaults and descriptions. Name a `field`, such as `pkginfo` or
-  `targets.include`, to narrow to one block rather than reading the whole destination.
-- `metadata.name` is the resource's identity in every destination, and renaming it creates a new
-  item. Use the product's plain name in lowercase kebab case, such as `google-chrome`. Add a major
+- The generated schema gives the installed kinds' and destinations' fields. When MCP is connected,
+  `describe` gives their types, required fields, allowed values, defaults and descriptions. Its
+  `destination` parameter names a Project connection; `field` narrows to a block such as `pkginfo`.
+- `metadata.name` is the stable resource identity; renaming it can change destination bindings.
+  Use the product's plain name in lowercase kebab case, such as `google-chrome`. Add a major
   version only when majors install side by side as separate products.
-- Place the file as the repository's instructions say. Otherwise use one resource per file, named
-  after it; documents that belong together, such as platform editions, major versions installed
-  side by side, or a build and the software that publishes it, can share a folder.
+- Place the file as the repository's instructions say. Otherwise use `software/<name>.yaml` for
+  one standalone resource. Put genuine families, such as platform editions, side-by-side majors,
+  or a build and its publisher, in `software/<name>/` with a file per resource. Keep the Project at
+  `stemma.yaml` and import those files. A resource need not acquire a folder pre-emptively.
 
 ## Declare what you mean
 
-- Extend a Project component when it holds the shared defaults for this kind of item, and don't
-  repeat what it sets; `describe` lists what each component sets.
+- Extend an existing Project component when its shared defaults fit this item. Do not require a
+  component for a new catalog or copy a component name from an example. Extract shared defaults
+  only when actual resources need them.
 - Let Stemma select the application or installer. `prepare`'s evidence names the one it chose, even
   when helpers are nested inside it; set a selection only when that choice is wrong, and prefer
   identifiers that survive upgrades, such as a bundle ID or product code, over paths that contain a
@@ -42,20 +44,22 @@
 - Say what an application does, not that it is installed. Installs, adds or configures belong to
   items where that action is the item: a driver, content pack, printer, configuration or other
   custom payload.
-- Treat categories as a short browsing list. Pick the one that fits the item's main purpose from the
-  repository's list, or from those its documents already use. Don't add a near-duplicate such as
+- Treat categories as a short browsing list when the destination uses them. Follow an existing
+  repository list; without one, choose a broad category for the item's main purpose. Don't add a near-duplicate such as
   `Browser` beside `Browsers`, adopt a vendor's narrower term or keep a category the list no longer
   has; a new category is a repository decision.
 - Declare explicit signing expectations wherever the kind supports them. `stemma signature` reports
   each subject with its signer or `unsigned: true`. Review intentionally unsigned sources before
   declaring them; report invalid or unsupported signatures rather than omitting the assertion.
-- Declare an icon by name (`icon: <name>` publishes `icons/<name>.png`) and create it with `icon`,
-  unless the repository already has artwork for it.
+- Where the kind supports an icon, declare its name (`icon: <name>` uses `icons/<name>.png`) and
+  create it from locked software with `stemma icon Kind/name`, unless suitable artwork exists.
 - Refer to other catalog resources by `kind` and `name`, not by native names. `source.resource`
   consumes another resource's output, which is a build dependency. Destination relationships, such
   as Munki `requires` or Intune `dependencies`, are publication dependencies. Don't use one for the
   other.
-- Keep destination metadata in the destination's vocabulary, such as Munki pkginfo keys.
+- Add only destinations the request needs. Each resource destination key names a connection in
+  the Project; define that connection from the installed schema instead of assuming example
+  aliases are configured. Keep metadata in the destination's vocabulary, such as Munki pkginfo keys.
 - Supply secrets through environment expressions such as `"{{ env.VENDOR_TOKEN }}"`. Keep licensed
   installers, private files and credentials out of Git; a resource that needs files the repository
   can't carry sets `suspend: true`.
@@ -78,8 +82,8 @@ that would express it. See [plugin-gaps.md](plugin-gaps.md).
 
 ## YAML style
 
-- Two-space indentation with sequences indented under their key, one final newline and no trailing
-  whitespace. Run the repository's formatter on the files you change.
+- Follow any repository formatter. Otherwise use two-space indentation, sequences indented under
+  their key, one final newline and no trailing whitespace. Format only the files you change.
 - Quote only values YAML would misread: versions such as `"1.0"`, octal modes such as `"0644"`,
   expressions, and strings starting with a special character. Write a regular expression plain, or
   in single quotes when it needs quoting, so its backslashes stay single.

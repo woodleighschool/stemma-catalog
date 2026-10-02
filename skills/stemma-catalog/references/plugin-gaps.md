@@ -3,14 +3,16 @@
 Most catalog problems are source problems, and most source problems have a generic answer. Before
 proposing a plugin, check:
 
-1. Can a plain `url` source fetch the current release?
-2. Can the `github` or `http` resolver express the discovery without depending on details of today's
+1. Does an available Homebrew, WinGet or vendor resolver select the right release and artifact?
+   Prefer a source with a published digest so update checks do not need installer downloads.
+2. Can a plain `url`, `github` or `http` source express discovery without depending on details of today's
    page?
-3. Does an installed resolver already model this vendor, or could it with a small extension, such as
-   a new product value?
+3. Could an existing resolver cover it with a small extension, such as a new product value?
 4. Is what's missing stable, vendor-specific discovery that other vendors don't share?
 
-When the answer to 4 is yes, propose a repository-local resolver plugin. When the missing behaviour
+When the answer to 4 is yes and the earlier options do not fit, propose a resolver plugin with a
+clear owner. A catalog may keep one locally or consume a separately maintained plugin; do not
+assume plugin code or build tooling already exists. When the missing behaviour
 would serve many vendors, such as a common feed format or release API, propose it as a Stemma
 feature instead.
 
@@ -48,6 +50,9 @@ Observation:
 Evidence:
   vendorname.version
 
+Content and download, when the vendor supplies a digest:
+  published SHA-256, stable filename and download URL
+
 Why a plugin:
   The release API needs two dependent requests and returns no download link that a
   generic http match could select without embedding a transient URL.
@@ -55,12 +60,17 @@ Why a plugin:
 
 A sound resolver contract:
 
-- discovers without downloading and returns an observation naming exactly one release;
+- discovers exactly one release, using release records without downloading the installer when
+  possible;
+- supplies published content identity and a supported download handoff so Stemma can update the
+  lock before acquisition; when no trusted digest exists, acknowledges that update must fetch and
+  hash the artifact;
 - marks the observation immutable when it always fetches the same bytes;
 - returns the vendor's version as namespaced evidence that destination metadata can use;
 - keeps credentials, signed URLs and per-request tokens out of observations and evidence;
 - takes inputs that select a product, not URLs or patterns that restate the vendor's site.
 
-To build it, follow the repository's instructions and existing plugin projects, and the
+To build it when requested, follow any repository instructions and reuse an existing plugin project
+when appropriate. Otherwise create a separately owned implementation using the
 [plugin documentation](https://woodleighschool.github.io/stemma/writing-plugins) for the installed
 Stemma version.

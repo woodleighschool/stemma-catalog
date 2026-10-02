@@ -3,8 +3,9 @@
 A good source is official and keeps finding the vendor's current release without edits to the
 document. Every fetch of one release returns the same bytes.
 
-Use the cheapest check that answers the question: `curl` for pages and redirects, then `prepare`
-for the real result. The `http` resolver reads the HTML that `curl` receives,
+Use the cheapest check that answers the question: registry records for releases and hashes,
+`curl` for pages and redirects, then preparation when the artifact itself needs checking. The
+`http` resolver reads the HTML that `curl` receives,
 without running scripts, so a link that only a browser shows isn't available to it. Judge pages with
 `curl`, not a browser.
 
@@ -12,23 +13,32 @@ without running scripts, so a link that only a browser shows isn't available to 
 
 Take the first that fits, and stop there:
 
-1. **An installed resolver made for this vendor that lists the product.** `describe` lists each
-   resolver with its product, channel or architecture values. It already solves version discovery
+1. **An installed resolver made for this vendor that lists the product.** Check the generated
+   schema for its product, channel and architecture values. It already solves version discovery
    for that vendor.
-2. **A stable official URL.** One URL on the vendor's domain or CDN that always serves the current
+2. **A maintained registry with the matching product and release channel.** Use `homebrew`
+   with `cask` for vendor macOS artifacts, or `winget` with `package` and explicit installer
+   selectors for Windows. `stemma update` can compare and lock releases from registry hashes
+   without downloading a multi-gigabyte installer just to find out whether it changed. Preparation
+   downloads the selected installer when needed and verifies its hash. Hashless or `no_check`
+   casks still require vendor downloads during update. Preserve the requested major version,
+   edition, architecture, scope and language; a faster resolver is useful only if it selects the
+   right artifact. Use a vendor resolver or GitHub release glob when the registry cannot express
+   a release-line constraint. Check the installed schema before using these resolvers.
+3. **A stable official URL.** One URL on the vendor's domain or CDN that always serves the current
    release, such as a `latest` link. Use `url`.
-3. **Official GitHub releases.** Use the `github` resolver with an `asset` glob that matches exactly
+4. **Official GitHub releases.** Use the `github` resolver with an `asset` glob that matches exactly
    one asset of each release. Set `include_prereleases` only for a prerelease channel, and `release`
    to a tag glob such as `v3.*` only to hold one major version.
-4. **A vendor page or feed that names the current download.** Use `url` with a `match` expression.
+5. **A vendor page or feed that names the current download.** Use `url` with a `match` expression.
    HTML pages match element attribute values and plain-text feeds match the body; all matches must
    resolve to one URL.
-5. **Community automation as evidence**, when the vendor's own pages don't show the mechanism. Return
-   to 2–4 with what it reveals.
-6. **A resolver plugin**, when none of the above gives a declaration that will keep working. See
+6. **Community automation as evidence**, when the vendor's own pages don't show the mechanism. Return
+   to 2–5 with what it reveals.
+7. **A resolver plugin**, when none of the above gives a declaration that will keep working. See
    [plugin-gaps.md](plugin-gaps.md).
 
-`describe` with a `resolver` lists that source form's fields.
+The generated schema describes each source form. The CLI help lists available commands.
 
 ## Check a candidate
 
@@ -40,8 +50,10 @@ curl -fsSL 'https://vendor.example/downloads/' | grep -oE 'href="[^"]*\.(dmg|pkg
 The first shows the redirect chain, final filename and content type. The second lists the links a
 `match` can select. A candidate passes when it is:
 
-- **Official.** The vendor's domain, CDN or GitHub organisation. Not mirrors, download portals or
-  package-manager caches.
+- **Official.** The vendor's domain, CDN or GitHub organisation. Avoid third-party download portals
+  and unverified mirrors. Homebrew core bottles are an explicit exception: use `formula` only
+  for standalone bottles the resolver accepts, then declare their installed layout in
+  `BuildMacPkg`. Preserve support files and licences; do not copy symlinked commands alone.
 - **Current.** It follows the latest stable release. A version in the URL means the document never
   updates; discover the version with a resolver instead, unless the request is to pin that release.
 - **Long-lived.** No expiring signatures, session tokens or per-visit query strings. Stemma follows
@@ -52,11 +64,13 @@ The first shows the redirect chain, final filename and content type. The second 
 - **Made for deployment.** Prefer the vendor's installer for managed deployment (an admin PKG or
   MSI, an enterprise or offline installer) over a stub that downloads the application later, which
   can't be inspected or verified.
-- **Anonymous.** No login or click-through. A source that needs credentials takes a `token` or
-  headers from the environment; a file nobody may redistribute stays out of Git.
+- **Accessible to the runner.** Prefer anonymous downloads without click-through. Where authorized
+  credentials are necessary, use supported `token` or header fields with environment expressions;
+  keep restricted vendor files out of Git.
 
-Then declare it and `prepare` it. The resolver reports a `match` that selects no URL or several,
-and `prepare` shows what it fetched.
+Then declare it, validate, and use `stemma update Kind/name` to resolve and lock it. Prepare when
+artifact inspection is required, following [behaviour.md](behaviour.md). The resolver rejects a
+`match` that selects no URL or several; preparation shows what the selected bytes contain.
 
 ## Learn from community automation
 
@@ -94,6 +108,12 @@ Recipes and manifests go stale. Confirm what they say with `curl` against the ve
 - Discovery takes more than one dependent request.
 - The version is only available from an API, and destinations need it without downloading.
 
-Once one of these shows up, stop looking for a URL and write the proposal described in
-[plugin-gaps.md](plugin-gaps.md). A regular expression that happens to match today's page breaks
-with the next redesign.
+Check whether an available registry or vendor resolver already models the selection. If none does,
+write the proposal described in [plugin-gaps.md](plugin-gaps.md). A regular expression that happens
+to match today's page breaks with the next redesign.
+
+Homebrew formula sources do not install Homebrew or execute formula actions. Bottles that need
+relocation, runtime formula dependencies or a fixed Cellar are unsupported. A command archive
+belongs in `BuildMacPkg`; `MacSoftware` publishes the resulting package. Use relative `symlink`
+payload entries to expose commands from a private `/usr/local/libexec` directory. The bundled
+[templates](templates.md#command-archive) show that layout without requiring another catalog.
