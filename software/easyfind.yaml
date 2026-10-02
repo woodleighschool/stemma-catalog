@@ -6,8 +6,8 @@ metadata:
 spec:
   extends: mac-software
   source:
-    url: https://www.devontechnologies.com/apps/freeware
-    match: https://[^"\s]+EasyFind\.app\.zip
+    resolver: homebrew
+    cask: easyfind
   application:
     path: EasyFind.app
   signatures:

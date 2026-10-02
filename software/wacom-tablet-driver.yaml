@@ -6,8 +6,8 @@ metadata:
 spec:
   extends: mac-software
   source:
-    url: https://www.wacom.com/en-us/support/product-support/drivers
-    match: https://cdn\.wacom\.com/u/productsupport/drivers/mac/professional/WacomTablet_[0-9]+(?:\.[0-9]+)*(?:-[0-9]+)?\.dmg
+    resolver: homebrew
+    cask: wacom-tablet
   package_path: Install Wacom Tablet.pkg
   application:
     bundle_id: com.wacom.WacomCenter

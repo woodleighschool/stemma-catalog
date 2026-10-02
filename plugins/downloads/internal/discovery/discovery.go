@@ -18,8 +18,8 @@ const metadataLimit = 4 << 20
 
 // Release identifies one installer selected from vendor metadata.
 // Version is empty when the vendor does not supply an authoritative version.
-// Signed URLs expire, so they are discovered again for each download instead
-// of being recorded.
+// Signed URLs expire, so acquisition refreshes them from the recorded installer
+// identity instead of recording the URL.
 type Release struct {
 	URL      string `json:"url,omitempty"`
 	Filename string `json:"filename"`
@@ -35,7 +35,7 @@ func metadata(ctx context.Context, client *http.Client, target *url.URL, allowed
 		return nil, errors.New("metadata HTTP client is required")
 	}
 	// Keep each vendor's redirect boundary local to this request without mutating
-	// the client shared with artifact downloads or other discovery operations.
+	// the client shared with other discovery operations.
 	bounded := *client
 	bounded.CheckRedirect = func(req *http.Request, via []*http.Request) error {
 		if !allowed(req.URL) {

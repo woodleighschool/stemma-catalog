@@ -190,6 +190,18 @@
                                 ],
                                 "description": "Exact relative path in a tree, ZIP, TAR or DMG. A dot selects the contents root. Omit to retain the original input; PKGs remain opaque files."
                               },
+                              "symlink": {
+                                "anyOf": [
+                                  {
+                                    "type": "string"
+                                  },
+                                  {
+                                    "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                                    "type": "string"
+                                  }
+                                ],
+                                "description": "Relative link target in the installed filesystem, confined to the package root. Mutually exclusive with $input and content."
+                              },
                               "uid": {
                                 "anyOf": [
                                   {
@@ -229,7 +241,7 @@
                       "type": "string"
                     }
                   ],
-                  "description": "Installed absolute paths mapped to files, trees, literal text or directory declarations."
+                  "description": "Installed absolute paths mapped to files, trees, literal text, relative symlinks or directory declarations."
                 },
                 "scripts": {
                   "anyOf": [
@@ -634,6 +646,18 @@
                                     ],
                                     "description": "Exact relative path in a tree, ZIP, TAR or DMG. A dot selects the contents root. Omit to retain the original input; PKGs remain opaque files."
                                   },
+                                  "symlink": {
+                                    "anyOf": [
+                                      {
+                                        "type": "string"
+                                      },
+                                      {
+                                        "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                                        "type": "string"
+                                      }
+                                    ],
+                                    "description": "Relative link target in the installed filesystem, confined to the package root. Mutually exclusive with $input and content."
+                                  },
                                   "uid": {
                                     "anyOf": [
                                       {
@@ -673,7 +697,7 @@
                           "type": "string"
                         }
                       ],
-                      "description": "Installed absolute paths mapped to files, trees, literal text or directory declarations."
+                      "description": "Installed absolute paths mapped to files, trees, literal text, relative symlinks or directory declarations."
                     },
                     "scripts": {
                       "anyOf": [
@@ -1015,7 +1039,325 @@
                   "type": "string"
                 }
               ],
-              "description": "Optional input basename override. HTTP defaults to Content-Disposition, then final and original URL basenames; GitHub uses the selected asset name; file and local use the selected path or base. Independent of publication naming."
+              "description": "Optional input basename override. Defaults to the selected path's basename. Independent of publication naming."
+            },
+            "path": {
+              "anyOf": [
+                {
+                  "minLength": 1,
+                  "type": "string"
+                },
+                {
+                  "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                  "type": "string"
+                }
+              ],
+              "description": "Exact file or directory path. Relative paths resolve from the resource file; absolute paths select a host location."
+            },
+            "sha256": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                  "type": "string"
+                }
+              ],
+              "description": "Optional expected SHA-256 content digest, as 64 lowercase hexadecimal characters."
+            }
+          },
+          "propertyNames": {
+            "not": {
+              "pattern": "\\{\\{"
+            }
+          },
+          "required": [
+            "path"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "filename": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                  "type": "string"
+                }
+              ],
+              "description": "Optional input basename override. Defaults to the selected path's basename. Independent of publication naming."
+            },
+            "path": {
+              "anyOf": [
+                {
+                  "minLength": 1,
+                  "type": "string"
+                },
+                {
+                  "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                  "type": "string"
+                }
+              ],
+              "description": "Exact file or directory path. Relative paths resolve from the resource file; absolute paths select a host location."
+            },
+            "resolver": {
+              "const": "file",
+              "description": "Built-in resolver selecting this input."
+            },
+            "sha256": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                  "type": "string"
+                }
+              ],
+              "description": "Optional expected SHA-256 content digest, as 64 lowercase hexadecimal characters."
+            }
+          },
+          "propertyNames": {
+            "not": {
+              "pattern": "\\{\\{"
+            }
+          },
+          "required": [
+            "path",
+            "resolver"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "asset": {
+              "anyOf": [
+                {
+                  "minLength": 1,
+                  "type": "string"
+                },
+                {
+                  "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                  "type": "string"
+                }
+              ],
+              "description": "GitHub asset-name glob using doublestar semantics. Must match exactly one release asset; exact names also work."
+            },
+            "filename": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                  "type": "string"
+                }
+              ],
+              "description": "Optional input basename override. Defaults to the selected asset name. Independent of publication naming."
+            },
+            "include_prereleases": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "pattern": "^\\{\\{[\\s\\S]+\\}\\}$",
+                  "type": "string"
+                }
+              ],
+              "description": "Include prereleases when discovering latest or a tag glob; select the newest published non-draft release. Explicit release tags are unchanged."
+            },
+            "release": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                  "type": "string"
+                }
+              ],
+              "description": "GitHub release tag, tag glob, or latest. Omitted or empty values select latest. A value containing *, ? or [ selects the newest published release whose tag matches, using doublestar semantics."
+            },
+            "repository": {
+              "anyOf": [
+                {
+                  "minLength": 1,
+                  "type": "string"
+                },
+                {
+                  "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                  "type": "string"
+                }
+              ],
+              "description": "GitHub repository in owner/name form."
+            },
+            "resolver": {
+              "const": "github",
+              "description": "Built-in resolver selecting this input."
+            },
+            "sha256": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                  "type": "string"
+                }
+              ],
+              "description": "Optional expected SHA-256 content digest, as 64 lowercase hexadecimal characters."
+            },
+            "token": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                  "type": "string"
+                }
+              ],
+              "description": "Optional bearer token for release discovery and acquisition.",
+              "writeOnly": true
+            }
+          },
+          "propertyNames": {
+            "not": {
+              "pattern": "\\{\\{"
+            }
+          },
+          "required": [
+            "repository",
+            "asset",
+            "resolver"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "oneOf": [
+            {
+              "not": {
+                "required": [
+                  "formula"
+                ]
+              },
+              "required": [
+                "cask"
+              ]
+            },
+            {
+              "not": {
+                "required": [
+                  "cask"
+                ]
+              },
+              "required": [
+                "formula"
+              ]
+            }
+          ],
+          "properties": {
+            "architecture": {
+              "anyOf": [
+                {
+                  "enum": [
+                    "arm64",
+                    "x86_64"
+                  ],
+                  "type": "string"
+                },
+                {
+                  "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                  "type": "string"
+                }
+              ],
+              "description": "Target architecture. Defaults to arm64, independently of the runner."
+            },
+            "cask": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                  "type": "string"
+                }
+              ],
+              "description": "Homebrew cask token. Selects its vendor download; no cask actions run."
+            },
+            "formula": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                  "type": "string"
+                }
+              ],
+              "description": "Homebrew core formula token. Selects a standalone bottle requiring no relocation, runtime formula dependencies or post-install actions. No source-build fallback."
+            },
+            "language": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                  "type": "string"
+                }
+              ],
+              "description": "Cask language alias. Omit for the cask's declared default language."
+            },
+            "macos": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                  "type": "string"
+                }
+              ],
+              "description": "Target macOS major version. Omit for the current supported release (27). Update locks the concrete target and selected variant."
+            },
+            "resolver": {
+              "const": "homebrew",
+              "description": "Built-in resolver selecting this input."
+            }
+          },
+          "propertyNames": {
+            "not": {
+              "pattern": "\\{\\{"
+            }
+          },
+          "required": [
+            "resolver"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "filename": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                  "type": "string"
+                }
+              ],
+              "description": "Optional input basename override. Defaults to Content-Disposition, then final and original URL basenames. Independent of publication naming."
             },
             "headers": {
               "anyOf": [
@@ -1043,7 +1385,7 @@
                   "type": "string"
                 }
               ],
-              "description": "HTTP request headers, including optional User-Agent and Referer overrides. Credentials and custom headers are confined to the source origin."
+              "description": "HTTP request headers, including optional User-Agent and Referer overrides. Credentials and custom headers are confined to the source origin. Only Accept, Accept-Encoding, Accept-Language and User-Agent participate in source identity; other headers are treated as credentials."
             },
             "match": {
               "anyOf": [
@@ -1119,7 +1461,7 @@
                   "type": "string"
                 }
               ],
-              "description": "Optional input basename override. HTTP defaults to Content-Disposition, then final and original URL basenames; GitHub uses the selected asset name; file and local use the selected path or base. Independent of publication naming."
+              "description": "Optional input basename override. Defaults to Content-Disposition, then final and original URL basenames. Independent of publication naming."
             },
             "headers": {
               "anyOf": [
@@ -1147,7 +1489,7 @@
                   "type": "string"
                 }
               ],
-              "description": "HTTP request headers, including optional User-Agent and Referer overrides. Credentials and custom headers are confined to the source origin."
+              "description": "HTTP request headers, including optional User-Agent and Referer overrides. Credentials and custom headers are confined to the source origin. Only Accept, Accept-Encoding, Accept-Language and User-Agent participate in source identity; other headers are treated as credentials."
             },
             "match": {
               "anyOf": [
@@ -1218,220 +1560,6 @@
         {
           "additionalProperties": false,
           "properties": {
-            "asset": {
-              "anyOf": [
-                {
-                  "minLength": 1,
-                  "type": "string"
-                },
-                {
-                  "pattern": "\\{\\{[\\s\\S]+\\}\\}",
-                  "type": "string"
-                }
-              ],
-              "description": "GitHub asset-name glob using doublestar semantics. Must match exactly one release asset; exact names also work."
-            },
-            "filename": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "pattern": "\\{\\{[\\s\\S]+\\}\\}",
-                  "type": "string"
-                }
-              ],
-              "description": "Optional input basename override. HTTP defaults to Content-Disposition, then final and original URL basenames; GitHub uses the selected asset name; file and local use the selected path or base. Independent of publication naming."
-            },
-            "include_prereleases": {
-              "anyOf": [
-                {
-                  "type": "boolean"
-                },
-                {
-                  "pattern": "^\\{\\{[\\s\\S]+\\}\\}$",
-                  "type": "string"
-                }
-              ],
-              "description": "Include prereleases when discovering latest or a tag glob; select the newest published non-draft release. Explicit release tags are unchanged."
-            },
-            "release": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "pattern": "\\{\\{[\\s\\S]+\\}\\}",
-                  "type": "string"
-                }
-              ],
-              "description": "GitHub release tag, tag glob, or latest. Omitted or empty values select latest. A value containing *, ? or [ selects the newest published release whose tag matches, using doublestar semantics."
-            },
-            "repository": {
-              "anyOf": [
-                {
-                  "minLength": 1,
-                  "type": "string"
-                },
-                {
-                  "pattern": "\\{\\{[\\s\\S]+\\}\\}",
-                  "type": "string"
-                }
-              ],
-              "description": "GitHub repository in owner/name form."
-            },
-            "resolver": {
-              "const": "github",
-              "description": "Built-in resolver selecting this input."
-            },
-            "sha256": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "pattern": "\\{\\{[\\s\\S]+\\}\\}",
-                  "type": "string"
-                }
-              ],
-              "description": "Optional expected SHA-256 content digest, as 64 lowercase hexadecimal characters."
-            },
-            "token": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "pattern": "\\{\\{[\\s\\S]+\\}\\}",
-                  "type": "string"
-                }
-              ],
-              "description": "Optional bearer token. Mutually exclusive with an Authorization header.",
-              "writeOnly": true
-            }
-          },
-          "propertyNames": {
-            "not": {
-              "pattern": "\\{\\{"
-            }
-          },
-          "required": [
-            "repository",
-            "asset",
-            "resolver"
-          ],
-          "type": "object"
-        },
-        {
-          "additionalProperties": false,
-          "properties": {
-            "filename": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "pattern": "\\{\\{[\\s\\S]+\\}\\}",
-                  "type": "string"
-                }
-              ],
-              "description": "Optional input basename override. HTTP defaults to Content-Disposition, then final and original URL basenames; GitHub uses the selected asset name; file and local use the selected path or base. Independent of publication naming."
-            },
-            "path": {
-              "anyOf": [
-                {
-                  "minLength": 1,
-                  "type": "string"
-                },
-                {
-                  "pattern": "\\{\\{[\\s\\S]+\\}\\}",
-                  "type": "string"
-                }
-              ],
-              "description": "Exact file or directory path. Relative paths resolve from the resource file; absolute paths select a host location."
-            },
-            "sha256": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "pattern": "\\{\\{[\\s\\S]+\\}\\}",
-                  "type": "string"
-                }
-              ],
-              "description": "Optional expected SHA-256 content digest, as 64 lowercase hexadecimal characters."
-            }
-          },
-          "propertyNames": {
-            "not": {
-              "pattern": "\\{\\{"
-            }
-          },
-          "required": [
-            "path"
-          ],
-          "type": "object"
-        },
-        {
-          "additionalProperties": false,
-          "properties": {
-            "filename": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "pattern": "\\{\\{[\\s\\S]+\\}\\}",
-                  "type": "string"
-                }
-              ],
-              "description": "Optional input basename override. HTTP defaults to Content-Disposition, then final and original URL basenames; GitHub uses the selected asset name; file and local use the selected path or base. Independent of publication naming."
-            },
-            "path": {
-              "anyOf": [
-                {
-                  "minLength": 1,
-                  "type": "string"
-                },
-                {
-                  "pattern": "\\{\\{[\\s\\S]+\\}\\}",
-                  "type": "string"
-                }
-              ],
-              "description": "Exact file or directory path. Relative paths resolve from the resource file; absolute paths select a host location."
-            },
-            "resolver": {
-              "const": "file",
-              "description": "Built-in resolver selecting this input."
-            },
-            "sha256": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "pattern": "\\{\\{[\\s\\S]+\\}\\}",
-                  "type": "string"
-                }
-              ],
-              "description": "Optional expected SHA-256 content digest, as 64 lowercase hexadecimal characters."
-            }
-          },
-          "propertyNames": {
-            "not": {
-              "pattern": "\\{\\{"
-            }
-          },
-          "required": [
-            "path",
-            "resolver"
-          ],
-          "type": "object"
-        },
-        {
-          "additionalProperties": false,
-          "properties": {
             "base": {
               "anyOf": [
                 {
@@ -1454,7 +1582,7 @@
                   "type": "string"
                 }
               ],
-              "description": "Optional input basename override. HTTP defaults to Content-Disposition, then final and original URL basenames; GitHub uses the selected asset name; file and local use the selected path or base. Independent of publication naming."
+              "description": "Optional input basename override. Defaults to the selected base's basename. Independent of publication naming."
             },
             "include": {
               "anyOf": [
@@ -1504,6 +1632,109 @@
           },
           "required": [
             "include",
+            "resolver"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "architecture": {
+              "anyOf": [
+                {
+                  "enum": [
+                    "x64",
+                    "x86",
+                    "arm64",
+                    "arm",
+                    "neutral"
+                  ],
+                  "type": "string"
+                },
+                {
+                  "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                  "type": "string"
+                }
+              ],
+              "description": "Exact target architecture. Defaults to x64 independently of the runner."
+            },
+            "installer_type": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                  "type": "string"
+                }
+              ],
+              "description": "Optional declared installer type filter, such as msi, wix, inno or zip."
+            },
+            "locale": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                  "type": "string"
+                }
+              ],
+              "description": "Optional exact installer locale filter, such as en-US. Package description locale is not an installer locale."
+            },
+            "package": {
+              "anyOf": [
+                {
+                  "minLength": 1,
+                  "type": "string"
+                },
+                {
+                  "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                  "type": "string"
+                }
+              ],
+              "description": "Exact WinGet community package identifier."
+            },
+            "resolver": {
+              "const": "winget",
+              "description": "Built-in resolver selecting this input."
+            },
+            "scope": {
+              "anyOf": [
+                {
+                  "enum": [
+                    "user",
+                    "machine"
+                  ],
+                  "type": "string"
+                },
+                {
+                  "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                  "type": "string"
+                }
+              ],
+              "description": "Optional declared installer scope filter. Omit only when selection is unambiguous."
+            },
+            "version": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                  "type": "string"
+                }
+              ],
+              "description": "Exact published version or latest (the default). Selects the release before filtering installers."
+            }
+          },
+          "propertyNames": {
+            "not": {
+              "pattern": "\\{\\{"
+            }
+          },
+          "required": [
+            "package",
             "resolver"
           ],
           "type": "object"
@@ -1941,7 +2172,7 @@
                       "$ref": "https://stemma.invalid/editor/intune/metadata"
                     },
                     "woodstar": {
-                      "$ref": "https://stemma.invalid/editor/woodstar.munki/metadata"
+                      "$ref": "https://stemma.invalid/editor/woodstar/metadata"
                     }
                   },
                   "type": "object"
@@ -2348,7 +2579,7 @@
                           "$ref": "https://stemma.invalid/editor/intune/metadata"
                         },
                         "woodstar": {
-                          "$ref": "https://stemma.invalid/editor/woodstar.munki/metadata"
+                          "$ref": "https://stemma.invalid/editor/woodstar/metadata"
                         }
                       },
                       "type": "object"
@@ -2904,8 +3135,8 @@
       ],
       "type": "object"
     },
-    "OperationConfig_woodstar.munki": {
-      "$id": "https://stemma.invalid/editor/woodstar.munki/config",
+    "OperationConfig_woodstar": {
+      "$id": "https://stemma.invalid/editor/woodstar/config",
       "additionalProperties": false,
       "properties": {
         "api_key": {
@@ -8060,8 +8291,8 @@
       },
       "type": "object"
     },
-    "OperationMetadata_woodstar.munki": {
-      "$id": "https://stemma.invalid/editor/woodstar.munki/metadata",
+    "OperationMetadata_woodstar": {
+      "$id": "https://stemma.invalid/editor/woodstar/metadata",
       "$schema": "https://json-schema.org/draft/2020-12/schema",
       "additionalProperties": false,
       "properties": {
@@ -9750,7 +9981,304 @@
                   "type": "string"
                 }
               ],
-              "description": "Optional input basename override. HTTP defaults to Content-Disposition, then final and original URL basenames; GitHub uses the selected asset name; file and local use the selected path or base. Independent of publication naming."
+              "description": "Optional input basename override. Defaults to the selected path's basename. Independent of publication naming."
+            },
+            "path": {
+              "anyOf": [
+                {
+                  "minLength": 1,
+                  "type": "string"
+                },
+                {
+                  "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                  "type": "string"
+                }
+              ],
+              "description": "Exact file or directory path. Relative paths resolve from the resource file; absolute paths select a host location."
+            },
+            "sha256": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                  "type": "string"
+                }
+              ],
+              "description": "Optional expected SHA-256 content digest, as 64 lowercase hexadecimal characters."
+            }
+          },
+          "propertyNames": {
+            "not": {
+              "pattern": "\\{\\{"
+            }
+          },
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "filename": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                  "type": "string"
+                }
+              ],
+              "description": "Optional input basename override. Defaults to the selected path's basename. Independent of publication naming."
+            },
+            "path": {
+              "anyOf": [
+                {
+                  "minLength": 1,
+                  "type": "string"
+                },
+                {
+                  "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                  "type": "string"
+                }
+              ],
+              "description": "Exact file or directory path. Relative paths resolve from the resource file; absolute paths select a host location."
+            },
+            "resolver": {
+              "const": "file",
+              "description": "Built-in resolver selecting this input."
+            },
+            "sha256": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                  "type": "string"
+                }
+              ],
+              "description": "Optional expected SHA-256 content digest, as 64 lowercase hexadecimal characters."
+            }
+          },
+          "propertyNames": {
+            "not": {
+              "pattern": "\\{\\{"
+            }
+          },
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "asset": {
+              "anyOf": [
+                {
+                  "minLength": 1,
+                  "type": "string"
+                },
+                {
+                  "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                  "type": "string"
+                }
+              ],
+              "description": "GitHub asset-name glob using doublestar semantics. Must match exactly one release asset; exact names also work."
+            },
+            "filename": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                  "type": "string"
+                }
+              ],
+              "description": "Optional input basename override. Defaults to the selected asset name. Independent of publication naming."
+            },
+            "include_prereleases": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "pattern": "^\\{\\{[\\s\\S]+\\}\\}$",
+                  "type": "string"
+                }
+              ],
+              "description": "Include prereleases when discovering latest or a tag glob; select the newest published non-draft release. Explicit release tags are unchanged."
+            },
+            "release": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                  "type": "string"
+                }
+              ],
+              "description": "GitHub release tag, tag glob, or latest. Omitted or empty values select latest. A value containing *, ? or [ selects the newest published release whose tag matches, using doublestar semantics."
+            },
+            "repository": {
+              "anyOf": [
+                {
+                  "minLength": 1,
+                  "type": "string"
+                },
+                {
+                  "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                  "type": "string"
+                }
+              ],
+              "description": "GitHub repository in owner/name form."
+            },
+            "resolver": {
+              "const": "github",
+              "description": "Built-in resolver selecting this input."
+            },
+            "sha256": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                  "type": "string"
+                }
+              ],
+              "description": "Optional expected SHA-256 content digest, as 64 lowercase hexadecimal characters."
+            },
+            "token": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                  "type": "string"
+                }
+              ],
+              "description": "Optional bearer token for release discovery and acquisition.",
+              "writeOnly": true
+            }
+          },
+          "propertyNames": {
+            "not": {
+              "pattern": "\\{\\{"
+            }
+          },
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "anyOf": [
+            {
+              "not": {
+                "required": [
+                  "formula"
+                ]
+              }
+            },
+            {
+              "not": {
+                "required": [
+                  "cask"
+                ]
+              }
+            }
+          ],
+          "properties": {
+            "architecture": {
+              "anyOf": [
+                {
+                  "enum": [
+                    "arm64",
+                    "x86_64"
+                  ],
+                  "type": "string"
+                },
+                {
+                  "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                  "type": "string"
+                }
+              ],
+              "description": "Target architecture. Defaults to arm64, independently of the runner."
+            },
+            "cask": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                  "type": "string"
+                }
+              ],
+              "description": "Homebrew cask token. Selects its vendor download; no cask actions run."
+            },
+            "formula": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                  "type": "string"
+                }
+              ],
+              "description": "Homebrew core formula token. Selects a standalone bottle requiring no relocation, runtime formula dependencies or post-install actions. No source-build fallback."
+            },
+            "language": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                  "type": "string"
+                }
+              ],
+              "description": "Cask language alias. Omit for the cask's declared default language."
+            },
+            "macos": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                  "type": "string"
+                }
+              ],
+              "description": "Target macOS major version. Omit for the current supported release (27). Update locks the concrete target and selected variant."
+            },
+            "resolver": {
+              "const": "homebrew",
+              "description": "Built-in resolver selecting this input."
+            }
+          },
+          "propertyNames": {
+            "not": {
+              "pattern": "\\{\\{"
+            }
+          },
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "filename": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                  "type": "string"
+                }
+              ],
+              "description": "Optional input basename override. Defaults to Content-Disposition, then final and original URL basenames. Independent of publication naming."
             },
             "headers": {
               "anyOf": [
@@ -9778,7 +10306,7 @@
                   "type": "string"
                 }
               ],
-              "description": "HTTP request headers, including optional User-Agent and Referer overrides. Credentials and custom headers are confined to the source origin."
+              "description": "HTTP request headers, including optional User-Agent and Referer overrides. Credentials and custom headers are confined to the source origin. Only Accept, Accept-Encoding, Accept-Language and User-Agent participate in source identity; other headers are treated as credentials."
             },
             "match": {
               "anyOf": [
@@ -9851,7 +10379,7 @@
                   "type": "string"
                 }
               ],
-              "description": "Optional input basename override. HTTP defaults to Content-Disposition, then final and original URL basenames; GitHub uses the selected asset name; file and local use the selected path or base. Independent of publication naming."
+              "description": "Optional input basename override. Defaults to Content-Disposition, then final and original URL basenames. Independent of publication naming."
             },
             "headers": {
               "anyOf": [
@@ -9879,7 +10407,7 @@
                   "type": "string"
                 }
               ],
-              "description": "HTTP request headers, including optional User-Agent and Referer overrides. Credentials and custom headers are confined to the source origin."
+              "description": "HTTP request headers, including optional User-Agent and Referer overrides. Credentials and custom headers are confined to the source origin. Only Accept, Accept-Encoding, Accept-Language and User-Agent participate in source identity; other headers are treated as credentials."
             },
             "match": {
               "anyOf": [
@@ -9946,208 +10474,6 @@
         {
           "additionalProperties": false,
           "properties": {
-            "asset": {
-              "anyOf": [
-                {
-                  "minLength": 1,
-                  "type": "string"
-                },
-                {
-                  "pattern": "\\{\\{[\\s\\S]+\\}\\}",
-                  "type": "string"
-                }
-              ],
-              "description": "GitHub asset-name glob using doublestar semantics. Must match exactly one release asset; exact names also work."
-            },
-            "filename": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "pattern": "\\{\\{[\\s\\S]+\\}\\}",
-                  "type": "string"
-                }
-              ],
-              "description": "Optional input basename override. HTTP defaults to Content-Disposition, then final and original URL basenames; GitHub uses the selected asset name; file and local use the selected path or base. Independent of publication naming."
-            },
-            "include_prereleases": {
-              "anyOf": [
-                {
-                  "type": "boolean"
-                },
-                {
-                  "pattern": "^\\{\\{[\\s\\S]+\\}\\}$",
-                  "type": "string"
-                }
-              ],
-              "description": "Include prereleases when discovering latest or a tag glob; select the newest published non-draft release. Explicit release tags are unchanged."
-            },
-            "release": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "pattern": "\\{\\{[\\s\\S]+\\}\\}",
-                  "type": "string"
-                }
-              ],
-              "description": "GitHub release tag, tag glob, or latest. Omitted or empty values select latest. A value containing *, ? or [ selects the newest published release whose tag matches, using doublestar semantics."
-            },
-            "repository": {
-              "anyOf": [
-                {
-                  "minLength": 1,
-                  "type": "string"
-                },
-                {
-                  "pattern": "\\{\\{[\\s\\S]+\\}\\}",
-                  "type": "string"
-                }
-              ],
-              "description": "GitHub repository in owner/name form."
-            },
-            "resolver": {
-              "const": "github",
-              "description": "Built-in resolver selecting this input."
-            },
-            "sha256": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "pattern": "\\{\\{[\\s\\S]+\\}\\}",
-                  "type": "string"
-                }
-              ],
-              "description": "Optional expected SHA-256 content digest, as 64 lowercase hexadecimal characters."
-            },
-            "token": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "pattern": "\\{\\{[\\s\\S]+\\}\\}",
-                  "type": "string"
-                }
-              ],
-              "description": "Optional bearer token. Mutually exclusive with an Authorization header.",
-              "writeOnly": true
-            }
-          },
-          "propertyNames": {
-            "not": {
-              "pattern": "\\{\\{"
-            }
-          },
-          "type": "object"
-        },
-        {
-          "additionalProperties": false,
-          "properties": {
-            "filename": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "pattern": "\\{\\{[\\s\\S]+\\}\\}",
-                  "type": "string"
-                }
-              ],
-              "description": "Optional input basename override. HTTP defaults to Content-Disposition, then final and original URL basenames; GitHub uses the selected asset name; file and local use the selected path or base. Independent of publication naming."
-            },
-            "path": {
-              "anyOf": [
-                {
-                  "minLength": 1,
-                  "type": "string"
-                },
-                {
-                  "pattern": "\\{\\{[\\s\\S]+\\}\\}",
-                  "type": "string"
-                }
-              ],
-              "description": "Exact file or directory path. Relative paths resolve from the resource file; absolute paths select a host location."
-            },
-            "sha256": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "pattern": "\\{\\{[\\s\\S]+\\}\\}",
-                  "type": "string"
-                }
-              ],
-              "description": "Optional expected SHA-256 content digest, as 64 lowercase hexadecimal characters."
-            }
-          },
-          "propertyNames": {
-            "not": {
-              "pattern": "\\{\\{"
-            }
-          },
-          "type": "object"
-        },
-        {
-          "additionalProperties": false,
-          "properties": {
-            "filename": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "pattern": "\\{\\{[\\s\\S]+\\}\\}",
-                  "type": "string"
-                }
-              ],
-              "description": "Optional input basename override. HTTP defaults to Content-Disposition, then final and original URL basenames; GitHub uses the selected asset name; file and local use the selected path or base. Independent of publication naming."
-            },
-            "path": {
-              "anyOf": [
-                {
-                  "minLength": 1,
-                  "type": "string"
-                },
-                {
-                  "pattern": "\\{\\{[\\s\\S]+\\}\\}",
-                  "type": "string"
-                }
-              ],
-              "description": "Exact file or directory path. Relative paths resolve from the resource file; absolute paths select a host location."
-            },
-            "resolver": {
-              "const": "file",
-              "description": "Built-in resolver selecting this input."
-            },
-            "sha256": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "pattern": "\\{\\{[\\s\\S]+\\}\\}",
-                  "type": "string"
-                }
-              ],
-              "description": "Optional expected SHA-256 content digest, as 64 lowercase hexadecimal characters."
-            }
-          },
-          "propertyNames": {
-            "not": {
-              "pattern": "\\{\\{"
-            }
-          },
-          "type": "object"
-        },
-        {
-          "additionalProperties": false,
-          "properties": {
             "base": {
               "anyOf": [
                 {
@@ -10170,7 +10496,7 @@
                   "type": "string"
                 }
               ],
-              "description": "Optional input basename override. HTTP defaults to Content-Disposition, then final and original URL basenames; GitHub uses the selected asset name; file and local use the selected path or base. Independent of publication naming."
+              "description": "Optional input basename override. Defaults to the selected base's basename. Independent of publication naming."
             },
             "include": {
               "anyOf": [
@@ -10211,6 +10537,105 @@
                 }
               ],
               "description": "Optional expected SHA-256 content digest, as 64 lowercase hexadecimal characters."
+            }
+          },
+          "propertyNames": {
+            "not": {
+              "pattern": "\\{\\{"
+            }
+          },
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "architecture": {
+              "anyOf": [
+                {
+                  "enum": [
+                    "x64",
+                    "x86",
+                    "arm64",
+                    "arm",
+                    "neutral"
+                  ],
+                  "type": "string"
+                },
+                {
+                  "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                  "type": "string"
+                }
+              ],
+              "description": "Exact target architecture. Defaults to x64 independently of the runner."
+            },
+            "installer_type": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                  "type": "string"
+                }
+              ],
+              "description": "Optional declared installer type filter, such as msi, wix, inno or zip."
+            },
+            "locale": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                  "type": "string"
+                }
+              ],
+              "description": "Optional exact installer locale filter, such as en-US. Package description locale is not an installer locale."
+            },
+            "package": {
+              "anyOf": [
+                {
+                  "minLength": 1,
+                  "type": "string"
+                },
+                {
+                  "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                  "type": "string"
+                }
+              ],
+              "description": "Exact WinGet community package identifier."
+            },
+            "resolver": {
+              "const": "winget",
+              "description": "Built-in resolver selecting this input."
+            },
+            "scope": {
+              "anyOf": [
+                {
+                  "enum": [
+                    "user",
+                    "machine"
+                  ],
+                  "type": "string"
+                },
+                {
+                  "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                  "type": "string"
+                }
+              ],
+              "description": "Optional declared installer scope filter. Omit only when selection is unambiguous."
+            },
+            "version": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                  "type": "string"
+                }
+              ],
+              "description": "Exact published version or latest (the default). Selects the release before filtering installers."
             }
           },
           "propertyNames": {
@@ -10699,11 +11124,11 @@
                 "additionalProperties": false,
                 "properties": {
                   "config": {
-                    "$ref": "https://stemma.invalid/editor/woodstar.munki/config",
+                    "$ref": "https://stemma.invalid/editor/woodstar/config",
                     "description": "Connection settings for this destination. Credentials may reference environment variables."
                   },
                   "operation": {
-                    "const": "woodstar.munki",
+                    "const": "woodstar",
                     "description": "Registered destination operation."
                   }
                 },
@@ -10868,7 +11293,7 @@
                       "$ref": "https://stemma.invalid/editor/intune/metadata"
                     },
                     "woodstar": {
-                      "$ref": "https://stemma.invalid/editor/woodstar.munki/metadata"
+                      "$ref": "https://stemma.invalid/editor/woodstar/metadata"
                     }
                   },
                   "type": "object"
@@ -11209,7 +11634,7 @@
                           "$ref": "https://stemma.invalid/editor/intune/metadata"
                         },
                         "woodstar": {
-                          "$ref": "https://stemma.invalid/editor/woodstar.munki/metadata"
+                          "$ref": "https://stemma.invalid/editor/woodstar/metadata"
                         }
                       },
                       "type": "object"

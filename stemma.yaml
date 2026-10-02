@@ -8,9 +8,9 @@ spec:
     - software/**/*.yaml
   plugins:
     downloads:
-      image: ghcr.io/woodleighschool/stemma-catalog/downloads:0.3.6@sha256:c04b78c67a1436e29c0e1cb4243abd5195b6bee114b3ce664fe901d841db7b75
+      path: plugins/downloads/build/plugin
     woodstar:
-      image: ghcr.io/woodleighschool/woodstar/stemma:dev-35f5460f-20260926122511@sha256:f48831ae23acca9c54b530d4f060cde8db1e0e74436d3e3353e14606567617fb
+      path: ../woodstar/stemma/build/plugin
   components:
     mac-software:
       destinations:
@@ -45,7 +45,7 @@ spec:
         client_secret: "{{ env.INTUNE_CLIENT_SECRET }}"
         tenant_id: "{{ env.INTUNE_TENANT_ID }}"
     woodstar:
-      operation: woodstar.munki
+      operation: woodstar
       config:
         api_key: "{{ env.WOODSTAR_API_KEY }}"
         url: https://woodstar.woodleigh.vic.edu.au

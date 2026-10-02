@@ -25,6 +25,9 @@ Take the first that fits, and stop there:
    edition, architecture, scope and language; a faster resolver is useful only if it selects the
    right artifact. Use a vendor resolver or GitHub release glob when the registry cannot express
    a release-line constraint. Check the installed schema before using these resolvers.
+   Prefer registry entries with versioned download URLs. When the entry points at the vendor's
+   always-latest URL, use that URL directly: the registry hash can lag behind replaced bytes.
+   Direct HTTP updates can reuse unchanged content through the vendor's ETag or Last-Modified.
 3. **A stable official URL.** One URL on the vendor's domain or CDN that always serves the current
    release, such as a `latest` link. Use `url`.
 4. **Official GitHub releases.** Use the `github` resolver with an `asset` glob that matches exactly

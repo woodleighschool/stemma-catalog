@@ -1,7 +1,7 @@
 # Download resolvers
 
 Find Audinate, Blender, Python, Cricut, Epson and Microsoft installers. Vendor discovery
-lives here; Stemma owns source locks, cached content and software preparation.
+lives here; Stemma owns HTTP transfers, source locks, cached content and software preparation.
 
 ## 🧩 Operations
 
@@ -27,9 +27,9 @@ source:
 
 Discovery records the selected URL, filename and available vendor version without
 downloading. A vendor version names one build, so Stemma reuses what it already
-fetched for that release. Downloads fetch the recorded URL without rediscovery;
-Cricut's signed URLs expire, so Cricut records only the filename and finds a fresh
-URL for each download. Stemma verifies the reviewed content hash.
+fetched for that release. Acquisition returns the recorded URL for Stemma to download;
+Cricut's signed URLs expire, so Cricut records only the filename and requests a fresh
+URL for that installer without selecting the current rollout. Stemma verifies the reviewed content hash.
 Blender, Python and Epson expose their version as evidence, such as
 `{{ evidence.epson.version }}`. Cricut's version comes from inspecting the application.
 Keep installer signature requirements on the software resource.

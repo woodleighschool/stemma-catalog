@@ -6,8 +6,10 @@ metadata:
 spec:
   extends: mac-software
   source:
-    url: https://godotengine.org/download/macos/
-    match: https://downloads\.godotengine\.org/\?version=4\.[0-9.]+&flavor=stable&slug=macos\.universal\.zip&platform=macos\.universal
+    resolver: github
+    repository: godotengine/godot-builds
+    release: 4.*-stable
+    asset: Godot_v*-stable_macos.universal.zip
   application:
     path: Godot.app
     bundle_id: org.godotengine.godot

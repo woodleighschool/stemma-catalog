@@ -39,24 +39,39 @@ func Cricut(ctx context.Context, client *http.Client, config CricutConfig) (Rele
 	if !validFilename(rollout.InstallFile) || !strings.HasSuffix(rollout.InstallFile, ".dmg") {
 		return Release{}, errors.New("cricut: rollout installer must be a DMG filename")
 	}
-	query.Set("fileName", rollout.InstallFile)
-	endpoint.Path = "/desktopdownload/InstallerFile"
-	endpoint.RawQuery = query.Encode()
+	address, err := cricutInstallerURL(ctx, client, config, rollout.InstallFile)
+	if err != nil {
+		return Release{}, err
+	}
+	return Release{URL: address, Filename: rollout.InstallFile, Signed: true}, nil
+}
+
+// CricutDownload refreshes the signed URL for the recorded installer without
+// selecting the current rollout, which may have advanced since discovery.
+func CricutDownload(ctx context.Context, client *http.Client, config CricutConfig, release Release) (string, error) {
+	if release.URL != "" || release.Version != "" || !validFilename(release.Filename) || !strings.HasSuffix(release.Filename, ".dmg") {
+		return "", errors.New("cricut: invalid installer observation")
+	}
+	return cricutInstallerURL(ctx, client, config, release.Filename)
+}
+
+func cricutInstallerURL(ctx context.Context, client *http.Client, config CricutConfig, filename string) (string, error) {
+	query := url.Values{"operatingSystem": {"osxnative"}, "shard": {config.Shard}, "fileName": {filename}}
+	endpoint := &url.URL{Scheme: "https", Host: "apis.cricut.com", Path: "/desktopdownload/InstallerFile", RawQuery: query.Encode()}
 	var installer struct {
 		Result string `json:"result"`
 	}
 	if err := jsonMetadata(ctx, client, endpoint, cricutURL, &installer); err != nil {
-		return Release{}, fmt.Errorf("cricut: installer location: %w", err)
+		return "", fmt.Errorf("cricut: installer location: %w", err)
 	}
 	download, err := url.Parse(installer.Result)
 	if err != nil || !cricutURL(download) {
-		return Release{}, errors.New("cricut: unexpected installer URL")
+		return "", errors.New("cricut: unexpected installer URL")
 	}
-	filename := path.Base(download.Path)
-	if !validFilename(filename) || filename != rollout.InstallFile || strings.HasSuffix(download.Path, "/") || path.Clean(download.Path) != download.Path {
-		return Release{}, errors.New("cricut: installer URL does not match rollout filename")
+	if path.Base(download.Path) != filename || strings.HasSuffix(download.Path, "/") || path.Clean(download.Path) != download.Path {
+		return "", errors.New("cricut: installer URL does not match recorded filename")
 	}
-	return Release{URL: download.String(), Filename: filename, Signed: true}, nil
+	return download.String(), nil
 }
 
 func cricutURL(u *url.URL) bool {

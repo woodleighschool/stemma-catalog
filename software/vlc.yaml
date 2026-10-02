@@ -6,8 +6,8 @@ metadata:
 spec:
   extends: mac-software
   source:
-    url: https://www.videolan.org/vlc/download-macosx.html
-    match: "//get\\.videolan\\.org/vlc/[0-9.]+/macosx/vlc-[0-9.]+-arm64\\.dmg"
+    resolver: homebrew
+    cask: vlc
   application:
     bundle_id: org.videolan.vlc
   signatures:
