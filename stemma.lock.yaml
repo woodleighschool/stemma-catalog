@@ -438,7 +438,7 @@ inputs:
       observation: {}
       content:
         artifact:
-          sha256: c1063ab9fe565377eb970a009d842212c47253f9cc0158b649c1afe0c9f3a38f
+          sha256: b6833966370df458da07afecc585a600eafc0cf129c6d756edbe8a55eb0bdc44
           size: 4358283264
         filename: iMovie.app
         tree: true
