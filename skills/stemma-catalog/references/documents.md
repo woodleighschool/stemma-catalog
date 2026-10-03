@@ -48,6 +48,8 @@
   declaring them; report invalid or unsupported signatures rather than omitting the assertion.
 - Where the kind supports an icon, declare its name (`icon: <name>` uses `icons/<name>.png`) and
   create it from locked software with `stemma icon Kind/name`, unless suitable artwork exists.
+  For a wrapper, select its vendor artwork with `stemma icon MacSoftware/name --input vendor --path Installer.app`
+  in the CLI or the equivalent MCP fields. Report extraction errors with their cause.
 - Refer to other catalog resources by `kind` and `name`, not by native names. `source.resource`
   consumes another resource's output, which is a build dependency. Destination relationships, such
   as Munki `requires` or Intune `dependencies`, are publication dependencies. Don't use one for the
@@ -70,8 +72,11 @@ Verify the consumed vendor input and declare the built package's expected unsign
 Stemma inspects static contents and never executes installer hooks. For script-driven installs,
 establish product detection, minimum OS and removal from vendor documentation and corroborating
 automation. Declare supported overrides in the publishing document. A wrapper receipt records the
-wrapper installation; assess whether it represents the product's continued presence. Report any
-unresolved deployment behaviour before calling the resource complete.
+wrapper installation; assess whether it represents the product's continued presence. Managed
+upgrades need version detection: distinguish absent, older, current and newer installations.
+Use native `installs` application or bundle entries when the installed version is known; use
+`version_script` when a script must discover it. Establish how the installed product version
+relates to the packaged release. Report unresolved deployment behaviour before completion.
 
 ## Omitted destination fields
 

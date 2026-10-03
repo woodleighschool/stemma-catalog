@@ -13,6 +13,7 @@ not automatically CLI commands.
 | Prepare locked inputs                             | `stemma prepare Kind/name`                                                 | `check` prepares affected locked resources since a revision                          |
 | Trial current sources without writing input locks | `stemma artifact Kind/name --no-input-lock` materializes an artifact       | `prepare` with `resources: ["Kind/name"]` reports artifacts and signing expectations |
 | Derive signing expectations from locked inputs    | `stemma signature Kind/name`                                               | Included in trial `prepare`                                                          |
+| Inspect a builder input before it can build       | `stemma inspect Kind/name --input vendor [--path Installer.app] --json`    | `inspect` with `resource`, `input` and optional `path`                               |
 | Check a change                                    | `stemma prepare --changed-since REV`, then `stemma validate`               | `check` with `since: REV`                                                            |
 
 There is no CLI `describe` or `check`. `stemma mcp` serves an existing project; the skill does not
@@ -56,7 +57,10 @@ does not need components until it has useful shared defaults.
 
 Software kinds inspect the prepared artifact and derive what it states: version, identifiers,
 receipts and installed applications, detection, minimum OS, installed size and signer evidence.
-CLI `prepare --json` and MCP `prepare` report the inspected subjects. Destinations turn them into
+CLI `prepare --json` and MCP `prepare` report output subjects. To discover builder input facts,
+use `inspect` with the input name and optional path. CLI input inspection uses the lock unless
+`--no-input-lock` is set; MCP `inspect` reads current sources. Neither builds the selected resource
+or writes the lockfile. Destinations turn artifact facts into
 their own fields. An explicit value replaces a derived one. Destination
 metadata can also use expressions:
 

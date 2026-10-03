@@ -43,6 +43,7 @@ release channel. Use registry metadata for release checks and prepare artifacts 
    [references/templates.md](references/templates.md), refined with
    [references/documents.md](references/documents.md). Consult the schema or MCP `describe` for the
    fields you use; examples are starting points, not evidence of installed capabilities.
+   Inspect named inputs before writing expressions that depend on their facts.
 5. **Resolve and review.** Run `stemma update Kind/name` to record the
    selected sources. Review the lock changes, including a newly created lockfile. An update-only
    request can end here. If local policy reserves lock updates for a maintainer, report that step
