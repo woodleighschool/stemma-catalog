@@ -37,7 +37,7 @@ permissions:
 
 steps:
   - name: Setup Mise
-    uses: jdx/mise-action@v5.0.0
+    uses: jdx/mise-action@v5.0.1
     with:
       cache: false
       experimental: true
