@@ -3153,18 +3153,6 @@
           "description": "API key with software and package management access. Supply it through an environment reference.",
           "writeOnly": true
         },
-        "ca_file": {
-          "anyOf": [
-            {
-              "type": "string"
-            },
-            {
-              "pattern": "\\{\\{[\\s\\S]+\\}\\}",
-              "type": "string"
-            }
-          ],
-          "description": "PEM certificate file to trust in addition to the system certificate authorities."
-        },
         "url": {
           "anyOf": [
             {

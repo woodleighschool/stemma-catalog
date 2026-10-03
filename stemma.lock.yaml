@@ -1008,10 +1008,3 @@ inputs:
         sha256: b0dac9fa5237d2e18144ca723644460e7cc26675e5d3db0f89fdfe47ad8c429b
         filename: ZoomInstallerFull.msi
         mode: 420
-plugins:
-  downloads:
-    declaration: 40f38d64320d51e82074b85c9004520da34cbc5b396bcc859bb460a5e941f618
-    digest: sha256:9bfbde6cd552421d88a22a0fda6418d989645b76e8d516d4d3227ec4112c71be
-  woodstar:
-    declaration: e2fa61f8dd203d28c79f6159e982e6989365530a0e6f1eaaf05f603929d9e5f7
-    digest: sha256:b83f3913a0f91160a72a6134a97363070ce8493313331ad95cf0c1ec67a780e6
