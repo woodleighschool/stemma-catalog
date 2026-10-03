@@ -6,9 +6,8 @@ metadata:
 spec:
   extends: mac-software
   source:
-    resolver: blender
-    major: 5
-    architecture: arm64
+    resolver: homebrew
+    cask: blender
   application:
     bundle_id: org.blenderfoundation.blender
   signatures:

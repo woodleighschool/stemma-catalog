@@ -3,15 +3,24 @@ inputs:
   stemma/v1alpha1/BuildMacPkg/adobe-creative-cloud:
     vendor:
       version: 1
-      resolver: http
+      resolver: homebrew
       resolver_version: "2"
-      declaration: b64ebbee3f0b78318b44677c1f251ce022c56b48a77cf9d2ba393363d05de15a
+      declaration: 34c5216410cb719e2a1f2a1fb64a0dbf0acd4ac33e69136192cc679a586045d8
       observation:
+        filename: ACCCx6_10_0_252_41.dmg
+        sha256: 5115a16e2ecddade5d37e50fc55721521f92882bf3796ff0fa6fc345719801f7
         url: https://ccmdls.adobe.com/AdobeProducts/StandaloneBuilds/ACCC/ESD/6.10.0/252.41/macarm64/ACCCx6_10_0_252_41.dmg
       content:
         sha256: 5115a16e2ecddade5d37e50fc55721521f92882bf3796ff0fa6fc345719801f7
         filename: ACCCx6_10_0_252_41.dmg
         mode: 420
+      input_version: 6.10.0.252.41
+      evidence:
+        homebrew.cask:
+          macos: "27"
+          name: adobe-creative-cloud
+          target_architecture: arm64
+          version: 6.10.0.252.41
   stemma/v1alpha1/BuildMacPkg/branding:
     scripts:
       version: 1
@@ -220,19 +229,27 @@ inputs:
   stemma/v1alpha1/MacSoftware/blender:
     source:
       version: 1
-      resolver: blender
+      resolver: homebrew
       resolver_version: "2"
-      declaration: c804a4b621c79e295ce90ef64097d592641877bf87f692ab420e0fe83afa5083
+      declaration: ca8b9ed77f550e68e6d68a801761c682033798b1815d24d56e1d71851e2c6085
       observation:
         filename: blender-5.2.2-macos-arm64.dmg
+        sha256: dc4125399b8bfefe283cc1624d6cfc7809d1cac20ace51072127eb371f31f210
         url: https://download.blender.org/release/Blender5.2/blender-5.2.2-macos-arm64.dmg
-        version: 5.2.2
       content:
         sha256: dc4125399b8bfefe283cc1624d6cfc7809d1cac20ace51072127eb371f31f210
         filename: blender-5.2.2-macos-arm64.dmg
         mode: 420
+      input_version: 5.2.2
       evidence:
-        blender:
+        homebrew.cask:
+          artifacts:
+            - app:
+                - Blender.app
+              target: /Applications/Blender.app
+          macos: "27"
+          name: blender
+          target_architecture: arm64
           version: 5.2.2
   stemma/v1alpha1/MacSoftware/company-portal:
     source:
@@ -264,48 +281,88 @@ inputs:
   stemma/v1alpha1/MacSoftware/dante-controller:
     source:
       version: 1
-      resolver: audinate
+      resolver: homebrew
       resolver_version: "2"
-      declaration: 8b167865f500d279610489c3a2f48af1dbfa7690252719e114e159c9d5f8fc8e
+      declaration: 86451c2b589c6d9d3670aafa789916e294bf8eae97b657d45d66453d66625648
       observation:
         filename: DanteController-4.18.1.1-macos-arm64.dmg
+        sha256: 4515cd12b4b185e4b6317db6de7ea5306ba33381baa2fce4ee08f5fc1b6538ff
         url: https://audinate-software-updates.sgp1.cdn.digitaloceanspaces.com/DanteController/4/4.18/apple_silicon/DanteController-4.18.1.1-macos-arm64.dmg
-        version: 4.18.1.1
       content:
         sha256: 4515cd12b4b185e4b6317db6de7ea5306ba33381baa2fce4ee08f5fc1b6538ff
         filename: DanteController-4.18.1.1-macos-arm64.dmg
         mode: 420
+      input_version: 4.18.1.1
       evidence:
-        audinate:
+        homebrew.cask:
+          artifacts:
+            - pkg:
+                - DanteController.pkg
+          macos: "27"
+          name: dante-controller
+          target_architecture: arm64
           version: 4.18.1.1
   stemma/v1alpha1/MacSoftware/dante-virtual-soundcard:
     source:
       version: 1
-      resolver: audinate
+      resolver: http
       resolver_version: "2"
-      declaration: d4b78168c674e9cca8bb2a9bac18d936622c21732ff0b1432953304727cded8a
+      declaration: e9fae0d39f27ae4ecc103aec214484481fa614c7e6bcd4d9e0ec8bc5bfbe86de
       observation:
-        filename: DVS-4.5.2.3_macos.dmg
         url: https://audinate-software-updates.sgp1.cdn.digitaloceanspaces.com/DanteVirtualSoundcard/4/4.5/macOS/DVS-4.5.2.3_macos.dmg
-        version: 4.5.2.3
       content:
         sha256: 8d23b26a1b8b6601f4c5dc370bfcfea7558ec18c297992306830d0205d571a1c
         filename: DVS-4.5.2.3_macos.dmg
         mode: 420
-      evidence:
-        audinate:
-          version: 4.5.2.3
   stemma/v1alpha1/MacSoftware/docker-desktop:
     source:
       version: 1
-      resolver: http
+      resolver: homebrew
       resolver_version: "2"
-      declaration: 296efb5e6ca6d488e72356659af78a98490d3305fe4583308e9de2753ed075aa
-      observation: {}
+      declaration: e831e5c87c365f437b0f2ac44ee77d7be4e6c0770283a57d0a0f3ec3a6ff1fbb
+      observation:
+        filename: Docker.dmg
+        sha256: bf062f45334c711bd2fc2ed47a5588d050fbb950be3ae3aa4ac9826f04ad4dba
+        url: https://desktop.docker.com/mac/main/arm64/240920/Docker.dmg
       content:
         sha256: bf062f45334c711bd2fc2ed47a5588d050fbb950be3ae3aa4ac9826f04ad4dba
         filename: Docker.dmg
         mode: 420
+      input_version: 4.93.0,240920
+      evidence:
+        homebrew.cask:
+          artifacts:
+            - app:
+                - Docker.app
+              target: /Applications/Docker.app
+            - binary:
+                - $APPDIR/Docker.app/Contents/Resources/bin/docker-credential-ecr-login
+                - target: /usr/local/bin/docker-credential-ecr-login
+              target: /usr/local/bin/docker-credential-ecr-login
+            - binary:
+                - $APPDIR/Docker.app/Contents/Resources/bin/docker-credential-osxkeychain
+                - target: /usr/local/bin/docker-credential-osxkeychain
+              target: /usr/local/bin/docker-credential-osxkeychain
+            - binary:
+                - $APPDIR/Docker.app/Contents/Resources/bin/kubectl
+                - target: /usr/local/bin/kubectl.docker
+              target: /usr/local/bin/kubectl.docker
+            - binary:
+                - $APPDIR/Docker.app/Contents/Resources/cli-plugins/docker-compose
+                - target: /usr/local/cli-plugins/docker-compose
+              target: /usr/local/cli-plugins/docker-compose
+            - binary:
+                - $APPDIR/Docker.app/Contents/Resources/bin/docker
+                - target: /usr/local/bin/docker
+              target: /usr/local/bin/docker
+            - binary:
+                - $APPDIR/Docker.app/Contents/Resources/bin/docker-credential-desktop
+                - target: /usr/local/bin/docker-credential-desktop
+              target: /usr/local/bin/docker-credential-desktop
+          macos: "27"
+          name: docker-desktop
+          target_architecture: arm64
+          version: 4.93.0,240920
   stemma/v1alpha1/MacSoftware/easyfind:
     source:
       version: 1
@@ -351,14 +408,27 @@ inputs:
   stemma/v1alpha1/MacSoftware/gamemaker:
     source:
       version: 1
-      resolver: http
+      resolver: homebrew
       resolver_version: "2"
-      declaration: a38e9a34969899ddf6c73418a94d1fd0e5d2fdda8c3047d5c38cb821a501c4f1
-      observation: {}
+      declaration: 42d1a3017dc5529ac89fa2491048e86361f1ea2d3200dc1bb2b28c38826674e6
+      observation:
+        filename: GameMaker-2024.14.4.222.pkg
+        sha256: 8cbd33a9a92ed60ebd53734413b33afdeb8c677326ada0c80971e9f91555cc7f
+        url: https://gms.yoyogames.com/GameMaker-2024.14.4.222.pkg
       content:
         sha256: 8cbd33a9a92ed60ebd53734413b33afdeb8c677326ada0c80971e9f91555cc7f
         filename: GameMaker-2024.14.4.222.pkg
         mode: 420
+      input_version: 2024.14.4.222
+      evidence:
+        homebrew.cask:
+          artifacts:
+            - pkg:
+                - GameMaker-2024.14.4.222.pkg
+          macos: "27"
+          name: gamemaker
+          target_architecture: arm64
+          version: 2024.14.4.222
   stemma/v1alpha1/MacSoftware/garageband:
     source:
       version: 1
@@ -590,14 +660,29 @@ inputs:
   stemma/v1alpha1/MacSoftware/minecraft-education:
     source:
       version: 1
-      resolver: http
+      resolver: homebrew
       resolver_version: "2"
-      declaration: 2a16778cc9327a3f6551d1c34c8a38a62f6598a8991b6a472b8c146f1efd28c8
-      observation: {}
+      declaration: 7b612dc6f46c0c96589147b473971ca4b8439626b84d4b8e7bd108c88562c8c7
+      observation:
+        filename: Minecraft_Education_1.26.32.0.dmg
+        sha256: 8aaada426842ebc054acb70ecd0a44fcb9abe02988e98d5488f17376380e2960
+        url: https://downloads.minecrafteduservices.com/retailbuilds/MacOS/Minecraft_Education_1.26.32.0.dmg
       content:
         sha256: 8aaada426842ebc054acb70ecd0a44fcb9abe02988e98d5488f17376380e2960
         filename: Minecraft_Education_1.26.32.0.dmg
         mode: 420
+      input_version: 1.26.32.0
+      evidence:
+        homebrew.cask:
+          artifacts:
+            - app:
+                - minecraft-edu.app
+                - target: Minecraft Education.app
+              target: /Applications/Minecraft Education.app
+          macos: "27"
+          name: minecraft-education
+          target_architecture: arm64
+          version: 1.26.32.0
   stemma/v1alpha1/MacSoftware/munki:
     source:
       version: 1
@@ -822,14 +907,28 @@ inputs:
   stemma/v1alpha1/MacSoftware/unity-hub:
     source:
       version: 1
-      resolver: http
+      resolver: homebrew
       resolver_version: "2"
-      declaration: ab711f838eba210554cb462d671513ae8dff4cc2d7191ed2a4294aaf251cf84e
-      observation: {}
+      declaration: bcc1ec8256006de82d8cd0973378c496f98d5f067637e55be9713cbb8f22aca8
+      observation:
+        filename: UnityHubSetup-3.22.2-arm64.dmg
+        sha256: 5a2212142c0ee33d4493e710c0aa913853ac9f5120714f279e0dbd624d843eaf
+        url: https://public-cdn.cloud.unity3d.com/hub/prod/3.22.2/UnityHubSetup-3.22.2-arm64.dmg
       content:
-        sha256: 15c1c3b03f036845d727047364358ca821c88ee4108b666db5368417053a154e
-        filename: UnityHubSetup-arm64.dmg
+        sha256: 5a2212142c0ee33d4493e710c0aa913853ac9f5120714f279e0dbd624d843eaf
+        filename: UnityHubSetup-3.22.2-arm64.dmg
         mode: 420
+      input_version: 3.22.2
+      evidence:
+        homebrew.cask:
+          artifacts:
+            - app:
+                - Unity Hub.app
+              target: /Applications/Unity Hub.app
+          macos: "27"
+          name: unity-hub
+          target_architecture: arm64
+          version: 3.22.2
   stemma/v1alpha1/MacSoftware/vernier-graphical-analysis:
     source:
       version: 1
@@ -945,14 +1044,27 @@ inputs:
   stemma/v1alpha1/MacSoftware/zoom:
     source:
       version: 1
-      resolver: http
+      resolver: homebrew
       resolver_version: "2"
-      declaration: c55979850e795e033861595872ff599ab94a6389001ab7ae1f10eaf42e274994
-      observation: {}
+      declaration: dc00e8ed97d46d8fbe4b986ce39185e0c79c6acb9e7288f36cc4844ae55c64d4
+      observation:
+        filename: ZoomInstallerIT.pkg
+        sha256: 422f801771ef0c3db68bdf1a47a9c44e18b6f822b2f5d751adc3242270dc6417
+        url: https://cdn.zoom.us/prod/7.2.2.88465/ZoomInstallerIT.pkg
       content:
         sha256: 422f801771ef0c3db68bdf1a47a9c44e18b6f822b2f5d751adc3242270dc6417
         filename: ZoomInstallerIT.pkg
         mode: 420
+      input_version: 7.2.2.88465
+      evidence:
+        homebrew.cask:
+          artifacts:
+            - pkg:
+                - ZoomInstallerIT.pkg
+          macos: "27"
+          name: zoom-for-it-admins
+          target_architecture: arm64
+          version: 7.2.2.88465
   stemma/v1alpha1/WindowsSoftware/globalprotect:
     source:
       version: 1
@@ -967,14 +1079,53 @@ inputs:
   stemma/v1alpha1/WindowsSoftware/google-chrome:
     source:
       version: 1
-      resolver: http
+      resolver: winget
       resolver_version: "2"
-      declaration: bce4ed5e78e6c91e0cd711908a02cd8314ae06ca16e7eac8e840f9069c7f93ee
-      observation: {}
+      declaration: a8da10a7454449cd2680d4284275f6c4e7a5c3b89b497491e8a1a24f3642944d
+      observation:
+        filename: googlechromestandaloneenterprise64.msi
+        package: Google.Chrome
+        sha256: 728bea0eb25389b9f308034725434288d3143827bebdf0abbd4a634df9c00a0c
+        url: https://dl.google.com/dl/chrome/install/googlechromestandaloneenterprise64.msi
+        version: 154.0.8037.98
       content:
         sha256: 728bea0eb25389b9f308034725434288d3143827bebdf0abbd4a634df9c00a0c
         filename: googlechromestandaloneenterprise64.msi
         mode: 420
+      input_version: 154.0.8037.98
+      evidence:
+        winget.installer:
+          apps_and_features_entries:
+            - upgrade_code: "{C1DFDF69-5945-32F2-A35E-EE94C99C7CF4}"
+          architecture: x64
+          elevation_requirement: elevatesSelf
+          file_extensions:
+            - htm
+            - html
+            - pdf
+            - shtml
+            - svg
+            - webp
+            - xht
+            - xhtml
+          installer_sha256: 728bea0eb25389b9f308034725434288d3143827bebdf0abbd4a634df9c00a0c
+          installer_type: wix
+          installer_url: https://dl.google.com/dl/chrome/install/googlechromestandaloneenterprise64.msi
+          package_identifier: Google.Chrome
+          package_name: Google Chrome
+          package_version: 154.0.8037.98
+          product_code: "{97466CBF-3317-36FC-BC77-CF240B7DA61B}"
+          protocols:
+            - http
+            - https
+            - mailto
+            - mms
+            - tel
+            - webcal
+          publisher: Google LLC
+          release_date: "2026-10-02"
+          scope: machine
+          upgrade_behavior: install
   stemma/v1alpha1/WindowsSoftware/lenovo-commercial-vantage:
     source:
       version: 1
@@ -1000,11 +1151,39 @@ inputs:
   stemma/v1alpha1/WindowsSoftware/zoom:
     source:
       version: 1
-      resolver: http
+      resolver: winget
       resolver_version: "2"
-      declaration: 3062bc012bac6be0b69c9174c3ff0269b88dc188a7b11d622af228ad2ceb55f8
-      observation: {}
+      declaration: a4a72e1d40f3b460d80e18bd16e3285c9906665ea378244e5dd781d1ade46fbe
+      observation:
+        filename: ZoomInstallerFull.msi
+        package: Zoom.Zoom
+        sha256: b0dac9fa5237d2e18144ca723644460e7cc26675e5d3db0f89fdfe47ad8c429b
+        url: https://zoom.us/client/7.2.1.48556/ZoomInstallerFull.msi?archType=x64
+        version: 7.2.48556
       content:
         sha256: b0dac9fa5237d2e18144ca723644460e7cc26675e5d3db0f89fdfe47ad8c429b
         filename: ZoomInstallerFull.msi
         mode: 420
+      input_version: 7.2.48556
+      evidence:
+        winget.installer:
+          apps_and_features_entries:
+            - upgrade_code: "{C819B794-A45C-4F27-9860-0C86492A52CC}"
+          architecture: x64
+          file_extensions:
+            - zoommtg
+            - zoomphonecall
+          installer_sha256: b0dac9fa5237d2e18144ca723644460e7cc26675e5d3db0f89fdfe47ad8c429b
+          installer_type: msi
+          installer_url: https://zoom.us/client/7.2.1.48556/ZoomInstallerFull.msi?archType=x64
+          package_identifier: Zoom.Zoom
+          package_name: Zoom Workplace
+          package_version: 7.2.48556
+          product_code: "{518AB954-56D5-4942-802D-ED4A1DAA61FD}"
+          protocols:
+            - zoom
+            - zoommtg
+          publisher: Zoom
+          release_date: "2026-09-21"
+          scope: machine
+          upgrade_behavior: install

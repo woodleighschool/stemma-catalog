@@ -6,7 +6,8 @@ metadata:
 spec:
   extends: mac-software
   source:
-    url: https://public-cdn.cloud.unity3d.com/hub/prod/UnityHubSetup-arm64.dmg
+    resolver: homebrew
+    cask: unity-hub
   application:
     path: Unity Hub.app
     bundle_id: com.unity3d.unityhub

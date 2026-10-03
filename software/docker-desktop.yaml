@@ -6,7 +6,8 @@ metadata:
 spec:
   extends: mac-software
   source:
-    url: https://desktop.docker.com/mac/main/arm64/Docker.dmg
+    resolver: homebrew
+    cask: docker-desktop
   application:
     bundle_id: com.docker.docker
   signatures:

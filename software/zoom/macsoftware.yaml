@@ -6,7 +6,8 @@ metadata:
 spec:
   extends: mac-software
   source:
-    url: https://zoom.us/client/latest/ZoomInstallerIT.pkg
+    resolver: homebrew
+    cask: zoom-for-it-admins
   application:
     bundle_id: us.zoom.xos
     installed_path: /Applications/zoom.us.app

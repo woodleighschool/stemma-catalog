@@ -6,7 +6,8 @@ metadata:
 spec:
   extends: mac-software
   source:
-    url: https://aka.ms/meeclientmacos
+    resolver: homebrew
+    cask: minecraft-education
   application:
     path: minecraft-edu.app
     bundle_id: com.microsoft.minecraft-edu

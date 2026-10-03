@@ -6,7 +6,11 @@ metadata:
 spec:
   extends: windows-win32
   source:
-    url: https://zoom.us/client/latest/ZoomInstallerFull.msi?archType=x64
+    resolver: winget
+    package: Zoom.Zoom
+    architecture: x64
+    scope: machine
+    installer_type: msi
   version_file: Zoom.exe
   signatures:
     - subject:

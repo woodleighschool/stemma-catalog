@@ -6,8 +6,8 @@ metadata:
 spec:
   extends: mac-software
   source:
-    resolver: audinate
-    product: dante-controller
+    resolver: homebrew
+    cask: dante-controller
   package_path: DanteController.pkg
   application:
     path: DanteController.pkg/Payload/Dante Controller.app

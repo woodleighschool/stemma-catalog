@@ -6,8 +6,8 @@ metadata:
 spec:
   extends: mac-software
   source:
-    resolver: audinate
-    product: dante-virtual-soundcard
+    url: https://software-updates.audinate.com/DanteVirtualSoundcard/appcast/macOS/DanteVirtualSoundcard-macOS.xml
+    match: 'https://audinate-software-updates\.sgp1\.cdn\.digitaloceanspaces\.com/DanteVirtualSoundcard/[0-9]+/[0-9.]+/macOS/DVS-[0-9.]+_macos\.dmg'
   package_path: DanteVirtualSoundcard.pkg
   application:
     path: DVS_User_Interface.pkg/Payload/Dante Virtual Soundcard.app

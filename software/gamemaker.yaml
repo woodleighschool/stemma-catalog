@@ -6,7 +6,8 @@ metadata:
 spec:
   extends: mac-software
   source:
-    url: https://gamemaker.io/en/download/mac/monthly/GameMaker.pkg
+    resolver: homebrew
+    cask: gamemaker
   application:
     bundle_id: com.yoyogames.gms2
   signatures:
