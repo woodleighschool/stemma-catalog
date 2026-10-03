@@ -14,6 +14,10 @@ spec:
         path: .
       unsigned: true
   minimum_os: "14.0"
+  icon: logi-options-plus
+  subjects:
+    wrapper:
+      kind: package
   destinations:
     woodstar:
       pkginfo:
@@ -21,10 +25,11 @@ spec:
         description: Customise Logitech mice, keyboards and other devices, including buttons,
           gestures, scrolling and device settings.
         developer: Logitech
-        installcheck_script: |-
-          #!/bin/bash
-          [[ -d "/Applications/logioptionsplus.app" ]] && exit 1
-          exit 0
+        installs:
+          - path: /Applications/logioptionsplus.app
+            type: application
+            CFBundleIdentifier: com.logi.optionsplus
+            CFBundleShortVersionString: "{{ facts.wrapper.package.version }}"
         name: Logi Options+
         unattended_install: true
         uninstallable: false
