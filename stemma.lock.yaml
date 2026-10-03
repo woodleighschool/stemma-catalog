@@ -89,6 +89,17 @@ inputs:
         filename: Scripts
         tree: true
         mode: 493
+  stemma/v1alpha1/BuildMacPkg/logi-options-plus:
+    vendor:
+      version: 1
+      resolver: http
+      resolver_version: "2"
+      declaration: c33bf724daa7fc1520ebefd3e3e3cdbcac7dcce8da132b537fe4c9b0a9d01d4e
+      observation: {}
+      content:
+        sha256: 28d41efa231019b51f51fa54b650f4fe468c5d0a2869c38cfa622242690a826a
+        filename: logioptionsplus_installer_offline.zip
+        mode: 420
   stemma/v1alpha1/BuildMacPkg/mole:
     mole:
       version: 1

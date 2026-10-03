@@ -1,0 +1,42 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/woodleighschool/stemma-catalog/main/stemma.schema.json
+apiVersion: stemma/v1alpha1
+kind: MacSoftware
+metadata:
+  name: logi-options-plus
+spec:
+  extends: mac-software
+  source:
+    resource:
+      kind: BuildMacPkg
+      name: logi-options-plus
+  signatures:
+    - subject:
+        path: .
+      unsigned: true
+  minimum_os: "14.0"
+  icon: logi-options-plus
+  subjects:
+    wrapper:
+      kind: package
+  destinations:
+    woodstar:
+      pkginfo:
+        category: Utilities
+        description: Customise Logitech mice, keyboards and other devices, including buttons,
+          gestures, scrolling and device settings.
+        developer: Logitech
+        installs:
+          - path: /Applications/logioptionsplus.app
+            type: application
+            CFBundleIdentifier: com.logi.optionsplus
+            CFBundleShortVersionString: "{{ facts.wrapper.package.version }}"
+        name: Logi Options+
+        unattended_install: true
+        uninstallable: false
+      targets:
+        include:
+          - label_name: All Hosts
+            actions:
+              - optional_installs
+              - managed_updates
+        exclude: []
