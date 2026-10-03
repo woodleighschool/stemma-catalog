@@ -62,8 +62,14 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Resolve release version
+        id: release-version
+        env:
+          RELEASE_TAG: ${{ github.event.release.tag_name }}
+        run: echo "version=${RELEASE_TAG#v}" >> "$GITHUB_OUTPUT"
+
       - name: Publish plugin
         uses: woodleighschool/stemma/actions/publish-plugin@394efcac8b53d42b75da447ab02a0d0b935730e5 # v0.8.2
         with:
           workdir: plugins/downloads
-          image: ghcr.io/woodleighschool/stemma-catalog/downloads:${{ github.ref_name }}
+          image: ghcr.io/woodleighschool/stemma-catalog/downloads:${{ steps.release-version.outputs.version }}
