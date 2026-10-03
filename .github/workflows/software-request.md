@@ -44,7 +44,8 @@ steps:
       install_args: --locked oxfmt
   - name: Resolve Stemma version
     run: |
-      echo "STEMMA_VERSION=$(mise config get --file .mise/config.toml tools.github:woodleighschool/stemma)" >> "$GITHUB_ENV"
+      stemma_version=$(mise config get --file .mise/config.toml tools.github:woodleighschool/stemma)
+      echo "STEMMA_VERSION=${stemma_version#v}" >> "$GITHUB_ENV"
   # The stemma MCP server reads this copy of main's stemma.yaml. The agent
   # finds no Stemma or online mise of its own.
   - name: Prepare Stemma
