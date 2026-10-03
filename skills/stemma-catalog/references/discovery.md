@@ -9,39 +9,51 @@ Use the cheapest check that answers the question: registry records for releases 
 without running scripts, so a link that only a browser shows isn't available to it. Judge pages with
 `curl`, not a browser.
 
-## Order of preference
+## Choose by release and deployment semantics
 
-Take the first that fits, and stop there:
+Preserve the product, edition, channel, intentional release line, architecture, language and
+managed installer first. Distinguish requested policy from restrictions imposed by an old resolver.
+A source that changes those semantics is not equivalent, even if discovery is easier.
 
-1. **An installed resolver made for this vendor that lists the product.** Check the generated
-   schema for its product, channel and architecture values. It already solves version discovery
-   for that vendor.
-2. **A maintained registry with the matching product and release channel.** Use `homebrew`
-   with `cask` for vendor macOS artifacts, or `winget` with `package` and explicit installer
-   selectors for Windows. `stemma update` can compare and lock releases from registry hashes
-   without downloading a multi-gigabyte installer just to find out whether it changed. Preparation
-   downloads the selected installer when needed and verifies its hash. Hashless or `no_check`
-   casks still require vendor downloads during update. Preserve the requested major version,
-   edition, architecture, scope and language; a faster resolver is useful only if it selects the
-   right artifact. Use a vendor resolver or GitHub release glob when the registry cannot express
-   a release-line constraint. Check the installed schema before using these resolvers.
-   Prefer registry entries with versioned download URLs. When the entry points at the vendor's
-   always-latest URL, use that URL directly: the registry hash can lag behind replaced bytes.
-   Direct HTTP updates can reuse unchanged content through the vendor's ETag or Last-Modified.
-3. **A stable official URL.** One URL on the vendor's domain or CDN that always serves the current
-   release, such as a `latest` link. Use `url`.
-4. **Official GitHub releases.** Use the `github` resolver with an `asset` glob that matches exactly
-   one asset of each release. Set `include_prereleases` only for a prerelease channel, and `release`
-   to a tag glob such as `v3.*` only to hold one major version.
-5. **A vendor page or feed that names the current download.** Use `url` with a `match` expression.
-   HTML pages match element attribute values and plain-text feeds match the body; all matches must
-   resolve to one URL.
-6. **Community automation as evidence**, when the vendor's own pages don't show the mechanism. Return
-   to 2–5 with what it reveals.
-7. **A resolver plugin**, when none of the above gives a declaration that will keep working. See
-   [plugin-gaps.md](plugin-gaps.md).
+Compare the sources that express that intent:
 
-The generated schema describes each source form. The CLI help lists available commands.
+1. **The publisher's structured release system.** Official GitHub Releases are first-party release
+   metadata. Use native `github` with an asset glob selecting exactly one artifact, a `release`
+   tag glob for an intentional release line, and `include_prereleases` only when requested.
+   Routing the same release through Homebrew adds little unless it supplies required semantics.
+2. **Homebrew or WinGet when maintained metadata improves vendor discovery.** Use `homebrew`
+   casks or `winget` packages when they turn a mutable URL, page, feed or version API into a
+   concrete version, official installer and digest. Check architecture, channel, edition, scope
+   and language selectors against the installed schema and current registry record. A cask's
+   existence alone is not a reason to use it.
+3. **A stable official vendor URL.** Use `url` for a long-lived endpoint serving the intended
+   artifact. This remains a good source, particularly for managed PKGs and enterprise installers.
+   Hashless or `no_check` registry entries around the same URL may add little. Registry hashes
+   for mutable URLs can lag replaced bytes; weigh their release metadata against that risk.
+4. **Simple first-party page or feed discovery.** Use `url` with `match` when one stable page or
+   feed exposes one distinct current download. HTML matches element attributes; text feeds match
+   the body. Do not add Go discovery code for selection the native HTTP resolver already supports.
+5. **Community automation as evidence.** Use recipes and manifests to discover an official
+   mechanism, then express it with one of these sources.
+
+Prefer native Stemma sources over catalog-owned code when they express the same behaviour.
+An installed vendor plugin gets no priority merely because it exists. Re-evaluate older plugins
+when Stemma gains built-in capabilities and delete redundant implementations and tests.
+
+A plugin is appropriate when it models a real gap: dependent requests, structured product/channel
+selection, authenticated acquisition or refreshed signed URLs. Microsoft's product/channel/package
+model and Cricut's signed-URL workflow can justify custom resolvers. Do not flatten meaningful
+vendor semantics into a collection of casks merely to avoid a plugin. See
+[plugin-gaps.md](plugin-gaps.md).
+
+Do not casually exchange a managed/admin PKG for a consumer installer, or a vendor DMG for an
+application ZIP that Stemma repackages. Compare the actual URLs, containers and contents. Preserve
+the useful deployment artifact unless there is a specific reason to change it.
+
+Registry hashes let `stemma update` lock a release without downloading its installer. Preparation
+fetches and verifies the bytes; hashless sources still need vendor downloads during update.
+Stemma reads Homebrew metadata, not its install, uninstall or postflight actions.
+The generated schema describes each source form; CLI help lists available commands.
 
 ## Check a candidate
 
@@ -70,6 +82,11 @@ The first shows the redirect chain, final filename and content type. The second 
 - **Accessible to the runner.** Prefer anonymous downloads without click-through. Where authorized
   credentials are necessary, use supported `token` or header fields with environment expressions;
   keep restricted vendor files out of Git.
+
+When replacing a source, compare the old and proposed current releases, vendor URLs, artifact types
+and SHA-256 values where available. Prepare the resource and inspect its application/package
+identity and signatures. Confirm destination configuration and derived deployment behaviour remain
+appropriate; matching current bytes is strong evidence of equivalence.
 
 Then declare it, validate, and use `stemma update Kind/name` to resolve and lock it. Prepare when
 artifact inspection is required, following [behaviour.md](behaviour.md). The resolver rejects a

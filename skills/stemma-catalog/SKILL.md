@@ -41,8 +41,9 @@ inspect the selected artifact when the task calls for preparation.
 2. **Pin down the request.** Product and publisher, platform, release channel, architecture, and
    whether this is a vendor installer, a package built from files, or a policy without an installer.
    Find these out; ask only when the evidence can't settle something that changes the result.
-3. **Find the source** with [references/discovery.md](references/discovery.md). Stop at the first
-   candidate that passes its checks.
+3. **Choose the source** with [references/discovery.md](references/discovery.md). Preserve release
+   and deployment semantics, then prefer a native resolver when it expresses the same behaviour.
+   Reassess existing custom resolvers rather than treating them as precedent.
 4. **Draft the document** from the matching template in
    [references/templates.md](references/templates.md), refined with
    [references/documents.md](references/documents.md). Consult the schema or MCP `describe` for the

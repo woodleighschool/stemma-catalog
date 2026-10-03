@@ -3,10 +3,10 @@
 Most catalog problems are source problems, and most source problems have a generic answer. Before
 proposing a plugin, check:
 
-1. Does an available Homebrew, WinGet or vendor resolver select the right release and artifact?
-   Prefer a source with a published digest so update checks do not need installer downloads.
-2. Can a plain `url`, `github` or `http` source express discovery without depending on details of today's
-   page?
+1. Can a built-in source preserve the intended product, release stream and deployment artifact?
+   Follow [source selection](discovery.md); an installed plugin has no incumbency advantage.
+2. Does official GitHub metadata, a matching Homebrew/WinGet entry, a stable vendor URL or simple
+   first-party page/feed discovery already express the selection?
 3. Could an existing resolver cover it with a small extension, such as a new product value?
 4. Is what's missing stable, vendor-specific discovery that other vendors don't share?
 
