@@ -374,6 +374,30 @@ inputs:
           name: docker-desktop
           target_architecture: arm64
           version: 4.93.0,240920
+  stemma/v1alpha1/MacSoftware/dymo-connect:
+    source:
+      version: 1
+      resolver: homebrew
+      resolver_version: "2"
+      declaration: caafed841f95aaa6234dfb82613af2e4f1c96236ba18fc9e8d1d34ec43b1e23f
+      observation:
+        filename: DCDMac1.6.1.4-Arm64.pkg
+        sha256: 5b3b201c99235aadc6178f0dd0dae30d6edb64e7cef6e1de5faa875c5fb5967b
+        url: https://dymoreleasecontent.blob.core.windows.net/dymo-release/DCDMAC/DCDMac1.6.1.4-Arm64.pkg
+      content:
+        sha256: 5b3b201c99235aadc6178f0dd0dae30d6edb64e7cef6e1de5faa875c5fb5967b
+        filename: DCDMac1.6.1.4-Arm64.pkg
+        mode: 420
+      input_version: 1.6.1.4
+      evidence:
+        homebrew.cask:
+          artifacts:
+            - pkg:
+                - DCDMac1.6.1.4-Arm64.pkg
+          macos: "27"
+          name: dymo-connect
+          target_architecture: arm64
+          version: 1.6.1.4
   stemma/v1alpha1/MacSoftware/easyfind:
     source:
       version: 1
