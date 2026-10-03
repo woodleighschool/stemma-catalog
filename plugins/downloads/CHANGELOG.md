@@ -1,5 +1,24 @@
 # Changelog
 
+## [0.3.7](https://github.com/woodleighschool/stemma-catalog/compare/0.3.6...0.3.7) (2026-10-03)
+
+
+### Features
+
+* adopt registry sources and resolver contracts ([7a1920e](https://github.com/woodleighschool/stemma-catalog/commit/7a1920e77c70e2c24bfef3c850915255a110b7b1))
+
+
+### Bug Fixes
+
+* **go:** update module github.com/woodleighschool/stemma (21f4249 → 6799d55) ([#99](https://github.com/woodleighschool/stemma-catalog/issues/99)) ([7e4bc4a](https://github.com/woodleighschool/stemma-catalog/commit/7e4bc4a8f5a1ae7a90e2c519dc950ba96e481691))
+* **go:** update module github.com/woodleighschool/stemma (2885fd7 → c0075de) ([#96](https://github.com/woodleighschool/stemma-catalog/issues/96)) ([ed64109](https://github.com/woodleighschool/stemma-catalog/commit/ed6410969121bb50352ce5b0a3dcc7eed0b1874c))
+* **go:** update module github.com/woodleighschool/stemma (6799d55 → f7948de) ([#100](https://github.com/woodleighschool/stemma-catalog/issues/100)) ([c37b41c](https://github.com/woodleighschool/stemma-catalog/commit/c37b41cf45ffad2b5fb74d7bd3e92574c46ef21a))
+* **go:** update module github.com/woodleighschool/stemma (74f01f0 → e526343) ([#94](https://github.com/woodleighschool/stemma-catalog/issues/94)) ([76917ed](https://github.com/woodleighschool/stemma-catalog/commit/76917ed4c05bd8f10ac2041a080ad3de30f5f82b))
+* **go:** update module github.com/woodleighschool/stemma (c0075de → 21f4249) ([#98](https://github.com/woodleighschool/stemma-catalog/issues/98)) ([37c7701](https://github.com/woodleighschool/stemma-catalog/commit/37c7701c3b16b087e7a8cbec731f647a4e65b55e))
+* **go:** update module github.com/woodleighschool/stemma (e526343 → 2885fd7) ([#95](https://github.com/woodleighschool/stemma-catalog/issues/95)) ([a22e7cb](https://github.com/woodleighschool/stemma-catalog/commit/a22e7cb26fb297873048dfed68b09e9dad67cd11))
+* **go:** update module github.com/woodleighschool/stemma (f7948de → 85ce03b) ([#101](https://github.com/woodleighschool/stemma-catalog/issues/101)) ([5eaf5c7](https://github.com/woodleighschool/stemma-catalog/commit/5eaf5c7c1b9742f6625bbfce83b950a30f826df0))
+* **go:** update module github.com/woodleighschool/stemma to v0.9.0 ([929c3cf](https://github.com/woodleighschool/stemma-catalog/commit/929c3cf6805e63d2db0483d41ab7f3cabcbe6fcf))
+
 ## [0.3.6](https://github.com/woodleighschool/stemma-catalog/compare/0.3.5...0.3.6) (2026-09-29)
 
 
