@@ -27,7 +27,7 @@
       postUpgradeTasks: {
         commands: ["mise exec github:github/gh-aw -- gh-aw compile"],
         executionMode: "branch",
-        installTools: { mise: {} },
+        installTools: { mise: {}, gh: {} },
         fileFilters: [".github/workflows/*.lock.yml", ".github/aw/actions-lock.json"],
       },
     },

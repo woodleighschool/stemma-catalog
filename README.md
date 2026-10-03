@@ -63,5 +63,5 @@ this output is committed.
 Renovate updates the Mise compiler pin and action references in the Markdown
 sources. Its post-upgrade task recompiles once per update branch and includes the
 generated files in the same commit. The central Renovate runner allows
-`mise exec github:github/gh-aw -- gh-aw compile`; it supplies Mise and a
+`mise exec github:github/gh-aw -- gh-aw compile`; it supplies Mise, the `gh` CLI, and a
 repository-scoped GitHub token for resolving action pins.
