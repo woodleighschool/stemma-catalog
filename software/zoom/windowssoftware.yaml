@@ -27,6 +27,9 @@ spec:
       msi_properties:
         MSIRestartManagerControl: Disable
         zConfig: AU2_EnableAutoUpdate=true;AU2_SetUpdateChannel=0;AU2_InstallAtIdleTime=true
+      assignments:
+        - intent: available
+          all_devices: true
       detection:
         - type: file
           path: C:\Program Files\Zoom\bin
