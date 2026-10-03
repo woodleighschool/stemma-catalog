@@ -1,20 +1,30 @@
 # Download resolvers
 
-Find Audinate, Blender, Python, Cricut, Epson and Microsoft installers. Vendor discovery
-lives here; Stemma owns HTTP transfers, source locks, cached content and software preparation.
+Vendor discovery plugins for Stemma.
 
 ## 🧩 Operations
 
-| Resolver    | Configuration                                            | Selection                                                 |
-| ----------- | -------------------------------------------------------- | --------------------------------------------------------- |
-| `audinate`  | `product: dante-controller` or `dante-virtual-soundcard` | First full installer from the product's macOS appcast     |
-| `blender`   | `major`; `architecture: arm64` or `x64`                  | Latest stable macOS DMG within the major                  |
-| `python`    | `branch`, such as `"3.13"`                               | Latest stable macOS PKG within the branch; 3.10 and later |
-| `cricut`    | `shard: a`                                               | The shard's update manifest and installer API             |
-| `epson`     | `device_id`, `os`, `cti`; `region: GB`, `language: en`   | Matching Download Center content type                     |
-| `microsoft` | `product`; `channel: production`; `type: standalone`     | Office MAU metadata or the product’s standalone download  |
+| Resolver    | Configuration                                          | Selection                                                 |
+| ----------- | ------------------------------------------------------ | --------------------------------------------------------- |
+| `python`    | `branch`, such as `"3.13"`                             | Latest stable macOS PKG within the branch; 3.10 and later |
+| `cricut`    | `shard: a`                                             | The shard's update manifest and installer API             |
+| `epson`     | `device_id`, `os`, `cti`; `region: GB`, `language: en` | Matching Download Center content type                     |
+| `microsoft` | `product`; `channel: production`; `type: standalone`   | Office MAU metadata or the product’s standalone download  |
 
 Values shown after a colon are defaults unless alternatives are listed.
+
+Keep installer signature requirements on the software resource.
+
+### Python
+
+The selected version is available as `{{ evidence.python.version }}`.
+
+### Cricut
+
+Discovery records the installer filename. Acquisition refreshes its signed URL without
+selecting a new rollout. Application inspection supplies the version.
+
+### Epson
 
 ```yaml
 source:
@@ -25,17 +35,7 @@ source:
   cti: "2001"
 ```
 
-Discovery records the selected URL, filename and available vendor version without
-downloading. A vendor version names one build, so Stemma reuses what it already
-fetched for that release. Acquisition returns the recorded URL for Stemma to download;
-Cricut's signed URLs expire, so Cricut records only the filename and requests a fresh
-URL for that installer without selecting the current rollout. Stemma verifies the reviewed content hash.
-Blender, Python and Epson expose their version as evidence, such as
-`{{ evidence.epson.version }}`. Cricut's version comes from inspecting the application.
-Keep installer signature requirements on the software resource.
-
-Audinate uses the Apple Silicon Controller feed and the macOS Virtual Soundcard
-feed. Delta updates are skipped.
+The selected version is available as `{{ evidence.epson.version }}`.
 
 ### Microsoft
 
@@ -45,18 +45,14 @@ source:
   product: outlook
 ```
 
-`channel` defaults to `production`; `type` defaults to `standalone`.
-Excel, OneNote, Outlook, PowerPoint and Word also accept `preview` and `beta`
-channels and `type: updater`. The resolver selects the first full update in the
-MAU feed, skips deltas, and changes the Office package suffix for standalone
-installers. OneNote uses its full updater package for standalone installation,
-matching Microsoft's download link. MAU supplies `{{ evidence.microsoft.version }}` evidence.
+Excel, OneNote, Outlook, PowerPoint and Word support `production`, `preview` and `beta`
+channels with `standalone` or `updater` packages. MAU selection skips deltas; OneNote's
+full updater also serves as its standalone installer. The feed supplies
+`{{ evidence.microsoft.version }}`.
 
-`office` (the Microsoft 365 Business Pro suite), `defender`, `edge`, `teams`,
-`company-portal`, `onedrive` and `windows-app` support production standalone
-installers. Their official download links are resolved with HEAD requests;
-package inspection supplies version metadata. These links preserve each product's
-standalone release stream, which can differ from its MAU updater stream.
+`office` (Microsoft 365 Business Pro), `defender`, `edge`, `teams`, `company-portal`,
+`onedrive` and `windows-app` use their production standalone download links.
+Package inspection supplies the version.
 
 The feed mapping and Office selection follow
 [AutoPkg's provider](https://github.com/autopkg/recipes/blob/master/MSOfficeUpdates/MSOfficeMacURLandUpdateInfoProvider.py),
@@ -73,17 +69,12 @@ mise run test
 mise run lint
 ```
 
-The binary is written to `build/plugin`. This is a separate Go module using
-Stemma's public `plugin` SDK. Tests use synthetic metadata and local HTTP servers.
+The binary is written to `build/plugin`. This Go module uses Stemma's public `plugin`
+SDK. Tests use synthetic metadata and local HTTP servers.
 
-Resolver config structs own JSON field names, constraints, defaults and hover
-descriptions. Named enums extend the generated schema with their Go constants.
-`plugin.Register` infers the config through the typed resolver request, applies
-defaults and validation, and exposes the same contract to the plugin protocol and
-the catalog editor. Microsoft combination rules live in `MicrosoftConfig.Validate`;
-its generated schema documents the finite choices without duplicating those rules.
+Typed resolver configs define validation, defaults and the generated editor schema.
 
-The catalog loads the built bundle:
+To use the local build:
 
 ```yaml
 plugins:
@@ -110,5 +101,3 @@ plugins:
   downloads:
     image: ghcr.io/woodleighschool/stemma-catalog/downloads:TAG
 ```
-
-Resolver names and software declarations stay the same.

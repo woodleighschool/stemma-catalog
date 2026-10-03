@@ -63,9 +63,7 @@ func TestRunReturnsOnlyTheObservedDownload(t *testing.T) {
 		t.Fatal(err)
 	}
 	configs := map[string]string{
-		"audinate":  `{"product":"dante-controller"}`,
 		"microsoft": `{"product":"outlook"}`,
-		"blender":   `{"major":5}`,
 		"python":    `{"branch":"3.13"}`,
 		"epson":     `{"device_id":"AM-C6000 Series","os":"MAC26","cti":"2001"}`,
 	}
@@ -190,8 +188,6 @@ func TestValidationRejectsInvalidConfigurationWithoutNetwork(t *testing.T) {
 		t.Fatal(err)
 	}
 	for _, test := range []struct{ operation, config string }{
-		{"audinate", `{}`},
-		{"audinate", `{"product":"unknown"}`},
 		{"microsoft", `{}`},
 		{"microsoft", `{"product":"unknown"}`},
 		{"microsoft", `{"product":"outlook","channel":"unknown"}`},
@@ -199,8 +195,6 @@ func TestValidationRejectsInvalidConfigurationWithoutNetwork(t *testing.T) {
 		{"microsoft", `{"product":"outlook","url":"https://example.test"}`},
 		{"microsoft", `{"product":"edge","channel":"beta"}`},
 		{"microsoft", `{"product":"office","type":"updater"}`},
-		{"blender", `{"major":0}`},
-		{"blender", `{"major":5,"url":"https://example.test"}`},
 		{"python", `{"branch":"3.13rc1"}`},
 		{"python", `{"branch":"2.7"}`},
 		{"python", `{"branch":"3.9"}`},

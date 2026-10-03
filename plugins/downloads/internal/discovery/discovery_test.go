@@ -31,54 +31,6 @@ func fixtureClient(t *testing.T, fixtures map[string]string) *http.Client {
 	})}
 }
 
-func TestBlenderSelectsNumericStableRelease(t *testing.T) {
-	client := fixtureClient(t, map[string]string{
-		"https://download.blender.org/release/": `<html><body>
-		<a href="Blender5.9/">Blender5.9/</a>
-		<a href="Blender5.10/">Blender5.10/</a>
-		<a href="Blender6.0/">Blender6.0/</a>
-		<a href="Blender5.11-beta/">Blender5.11-beta/</a>
-		<a href="https://elsewhere.example/Blender5.99/">Blender5.99/</a>
-		<a href="Blender5.9/">Blender5.9/</a>
-		</body></html>`,
-		"https://download.blender.org/release/Blender5.10/": `<html><body>
-		<a href="blender-5.10.9-macos-arm64.dmg">arm64</a>
-		<a href="blender-5.10.11-macos-arm64.dmg">arm64</a>
-		<a href="blender-5.10.12-macos-x64.dmg">x64</a>
-		<a href="blender-5.10.13-beta-macos-arm64.dmg">beta</a>
-		<a href="blender-5.10.12-macos-arm64.dmg.sha256">checksum</a>
-		<a href="blender-5.10.11-macos-arm64.dmg">duplicate anchor</a>
-		<a href="blender-5.10.9-macos-arm64.dmg">arm64</a>
-		</body></html>`,
-	})
-	got, err := Blender(t.Context(), client, BlenderConfig{Major: 5, Architecture: ArchitectureARM64})
-	if err != nil {
-		t.Fatal(err)
-	}
-	want := Release{
-		URL:      "https://download.blender.org/release/Blender5.10/blender-5.10.11-macos-arm64.dmg",
-		Filename: "blender-5.10.11-macos-arm64.dmg",
-		Version:  "5.10.11",
-	}
-	if got != want {
-		t.Fatalf("release = %+v, want %+v", got, want)
-	}
-	got, err = Blender(t.Context(), client, BlenderConfig{Major: 5, Architecture: "x64"})
-	if err != nil || got.Version != "5.10.12" {
-		t.Fatalf("x64 release = %+v, error = %v", got, err)
-	}
-}
-
-func TestBlenderRequiresStableInstallerInNewestDirectory(t *testing.T) {
-	client := fixtureClient(t, map[string]string{
-		"https://download.blender.org/release/":            `<a href="Blender5.1/">5.1</a><a href="Blender5.2/">5.2</a>`,
-		"https://download.blender.org/release/Blender5.2/": `<a href="blender-5.2.0-beta-macos-arm64.dmg">beta</a>`,
-	})
-	if _, err := Blender(t.Context(), client, BlenderConfig{Major: 5, Architecture: ArchitectureARM64}); err == nil {
-		t.Fatal("accepted release directory without a stable installer")
-	}
-}
-
 func TestPythonSelectsLatestStablePatchOfExactBranch(t *testing.T) {
 	client := fixtureClient(t, map[string]string{
 		"https://www.python.org/downloads/macos/": `<html><ul>

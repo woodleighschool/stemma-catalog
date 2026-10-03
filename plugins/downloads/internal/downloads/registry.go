@@ -16,8 +16,6 @@ func Register(registry *plugin.Registry, client *http.Client) error {
 		return errors.New("download resolvers require an HTTP client")
 	}
 	for _, err := range []error{
-		plugin.Register(registry, resolver("audinate"), configured(client, "audinate", discovery.Audinate, nil)),
-		plugin.Register(registry, resolver("blender"), configured(client, "blender", discovery.Blender, nil)),
 		plugin.Register(registry, resolver("python"), configured(client, "python", discovery.Python, nil)),
 		plugin.Register(registry, resolver("cricut"), configured(client, "cricut", discovery.Cricut, discovery.CricutDownload)),
 		plugin.Register(registry, resolver("microsoft"), configured(client, "microsoft", discovery.Microsoft, nil)),
