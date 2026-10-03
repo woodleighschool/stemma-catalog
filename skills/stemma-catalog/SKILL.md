@@ -5,13 +5,8 @@ description: Use when creating a Stemma catalog or adding, updating, reviewing o
 
 # Stemma catalog
 
-Turn a software request into a Stemma resource that follows the intended release channel, uses
-what the installed Stemma supports and reads cleanly in review. This skill supplies guidance and
-templates; it does not install Stemma or supply a catalog, resources, connections or plugins.
-
-Take the cheapest path to a checked result. Homebrew and WinGet resolvers can check releases using
-registry hashes, avoiding large installer downloads just to discover an update. Download and
-inspect the selected artifact when the task calls for preparation.
+Turn a software request into checked resources that install the intended product and follow its
+release channel. Use registry metadata for release checks and prepare artifacts to verify delivery.
 
 ## Rules
 
@@ -48,14 +43,15 @@ inspect the selected artifact when the task calls for preparation.
    [references/templates.md](references/templates.md), refined with
    [references/documents.md](references/documents.md). Consult the schema or MCP `describe` for the
    fields you use; examples are starting points, not evidence of installed capabilities.
-5. **Resolve and review.** Run `stemma validate`, then `stemma update Kind/name` to record the
+5. **Resolve and review.** Run `stemma update Kind/name` to record the
    selected sources. Review the lock changes, including a newly created lockfile. An update-only
    request can end here. If local policy reserves lock updates for a maintainer, report that step
    as pending; MCP `prepare` can trial a draft without writing its input lock when available.
 6. **Prepare when required.** CLI `stemma prepare Kind/name` uses the lock and rejects stale or
    missing inputs. For a new resource or a signer change, use `stemma signature Kind/name`, review
    its signed or unsigned observations, and declare the expectations before preparation. Compare
-   the artifact's version, identifiers and contents with the request. Create a declared icon with
+   artifact evidence with the installation, detection and removal contract in
+   [references/documents.md](references/documents.md). Create a declared icon with
    `stemma icon Kind/name` when needed. MCP `prepare` instead resolves current sources and reports
    artifacts and signing expectations without writing the lock; follow it with `update` and frozen
    verification before calling the result locked.

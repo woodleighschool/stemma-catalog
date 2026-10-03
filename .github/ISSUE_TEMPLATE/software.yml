@@ -2,6 +2,12 @@ name: Software request
 description: Request software to be added to the catalog.
 labels: [software-request]
 body:
+  - type: markdown
+    attributes:
+      value: |
+        Use the software or product name as the issue title.
+        Available offers self-service installation; Required installs automatically. Leave both empty to add the software unassigned.
+
   - type: dropdown
     id: platforms
     attributes:
@@ -38,7 +44,7 @@ body:
     id: required
     attributes:
       label: Required for
-      description: Installed without asking. Leave both empty to add the software unassigned.
+      description: Installed automatically.
       multiple: true
       options:
         - "Mac: All Hosts"
@@ -59,6 +65,7 @@ body:
     id: details
     attributes:
       label: Details
+      description: Optional constraints, such as an edition, release line, required feature, licensing requirement or useful vendor link.
       placeholder: |
         Music staff write scores in it. We need MuseScore Studio 4, not MuseScore 3.
         https://musescore.org/en/download

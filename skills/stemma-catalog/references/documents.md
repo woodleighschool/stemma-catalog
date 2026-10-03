@@ -21,14 +21,9 @@
 - Extend an existing Project component when its shared defaults fit this item. Do not require a
   component for a new catalog or copy a component name from an example. Extract shared defaults
   only when actual resources need them.
-- Let Stemma select the application or installer. `prepare`'s evidence names the one it chose, even
-  when helpers are nested inside it; set a selection only when that choice is wrong, and prefer
-  identifiers that survive upgrades, such as a bundle ID or product code, over paths that contain a
-  version.
-- Let Stemma derive what the artifact states: version, identifiers, detection, receipts, removal
-  method, installed size, minimum OS. Set a derived field only to correct it, even when neighbouring
-  documents set it. When a derived value comes from the wrong application or file, fix the selection
-  instead.
+- Review Stemma's selected application and derived metadata against the intended installation.
+  Correct selection using a stable identifier when needed. Supply explicit metadata where artifact
+  evidence cannot describe the installed product; see the installation contract below.
 - Leave out a field the destination fills in from other fields, as its description says, unless
   that default is wrong for this software. Munki, for example, blocks on the applications in
   `installs` when `blocking_applications` is absent.
@@ -63,6 +58,20 @@
 - Supply secrets through environment expressions such as `"{{ env.VENDOR_TOKEN }}"`. Keep licensed
   installers, private files and credentials out of Git; a resource that needs files the repository
   can't carry sets `suspend: true`.
+
+## Installation contract
+
+Preparation must produce an artifact that installs the requested product. An executable installer
+app needs its documented invocation. Reuse an existing wrapper composition: `BuildMacPkg` carries
+it in `scripts` and invokes it from `postinstall`; `MacSoftware` publishes the resulting package.
+Select archive contents with `$input` and `path: .`, and locate script resources beside `$0`.
+Verify the consumed vendor input and declare the built package's expected unsigned state.
+
+Stemma inspects static contents and never executes installer hooks. For script-driven installs,
+establish product detection, minimum OS and removal from vendor documentation and corroborating
+automation. Declare supported overrides in the publishing document. A wrapper receipt records the
+wrapper installation; assess whether it represents the product's continued presence. Report any
+unresolved deployment behaviour before calling the resource complete.
 
 ## Omitted destination fields
 
