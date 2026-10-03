@@ -15,6 +15,7 @@ spec:
     - subject:
         bundle_id: au.edu.vic.woodleigh.WoodSweep
       signer: apple:developer-id:SMLKBTR495 # Woodleigh School
+  icon: woodsweep
   destinations:
     woodstar:
       pkginfo:

@@ -15,6 +15,7 @@ spec:
     - subject:
         bundle_id: nl.ultimaker.cura_UltiMaker_Cura
       signer: apple:developer-id:V4B3JXRRQS # UltiMaker
+  icon: ultimaker-cura
   destinations:
     woodstar:
       pkginfo:

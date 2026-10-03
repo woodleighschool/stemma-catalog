@@ -14,6 +14,7 @@ spec:
     - subject:
         path: VLC.app
       signer: apple:developer-id:75GAHG3SZQ # VideoLAN
+  icon: vlc
   destinations:
     woodstar:
       pkginfo:

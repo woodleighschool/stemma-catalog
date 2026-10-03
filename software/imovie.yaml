@@ -9,6 +9,7 @@ spec:
     path: /Applications/iMovie.app
   application:
     installed_path: "/Applications/iMovie.app"
+  icon: imovie
   destinations:
     woodstar:
       pkginfo:

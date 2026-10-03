@@ -16,6 +16,7 @@ spec:
     - subject:
         bundle_id: com.bambulab.bambu-studio
       signer: apple:developer-id:T3UBR9Y3B2 # Shanghai Lunkuo Technology Co., Ltd
+  icon: bambustudio
   destinations:
     woodstar:
       pkginfo:

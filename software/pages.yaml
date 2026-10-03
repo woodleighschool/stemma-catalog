@@ -9,6 +9,7 @@ spec:
     path: /Applications/Pages Creator Studio.app
   application:
     installed_path: "/Applications/Pages Creator Studio.app"
+  icon: pages
   destinations:
     woodstar:
       pkginfo:

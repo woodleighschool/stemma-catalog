@@ -16,6 +16,7 @@ spec:
     - subject:
         path: .
       signer: apple:developer-id:PQ96WVYU2E # Promethean
+  icon: activinspire
   destinations:
     woodstar:
       pkginfo:

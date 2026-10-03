@@ -9,6 +9,7 @@ spec:
     path: /Applications/GarageBand.app
   application:
     installed_path: "/Applications/GarageBand.app"
+  icon: garageband
   destinations:
     woodstar:
       pkginfo:

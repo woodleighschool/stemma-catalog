@@ -17,6 +17,7 @@ spec:
         path: .
       signer: apple:developer-id:BMM5U3QVKW # Python Software Foundation
   minimum_os: "11.0"
+  icon: python
   destinations:
     woodstar:
       pkginfo:

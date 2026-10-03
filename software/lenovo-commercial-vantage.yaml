@@ -12,6 +12,7 @@ spec:
     - subject:
         path: VantageInstaller.exe
       signer: authenticode:04dba096bb63419f5446ad1aecc0ab35c68795ef3b7a65bc9a563a7c56ef044d # Lenovo
+  icon: lenovo-commercial-vantage
   destinations:
     intune:
       display_name: Lenovo Commercial Vantage

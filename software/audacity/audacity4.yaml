@@ -14,6 +14,7 @@ spec:
     - subject:
         path: Audacity 4.app
       signer: apple:developer-id:6EPAF2X3PR # MuseScore
+  icon: audacity
   destinations:
     woodstar:
       pkginfo:

@@ -14,6 +14,7 @@ spec:
     - subject:
         bundle_id: org.blenderfoundation.blender
       signer: apple:developer-id:68UA947AUU # Stichting Blender Foundation
+  icon: blender
   destinations:
     woodstar:
       pkginfo:

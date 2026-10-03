@@ -18,6 +18,7 @@ spec:
     - subject:
         path: .
       signer: apple:developer-id:6BRHGXQ6VU # AlphaTheta Corporation
+  icon: rekordbox-7
   destinations:
     woodstar:
       pkginfo:

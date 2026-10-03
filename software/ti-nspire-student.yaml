@@ -16,6 +16,7 @@ spec:
     - subject:
         path: .
       signer: apple:developer-id:TLEVLB8B5D # Texas Instruments
+  icon: ti-nspire-student
   destinations:
     woodstar:
       pkginfo:

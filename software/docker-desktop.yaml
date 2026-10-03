@@ -14,6 +14,7 @@ spec:
     - subject:
         path: Docker.app
       signer: apple:developer-id:9BNSXJN65R # Docker Inc
+  icon: docker-desktop
   destinations:
     woodstar:
       pkginfo:

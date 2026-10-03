@@ -9,6 +9,7 @@ spec:
     path: /Applications/Numbers Creator Studio.app
   application:
     installed_path: "/Applications/Numbers Creator Studio.app"
+  icon: numbers
   destinations:
     woodstar:
       pkginfo:

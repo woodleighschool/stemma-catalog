@@ -16,6 +16,7 @@ spec:
     - subject:
         path: .
       signer: apple:developer-id:P4WCR6Y822 # Audinate Pty Ltd
+  icon: dante-controller
   destinations:
     woodstar:
       pkginfo:
