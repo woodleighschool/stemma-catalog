@@ -52,3 +52,16 @@ Mise owns the toolchain and commands; `mise install` also installs the Git hooks
 mise install
 mise run format
 ```
+
+## Agentic workflows
+
+Edit `.github/workflows/*.md`, then run `mise run aw`. The compiler version lives
+in `.mise/config.toml`; `.github/workflows/*.lock.yml` and
+`.github/aw/actions-lock.json` are compiler output. CI recompiles and checks that
+this output is committed.
+
+Renovate updates the Mise compiler pin and action references in the Markdown
+sources. Its post-upgrade task recompiles once per update branch and includes the
+generated files in the same commit. The central Renovate runner allows
+`mise exec github:github/gh-aw -- gh-aw compile`; it supplies Mise and a
+repository-scoped GitHub token for resolving action pins.

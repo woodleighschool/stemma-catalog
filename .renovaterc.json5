@@ -2,7 +2,35 @@
   $schema: "https://docs.renovatebot.com/renovate-schema.json",
   extends: ["local>woodleighschool/renovate-config"],
   postUpdateOptions: ["gomodTidy", "gomodUpdateImportPaths"],
+  // Read action references from the gh-aw source, not its generated YAML.
+  "github-actions": {
+    managerFilePatterns: ["/^\\.github/workflows/[^/]+\\.md$/"],
+  },
   packageRules: [
+    {
+      description: "gh-aw owns compiled workflows",
+      matchFileNames: [".github/workflows/*.lock.yml"],
+      enabled: false,
+    },
+    {
+      description: "The compiler resolves source action tags to pinned digests",
+      matchManagers: ["github-actions"],
+      matchFileNames: [".github/workflows/*.md"],
+      pinDigests: false,
+    },
+    {
+      description: "Recompile when Renovate updates the compiler or workflow source actions",
+      matchJsonata: [
+        "manager = 'mise' and packageName = 'github/gh-aw'",
+        "manager = 'github-actions' and $contains(packageFile, /\\.md$/)",
+      ],
+      postUpgradeTasks: {
+        commands: ["mise exec github:github/gh-aw -- gh-aw compile"],
+        executionMode: "branch",
+        installTools: { mise: {} },
+        fileFilters: [".github/workflows/*.lock.yml", ".github/aw/actions-lock.json"],
+      },
+    },
     {
       description: "Allow immediate Stemma releases",
       matchManagers: ["mise"],
