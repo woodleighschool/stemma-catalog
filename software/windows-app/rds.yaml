@@ -24,7 +24,9 @@ spec:
                   "/Applications/Windows App.app/Contents/MacOS/Windows App" --script "$@"
           }
 
-          [[ $user == root ]] && exit 1
+          case $user in
+              root | loginwindow | _mbsetupuser | "") exit 1 ;;
+          esac
           bookmarks=$(windows_app bookmark list) || exit 1
           [[ $bookmarks == *$uuid* ]] && exit 1
           exit 0
@@ -42,7 +44,9 @@ spec:
                   "/Applications/Windows App.app/Contents/MacOS/Windows App" --script "$@"
           }
 
-          [[ $user == root ]] && exit 1
+          case $user in
+              root | loginwindow | _mbsetupuser | "") exit 1 ;;
+          esac
           windows_app bookmark write "$uuid" \
               --hostname rds.woodleigh.vic.edu.au \
               --friendlyname RDS \

@@ -44,7 +44,9 @@ spec:
         preinstall_script: |-
           #!/bin/zsh --no-rcs
 
-          [[ $(/usr/bin/stat -f %Su /dev/console) != root ]]
+          case $(/usr/bin/stat -f %Su /dev/console) in
+              root | loginwindow | _mbsetupuser | "") exit 1 ;;
+          esac
         preuninstall_script: |-
           #!/bin/zsh --no-rcs
 

@@ -15,8 +15,12 @@ spec:
         installcheck_script: |-
           #!/bin/zsh --no-rcs
 
+          [[ -d "/Applications/Microsoft Outlook.app" ]] || exit 1
+
           user=$(/usr/bin/stat -f %Su /dev/console)
-          [[ -d "/Applications/Microsoft Outlook.app" && $user != root ]] || exit 1
+          case $user in
+              root | loginwindow | _mbsetupuser | "") exit 1 ;;
+          esac
 
           handler=$(
               /bin/launchctl asuser "$(/usr/bin/id -u "$user")" /usr/bin/sudo -u "$user" \
@@ -30,7 +34,9 @@ spec:
           #!/bin/zsh --no-rcs
 
           user=$(/usr/bin/stat -f %Su /dev/console)
-          [[ $user == root ]] && exit 1
+          case $user in
+              root | loginwindow | _mbsetupuser | "") exit 1 ;;
+          esac
 
           result=$(
               /bin/launchctl asuser "$(/usr/bin/id -u "$user")" /usr/bin/sudo -u "$user" \
