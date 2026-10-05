@@ -32,6 +32,7 @@ checkout:
 
 permissions:
   contents: read
+  copilot-requests: none
   issues: read
   pull-requests: read
 
