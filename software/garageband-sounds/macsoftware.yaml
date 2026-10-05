@@ -26,80 +26,25 @@ spec:
         developer: Apple
         installcheck_script: |-
           #!/bin/zsh --no-rcs
+          setopt pipefail
 
-          manifest_rows="$(/usr/bin/osascript -l JavaScript <<'JXA'
-          ObjC.import("Foundation")
+          manifests=(/Applications/GarageBand.app/Contents/Resources/garageband<->.plist(Nn))
+          saved="/Library/Application Support/Woodleigh/GarageBandAllSounds/${manifests[-1]:t}"
+          receipts=($(/usr/sbin/pkgutil --pkgs))
 
-          function run() {
-              const fm = $.NSFileManager.defaultManager
-              const resources = "/Applications/GarageBand.app/Contents/Resources"
-              const stateDir = "/Library/Application Support/Woodleigh/GarageBandAllSounds"
-              const names = ObjC.deepUnwrap(
-                  fm.contentsOfDirectoryAtPathError($(resources), null)
-              ) || []
-              const manifests = names.filter(
-                  name => /^garageband[0-9]+\.plist$/i.test(name)
-              ).sort((left, right) => left.localeCompare(right, undefined, { numeric: true }))
+          installed() { (( $receipts[(Ie)$1] )) }
+          any_exist() { local file; for file; do [[ -e $file ]] && return 0; done; return 1 }
 
-              if (manifests.length === 0) {
-                  throw new Error("GarageBand content manifest not found")
-              }
+          [[ -f $saved ]] || exit 0
+          packages=$(
+              { /usr/bin/plutil -extract Packages json -o - "$manifests[-1]" &&
+                  /usr/bin/plutil -extract Packages json -o - "$saved" } |
+                  /usr/bin/jq -rs '[.[][] | select(.PackageID)] | group_by(.PackageID)[] | last | [.PackageID, .FileCheck] | flatten | @tsv'
+          ) || exit 0
 
-              const manifestName = manifests[manifests.length - 1]
-              const paths = [
-                  `${resources}/${manifestName}`,
-                  `${stateDir}/${manifestName}`,
-              ]
-
-              if (!fm.fileExistsAtPath($(paths[1]))) {
-                  throw new Error("GarageBand All Sounds inventory not found")
-              }
-
-              const packagesByID = {}
-              for (const path of paths) {
-                  const data = $.NSData.dataWithContentsOfFile($(path))
-                  const plist = ObjC.deepUnwrap(
-                      $.NSPropertyListSerialization.propertyListWithDataOptionsFormatError(
-                          data,
-                          $.NSPropertyListImmutable,
-                          null,
-                          null
-                      )
-                  )
-                  for (const pkg of Object.values(plist.Packages || {})) {
-                      if (pkg.PackageID) {
-                          packagesByID[pkg.PackageID] = pkg
-                      }
-                  }
-              }
-
-              return Object.keys(packagesByID).sort().map(packageID => {
-                  const pkg = packagesByID[packageID]
-                  const checks = Array.isArray(pkg.FileCheck)
-                      ? pkg.FileCheck
-                      : [pkg.FileCheck]
-                  const filesPresent = checks.some(
-                      check => check && fm.fileExistsAtPath($(check))
-                  )
-                  return `${packageID}\t${filesPresent}`
-              }).join("\n")
-          }
-          JXA
-          )" || exit 0
-
-          [[ -n "${manifest_rows}" ]] || exit 0
-
-          receipt_output="$(/usr/sbin/pkgutil --pkgs)" || exit 0
-          typeset -A installed_receipts
-          for receipt in "${(@f)receipt_output}"; do
-              installed_receipts[${receipt}]=1
-          done
-
-          while IFS=$'\t' read -r package_id files_present; do
-              [[ "${files_present}" == "true" ]] || exit 0
-              [[ -n "${installed_receipts[${package_id}]-}" ]] || exit 0
-          done <<< "${manifest_rows}"
-
+          while IFS=$'\t' read -rA package; do
+              installed $package[1] && any_exist $package[2,-1] || exit 0
+          done <<< $packages
           exit 1
         name: GarageBand All Sounds
         requires:
@@ -109,89 +54,27 @@ spec:
         uninstall_method: uninstall_script
         uninstall_script: |-
           #!/bin/zsh --no-rcs
-
-          set -e
-
-          package_output="$(/usr/bin/osascript -l JavaScript <<'JXA'
-          ObjC.import("Foundation")
-
-          function run() {
-              const fm = $.NSFileManager.defaultManager
-              const resources = "/Applications/GarageBand.app/Contents/Resources"
-              const stateDir = "/Library/Application Support/Woodleigh/GarageBandAllSounds"
-              const names = ObjC.deepUnwrap(
-                  fm.contentsOfDirectoryAtPathError($(resources), null)
-              ) || []
-              const manifests = names.filter(
-                  name => /^garageband[0-9]+\.plist$/i.test(name)
-              ).sort((left, right) => left.localeCompare(right, undefined, { numeric: true }))
-
-              const stateNames = ObjC.deepUnwrap(
-                  fm.contentsOfDirectoryAtPathError($(stateDir), null)
-              ) || []
-              const stateManifests = stateNames.filter(
-                  name => /^garageband[0-9]+\.plist$/i.test(name)
-              ).sort((left, right) => left.localeCompare(right, undefined, { numeric: true }))
-
-              const paths = manifests.map(name => `${resources}/${name}`).concat(
-                  stateManifests.map(name => `${stateDir}/${name}`)
-              )
-              if (paths.length === 0) {
-                  throw new Error("GarageBand content inventory not found")
-              }
-
-              const packagesByID = {}
-              for (const path of paths) {
-                  const data = $.NSData.dataWithContentsOfFile($(path))
-                  const plist = ObjC.deepUnwrap(
-                      $.NSPropertyListSerialization.propertyListWithDataOptionsFormatError(
-                          data,
-                          $.NSPropertyListImmutable,
-                          null,
-                          null
-                      )
-                  )
-                  for (const pkg of Object.values(plist.Packages || {})) {
-                      if (pkg.PackageID) {
-                          packagesByID[pkg.PackageID] = pkg
-                      }
-                  }
-              }
-
-              return Object.keys(packagesByID).sort().flatMap(packageID => {
-                  const pkg = packagesByID[packageID]
-                  return pkg.IsMandatory === true || !pkg.PackageID
-                      ? []
-                      : [packageID]
-              }).join("\n")
-          }
-          JXA
-          )"
-          package_ids=("${(@f)package_output}")
-
-          receipt_output="$(/usr/sbin/pkgutil --pkgs)"
-          typeset -A installed_receipts
-          for receipt in "${(@f)receipt_output}"; do
-              installed_receipts[${receipt}]=1
-          done
-
-          installed_package_ids=()
-          for package_id in "${package_ids[@]}"; do
-              if [[ -n "${installed_receipts[${package_id}]-}" ]]; then
-                  installed_package_ids+=("${package_id}")
-              fi
-          done
-
-          if (( ${#installed_package_ids[@]} > 0 )); then
-              /usr/local/munki/removepackages "${installed_package_ids[@]}"
-          fi
+          setopt errexit pipefail
 
           state_dir="/Library/Application Support/Woodleigh/GarageBandAllSounds"
-          state_manifests=("${state_dir}"/garageband*.plist(N))
-          if (( ${#state_manifests[@]} > 0 )); then
-              /bin/rm -f -- "${state_manifests[@]}"
+          manifests=(
+              /Applications/GarageBand.app/Contents/Resources/garageband<->.plist(Nn)
+              $state_dir/garageband<->.plist(Nn)
+          )
+          (( $#manifests )) || exit 1
+
+          optional=($(
+              for manifest in $manifests; do
+                  /usr/bin/plutil -extract Packages json -o - "$manifest"
+              done | /usr/bin/jq -rs '[.[][] | select(.PackageID)] | group_by(.PackageID)[] | last | select(.IsMandatory | not) | .PackageID'
+          ))
+          receipts=($(/usr/sbin/pkgutil --pkgs))
+          installed=(${optional:*receipts})
+
+          if (( $#installed )); then
+              /usr/local/munki/removepackages $installed
           fi
-          /bin/rmdir "${state_dir}" 2>/dev/null || true
+          /bin/rm -rf "$state_dir"
         uninstallable: true
         version: 2.0.3.1
       targets:
@@ -229,67 +112,22 @@ spec:
         developer: Apple
         installcheck_script: |-
           #!/bin/zsh --no-rcs
+          setopt pipefail
 
-          manifest_rows="$(/usr/bin/osascript -l JavaScript <<'JXA'
-          ObjC.import("Foundation")
+          manifests=(/Applications/GarageBand.app/Contents/Resources/garageband<->.plist(Nn))
+          receipts=($(/usr/sbin/pkgutil --pkgs))
 
-          function run() {
-              const fm = $.NSFileManager.defaultManager
-              const resources = "/Applications/GarageBand.app/Contents/Resources"
-              const names = ObjC.deepUnwrap(
-                  fm.contentsOfDirectoryAtPathError($(resources), null)
-              ) || []
-              const manifests = names.filter(
-                  name => /^garageband[0-9]+\.plist$/i.test(name)
-              ).sort((left, right) => left.localeCompare(right, undefined, { numeric: true }))
+          installed() { (( $receipts[(Ie)$1] )) }
+          any_exist() { local file; for file; do [[ -e $file ]] && return 0; done; return 1 }
 
-              if (manifests.length === 0) {
-                  throw new Error("GarageBand content manifest not found")
-              }
+          packages=$(
+              /usr/bin/plutil -extract Packages json -o - "$manifests[-1]" |
+                  /usr/bin/jq -r '.[] | select(.IsMandatory and .PackageID) | [.PackageID, .FileCheck] | flatten | @tsv'
+          ) || exit 0
 
-              const path = `${resources}/${manifests[manifests.length - 1]}`
-              const data = $.NSData.dataWithContentsOfFile($(path))
-              const plist = ObjC.deepUnwrap(
-                  $.NSPropertyListSerialization.propertyListWithDataOptionsFormatError(
-                      data,
-                      $.NSPropertyListImmutable,
-                      null,
-                      null
-                  )
-              )
-              const packages = plist.Packages || {}
-
-              return Object.keys(packages).sort().flatMap(key => {
-                  const pkg = packages[key]
-                  if (pkg.IsMandatory !== true || !pkg.PackageID) {
-                      return []
-                  }
-
-                  const checks = Array.isArray(pkg.FileCheck)
-                      ? pkg.FileCheck
-                      : [pkg.FileCheck]
-                  const filesPresent = checks.some(
-                      check => check && fm.fileExistsAtPath($(check))
-                  )
-                  return [`${pkg.PackageID}\t${filesPresent}`]
-              }).join("\n")
-          }
-          JXA
-          )" || exit 0
-
-          [[ -n "${manifest_rows}" ]] || exit 0
-
-          receipt_output="$(/usr/sbin/pkgutil --pkgs)" || exit 0
-          typeset -A installed_receipts
-          for receipt in "${(@f)receipt_output}"; do
-              installed_receipts[${receipt}]=1
-          done
-
-          while IFS=$'\t' read -r package_id files_present; do
-              [[ "${files_present}" == "true" ]] || exit 0
-              [[ -n "${installed_receipts[${package_id}]-}" ]] || exit 0
-          done <<< "${manifest_rows}"
-
+          while IFS=$'\t' read -rA package; do
+              installed $package[1] && any_exist $package[2,-1] || exit 0
+          done <<< $packages
           exit 1
         name: GarageBand Essential Sounds
         requires:
