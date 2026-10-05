@@ -18,9 +18,6 @@ spec:
     postinstall: |-
       #!/bin/bash
       set -eu
-      until /usr/bin/pgrep -x Dock >/dev/null 2>&1; do
-        /bin/sleep 10
-      done
       directory="$(/usr/bin/dirname "$0")/installer"
       installer="$directory/Sophos Installer.app/Contents/MacOS/Sophos Installer"
       helper="$directory/Sophos Installer.app/Contents/MacOS/tools/com.sophos.bootstrap.helper"
