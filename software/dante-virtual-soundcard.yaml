@@ -29,20 +29,17 @@ spec:
         developer: Audinate
         name: Dante Virtual Soundcard
         preinstall_script: |-
-          #!/bin/sh
+          #!/bin/zsh --no-rcs
+
           # Audinate's package suppresses installer dialogs while this marker exists.
           /usr/bin/touch /tmp/DVS_silent_install
         unattended_install: true
         unattended_uninstall: true
         uninstall_method: uninstall_script
         uninstall_script: |-
-          #!/bin/sh
-          uninstaller="/Library/Application Support/Audinate/DanteVirtualSoundcard/Uninstall DVS.app/Contents/Resources/uninstall.sh"
-          if [ ! -f "$uninstaller" ]; then
-            echo "Dante Virtual Soundcard uninstaller not found."
-            exit 1
-          fi
-          "$uninstaller"
+          #!/bin/zsh --no-rcs
+
+          exec "/Library/Application Support/Audinate/DanteVirtualSoundcard/Uninstall DVS.app/Contents/Resources/uninstall.sh"
         uninstallable: true
       targets:
         include:

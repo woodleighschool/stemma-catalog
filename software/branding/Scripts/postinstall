@@ -1,20 +1,9 @@
 #!/bin/zsh --no-rcs
 
-set -eu
+setopt errexit
 
-current_user="$(/usr/bin/stat -f '%Su' /dev/console)"
-if [[ -z "${current_user}" || "${current_user}" == "root" || "${current_user}" == "loginwindow" ]]; then
-    /bin/echo "Branding requires a logged-in user." >&2
-    exit 1
-fi
-
-current_uid="$(/usr/bin/id -u "${current_user}")"
-user_home="$(/usr/bin/dscl . -read "/Users/${current_user}" NFSHomeDirectory | /usr/bin/awk '{print $2}')"
-if [[ -z "${current_uid}" || -z "${user_home}" ]]; then
-    /bin/echo "Unable to resolve the logged-in user." >&2
-    exit 1
-fi
-
+user=$(/usr/bin/stat -f %Su /dev/console)
+downloads=~$user/Downloads
 dock_apps=(
     "/System/Applications/Apps.app"
     "/Applications/Google Chrome.app"
@@ -29,25 +18,15 @@ dock_apps=(
 )
 
 run_as_user() {
-    /bin/launchctl asuser "${current_uid}" /usr/bin/sudo -u "${current_user}" "$@"
+    /bin/launchctl asuser "$(/usr/bin/id -u "$user")" /usr/bin/sudo -u "$user" "$@"
 }
 
-run_as_user /usr/bin/defaults delete com.apple.dock persistent-apps 2>/dev/null || true
-run_as_user /usr/bin/defaults delete com.apple.dock persistent-others 2>/dev/null || true
-
-for app in "${dock_apps[@]}"; do
-    run_as_user /usr/bin/defaults write com.apple.dock persistent-apps -array-add \
-        "<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>${app}</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>"
-done
-
-downloads="${user_home}/Downloads"
-run_as_user /usr/bin/defaults write com.apple.dock persistent-others -array-add \
-    "<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>${downloads}</string><key>_CFURLStringType</key><integer>0</integer></dict><key>file-label</key><string>Downloads</string><key>file-type</key><string>2</string></dict><key>tile-type</key><string>directory-tile</string></dict>"
-
+run_as_user /usr/bin/defaults write com.apple.dock persistent-apps -array \
+    '<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>'${^dock_apps}'</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>'
+run_as_user /usr/bin/defaults write com.apple.dock persistent-others -array \
+    "<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>$downloads</string><key>_CFURLStringType</key><integer>0</integer></dict><key>file-label</key><string>Downloads</string><key>file-type</key><string>2</string></dict><key>tile-type</key><string>directory-tile</string></dict>"
 run_as_user /usr/bin/defaults write com.apple.dock show-recents -bool false
 run_as_user /usr/bin/defaults write com.apple.dock minimize-to-application -bool true
-run_as_user /usr/bin/killall -KILL Dock 2>/dev/null || true
+run_as_user /usr/bin/killall -KILL Dock || true
 
 run_as_user /usr/bin/osascript -l JavaScript -e 'ObjC.import("AppKit"); $.NSWorkspace.sharedWorkspace.setDesktopImageURLForScreenOptionsError($.NSURL.fileURLWithPath("/Library/Desktop Pictures/Woodleigh.jpg"), $.NSScreen.mainScreen, $({}), null)' || true
-
-exit 0

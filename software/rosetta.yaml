@@ -14,15 +14,17 @@ spec:
         description: Installs Rosetta, Apple's translation technology for running Intel-based apps
           on Apple silicon Macs.
         developer: Apple
-        installcheck_script: |
-          #!/bin/sh
-          [ "$(/usr/bin/arch)" = arm64 ] || exit 1
-          /usr/bin/arch -x86_64 /usr/bin/true 2>/dev/null && exit 1
+        installcheck_script: |-
+          #!/bin/zsh --no-rcs
+
+          [[ $(/usr/bin/arch) == arm64 ]] || exit 1
+          /usr/bin/arch -x86_64 /usr/bin/true 2> /dev/null && exit 1
           exit 0
         installer_type: nopkg
         name: Rosetta
-        postinstall_script: |
-          #!/bin/sh
+        postinstall_script: |-
+          #!/bin/zsh --no-rcs
+
           /usr/sbin/softwareupdate --install-rosetta --agree-to-license
         unattended_install: true
         uninstallable: false

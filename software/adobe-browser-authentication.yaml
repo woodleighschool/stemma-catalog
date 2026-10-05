@@ -18,21 +18,22 @@ spec:
         description: Enables browser-based authentication for Adobe Creative Cloud.
         developer: Adobe
         installcheck_script: |-
-          #!/bin/sh
+          #!/bin/zsh --no-rcs
+
           config="/Library/Application Support/Adobe/OOBE/Configs/ServiceConfig.xml"
           assertion="count(/config/*) = 1 and count(/config/feature[name = 'BrowserBasedAuthentication' and enabled = 'true' and count(*) = 2]) = 1"
-          if [ -f "$config" ] && [ "$(/usr/bin/xmllint --xpath "$assertion" "$config" 2>/dev/null)" = true ]; then
-            exit 1
-          fi
+
+          [[ $(/usr/bin/xmllint --xpath "$assertion" "$config" 2> /dev/null) == true ]] && exit 1
           exit 0
         installer_type: nopkg
         name: Adobe Creative Cloud Browser-Based Authentication
         postinstall_script: |-
-          #!/bin/sh
-          set -eu
+          #!/bin/zsh --no-rcs
+
+          setopt errexit
 
           config="/Library/Application Support/Adobe/OOBE/Configs/ServiceConfig.xml"
-          /bin/mkdir -p "${config%/*}"
+          /bin/mkdir -p "${config:h}"
 
           /bin/cat > "$config" <<'EOF'
           <config>

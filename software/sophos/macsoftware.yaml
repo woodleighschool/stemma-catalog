@@ -25,12 +25,11 @@ spec:
           exploits, and ransomware.
         developer: Sophos
         installcheck_script: |-
-          #!/bin/bash
+          #!/bin/zsh --no-rcs
+
           service="/Library/Sophos Anti-Virus/SophosServiceManager.app/Contents/MacOS/SophosServiceManager"
-          if [[ ! -f "$service" ]] || ! /usr/bin/pgrep -f "$service" >/dev/null 2>&1; then
-            exit 0
-          fi
-          exit 1
+          [[ -f $service ]] && /usr/bin/pgrep -qf "$service" && exit 1
+          exit 0
         name: Sophos
         unattended_install: true
         uninstallable: false

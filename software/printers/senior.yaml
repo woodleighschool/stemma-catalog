@@ -17,33 +17,18 @@ spec:
         installcheck_script: |-
           #!/bin/zsh --no-rcs
 
-          queue_name="senior_campus"
-
-          /usr/bin/lpstat -p "${queue_name}" >/dev/null 2>&1 && exit 1
-
+          /usr/bin/lpstat -p senior_campus &> /dev/null && exit 1
           exit 0
         installer_type: nopkg
         name: Senior Campus Printers
         postinstall_script: |-
           #!/bin/zsh --no-rcs
 
-          set -euo pipefail
-
-          queue_name="senior_campus"
-          display_name="Senior Campus"
-          location="Senior Campus"
-          printserver_host="sc-printserver.woodleighschool.net"
-          printserver_queue="SCPQ"
-          printer_uri="lpd://${printserver_host}/${printserver_queue}"
-          ppd="/Library/Printers/PPDs/Contents/Resources/EPSON AM-C6000 Series.gz"
-
-          /usr/sbin/lpadmin \
-              -p "${queue_name}" \
-              -E \
-              -v "${printer_uri}" \
-              -P "${ppd}" \
-              -D "${display_name}" \
-              -L "${location}" \
+          /usr/sbin/lpadmin -p senior_campus -E \
+              -v lpd://sc-printserver.woodleighschool.net/SCPQ \
+              -P "/Library/Printers/PPDs/Contents/Resources/EPSON AM-C6000 Series.gz" \
+              -D "Senior Campus" \
+              -L "Senior Campus" \
               -o printer-is-shared=false \
               -o EPIJ_Bidi_Com=0 \
               -o EPIJ_FUnt=2 \
@@ -58,10 +43,8 @@ spec:
         uninstall_script: |-
           #!/bin/zsh --no-rcs
 
-          queue_name="senior_campus"
-
-          if /usr/bin/lpstat -p "${queue_name}" >/dev/null 2>&1; then
-              /usr/sbin/lpadmin -x "${queue_name}"
+          if /usr/bin/lpstat -p senior_campus &> /dev/null; then
+              /usr/sbin/lpadmin -x senior_campus
           fi
         uninstallable: true
         version: "1.2"

@@ -26,27 +26,17 @@ spec:
         name: WoodSweep
         postinstall_script: |-
           #!/bin/zsh --no-rcs
-          set -euo pipefail
-          app="/Applications/WoodSweep.app/Contents/MacOS/WoodSweep"
-          logged_in_user="$(/usr/bin/stat -f '%Su' /dev/console)"
-          if [[ -z "${logged_in_user}" || "${logged_in_user}" == "root" || "${logged_in_user}" == "loginwindow" ]]; then
-            echo "WoodSweep bootstrap requires a logged-in user." >&2
-            exit 1
-          fi
-          user_id="$(/usr/bin/id -u "${logged_in_user}")"
-          /bin/launchctl asuser "${user_id}" \
-            /usr/bin/sudo -u "${logged_in_user}" \
-            "${app}" bootstrap \
-            --server-url '{{ env.WOODSWEEP_SERVER_URL }}' \
-            --bootstrap-user '{{ env.WOODSWEEP_BOOTSTRAP_USER }}' \
-            --bootstrap-password '{{ env.WOODSWEEP_BOOTSTRAP_PASSWORD }}'
+
+          user=$(/usr/bin/stat -f %Su /dev/console)
+          /bin/launchctl asuser "$(/usr/bin/id -u "$user")" /usr/bin/sudo -u "$user" \
+              /Applications/WoodSweep.app/Contents/MacOS/WoodSweep bootstrap \
+              --server-url '{{ env.WOODSWEEP_SERVER_URL }}' \
+              --bootstrap-user '{{ env.WOODSWEEP_BOOTSTRAP_USER }}' \
+              --bootstrap-password '{{ env.WOODSWEEP_BOOTSTRAP_PASSWORD }}'
         preinstall_script: |-
           #!/bin/zsh --no-rcs
-          logged_in_user="$(/usr/bin/stat -f '%Su' /dev/console)"
-          if [[ -z "${logged_in_user}" || "${logged_in_user}" == "root" || "${logged_in_user}" == "loginwindow" ]]; then
-            echo "WoodSweep bootstrap requires a logged-in user. Deferring installation." >&2
-            exit 1
-          fi
+
+          [[ $(/usr/bin/stat -f %Su /dev/console) != root ]]
         unattended_install: true
         unattended_uninstall: true
         uninstall_method: remove_copied_items

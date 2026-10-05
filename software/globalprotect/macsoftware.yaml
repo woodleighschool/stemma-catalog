@@ -26,8 +26,9 @@ spec:
         unattended_install: true
         unattended_uninstall: true
         uninstall_method: uninstall_script
-        uninstall_script: |
-          #!/bin/sh
+        uninstall_script: |-
+          #!/bin/zsh --no-rcs
+
           exec /Applications/GlobalProtect.app/Contents/Resources/uninstall_gp.sh
         uninstallable: true
       targets:

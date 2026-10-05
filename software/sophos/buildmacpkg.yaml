@@ -16,11 +16,14 @@ spec:
       signer: apple:developer-id:2H5GFH3774 # Sophos
   scripts:
     postinstall: |-
-      #!/bin/bash
-      set -eu
-      directory="$(/usr/bin/dirname "$0")/installer"
+      #!/bin/zsh --no-rcs
+
+      setopt errexit
+
+      directory="${0:A:h}/installer"
       installer="$directory/Sophos Installer.app/Contents/MacOS/Sophos Installer"
       helper="$directory/Sophos Installer.app/Contents/MacOS/tools/com.sophos.bootstrap.helper"
+
       /bin/chmod a+x "$installer" "$helper"
       cd "$directory"
       "$installer" --quiet

@@ -27,16 +27,16 @@ spec:
           performance, and management, used for DJ and music production.
         developer: AlphaTheta Corporation
         name: rekordbox 7
-        postinstall_script: |
-          #!/bin/bash
+        postinstall_script: |-
+          #!/bin/zsh --no-rcs
 
           # rekordbox asks for an admin password on launch without these
           /usr/bin/install -d -m 777 /private/var/{slmdata,.slm,.slmbackup,.slmauth}
         unattended_install: true
         unattended_uninstall: true
         uninstall_method: uninstall_script
-        uninstall_script: |
-          #!/bin/sh
+        uninstall_script: |-
+          #!/bin/zsh --no-rcs
 
           /bin/rm -rf "/Applications/rekordbox 7"
         uninstallable: true

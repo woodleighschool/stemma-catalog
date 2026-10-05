@@ -20,12 +20,11 @@ spec:
           Filter can determine which filtering rules apply.
         developer: Qoria
         installcheck_script: |-
-          #!/bin/bash
-          agent="/opt/FamilyZone/AuthenticationAgent/bin/fc-authentication-agent_darwin-amd64"
-          if [[ ! -x "$agent" ]] || ! /usr/bin/pgrep -f "$agent" >/dev/null 2>&1; then
-            exit 0
-          fi
-          exit 1
+          #!/bin/zsh --no-rcs
+
+          agent=/opt/FamilyZone/AuthenticationAgent/bin/fc-authentication-agent_darwin-amd64
+          [[ -x $agent ]] && /usr/bin/pgrep -qf "$agent" && exit 1
+          exit 0
         installs:
           - path: /opt/FamilyZone/AuthenticationAgent/bin/fc-authentication-agent_darwin-amd64
             type: file
@@ -62,18 +61,18 @@ spec:
           filtering and classroom controls.
         developer: Qoria
         installcheck_script: |-
-          #!/bin/bash
-          service="/Applications/FamilyZone/MobileZoneAgent/bin/fc-system-service_darwin-amd64"
-          if [[ ! -x "$service" ]] || ! /usr/bin/pgrep -f "$service" >/dev/null 2>&1; then
-            exit 0
-          fi
-          exit 1
+          #!/bin/zsh --no-rcs
+
+          service=/Applications/FamilyZone/MobileZoneAgent/bin/fc-system-service_darwin-amd64
+          [[ -x $service ]] && /usr/bin/pgrep -qf "$service" && exit 1
+          exit 0
         name: Linewize Connect
         preinstall_script: |-
-          #!/bin/bash
-          app="/Applications/FamilyZone/MobileZoneAgent/bin/Connect.app"
-          if [[ -d "$app" ]]; then
-            /usr/bin/chflags -R noschg "$app" || exit 1
+          #!/bin/zsh --no-rcs
+
+          app=/Applications/FamilyZone/MobileZoneAgent/bin/Connect.app
+          if [[ -d $app ]]; then
+              /usr/bin/chflags -R noschg "$app"
           fi
         requires:
           - resource:

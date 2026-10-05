@@ -25,60 +25,29 @@ spec:
         developer: Docker
         name: Docker Desktop
         postinstall_script: |-
-          #!/bin/bash
-          CONSOLE_USER=$(/usr/bin/stat -f%Su /dev/console)
-          if [ "$CONSOLE_USER" != "root" ] && [ -n "$CONSOLE_USER" ]; then
-            echo "Installing Docker Desktop for user: $CONSOLE_USER"
-            /Applications/Docker.app/Contents/MacOS/install --accept-license --user="$CONSOLE_USER"
-          else
-            echo "No user logged in, cannot complete Docker Desktop installation"
-            exit 1
-          fi
-          exit 0
+          #!/bin/zsh --no-rcs
+
+          /Applications/Docker.app/Contents/MacOS/install --accept-license --user="$(/usr/bin/stat -f %Su /dev/console)"
         postuninstall_script: |-
-          #!/bin/bash
-          DOCKER_PATHS=(
-            "/Library/Application Support/com.docker.docker"
-            "/Library/LaunchDaemons/com.docker.socket.plist"
-            "/Library/LaunchDaemons/com.docker.vmnetd.plist"
-            "/Library/Logs/com.docker.dockerd.log"
-            "/Library/Logs/Docker Desktop"
-            "/Library/PrivilegedHelperTools/com.docker.hyperkit"
-            "/Library/PrivilegedHelperTools/com.docker.socket"
-            "/Library/PrivilegedHelperTools/com.docker.vmnetd"
-            "/private/var/run/docker.sock"
-            "/private/var/tmp/com.docker.vmnetd.socket"
-            "/usr/local/bin/docker-compose"
-            "/usr/local/bin/docker-credential-desktop"
-            "/usr/local/bin/docker-credential-ecr-login"
-            "/usr/local/bin/docker-credential-osxkeychain"
-            "/usr/local/bin/docker"
-            "/usr/local/bin/hyperkit"
-            "/usr/local/bin/kubectl.docker"
-            "/usr/local/bin/kubectl"
-            "/usr/local/bin/vpnkit"
-          )
-          safe_remove() {
-            if [ -e "$1" ]; then
-              echo "Removing: $1"
-              rm -rf "$1"
-            fi
-          }
-          for path in "${DOCKER_PATHS[@]}"; do
-            safe_remove "$path"
-          done
-          exit 0
+          #!/bin/zsh --no-rcs
+
+          /bin/rm -rf \
+              "/Library/Application Support/com.docker.docker" \
+              /Library/LaunchDaemons/com.docker.{socket,vmnetd}.plist \
+              /Library/Logs/com.docker.dockerd.log \
+              "/Library/Logs/Docker Desktop" \
+              /Library/PrivilegedHelperTools/com.docker.{hyperkit,socket,vmnetd} \
+              /private/var/run/docker.sock \
+              /private/var/tmp/com.docker.vmnetd.socket \
+              /usr/local/bin/{docker,docker-compose,hyperkit,kubectl,kubectl.docker,vpnkit} \
+              /usr/local/bin/docker-credential-{desktop,ecr-login,osxkeychain}
         preinstall_script: |-
-          #!/bin/bash
-          CONSOLE_USER=$(/usr/bin/stat -f%Su /dev/console)
-          if [ "$CONSOLE_USER" = "root" ] || [ -z "$CONSOLE_USER" ]; then
-            echo "No user logged in or at login window. Deferring installation."
-            exit 1
-          fi
-          echo "User $CONSOLE_USER is logged in and Docker needs updating. OK to proceed with installation."
-          exit 0
+          #!/bin/zsh --no-rcs
+
+          [[ $(/usr/bin/stat -f %Su /dev/console) != root ]]
         preuninstall_script: |-
-          #!/bin/bash
+          #!/bin/zsh --no-rcs
+
           /Applications/Docker.app/Contents/MacOS/uninstall
           /Applications/Docker.app/Contents/MacOS/install remove-kube-host
           /Applications/Docker.app/Contents/MacOS/install remove-socket-symlink-on-startup

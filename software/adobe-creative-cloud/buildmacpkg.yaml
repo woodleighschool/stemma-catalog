@@ -15,8 +15,9 @@ spec:
       signer: apple:developer-id:JQ525L2MZD # Adobe Inc.
   scripts:
     postinstall: |-
-      #!/bin/sh
-      exec "$(/usr/bin/dirname "$0")/installer/Install.app/Contents/MacOS/Install" --mode=silent
+      #!/bin/zsh --no-rcs
+
+      exec "${0:A:h}/installer/Install.app/Contents/MacOS/Install" --mode=silent
     installer:
       $input: vendor
       path: .

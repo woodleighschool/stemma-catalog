@@ -24,7 +24,8 @@ spec:
         developer: Spotify
         name: Spotify
         postinstall_script: |-
-          #!/bin/bash
+          #!/bin/zsh --no-rcs
+
           /bin/chmod -R go+rX /Applications/Spotify.app
         unattended_install: true
         unattended_uninstall: true

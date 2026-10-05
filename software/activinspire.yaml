@@ -26,10 +26,11 @@ spec:
         developer: Promethean
         name: ActivInspire
         postinstall_script: |-
-          #!/bin/sh
-          set -eu
+          #!/bin/zsh --no-rcs
 
-          directory="/Users/Shared/Promethean/ActivInspire"
+          setopt errexit
+
+          directory=/Users/Shared/Promethean/ActivInspire
           /bin/mkdir -p "$directory"
 
           /bin/cat > "$directory/.inspire_license.xml" <<'EOF'
@@ -41,7 +42,8 @@ spec:
           </License>
           EOF
         postuninstall_script: |-
-          #!/bin/sh
+          #!/bin/zsh --no-rcs
+
           /bin/rm -rf /Users/Shared/Promethean
         unattended_install: true
         unattended_uninstall: true

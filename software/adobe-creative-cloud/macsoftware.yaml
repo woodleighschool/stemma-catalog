@@ -32,23 +32,14 @@ spec:
         unattended_uninstall: true
         uninstall_method: uninstall_script
         uninstall_script: |-
-          #!/bin/sh
+          #!/bin/zsh --no-rcs
+
           app="/Applications/Utilities/Adobe Creative Cloud/ACC/Creative Cloud.app"
           uninstaller="/Applications/Utilities/Adobe Creative Cloud/Utils/Creative Cloud Uninstaller.app/Contents/MacOS/Creative Cloud Uninstaller"
-          if [ ! -d "$app" ]; then
-            exit 0
-          fi
-          if [ ! -x "$uninstaller" ]; then
-            echo "Adobe Creative Cloud uninstaller not found: $uninstaller"
-            exit 1
-          fi
+
+          [[ -d $app ]] || exit 0
           "$uninstaller" --uninstall=1
-          status=$?
-          if [ -d "$app" ]; then
-            echo "Adobe Creative Cloud is still installed."
-            exit 1
-          fi
-          exit "$status"
+          [[ ! -d $app ]]
         uninstallable: true
       targets:
         include:
