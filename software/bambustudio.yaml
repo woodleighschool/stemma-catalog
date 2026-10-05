@@ -9,7 +9,6 @@ spec:
     resolver: github
     repository: bambulab/BambuStudio
     asset: "*.dmg"
-    include_prereleases: true
   application:
     bundle_id: com.bambulab.bambu-studio
   signatures:
