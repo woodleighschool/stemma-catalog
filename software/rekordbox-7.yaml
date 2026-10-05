@@ -30,13 +30,8 @@ spec:
         postinstall_script: |
           #!/bin/bash
 
-          # Create directories and set permissions needed to stop admin prompt on launch
-          /bin/mkdir -p /private/var/slmdata ; /bin/chmod 777 /private/var/slmdata
-          /bin/mkdir -p /private/var/.slm ; /bin/chmod 777 /private/var/.slm
-          /bin/mkdir -p /private/var/.slmbackup ; /bin/chmod 777 /private/var/.slmbackup
-          /bin/mkdir -p /private/var/.slmauth ; /bin/chmod 777 /private/var/.slmauth
-
-          exit 0
+          # rekordbox asks for an admin password on launch without these
+          /usr/bin/install -d -m 777 /private/var/{slmdata,.slm,.slmbackup,.slmauth}
         unattended_install: true
         unattended_uninstall: true
         uninstall_method: uninstall_script

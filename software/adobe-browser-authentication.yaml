@@ -30,8 +30,10 @@ spec:
         postinstall_script: |-
           #!/bin/sh
           set -eu
+
           config="/Library/Application Support/Adobe/OOBE/Configs/ServiceConfig.xml"
           /bin/mkdir -p "${config%/*}"
+
           /bin/cat > "$config" <<'EOF'
           <config>
             <feature>
@@ -40,6 +42,7 @@ spec:
             </feature>
           </config>
           EOF
+
           /usr/sbin/chown root:wheel "$config"
           /bin/chmod 0644 "$config"
         unattended_install: true

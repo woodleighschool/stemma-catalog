@@ -28,15 +28,18 @@ spec:
         postinstall_script: |-
           #!/bin/sh
           set -eu
+
           directory="/Users/Shared/Promethean/ActivInspire"
           /bin/mkdir -p "$directory"
-          /usr/bin/printf '%s\n' \
-            '<?xml version="1.0" encoding="UTF-8"?>' \
-            '<License>' \
-            '  <username>Woodleigh</username>' \
-            '  <organization>Woodleigh</organization>' \
-            '  <serial>{{ env.ACTIVINSPIRE_SERIAL }}</serial>' \
-            '</License>' > "$directory/.inspire_license.xml"
+
+          /bin/cat > "$directory/.inspire_license.xml" <<'EOF'
+          <?xml version="1.0" encoding="UTF-8"?>
+          <License>
+            <username>Woodleigh</username>
+            <organization>Woodleigh</organization>
+            <serial>{{ env.ACTIVINSPIRE_SERIAL }}</serial>
+          </License>
+          EOF
         postuninstall_script: |-
           #!/bin/sh
           /bin/rm -rf /Users/Shared/Promethean
