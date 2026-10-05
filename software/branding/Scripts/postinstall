@@ -2,8 +2,6 @@
 
 set -eu
 
-wallpaper="/Library/Desktop Pictures/Woodleigh.jpg"
-
 current_user="$(/usr/bin/stat -f '%Su' /dev/console)"
 if [[ -z "${current_user}" || "${current_user}" == "root" || "${current_user}" == "loginwindow" ]]; then
     /bin/echo "Branding requires a logged-in user." >&2
@@ -50,8 +48,6 @@ run_as_user /usr/bin/defaults write com.apple.dock show-recents -bool false
 run_as_user /usr/bin/defaults write com.apple.dock minimize-to-application -bool true
 run_as_user /usr/bin/killall -KILL Dock 2>/dev/null || true
 
-run_as_user /usr/bin/osascript \
-    -e "tell application \"Finder\" to set desktop picture to POSIX file \"${wallpaper}\"" \
-    >/dev/null 2>&1 &!
+run_as_user /usr/bin/osascript -l JavaScript -e 'ObjC.import("AppKit"); $.NSWorkspace.sharedWorkspace.setDesktopImageURLForScreenOptionsError($.NSURL.fileURLWithPath("/Library/Desktop Pictures/Woodleigh.jpg"), $.NSScreen.mainScreen, $({}), null)' || true
 
 exit 0
