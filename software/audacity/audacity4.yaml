@@ -3,6 +3,7 @@ apiVersion: stemma/v1alpha1
 kind: MacSoftware
 metadata:
   name: audacity-4
+suspend: true
 spec:
   extends: mac-software
   source:
