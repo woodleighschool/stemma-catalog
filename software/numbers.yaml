@@ -11,6 +11,8 @@ spec:
     path: /Applications/Numbers Creator Studio.app
   application:
     installed_path: "/Applications/Numbers Creator Studio.app"
+  signatures:
+    - signer: apple:app-store:JCRTNEU7GK # Apple
   icon: numbers
   destinations:
     woodstar:

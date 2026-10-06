@@ -11,6 +11,8 @@ spec:
     path: /Applications/Keynote Creator Studio.app
   application:
     installed_path: "/Applications/Keynote Creator Studio.app"
+  signatures:
+    - signer: apple:app-store:JCRTNEU7GK # Apple
   icon: keynote
   destinations:
     woodstar:

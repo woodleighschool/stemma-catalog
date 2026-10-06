@@ -11,6 +11,8 @@ spec:
     path: /Applications/Pages Creator Studio.app
   application:
     installed_path: "/Applications/Pages Creator Studio.app"
+  signatures:
+    - signer: apple:app-store:JCRTNEU7GK # Apple
   icon: pages
   destinations:
     woodstar:

@@ -11,6 +11,8 @@ spec:
     path: /Applications/iMovie.app
   application:
     installed_path: "/Applications/iMovie.app"
+  signatures:
+    - signer: apple:app-store:PTN9T2S29T # Apple
   icon: imovie
   destinations:
     woodstar:

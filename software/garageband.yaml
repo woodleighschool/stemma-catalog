@@ -11,6 +11,8 @@ spec:
     path: /Applications/GarageBand.app
   application:
     installed_path: "/Applications/GarageBand.app"
+  signatures:
+    - signer: apple:app-store:F3LWYJ7GM7 # Apple
   icon: garageband
   destinations:
     woodstar:
