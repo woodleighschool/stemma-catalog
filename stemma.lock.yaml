@@ -816,11 +816,13 @@ inputs:
         filename: SafeExamBrowser-3.7.1.dmg
         release: 3.7.1
         release_id: 385854580
+        sha256: d9a11b2f5f35f5681b0f0f204a217bdcb90413481748f34cbff2ae86044e6086
         url: https://github.com/SafeExamBrowser/seb-mac/releases/download/3.7.1/SafeExamBrowser-3.7.1.dmg
       content:
         sha256: d9a11b2f5f35f5681b0f0f204a217bdcb90413481748f34cbff2ae86044e6086
         filename: SafeExamBrowser-3.7.1.dmg
         mode: 420
+      input_version: 3.7.1
   stemma/v1alpha1/MacSoftware/santa:
     source:
       version: 1
@@ -1107,7 +1109,7 @@ inputs:
       evidence:
         winget.installer:
           apps_and_features_entries:
-            - upgrade_code: "{C1DFDF69-5945-32F2-A35E-EE94C99C7CF4}"
+            - upgrade_code: '{C1DFDF69-5945-32F2-A35E-EE94C99C7CF4}'
           architecture: x64
           elevation_requirement: elevatesSelf
           file_extensions:
@@ -1125,7 +1127,7 @@ inputs:
           package_identifier: Google.Chrome
           package_name: Google Chrome
           package_version: 154.0.8037.98
-          product_code: "{97466CBF-3317-36FC-BC77-CF240B7DA61B}"
+          product_code: '{97466CBF-3317-36FC-BC77-CF240B7DA61B}'
           protocols:
             - http
             - https
@@ -1179,7 +1181,7 @@ inputs:
       evidence:
         winget.installer:
           apps_and_features_entries:
-            - upgrade_code: "{C819B794-A45C-4F27-9860-0C86492A52CC}"
+            - upgrade_code: '{C819B794-A45C-4F27-9860-0C86492A52CC}'
           architecture: x64
           file_extensions:
             - zoommtg
@@ -1190,7 +1192,7 @@ inputs:
           package_identifier: Zoom.Zoom
           package_name: Zoom Workplace
           package_version: 7.2.48556
-          product_code: "{518AB954-56D5-4942-802D-ED4A1DAA61FD}"
+          product_code: '{518AB954-56D5-4942-802D-ED4A1DAA61FD}'
           protocols:
             - zoom
             - zoommtg
