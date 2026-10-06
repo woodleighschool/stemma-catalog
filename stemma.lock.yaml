@@ -534,12 +534,12 @@ inputs:
       resolver_version: "2"
       declaration: 3427a8c8405dd7b54b536bd3b91d66a0f110396fe26ac6ed7e9e3bc9b1a6b334
       observation:
-        filename: Microsoft_365_and_Office_16.113.26092012_BusinessPro_Installer.pkg
-        url: https://res.public.onecdn.static.microsoft/mro1cdnstorage/C1297A47-86C4-4C1F-97FA-950631F94777/MacAutoupdate/Microsoft_365_and_Office_16.113.26092012_BusinessPro_Installer.pkg
+        filename: Microsoft_365_and_Office_16.113.26092714_BusinessPro_Installer.pkg
+        url: https://res.public.onecdn.static.microsoft/mro1cdnstorage/C1297A47-86C4-4C1F-97FA-950631F94777/MacAutoupdate/Microsoft_365_and_Office_16.113.26092714_BusinessPro_Installer.pkg
         version: ""
       content:
-        sha256: af7208b15f91a3ed11129643b0b0c3de54ec5adbb8c9aadfff0948a76d3c1819
-        filename: Microsoft_365_and_Office_16.113.26092012_BusinessPro_Installer.pkg
+        sha256: 6d80aaa0d67531c5e0d5365a74d6a7124f9f8befc417b5c45a116c9f311085f8
+        filename: Microsoft_365_and_Office_16.113.26092714_BusinessPro_Installer.pkg
         mode: 420
   stemma/v1alpha1/MacSoftware/microsoft-defender:
     source:
@@ -1107,7 +1107,7 @@ inputs:
       evidence:
         winget.installer:
           apps_and_features_entries:
-            - upgrade_code: "{C1DFDF69-5945-32F2-A35E-EE94C99C7CF4}"
+            - upgrade_code: '{C1DFDF69-5945-32F2-A35E-EE94C99C7CF4}'
           architecture: x64
           elevation_requirement: elevatesSelf
           file_extensions:
@@ -1125,7 +1125,7 @@ inputs:
           package_identifier: Google.Chrome
           package_name: Google Chrome
           package_version: 154.0.8037.98
-          product_code: "{97466CBF-3317-36FC-BC77-CF240B7DA61B}"
+          product_code: '{97466CBF-3317-36FC-BC77-CF240B7DA61B}'
           protocols:
             - http
             - https
@@ -1179,7 +1179,7 @@ inputs:
       evidence:
         winget.installer:
           apps_and_features_entries:
-            - upgrade_code: "{C819B794-A45C-4F27-9860-0C86492A52CC}"
+            - upgrade_code: '{C819B794-A45C-4F27-9860-0C86492A52CC}'
           architecture: x64
           file_extensions:
             - zoommtg
@@ -1190,7 +1190,7 @@ inputs:
           package_identifier: Zoom.Zoom
           package_name: Zoom Workplace
           package_version: 7.2.48556
-          product_code: "{518AB954-56D5-4942-802D-ED4A1DAA61FD}"
+          product_code: '{518AB954-56D5-4942-802D-ED4A1DAA61FD}'
           protocols:
             - zoom
             - zoommtg
