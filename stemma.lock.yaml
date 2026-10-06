@@ -489,7 +489,7 @@ inputs:
       declaration: f8256e4340990b785cbabaa4fb0861cee091bfa32de2a0b8cb82b21b03d8cbb3
       observation: {}
       content:
-        sha256: 81fb269b937fae2f3da79a07a05d52e616b05c132e452f289e605f94c1a68b26
+        sha256: 161def4fb253e19630480c320795ec2c839c06b18faf7a2e607caa7541e396a8
         filename: GoogleChrome.pkg
         mode: 420
   stemma/v1alpha1/MacSoftware/google-earth-pro:
@@ -1107,7 +1107,7 @@ inputs:
       evidence:
         winget.installer:
           apps_and_features_entries:
-            - upgrade_code: "{C1DFDF69-5945-32F2-A35E-EE94C99C7CF4}"
+            - upgrade_code: '{C1DFDF69-5945-32F2-A35E-EE94C99C7CF4}'
           architecture: x64
           elevation_requirement: elevatesSelf
           file_extensions:
@@ -1125,7 +1125,7 @@ inputs:
           package_identifier: Google.Chrome
           package_name: Google Chrome
           package_version: 154.0.8037.98
-          product_code: "{97466CBF-3317-36FC-BC77-CF240B7DA61B}"
+          product_code: '{97466CBF-3317-36FC-BC77-CF240B7DA61B}'
           protocols:
             - http
             - https
@@ -1179,7 +1179,7 @@ inputs:
       evidence:
         winget.installer:
           apps_and_features_entries:
-            - upgrade_code: "{C819B794-A45C-4F27-9860-0C86492A52CC}"
+            - upgrade_code: '{C819B794-A45C-4F27-9860-0C86492A52CC}'
           architecture: x64
           file_extensions:
             - zoommtg
@@ -1190,7 +1190,7 @@ inputs:
           package_identifier: Zoom.Zoom
           package_name: Zoom Workplace
           package_version: 7.2.48556
-          product_code: "{518AB954-56D5-4942-802D-ED4A1DAA61FD}"
+          product_code: '{518AB954-56D5-4942-802D-ED4A1DAA61FD}'
           protocols:
             - zoom
             - zoommtg
