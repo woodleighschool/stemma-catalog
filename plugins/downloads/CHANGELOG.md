@@ -1,6 +1,6 @@
 # Changelog
 
-## [0.3.8](https://github.com/woodleighschool/stemma-catalog/compare/0.3.7...v0.3.8) (2026-10-05)
+## [0.3.8](https://github.com/woodleighschool/stemma-catalog/compare/v0.3.7...v0.3.8) (2026-10-05)
 
 
 ### Bug Fixes
@@ -8,7 +8,7 @@
 * **go:** update module github.com/woodleighschool/stemma (v0.9.0 → v0.9.1) ([#108](https://github.com/woodleighschool/stemma-catalog/issues/108)) ([8221fd3](https://github.com/woodleighschool/stemma-catalog/commit/8221fd3f9401e2893e1d4e68fa8bcd911519d9d9))
 * **go:** update module github.com/woodleighschool/stemma (v0.9.1 → v0.10.0) ([#113](https://github.com/woodleighschool/stemma-catalog/issues/113)) ([c5042fc](https://github.com/woodleighschool/stemma-catalog/commit/c5042fc6229d8fcc54d3bd156cc876e958193d4e))
 
-## [0.3.7](https://github.com/woodleighschool/stemma-catalog/compare/0.3.6...0.3.7) (2026-10-03)
+## [0.3.7](https://github.com/woodleighschool/stemma-catalog/compare/v0.3.6...v0.3.7) (2026-10-03)
 
 
 ### Features
@@ -27,14 +27,14 @@
 * **go:** update module github.com/woodleighschool/stemma (f7948de → 85ce03b) ([#101](https://github.com/woodleighschool/stemma-catalog/issues/101)) ([5eaf5c7](https://github.com/woodleighschool/stemma-catalog/commit/5eaf5c7c1b9742f6625bbfce83b950a30f826df0))
 * **go:** update module github.com/woodleighschool/stemma to v0.9.0 ([929c3cf](https://github.com/woodleighschool/stemma-catalog/commit/929c3cf6805e63d2db0483d41ab7f3cabcbe6fcf))
 
-## [0.3.6](https://github.com/woodleighschool/stemma-catalog/compare/0.3.5...0.3.6) (2026-09-29)
+## [0.3.6](https://github.com/woodleighschool/stemma-catalog/compare/v0.3.5...v0.3.6) (2026-09-29)
 
 
 ### Bug Fixes
 
 * **go:** update module github.com/woodleighschool/stemma (v0.8.1 → v0.8.2) ([#79](https://github.com/woodleighschool/stemma-catalog/issues/79)) ([8859a68](https://github.com/woodleighschool/stemma-catalog/commit/8859a68ff02e26aca3f6739598f42f37dc556ddd))
 
-## [0.3.5](https://github.com/woodleighschool/stemma-catalog/compare/0.3.4...0.3.5) (2026-09-29)
+## [0.3.5](https://github.com/woodleighschool/stemma-catalog/compare/v0.3.4...v0.3.5) (2026-09-29)
 
 
 ### Features
@@ -46,7 +46,7 @@
 
 * **go:** update module github.com/woodleighschool/stemma (v0.8.0 → v0.8.1) ([#77](https://github.com/woodleighschool/stemma-catalog/issues/77)) ([b432698](https://github.com/woodleighschool/stemma-catalog/commit/b432698c71366d4e759e9887f02360342ed36bfc))
 
-## [0.3.4](https://github.com/woodleighschool/stemma-catalog/compare/0.3.3...0.3.4) (2026-09-28)
+## [0.3.4](https://github.com/woodleighschool/stemma-catalog/compare/v0.3.3...v0.3.4) (2026-09-28)
 
 
 ### Features
@@ -54,7 +54,7 @@
 * **go:** update module github.com/woodleighschool/stemma (v0.0.0-20260928013236-3d2a64f6f342 → v0.6.0) ([#66](https://github.com/woodleighschool/stemma-catalog/issues/66)) ([fe36517](https://github.com/woodleighschool/stemma-catalog/commit/fe365175d62640f99278f4bf0a80841c1cb57367))
 * **go:** update module github.com/woodleighschool/stemma (v0.6.0 → v0.7.1) ([#71](https://github.com/woodleighschool/stemma-catalog/issues/71)) ([12d3c7e](https://github.com/woodleighschool/stemma-catalog/commit/12d3c7e4d4aa49fa9bc6bf82ce0a5c56b3260a5e))
 
-## [0.3.3](https://github.com/woodleighschool/stemma-catalog/compare/0.3.2...0.3.3) (2026-09-28)
+## [0.3.3](https://github.com/woodleighschool/stemma-catalog/compare/v0.3.2...v0.3.3) (2026-09-28)
 
 
 ### Bug Fixes
@@ -76,7 +76,7 @@
 * **mise:** update tool golangci-lint (2.13.2 → 2.14.0) ([#62](https://github.com/woodleighschool/stemma-catalog/issues/62)) ([3f35882](https://github.com/woodleighschool/stemma-catalog/commit/3f35882bef10985d7bf5721f93b0b9850a2f04f1))
 * tidy modules directly in GoReleaser ([d65379c](https://github.com/woodleighschool/stemma-catalog/commit/d65379c75698bf41c9b07a9d65949dc0dcc98975))
 
-## [0.3.2](https://github.com/woodleighschool/stemma-catalog/compare/0.3.1...0.3.2) (2026-09-27)
+## [0.3.2](https://github.com/woodleighschool/stemma-catalog/compare/v0.3.1...v0.3.2) (2026-09-27)
 
 
 ### Bug Fixes
@@ -93,14 +93,14 @@
 
 * pin reviewed Stemma tooling ([a942adc](https://github.com/woodleighschool/stemma-catalog/commit/a942adc0ebe5c0cc5955ad3d2d79c04772d6bf01))
 
-## [0.3.1](https://github.com/woodleighschool/stemma-catalog/compare/0.3.0...0.3.1) (2026-09-26)
+## [0.3.1](https://github.com/woodleighschool/stemma-catalog/compare/v0.3.0...v0.3.1) (2026-09-26)
 
 
 ### Features
 
 * **downloads:** add an Adobe Creative Cloud resolver ([021674b](https://github.com/woodleighschool/stemma-catalog/commit/021674b07e1560aaa9150e6325a99a8161eaa1c2))
 
-## [0.3.0](https://github.com/woodleighschool/stemma-catalog/compare/0.2.2...0.3.0) (2026-09-26)
+## [0.3.0](https://github.com/woodleighschool/stemma-catalog/compare/v0.2.2...v0.3.0) (2026-09-26)
 
 
 ### ⚠ BREAKING CHANGES
@@ -116,7 +116,7 @@
 
 * **mise:** update tool goreleaser (2.18.0 → 2.18.2) ([#32](https://github.com/woodleighschool/stemma-catalog/issues/32)) ([f342a93](https://github.com/woodleighschool/stemma-catalog/commit/f342a935642078692804c93c05592de8324ad95e))
 
-## [0.2.2](https://github.com/woodleighschool/stemma-catalog/compare/0.2.1...0.2.2) (2026-09-26)
+## [0.2.2](https://github.com/woodleighschool/stemma-catalog/compare/v0.2.1...v0.2.2) (2026-09-26)
 
 
 ### Continuous Integration
@@ -128,14 +128,14 @@
 
 * align repository tooling ([ee31ada](https://github.com/woodleighschool/stemma-catalog/commit/ee31adad5bbfcf07cd128ad1315cf57341974e15))
 
-## [0.2.1](https://github.com/woodleighschool/stemma-catalog/compare/0.2.0...0.2.1) (2026-09-25)
+## [0.2.1](https://github.com/woodleighschool/stemma-catalog/compare/v0.2.0...v0.2.1) (2026-09-25)
 
 
 ### Bug Fixes
 
 * **deps:** update stemma dependency to latest version ([809137b](https://github.com/woodleighschool/stemma-catalog/commit/809137b3953e11ecfa984f18845873dc55767a9d))
 
-## [0.2.0](https://github.com/woodleighschool/stemma-catalog/compare/0.1.0...0.2.0) (2026-09-25)
+## [0.2.0](https://github.com/woodleighschool/stemma-catalog/compare/v0.1.0...v0.2.0) (2026-09-25)
 
 
 ### ⚠ BREAKING CHANGES
