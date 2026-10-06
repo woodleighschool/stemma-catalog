@@ -489,7 +489,7 @@ inputs:
       declaration: f8256e4340990b785cbabaa4fb0861cee091bfa32de2a0b8cb82b21b03d8cbb3
       observation: {}
       content:
-        sha256: 81fb269b937fae2f3da79a07a05d52e616b05c132e452f289e605f94c1a68b26
+        sha256: 161def4fb253e19630480c320795ec2c839c06b18faf7a2e607caa7541e396a8
         filename: GoogleChrome.pkg
         mode: 420
   stemma/v1alpha1/MacSoftware/google-earth-pro:
