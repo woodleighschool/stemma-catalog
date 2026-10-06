@@ -431,10 +431,7 @@
                                     "type": "string"
                                   }
                                 ],
-                                "default": {
-                                  "path": "."
-                                },
-                                "description": "One physical signing subject. Omit it where there is only one, such as the PKG itself or the only application in an image; path: . means the same. Component receipts do not carry the outer PKG signature."
+                                "description": "One physical signing subject. Omit it where there is only one, such as the PKG itself or the only application in an image. Component receipts do not carry the outer PKG signature."
                               },
                               "unsigned": {
                                 "anyOf": [
@@ -886,10 +883,7 @@
                                         "type": "string"
                                       }
                                     ],
-                                    "default": {
-                                      "path": "."
-                                    },
-                                    "description": "One physical signing subject. Omit it where there is only one, such as the PKG itself or the only application in an image; path: . means the same. Component receipts do not carry the outer PKG signature."
+                                    "description": "One physical signing subject. Omit it where there is only one, such as the PKG itself or the only application in an image. Component receipts do not carry the outer PKG signature."
                                   },
                                   "unsigned": {
                                     "anyOf": [
@@ -2290,10 +2284,7 @@
                                     "type": "string"
                                   }
                                 ],
-                                "default": {
-                                  "path": "."
-                                },
-                                "description": "One physical signing subject. Omit it where there is only one, such as the PKG itself or the only application in an image; path: . means the same. Component receipts do not carry the outer PKG signature."
+                                "description": "One physical signing subject. Omit it where there is only one, such as the PKG itself or the only application in an image. Component receipts do not carry the outer PKG signature."
                               },
                               "unsigned": {
                                 "anyOf": [
@@ -2697,10 +2688,7 @@
                                         "type": "string"
                                       }
                                     ],
-                                    "default": {
-                                      "path": "."
-                                    },
-                                    "description": "One physical signing subject. Omit it where there is only one, such as the PKG itself or the only application in an image; path: . means the same. Component receipts do not carry the outer PKG signature."
+                                    "description": "One physical signing subject. Omit it where there is only one, such as the PKG itself or the only application in an image. Component receipts do not carry the outer PKG signature."
                                   },
                                   "unsigned": {
                                     "anyOf": [
@@ -11283,10 +11271,7 @@
                                     "type": "string"
                                   }
                                 ],
-                                "default": {
-                                  "path": "."
-                                },
-                                "description": "One physical signing subject. Omit it where there is only one, such as the PKG itself or the only application in an image; path: . means the same. Component receipts do not carry the outer PKG signature."
+                                "description": "One physical signing subject. Omit it where there is only one, such as the PKG itself or the only application in an image. Component receipts do not carry the outer PKG signature."
                               },
                               "unsigned": {
                                 "anyOf": [
@@ -11624,10 +11609,7 @@
                                         "type": "string"
                                       }
                                     ],
-                                    "default": {
-                                      "path": "."
-                                    },
-                                    "description": "One physical signing subject. Omit it where there is only one, such as the PKG itself or the only application in an image; path: . means the same. Component receipts do not carry the outer PKG signature."
+                                    "description": "One physical signing subject. Omit it where there is only one, such as the PKG itself or the only application in an image. Component receipts do not carry the outer PKG signature."
                                   },
                                   "unsigned": {
                                     "anyOf": [
