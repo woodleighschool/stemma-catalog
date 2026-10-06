@@ -576,16 +576,17 @@ inputs:
       resolver_version: "2"
       declaration: eaf7222edc7ff70db33673432452afab2166ed185eda8b0fa2ef5ab6b670351d
       observation:
-        filename: Microsoft_Excel_16.113.26092012_Installer.pkg
-        url: https://res.public.onecdn.static.microsoft/mro1cdnstorage/C1297A47-86C4-4C1F-97FA-950631F94777/MacAutoupdate/Microsoft_Excel_16.113.26092012_Installer.pkg
-        version: 16.113.26092012
+        filename: Microsoft_Excel_16.113.26092714_Installer.pkg
+        url: https://res.public.onecdn.static.microsoft/mro1cdnstorage/C1297A47-86C4-4C1F-97FA-950631F94777/MacAutoupdate/Microsoft_Excel_16.113.26092714_Installer.pkg
+        version: 16.113.26092714
       content:
-        sha256: cfd6ef609fe96e5de049310f9410c18ee2c4e53825731095a940e9c6bcbcc79f
-        filename: Microsoft_Excel_16.113.26092012_Installer.pkg
+        sha256: b8295928d6a9834e5e56e5142042088b2d3a13faaabc6e069f706ddbb4d9ac65
+        filename: Microsoft_Excel_16.113.26092714_Installer.pkg
         mode: 420
+      input_version: 16.113.26092714
       evidence:
         microsoft:
-          version: 16.113.26092012
+          version: 16.113.26092714
   stemma/v1alpha1/MacSoftware/microsoft-onenote:
     source:
       version: 1
@@ -1107,7 +1108,7 @@ inputs:
       evidence:
         winget.installer:
           apps_and_features_entries:
-            - upgrade_code: "{C1DFDF69-5945-32F2-A35E-EE94C99C7CF4}"
+            - upgrade_code: '{C1DFDF69-5945-32F2-A35E-EE94C99C7CF4}'
           architecture: x64
           elevation_requirement: elevatesSelf
           file_extensions:
@@ -1125,7 +1126,7 @@ inputs:
           package_identifier: Google.Chrome
           package_name: Google Chrome
           package_version: 154.0.8037.98
-          product_code: "{97466CBF-3317-36FC-BC77-CF240B7DA61B}"
+          product_code: '{97466CBF-3317-36FC-BC77-CF240B7DA61B}'
           protocols:
             - http
             - https
@@ -1179,7 +1180,7 @@ inputs:
       evidence:
         winget.installer:
           apps_and_features_entries:
-            - upgrade_code: "{C819B794-A45C-4F27-9860-0C86492A52CC}"
+            - upgrade_code: '{C819B794-A45C-4F27-9860-0C86492A52CC}'
           architecture: x64
           file_extensions:
             - zoommtg
@@ -1190,7 +1191,7 @@ inputs:
           package_identifier: Zoom.Zoom
           package_name: Zoom Workplace
           package_version: 7.2.48556
-          product_code: "{518AB954-56D5-4942-802D-ED4A1DAA61FD}"
+          product_code: '{518AB954-56D5-4942-802D-ED4A1DAA61FD}'
           protocols:
             - zoom
             - zoommtg
