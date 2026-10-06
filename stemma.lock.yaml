@@ -781,15 +781,15 @@ inputs:
       observation:
         asset_id: 583062722
         filename: Plinth-0.1.10.pkg
-        release: 0.1.10
+        release: v0.1.10
         release_id: 394322308
         sha256: 39d388a7e2c72cca76c05025a876da1a12409992f4171550f5dacef579d3d93b
-        url: https://github.com/woodleighschool/plinth/releases/download/0.1.10/Plinth-0.1.10.pkg
+        url: https://github.com/woodleighschool/plinth/releases/download/v0.1.10/Plinth-0.1.10.pkg
       content:
         sha256: 39d388a7e2c72cca76c05025a876da1a12409992f4171550f5dacef579d3d93b
         filename: Plinth-0.1.10.pkg
         mode: 420
-      input_version: 0.1.10
+      input_version: v0.1.10
   stemma/v1alpha1/MacSoftware/python:
     source:
       version: 1
