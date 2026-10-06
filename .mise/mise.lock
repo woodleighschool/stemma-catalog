@@ -49,24 +49,24 @@ url_api = "https://api.github.com/repos/github/gh-aw/releases/assets/584531664"
 provenance = "github-attestations"
 
 [[tools."github:woodleighschool/stemma"]]
-version = "0.10.0"
+version = "0.10.1"
 backend = "github:woodleighschool/stemma"
-specifiers = ["v0.10.0"]
+specifiers = ["v0.10.1"]
 
 [tools."github:woodleighschool/stemma"."platforms.linux-arm64"]
-checksum = "sha256:28530e9196edb27319cfa1940e1cbb91d66ab8188e909105d0822e0b9bccbe31"
-url = "https://github.com/woodleighschool/stemma/releases/download/v0.10.0/stemma_0.10.0_linux_arm64.tar.gz"
-url_api = "https://api.github.com/repos/woodleighschool/stemma/releases/assets/612169810"
+checksum = "sha256:60d791237f1c9139d77503a52477efd9d47c2df089ea23593a756841793799e4"
+url = "https://github.com/woodleighschool/stemma/releases/download/v0.10.1/stemma_0.10.1_linux_arm64.tar.gz"
+url_api = "https://api.github.com/repos/woodleighschool/stemma/releases/assets/614712262"
 
 [tools."github:woodleighschool/stemma"."platforms.linux-x64"]
-checksum = "sha256:e208458887cfa6b4d90300a35d11ba82a39256cc4861f68335723220af9d9664"
-url = "https://github.com/woodleighschool/stemma/releases/download/v0.10.0/stemma_0.10.0_linux_amd64.tar.gz"
-url_api = "https://api.github.com/repos/woodleighschool/stemma/releases/assets/612169804"
+checksum = "sha256:fce3f68b37523b2a9a538d0df9328f5fba398c666d6d2bbe9ab3e63d5b723b4f"
+url = "https://github.com/woodleighschool/stemma/releases/download/v0.10.1/stemma_0.10.1_linux_amd64.tar.gz"
+url_api = "https://api.github.com/repos/woodleighschool/stemma/releases/assets/614712193"
 
 [tools."github:woodleighschool/stemma"."platforms.macos-arm64"]
-checksum = "sha256:a450379902ed23cbabf4655655b9b1b736f0bf474cdca1373301b25cd47079c5"
-url = "https://github.com/woodleighschool/stemma/releases/download/v0.10.0/stemma_0.10.0_darwin_arm64.tar.gz"
-url_api = "https://api.github.com/repos/woodleighschool/stemma/releases/assets/612169864"
+checksum = "sha256:9c0ec5e00b59f14d7c9a226fb6870d24bc91950c97b876c70079acc23a7b0fc5"
+url = "https://github.com/woodleighschool/stemma/releases/download/v0.10.1/stemma_0.10.1_darwin_arm64.tar.gz"
+url_api = "https://api.github.com/repos/woodleighschool/stemma/releases/assets/614712124"
 
 [[tools.lefthook]]
 version = "2.1.16"
