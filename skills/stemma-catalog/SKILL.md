@@ -23,6 +23,9 @@ release channel. Use registry metadata for release checks and prepare artifacts 
 - Stemma reads environment values only where it uses them; never set a placeholder or dummy value to
   get past a missing one. Never read or print credential files.
 - Keep plugin dependency updates separate from unrelated software changes.
+- Decide ordinary choices and say what you chose. Ask the requester before drafting when valid
+  results would install or follow something different and the evidence can't choose between them.
+  A finished change leaves no question for its reviewer.
 - Keep work within the requested scope. `plan` reads destinations; `apply` and `reconcile` publish.
   Publishing, commits and pushes require an explicit request.
 
@@ -76,4 +79,4 @@ End with a line or two for each of:
 - the source, and why it won over the alternatives you checked;
 - the selected release and digest; when prepared, its artifact version, identifiers and signer;
 - what you verified and how, and what you could not verify;
-- open items: gaps, failed tools with their errors, proposed plugins and decisions for a maintainer.
+- what's left: gaps, failed tools with their errors and proposed plugins.

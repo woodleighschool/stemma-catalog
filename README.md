@@ -66,6 +66,13 @@ mise run format
 
 ## Agentic workflows
 
+A `software-request` issue starts the software request workflow; the issue form
+applies that label. The workflow opens a pull request once the request is settled.
+When a choice is the requester's, it asks on the issue and adds `needs-input`, and a
+reply to an issue with both labels starts the next run. When something else stops
+it, it says so on the issue; removing and re-adding `software-request` runs the
+request again. The workflow acts only for people with write access to the repository.
+
 Edit `.github/workflows/*.md`, then run `mise run aw`. The compiler version lives
 in `.mise/config.toml`; `.github/workflows/*.lock.yml` and
 `.github/aw/actions-lock.json` are compiler output. CI recompiles and checks that

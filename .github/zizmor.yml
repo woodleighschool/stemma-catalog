@@ -7,3 +7,7 @@ rules:
     ignore:
       # gh aw compile takes local actions only as ./ paths.
       - software-request.lock.yml
+  obfuscation:
+    ignore:
+      # The empty bot name is an expression on purpose; see the workflow source.
+      - software-request.lock.yml
