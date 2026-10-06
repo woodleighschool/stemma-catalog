@@ -12,9 +12,7 @@ spec:
   application:
     bundle_id: au.edu.vic.woodleigh.WoodSweep
   signatures:
-    - subject:
-        bundle_id: au.edu.vic.woodleigh.WoodSweep
-      signer: apple:developer-id:SMLKBTR495 # Woodleigh School
+    - signer: apple:developer-id:SMLKBTR495 # Woodleigh School
   icon: woodsweep
   destinations:
     woodstar:

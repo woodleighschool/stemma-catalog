@@ -10,9 +10,7 @@ spec:
   application:
     bundle_id: com.cricut.design
   signatures:
-    - subject:
-        path: Cricut Design Space.app
-      signer: apple:developer-id:25627ZFVT7 # Cricut
+    - signer: apple:developer-id:25627ZFVT7 # Cricut
   icon: cricut-design-space
   destinations:
     woodstar:

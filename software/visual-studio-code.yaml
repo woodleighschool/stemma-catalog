@@ -12,9 +12,7 @@ spec:
     bundle_id: com.microsoft.VSCode
     installed_path: /Applications/Visual Studio Code.app
   signatures:
-    - subject:
-        path: Visual Studio Code.app
-      signer: apple:developer-id:UBF8T346G9 # Microsoft Corporation
+    - signer: apple:developer-id:UBF8T346G9 # Microsoft Corporation
   icon: visual-studio-code
   destinations:
     woodstar:

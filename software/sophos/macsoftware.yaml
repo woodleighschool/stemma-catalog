@@ -10,10 +10,6 @@ spec:
     resource:
       kind: BuildMacPkg
       name: sophos
-  signatures:
-    - subject:
-        path: .
-      unsigned: true
   minimum_os: "13.5"
   icon: sophos
   destinations:

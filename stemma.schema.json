@@ -422,7 +422,10 @@
                                     "type": "string"
                                   }
                                 ],
-                                "description": "Exactly one physical signing subject. A scalar artifact uses path: .; component receipts do not carry the outer PKG signature."
+                                "default": {
+                                  "path": "."
+                                },
+                                "description": "One physical signing subject. Omit it where there is only one, such as the PKG itself or the only application in an image; path: . means the same. Component receipts do not carry the outer PKG signature."
                               },
                               "unsigned": {
                                 "anyOf": [
@@ -446,7 +449,6 @@
                               }
                             },
                             "required": [
-                              "subject",
                               "input"
                             ],
                             "type": "object"
@@ -465,7 +467,7 @@
                       "type": "string"
                     }
                   ],
-                  "description": "Signing expectations for every physical signing subject consumed by the resolved payload and scripts layout. Unused siblings are excluded. The built package itself is unsigned."
+                  "description": "Signing expectations for every physical signing subject consumed by the resolved payload and scripts layout. Unused siblings are excluded, and a package another build produced needs none. The built package itself is unsigned."
                 }
               },
               "propertyNames": {
@@ -875,7 +877,10 @@
                                         "type": "string"
                                       }
                                     ],
-                                    "description": "Exactly one physical signing subject. A scalar artifact uses path: .; component receipts do not carry the outer PKG signature."
+                                    "default": {
+                                      "path": "."
+                                    },
+                                    "description": "One physical signing subject. Omit it where there is only one, such as the PKG itself or the only application in an image; path: . means the same. Component receipts do not carry the outer PKG signature."
                                   },
                                   "unsigned": {
                                     "anyOf": [
@@ -914,7 +919,7 @@
                           "type": "string"
                         }
                       ],
-                      "description": "Signing expectations for every physical signing subject consumed by the resolved payload and scripts layout. Unused siblings are excluded. The built package itself is unsigned."
+                      "description": "Signing expectations for every physical signing subject consumed by the resolved payload and scripts layout. Unused siblings are excluded, and a package another build produced needs none. The built package itself is unsigned."
                     }
                   },
                   "propertyNames": {
@@ -1740,92 +1745,6 @@
           "type": "object"
         },
         {
-          "$id": "https://stemma.invalid/editor/audinate/input",
-          "additionalProperties": false,
-          "properties": {
-            "product": {
-              "anyOf": [
-                {
-                  "enum": [
-                    "dante-controller",
-                    "dante-virtual-soundcard"
-                  ],
-                  "type": "string"
-                },
-                {
-                  "pattern": "\\{\\{[\\s\\S]+\\}\\}",
-                  "type": "string"
-                }
-              ],
-              "description": "Dante product. Controller uses the Apple Silicon feed; Virtual Soundcard uses the macOS feed."
-            },
-            "resolver": {
-              "const": "audinate",
-              "description": "Loaded resolver selecting this input."
-            }
-          },
-          "propertyNames": {
-            "not": {
-              "pattern": "\\{\\{"
-            }
-          },
-          "required": [
-            "product",
-            "resolver"
-          ],
-          "type": "object"
-        },
-        {
-          "$id": "https://stemma.invalid/editor/blender/input",
-          "additionalProperties": false,
-          "properties": {
-            "architecture": {
-              "anyOf": [
-                {
-                  "enum": [
-                    "arm64",
-                    "x64"
-                  ],
-                  "type": "string"
-                },
-                {
-                  "pattern": "\\{\\{[\\s\\S]+\\}\\}",
-                  "type": "string"
-                }
-              ],
-              "default": "arm64",
-              "description": "macOS installer architecture. arm64 selects Apple silicon; x64 selects Intel."
-            },
-            "major": {
-              "anyOf": [
-                {
-                  "minimum": 1,
-                  "type": "integer"
-                },
-                {
-                  "pattern": "^\\{\\{[\\s\\S]+\\}\\}$",
-                  "type": "string"
-                }
-              ],
-              "description": "Blender major release."
-            },
-            "resolver": {
-              "const": "blender",
-              "description": "Loaded resolver selecting this input."
-            }
-          },
-          "propertyNames": {
-            "not": {
-              "pattern": "\\{\\{"
-            }
-          },
-          "required": [
-            "major",
-            "resolver"
-          ],
-          "type": "object"
-        },
-        {
           "$id": "https://stemma.invalid/editor/cricut/input",
           "additionalProperties": false,
           "properties": {
@@ -2353,7 +2272,10 @@
                                     "type": "string"
                                   }
                                 ],
-                                "description": "Exactly one physical signing subject. A scalar artifact uses path: .; component receipts do not carry the outer PKG signature."
+                                "default": {
+                                  "path": "."
+                                },
+                                "description": "One physical signing subject. Omit it where there is only one, such as the PKG itself or the only application in an image; path: . means the same. Component receipts do not carry the outer PKG signature."
                               },
                               "unsigned": {
                                 "anyOf": [
@@ -2376,9 +2298,6 @@
                                 "pattern": "\\{\\{"
                               }
                             },
-                            "required": [
-                              "subject"
-                            ],
                             "type": "object"
                           },
                           {
@@ -2395,7 +2314,7 @@
                       "type": "string"
                     }
                   ],
-                  "description": "Explicit signing expectations for the published PKG root or every top-level application in the published disk image. Omit to make no signing assertion. Derive with stemma signature."
+                  "description": "Signing expectations for the published PKG or every top-level application in the published disk image. Omit to make no signing assertion; a package BuildMacPkg built needs none. Derive with stemma signature."
                 },
                 "source": {
                   "$ref": "https://stemma.invalid/catalog.schema.json#/$defs/Input",
@@ -2760,7 +2679,10 @@
                                         "type": "string"
                                       }
                                     ],
-                                    "description": "Exactly one physical signing subject. A scalar artifact uses path: .; component receipts do not carry the outer PKG signature."
+                                    "default": {
+                                      "path": "."
+                                    },
+                                    "description": "One physical signing subject. Omit it where there is only one, such as the PKG itself or the only application in an image; path: . means the same. Component receipts do not carry the outer PKG signature."
                                   },
                                   "unsigned": {
                                     "anyOf": [
@@ -2799,7 +2721,7 @@
                           "type": "string"
                         }
                       ],
-                      "description": "Explicit signing expectations for the published PKG root or every top-level application in the published disk image. Omit to make no signing assertion. Derive with stemma signature."
+                      "description": "Signing expectations for the published PKG or every top-level application in the published disk image. Omit to make no signing assertion; a package BuildMacPkg built needs none. Derive with stemma signature."
                     },
                     "source": {
                       "$ref": "https://stemma.invalid/catalog.schema.json#/$defs/PartialInput",
@@ -10637,84 +10559,6 @@
           "$id": "https://stemma.invalid/editor/partial-input/resource/1",
           "additionalProperties": false,
           "properties": {
-            "product": {
-              "anyOf": [
-                {
-                  "enum": [
-                    "dante-controller",
-                    "dante-virtual-soundcard"
-                  ],
-                  "type": "string"
-                },
-                {
-                  "pattern": "\\{\\{[\\s\\S]+\\}\\}",
-                  "type": "string"
-                }
-              ],
-              "description": "Dante product. Controller uses the Apple Silicon feed; Virtual Soundcard uses the macOS feed."
-            },
-            "resolver": {
-              "const": "audinate",
-              "description": "Loaded resolver selecting this input."
-            }
-          },
-          "propertyNames": {
-            "not": {
-              "pattern": "\\{\\{"
-            }
-          },
-          "type": "object"
-        },
-        {
-          "$id": "https://stemma.invalid/editor/partial-input/resource/2",
-          "additionalProperties": false,
-          "properties": {
-            "architecture": {
-              "anyOf": [
-                {
-                  "enum": [
-                    "arm64",
-                    "x64"
-                  ],
-                  "type": "string"
-                },
-                {
-                  "pattern": "\\{\\{[\\s\\S]+\\}\\}",
-                  "type": "string"
-                }
-              ],
-              "default": "arm64",
-              "description": "macOS installer architecture. arm64 selects Apple silicon; x64 selects Intel."
-            },
-            "major": {
-              "anyOf": [
-                {
-                  "minimum": 1,
-                  "type": "integer"
-                },
-                {
-                  "pattern": "^\\{\\{[\\s\\S]+\\}\\}$",
-                  "type": "string"
-                }
-              ],
-              "description": "Blender major release."
-            },
-            "resolver": {
-              "const": "blender",
-              "description": "Loaded resolver selecting this input."
-            }
-          },
-          "propertyNames": {
-            "not": {
-              "pattern": "\\{\\{"
-            }
-          },
-          "type": "object"
-        },
-        {
-          "$id": "https://stemma.invalid/editor/partial-input/resource/3",
-          "additionalProperties": false,
-          "properties": {
             "resolver": {
               "const": "cricut",
               "description": "Loaded resolver selecting this input."
@@ -10742,7 +10586,7 @@
           "type": "object"
         },
         {
-          "$id": "https://stemma.invalid/editor/partial-input/resource/4",
+          "$id": "https://stemma.invalid/editor/partial-input/resource/2",
           "additionalProperties": false,
           "properties": {
             "cti": {
@@ -10825,7 +10669,7 @@
           "type": "object"
         },
         {
-          "$id": "https://stemma.invalid/editor/partial-input/resource/5",
+          "$id": "https://stemma.invalid/editor/partial-input/resource/3",
           "additionalProperties": false,
           "properties": {
             "channel": {
@@ -10902,7 +10746,7 @@
           "type": "object"
         },
         {
-          "$id": "https://stemma.invalid/editor/partial-input/resource/6",
+          "$id": "https://stemma.invalid/editor/partial-input/resource/4",
           "additionalProperties": false,
           "properties": {
             "branch": {
@@ -11412,7 +11256,10 @@
                                     "type": "string"
                                   }
                                 ],
-                                "description": "Exactly one physical signing subject. A scalar artifact uses path: .; component receipts do not carry the outer PKG signature."
+                                "default": {
+                                  "path": "."
+                                },
+                                "description": "One physical signing subject. Omit it where there is only one, such as the PKG itself or the only application in an image; path: . means the same. Component receipts do not carry the outer PKG signature."
                               },
                               "unsigned": {
                                 "anyOf": [
@@ -11435,9 +11282,6 @@
                                 "pattern": "\\{\\{"
                               }
                             },
-                            "required": [
-                              "subject"
-                            ],
                             "type": "object"
                           },
                           {
@@ -11454,7 +11298,7 @@
                       "type": "string"
                     }
                   ],
-                  "description": "Signing expectations for the selected setup entry point. Use path: . for a scalar installer or its exact path in the prepared setup tree. Omit to make no signing assertion."
+                  "description": "Signing expectation for the selected setup entry point, the only signing subject, so its entry needs no subject. Omit to make no signing assertion."
                 },
                 "source": {
                   "$ref": "https://stemma.invalid/catalog.schema.json#/$defs/Input",
@@ -11753,7 +11597,10 @@
                                         "type": "string"
                                       }
                                     ],
-                                    "description": "Exactly one physical signing subject. A scalar artifact uses path: .; component receipts do not carry the outer PKG signature."
+                                    "default": {
+                                      "path": "."
+                                    },
+                                    "description": "One physical signing subject. Omit it where there is only one, such as the PKG itself or the only application in an image; path: . means the same. Component receipts do not carry the outer PKG signature."
                                   },
                                   "unsigned": {
                                     "anyOf": [
@@ -11792,7 +11639,7 @@
                           "type": "string"
                         }
                       ],
-                      "description": "Signing expectations for the selected setup entry point. Use path: . for a scalar installer or its exact path in the prepared setup tree. Omit to make no signing assertion."
+                      "description": "Signing expectation for the selected setup entry point, the only signing subject, so its entry needs no subject. Omit to make no signing assertion."
                     },
                     "source": {
                       "$ref": "https://stemma.invalid/catalog.schema.json#/$defs/PartialInput",

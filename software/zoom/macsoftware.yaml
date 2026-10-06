@@ -12,9 +12,7 @@ spec:
     bundle_id: us.zoom.xos
     installed_path: /Applications/zoom.us.app
   signatures:
-    - subject:
-        path: .
-      signer: apple:developer-id:BJ4HAAB9B3 # Zoom Video Communications, Inc.
+    - signer: apple:developer-id:BJ4HAAB9B3 # Zoom Video Communications, Inc.
   icon: zoom
   destinations:
     woodstar:

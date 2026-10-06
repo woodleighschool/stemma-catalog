@@ -13,9 +13,7 @@ spec:
     version_key: CFBundleVersion
     installed_path: "/Library/Frameworks/Python.framework/Versions/3.13/Resources/Python.app"
   signatures:
-    - subject:
-        path: .
-      signer: apple:developer-id:BMM5U3QVKW # Python Software Foundation
+    - signer: apple:developer-id:BMM5U3QVKW # Python Software Foundation
   minimum_os: "11.0"
   icon: python
   destinations:

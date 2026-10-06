@@ -16,10 +16,10 @@ spec:
   signatures:
     - subject:
         path: SketchUp 2026/LayOut.app
-      signer: apple:developer-id:J8PVMCY7KL # Trimble Inc.
+      signer: &trimble apple:developer-id:J8PVMCY7KL # Trimble Inc.
     - subject:
         path: SketchUp 2026/SketchUp.app
-      signer: apple:developer-id:J8PVMCY7KL # Trimble Inc.
+      signer: *trimble
   icon: sketchup-2026
   destinations:
     woodstar:

@@ -11,9 +11,7 @@ spec:
   application:
     bundle_id: com.yoyogames.gms2
   signatures:
-    - subject:
-        path: .
-      signer: apple:developer-id:C9E7J7HL3D # YoYo Games Ltd
+    - signer: apple:developer-id:C9E7J7HL3D # YoYo Games Ltd
   icon: gamemaker
   destinations:
     woodstar:

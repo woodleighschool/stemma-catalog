@@ -15,9 +15,7 @@ spec:
     bundle_id: org.safeexambrowser.SafeExamBrowser
     installed_path: /Applications/Safe Exam Browser.app
   signatures:
-    - subject:
-        bundle_id: org.safeexambrowser.SafeExamBrowser
-      signer: apple:developer-id:6F38DNSC7X # Daniel Schneider
+    - signer: apple:developer-id:6F38DNSC7X # Daniel Schneider
   minimum_os: "12.0"
   icon: safe-exam-browser
   destinations:

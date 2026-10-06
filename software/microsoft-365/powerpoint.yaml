@@ -12,9 +12,7 @@ spec:
     bundle_id: com.microsoft.Powerpoint
     installed_path: /Applications/Microsoft PowerPoint.app
   signatures:
-    - subject:
-        path: .
-      signer: apple:developer-id:UBF8T346G9 # Microsoft Corporation
+    - signer: apple:developer-id:UBF8T346G9 # Microsoft Corporation
   icon: microsoft-powerpoint
   destinations:
     woodstar:

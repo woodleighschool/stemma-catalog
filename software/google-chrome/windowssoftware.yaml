@@ -12,9 +12,7 @@ spec:
     scope: machine
     installer_type: wix
   signatures:
-    - subject:
-        path: .
-      signer: authenticode:4a6519d3c145fc3838df20b3009980fe59b9bc68ee5871e59aaa0097a523e333 # Google LLC
+    - signer: authenticode:4a6519d3c145fc3838df20b3009980fe59b9bc68ee5871e59aaa0097a523e333 # Google LLC
   icon: google-chrome
   destinations:
     intune:

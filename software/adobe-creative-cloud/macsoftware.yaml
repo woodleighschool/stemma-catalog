@@ -9,10 +9,6 @@ spec:
     resource:
       kind: BuildMacPkg
       name: adobe-creative-cloud
-  signatures:
-    - subject:
-        path: .
-      unsigned: true
   icon: adobe-creative-cloud
   destinations:
     woodstar:

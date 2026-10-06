@@ -11,9 +11,7 @@ spec:
   application:
     path: EasyFind.app
   signatures:
-    - subject:
-        path: EasyFind.app
-      signer: apple:developer-id:679S2QUWR8 # DEVONtechnologies, LLC
+    - signer: apple:developer-id:679S2QUWR8 # DEVONtechnologies, LLC
   icon: easyfind
   destinations:
     woodstar:

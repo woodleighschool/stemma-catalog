@@ -13,9 +13,7 @@ spec:
     path: DanteController.pkg/Payload/Dante Controller.app
     installed_path: /Applications/Dante Controller.app
   signatures:
-    - subject:
-        path: .
-      signer: apple:developer-id:P4WCR6Y822 # Audinate Pty Ltd
+    - signer: apple:developer-id:P4WCR6Y822 # Audinate Pty Ltd
   icon: dante-controller
   destinations:
     woodstar:

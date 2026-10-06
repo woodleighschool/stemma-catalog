@@ -8,9 +8,7 @@ spec:
   source:
     url: https://api.vivi.io/windows-msi64
   signatures:
-    - subject:
-        path: .
-      signer: authenticode:e117afa2fa737e283c9613a90de10923364c5f6dfe8323711bb3fd6e920c9794 # Vivi International Pty Ltd
+    - signer: authenticode:e117afa2fa737e283c9613a90de10923364c5f6dfe8323711bb3fd6e920c9794 # Vivi International Pty Ltd
   icon: vivi
   destinations:
     intune:

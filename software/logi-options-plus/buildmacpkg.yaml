@@ -9,8 +9,6 @@ spec:
       url: https://download01.logi.com/web/ftp/pub/techsupport/optionsplus/logioptionsplus_installer_offline.zip
   signatures:
     - input: vendor
-      subject:
-        path: logioptionsplus_installer_offline.app
       signer: apple:developer-id:QED4VVPZWA
   scripts:
     postinstall: |-

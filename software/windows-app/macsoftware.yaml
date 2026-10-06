@@ -12,9 +12,7 @@ spec:
     bundle_id: com.microsoft.rdc.macos
     installed_path: /Applications/Windows App.app
   signatures:
-    - subject:
-        path: .
-      signer: apple:developer-id:UBF8T346G9 # Microsoft Corporation
+    - signer: apple:developer-id:UBF8T346G9 # Microsoft Corporation
   icon: windows-app
   destinations:
     woodstar:

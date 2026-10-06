@@ -13,9 +13,7 @@ spec:
     path: TI-NspireCXNavPrm.pkg/Payload/Applications/TI-Nspire CX Premium Teacher Software.app
     installed_path: "/Applications/TI-Nspire CX Premium Teacher Software.app"
   signatures:
-    - subject:
-        path: .
-      signer: apple:developer-id:TLEVLB8B5D # Texas Instruments
+    - signer: apple:developer-id:TLEVLB8B5D # Texas Instruments
   icon: ti-nspire-teacher
   destinations:
     woodstar:

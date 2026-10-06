@@ -10,8 +10,6 @@ spec:
       cask: adobe-creative-cloud
   signatures:
     - input: vendor
-      subject:
-        path: Install.app
       signer: apple:developer-id:JQ525L2MZD # Adobe Inc.
   scripts:
     postinstall: |-

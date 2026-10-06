@@ -13,9 +13,7 @@ spec:
     path: DVS_User_Interface.pkg/Payload/Dante Virtual Soundcard.app
     installed_path: /Applications/Dante Virtual Soundcard.app
   signatures:
-    - subject:
-        path: .
-      signer: apple:developer-id:P4WCR6Y822 # Audinate Pty Ltd
+    - signer: apple:developer-id:P4WCR6Y822 # Audinate Pty Ltd
   icon: dante-virtual-soundcard
   destinations:
     woodstar:

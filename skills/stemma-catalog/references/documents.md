@@ -43,9 +43,13 @@
   repository list; without one, choose a broad category for the item's main purpose. Don't add a near-duplicate such as
   `Browser` beside `Browsers`, adopt a vendor's narrower term or keep a category the list no longer
   has; a new category is a repository decision.
-- Declare explicit signing expectations wherever the kind supports them. `stemma signature` reports
-  each subject with its signer or `unsigned: true`. Review intentionally unsigned sources before
-  declaring them; report invalid or unsupported signatures rather than omitting the assertion.
+- Declare the signing expectations `stemma signature` reports wherever the kind supports them: each
+  subject with its signer or `unsigned: true`. An entry without `subject` covers the only signing
+  subject of the published installer or of a build input; name subjects only where there are
+  several, such as a disk image holding two applications. Software that publishes a package build
+  declares none: the builder never signs, and the command reports nothing for its package. Review
+  intentionally unsigned vendor sources before declaring them; report invalid or unsupported
+  signatures rather than omitting the assertion.
 - Where the kind supports an icon, declare its name (`icon: <name>` uses `icons/<name>.png`) and
   create it from locked software with `stemma icon Kind/name`, unless suitable artwork exists.
   For a wrapper, select its vendor artwork with `stemma icon MacSoftware/name --input vendor --path Installer.app`
@@ -67,7 +71,8 @@ Preparation must produce an artifact that installs the requested product. An exe
 app needs its documented invocation. Reuse an existing wrapper composition: `BuildMacPkg` carries
 it in `scripts` and invokes it from `postinstall`; `MacSoftware` publishes the resulting package.
 Select archive contents with `$input` and `path: .`, and locate script resources beside `$0`.
-Verify the consumed vendor input and declare the built package's expected unsigned state.
+Verify the consumed vendor input in the build's `signatures`; the software publishing the built
+package needs none.
 
 Stemma inspects static contents and never executes installer hooks. For script-driven installs,
 establish product detection, minimum OS and removal from vendor documentation and corroborating

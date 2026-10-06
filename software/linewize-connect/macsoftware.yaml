@@ -9,9 +9,7 @@ spec:
   source:
     path: Assets/auth-agent.pkg
   signatures:
-    - subject:
-        path: .
-      signer: apple:developer-id:5S77G864UH # B Communications Pty Ltd
+    - signer: apple:developer-id:5S77G864UH # B Communications Pty Ltd
   destinations:
     woodstar:
       pkginfo:
@@ -50,9 +48,7 @@ spec:
   source:
     url: https://qoria-mza-installers.linewize.net/Connect%20Installer.pkg
   signatures:
-    - subject:
-        path: .
-      signer: apple:developer-id:5S77G864UH # FAMILY ZONE CYBER SAFETY LIMITED
+    - signer: apple:developer-id:5S77G864UH # FAMILY ZONE CYBER SAFETY LIMITED
   destinations:
     woodstar:
       pkginfo:

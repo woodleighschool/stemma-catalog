@@ -14,9 +14,7 @@ spec:
     version_key: CFBundleVersion
     installed_path: "/Applications/Santa.app"
   signatures:
-    - subject:
-        path: .
-      signer: apple:developer-id:ZMCG7MLDV9 # North Pole Security, Inc.
+    - signer: apple:developer-id:ZMCG7MLDV9 # North Pole Security, Inc.
   icon: santa
   destinations:
     woodstar:

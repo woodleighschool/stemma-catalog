@@ -11,10 +11,6 @@ spec:
       kind: BuildMacPkg
       name: woodleigh-fonts
       output: installer
-  signatures:
-    - subject:
-        path: .
-      unsigned: true
   destinations:
     woodstar:
       pkginfo:

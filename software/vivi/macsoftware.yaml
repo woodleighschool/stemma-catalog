@@ -10,9 +10,7 @@ spec:
   application:
     installed_path: /Applications/Vivi.app
   signatures:
-    - subject:
-        path: .
-      signer: apple:developer-id:3NRCUJ8TJC # VIVI AUSTRALIA PTY LTD
+    - signer: apple:developer-id:3NRCUJ8TJC # VIVI AUSTRALIA PTY LTD
   icon: vivi
   destinations:
     woodstar:

@@ -14,9 +14,7 @@ spec:
     version_key: CFBundleVersion
     installed_path: /Applications/Wacom Tablet.localized/Wacom Center.app
   signatures:
-    - subject:
-        path: .
-      signer: apple:developer-id:EG27766DY7 # Wacom Technology Corp.
+    - signer: apple:developer-id:EG27766DY7 # Wacom Technology Corp.
   icon: wacom-tablet-driver
   destinations:
     woodstar:

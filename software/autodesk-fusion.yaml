@@ -11,9 +11,7 @@ spec:
     bundle_id: com.autodesk.edu.fusion360
     installed_path: /Applications/Autodesk Fusion.app
   signatures:
-    - subject:
-        path: .
-      signer: apple:developer-id:XXKJ396S2Y # Autodesk
+    - signer: apple:developer-id:XXKJ396S2Y # Autodesk
   icon: autodesk-fusion
   destinations:
     woodstar:

@@ -12,9 +12,7 @@ spec:
     bundle_id: com.googlecode.munki.ManagedSoftwareCenter
     installed_path: "/Applications/Managed Software Center.app"
   signatures:
-    - subject:
-        path: .
-      signer: apple:developer-id:T4SK8ZXCXG # Mac Admins Open Source
+    - signer: apple:developer-id:T4SK8ZXCXG # Mac Admins Open Source
   minimum_os: "11.0"
   icon: munki
   destinations:

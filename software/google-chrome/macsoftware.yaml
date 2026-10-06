@@ -10,9 +10,7 @@ spec:
   application:
     bundle_id: com.google.Chrome
   signatures:
-    - subject:
-        path: .
-      signer: apple:developer-id:EQHXZ8M8AV # Google LLC
+    - signer: apple:developer-id:EQHXZ8M8AV # Google LLC
   icon: google-chrome
   destinations:
     woodstar:

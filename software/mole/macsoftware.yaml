@@ -9,10 +9,6 @@ spec:
     resource:
       kind: BuildMacPkg
       name: mole
-  signatures:
-    - subject:
-        path: .
-      unsigned: true
   destinations:
     woodstar:
       pkginfo:

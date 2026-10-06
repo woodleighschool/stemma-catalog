@@ -12,9 +12,7 @@ spec:
     bundle_id: au.edu.vic.woodleigh.Plinth
     installed_path: "/Applications/Plinth.app"
   signatures:
-    - subject:
-        path: .
-      signer: apple:developer-id:SMLKBTR495 # Woodleigh School
+    - signer: apple:developer-id:SMLKBTR495 # Woodleigh School
   minimum_os: "26.0"
   icon: plinth
   destinations:
