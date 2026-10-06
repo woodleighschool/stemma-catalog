@@ -11,6 +11,17 @@ related product editions, application configuration, suites and package inputs.
 `microsoft-365/`, `windows-app/` and `printers/` group related items; Mail2Outlook
 and Epson drivers remain standalone. Resource identities do not depend on directory names.
 
+Runs without a profile skip the `apple-apps` profile: Apple's apps captured from
+`/Applications` on the packaging Mac. Run it there:
+
+```sh
+stemma update
+stemma apply
+
+stemma update --profile apple-apps
+stemma apply --profile apple-apps
+```
+
 ## 🧩 Plugins
 
 `plugins/` contains separate plugin projects with their own Mise tools and tasks.

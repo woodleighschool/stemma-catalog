@@ -34,8 +34,9 @@ derives signing expectations for a draft. Neither refreshes plugin locks.
   digest-pinned images select their code directly.
 - MCP `prepare` resolves current sources without writing the input lock. Its reported changes are
   what an update at that moment would record; a later update can observe a newer release.
-- CLI `prepare --changed-since REV` and MCP `check` check the whole lock and prepare what the change
-  affects. MCP `check` also validates every document. Each revision uses its own plugin
+- CLI `prepare --changed-since REV` and MCP `check` check the lock and prepare what the change
+  affects among the resources a run without selectors takes. MCP `check` also validates every
+  document. Each revision uses its own plugin
   implementations. Changes to resource or
   input resolver operation identities affect preparation and downstream consumers. Destination
   metadata and destination operation identities do not select resources for preparation.
@@ -77,8 +78,22 @@ metadata can also use expressions:
   `dependencies`, naming other resources. It orders publication within that destination and
   prepares nothing.
 
-## Suspend
+## Profiles and suspend
 
-`suspend: true` keeps a resource declared and validated but out of every run that doesn't name it.
-Its lock entries stay as they are. Use it for software whose files the repository can't carry, or
-that is paused.
+A run without selectors takes the resources that declare no profile and aren't suspended.
+
+- `profiles` names an opt-in workload: resources that run by themselves, but on one prepared machine
+  or on their own schedule. `--profile NAME` runs that workload instead of the rest; repeat it to add
+  profiles. `--profile` and selectors can't be combined.
+- `suspend: true` keeps a resource out of every run that doesn't name it, including runs of its
+  profiles. Use it for software whose files or download link the repository can't carry, or that is
+  paused.
+
+A selector runs either kind by name. A build that a selected resource references is prepared
+whatever profile it declares. Both keep their lock entries between runs, are still validated, and
+are skipped by `reconcile`. `prepare --changed-since` and MCP `check` leave both out; CLI
+`--profile NAME` compares that profile instead.
+
+Choose by how the resource is run, not by its source or resolver. A stable URL without release
+metadata still updates by itself and needs neither; a local path needs a profile only when ordinary
+runners don't have what it points at.

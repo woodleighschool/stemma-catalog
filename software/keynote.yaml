@@ -3,6 +3,8 @@ apiVersion: stemma/v1alpha1
 kind: MacSoftware
 metadata:
   name: keynote
+profiles:
+  - apple-apps
 spec:
   extends: mac-software
   source:

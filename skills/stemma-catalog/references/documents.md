@@ -64,6 +64,10 @@
 - Supply secrets through environment expressions such as `"{{ env.VENDOR_TOKEN }}"`. Keep licensed
   installers, private files and credentials out of Git; a resource that needs files the repository
   can't carry sets `suspend: true`.
+- Give a resource `profiles` only when it belongs to a workload the repository already runs
+  separately, such as software captured on one prepared machine, and use that profile's existing
+  name. A new profile is a repository decision. See
+  [behaviour.md](behaviour.md#profiles-and-suspend).
 
 ## Installation contract
 
@@ -120,7 +124,7 @@ that would express it. See [plugin-gaps.md](plugin-gaps.md).
 Fields go in the order Stemma uses them, so a document reads from what is fetched to where it is
 published.
 
-A resource document: `apiVersion`, `kind`, `metadata`, `suspend`, `spec`.
+A resource document: `apiVersion`, `kind`, `metadata`, `profiles`, `suspend`, `spec`.
 
 A resource `spec`:
 

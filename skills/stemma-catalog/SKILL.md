@@ -59,7 +59,9 @@ release channel. Use registry metadata for release checks and prepare artifacts 
 7. **Check the change.** Run any repository formatter on changed files and `stemma validate`.
    With an existing comparison revision, run `stemma prepare --changed-since REV` or MCP `check`
    with `since: REV`; use the actual merge base or target branch, not an assumed `origin/main`.
-   For a new catalog without that history, prepare the changed resources directly.
+   For a new catalog without that history, prepare the changed resources directly. That comparison
+   leaves out profiled and suspended resources: prepare a changed one by name where it can run, or
+   report it as unverified.
 8. **Raise gaps.** When no source expresses the vendor cleanly, or Stemma can't state an ordinary
    policy, follow [references/plugin-gaps.md](references/plugin-gaps.md) instead of working around
    it. When Stemma fails on a vendor file that looks valid, put the tool, its arguments and the error
