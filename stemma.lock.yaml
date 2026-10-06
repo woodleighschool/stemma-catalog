@@ -108,26 +108,26 @@ inputs:
       declaration: b4ad1e2c66ad9e2814a370e6e81423e33052b13b886d3c98d640c8aa9c2c61aa
       observation:
         bottle: true
-        filename: mole-1.56.1.arm64_golden_gate.bottle.tar.gz
-        sha256: 6cbcb5674eb0490d5024213032a8eb9a11bb5ae583270dfa4e5742cfe2dbf4c7
-        url: https://ghcr.io/v2/homebrew/core/mole/blobs/sha256:6cbcb5674eb0490d5024213032a8eb9a11bb5ae583270dfa4e5742cfe2dbf4c7
+        filename: mole-1.57.0.arm64_golden_gate.bottle.tar.gz
+        sha256: 4c046a3d322e87321144a0eb30b7b85a13acf170c469eff598f9f34d13e0c465
+        url: https://ghcr.io/v2/homebrew/core/mole/blobs/sha256:4c046a3d322e87321144a0eb30b7b85a13acf170c469eff598f9f34d13e0c465
       content:
-        sha256: 6cbcb5674eb0490d5024213032a8eb9a11bb5ae583270dfa4e5742cfe2dbf4c7
-        filename: mole-1.56.1.arm64_golden_gate.bottle.tar.gz
+        sha256: 4c046a3d322e87321144a0eb30b7b85a13acf170c469eff598f9f34d13e0c465
+        filename: mole-1.57.0.arm64_golden_gate.bottle.tar.gz
         mode: 420
-      input_version: 1.56.1.0.0
-      content_root: mole/1.56.1
+      input_version: 1.57.0.0.0
+      content_root: mole/1.57.0
       evidence:
         homebrew.formula:
           bottle_tag: arm64_golden_gate
           cellar: any_skip_relocation
           macos: "27"
           name: mole
-          payload_root: mole/1.56.1
+          payload_root: mole/1.57.0
           rebuild: 0
           revision: 0
           target_architecture: arm64
-          version: 1.56.1
+          version: 1.57.0
   stemma/v1alpha1/BuildMacPkg/sophos:
     vendor:
       version: 1
@@ -147,7 +147,7 @@ inputs:
       declaration: 14c6add12f958da5086f434b0d8ee6c148611f20de34d8676a061541dc72573d
       observation: {}
       content:
-        sha256: 48e383a0b754e133d44dc900130c09266435f0f2fbf6aa2f40f7e0946ed9def8
+        sha256: 902b8021c308185f30e92a86a31132a59a4d71681cceded6b52d90ec7ab9b353
         filename: 1Password.pkg
         mode: 420
   stemma/v1alpha1/MacSoftware/activinspire:
@@ -173,11 +173,13 @@ inputs:
         filename: assetcache-exporter-1.3.0.pkg
         release: 1.3.0
         release_id: 386084636
+        sha256: 7213002dd1900bcf0a0a8294e291e2a8cbbff62143bc3f61e21cf5bc68239a5d
         url: https://github.com/woodleighschool/assetcache-exporter/releases/download/1.3.0/assetcache-exporter-1.3.0.pkg
       content:
         sha256: 7213002dd1900bcf0a0a8294e291e2a8cbbff62143bc3f61e21cf5bc68239a5d
         filename: assetcache-exporter-1.3.0.pkg
         mode: 420
+      input_version: 1.3.0
   stemma/v1alpha1/MacSoftware/audacity-3:
     source:
       version: 1
@@ -226,17 +228,19 @@ inputs:
       version: 1
       resolver: github
       resolver_version: "2"
-      declaration: f46b78aaf751abf06a4ff48aadacdcf69026667a0d100152bbdbb62c5144fb64
+      declaration: deaab5499cc3886799f441032d82b183ef0be6afff93bd30b0cd1a17140eacc8
       observation:
-        asset_id: 581275014
-        filename: Bambu_Studio_mac_v02.08.04.57-20260922164607.dmg
-        release: v02.08.04.57
-        release_id: 393562106
-        url: https://github.com/bambulab/BambuStudio/releases/download/v02.08.04.57/Bambu_Studio_mac_v02.08.04.57-20260922164607.dmg
+        asset_id: 523213191
+        filename: Bambu_Studio_mac-v02.08.02.61-20260820225108.dmg
+        release: v02.08.02.61
+        release_id: 374152182
+        sha256: cf648a95858fb630e1353c4987038df60d6caab693f18411fb95fb809f2d6926
+        url: https://github.com/bambulab/BambuStudio/releases/download/v02.08.02.61/Bambu_Studio_mac-v02.08.02.61-20260820225108.dmg
       content:
-        sha256: 6d0099f60bb4449ee9066160cb65a8a1f639650a3f48cddf13566fe0c520ac66
-        filename: Bambu_Studio_mac_v02.08.04.57-20260922164607.dmg
+        sha256: cf648a95858fb630e1353c4987038df60d6caab693f18411fb95fb809f2d6926
+        filename: Bambu_Studio_mac-v02.08.02.61-20260820225108.dmg
         mode: 420
+      input_version: v02.08.02.61
   stemma/v1alpha1/MacSoftware/blender:
     source:
       version: 1
@@ -333,13 +337,13 @@ inputs:
       declaration: e831e5c87c365f437b0f2ac44ee77d7be4e6c0770283a57d0a0f3ec3a6ff1fbb
       observation:
         filename: Docker.dmg
-        sha256: bf062f45334c711bd2fc2ed47a5588d050fbb950be3ae3aa4ac9826f04ad4dba
-        url: https://desktop.docker.com/mac/main/arm64/240920/Docker.dmg
+        sha256: 02147e4d559ff41e1d9d7be63a554101340237064c7b6df234548aa111ebf04c
+        url: https://desktop.docker.com/mac/main/arm64/241994/Docker.dmg
       content:
-        sha256: bf062f45334c711bd2fc2ed47a5588d050fbb950be3ae3aa4ac9826f04ad4dba
+        sha256: 02147e4d559ff41e1d9d7be63a554101340237064c7b6df234548aa111ebf04c
         filename: Docker.dmg
         mode: 420
-      input_version: 4.93.0,240920
+      input_version: 4.94.0,241994
       evidence:
         homebrew.cask:
           artifacts:
@@ -373,7 +377,7 @@ inputs:
           macos: "27"
           name: docker-desktop
           target_architecture: arm64
-          version: 4.93.0,240920
+          version: 4.94.0,241994
   stemma/v1alpha1/MacSoftware/easyfind:
     source:
       version: 1
@@ -413,6 +417,7 @@ inputs:
         sha256: 0882e77c517e6941233d464a746b51200645f5ec9d58d417cfc7426241ce30cb
         filename: AMC6000_AMC5000_AMC4000_1348AW_21.dmg
         mode: 420
+      input_version: "13.48"
       evidence:
         epson:
           version: "13.48"
@@ -448,7 +453,7 @@ inputs:
       declaration: b632f558a97a1f6eb95c6224e717645e0b206336ae6ebd7892af254e47157afc
       observation: {}
       content:
-        sha256: a7ab1a25bcb9fac56fb5a9a2f3532d9585f290e381bb6ba74c108a17ee37da7f
+        sha256: 3f7d51be783c084174d8e3fa6cd4198484e2177ed570a7d1ae68c3da4ef89cac
         filename: GarageBand.app
         tree: true
         mode: 493
@@ -511,7 +516,7 @@ inputs:
       declaration: bcaf607a6382aaa2572aa49983e94b83640e7b0bdee4f4aabc0bde83ecb812aa
       observation: {}
       content:
-        sha256: c1063ab9fe565377eb970a009d842212c47253f9cc0158b649c1afe0c9f3a38f
+        sha256: a2b840e6196f964a8d9bee14c6666962893d57802c7409daa2470d71a688e1a8
         filename: iMovie.app
         tree: true
         mode: 493
@@ -523,7 +528,7 @@ inputs:
       declaration: 8e6cf5dadd899aa6f81549a988428b298d88d646b2dbf191a5a14c227b40a02a
       observation: {}
       content:
-        sha256: 5a37f8d6d2202f45e8865c415ae4f368450799f0761d050a8c6f5f080a9a4302
+        sha256: cb2fce0074815937c6717fa295184db00b1e709cb39402307009facf69255f3f
         filename: Keynote Creator Studio.app
         tree: true
         mode: 493
@@ -534,12 +539,12 @@ inputs:
       resolver_version: "2"
       declaration: 3427a8c8405dd7b54b536bd3b91d66a0f110396fe26ac6ed7e9e3bc9b1a6b334
       observation:
-        filename: Microsoft_365_and_Office_16.113.26092012_BusinessPro_Installer.pkg
-        url: https://res.public.onecdn.static.microsoft/mro1cdnstorage/C1297A47-86C4-4C1F-97FA-950631F94777/MacAutoupdate/Microsoft_365_and_Office_16.113.26092012_BusinessPro_Installer.pkg
+        filename: Microsoft_365_and_Office_16.113.26092714_BusinessPro_Installer.pkg
+        url: https://res.public.onecdn.static.microsoft/mro1cdnstorage/C1297A47-86C4-4C1F-97FA-950631F94777/MacAutoupdate/Microsoft_365_and_Office_16.113.26092714_BusinessPro_Installer.pkg
         version: ""
       content:
-        sha256: af7208b15f91a3ed11129643b0b0c3de54ec5adbb8c9aadfff0948a76d3c1819
-        filename: Microsoft_365_and_Office_16.113.26092012_BusinessPro_Installer.pkg
+        sha256: 6d80aaa0d67531c5e0d5365a74d6a7124f9f8befc417b5c45a116c9f311085f8
+        filename: Microsoft_365_and_Office_16.113.26092714_BusinessPro_Installer.pkg
         mode: 420
   stemma/v1alpha1/MacSoftware/microsoft-defender:
     source:
@@ -562,12 +567,12 @@ inputs:
       resolver_version: "2"
       declaration: d956aada387ef75bf2fb0fe0bd97c798c490d054a44548d654141352d33ceb97
       observation:
-        filename: MicrosoftEdge-154.0.4258.37.pkg
-        url: https://msedge.sf.dl.delivery.mp.microsoft.com/filestreamingservice/files/548d966b-8596-4ddf-83fa-cc29fc355933/MicrosoftEdge-154.0.4258.37.pkg
+        filename: MicrosoftEdge-154.0.4258.53.pkg
+        url: https://msedge.sf.dl.delivery.mp.microsoft.com/filestreamingservice/files/506a80d3-14f0-41f3-8e7a-878d8d823be3/MicrosoftEdge-154.0.4258.53.pkg
         version: ""
       content:
-        sha256: d104a5c2f288b3f8d8db964bba26e8545f645ea88b0d64ece1215b63a742a9a5
-        filename: MicrosoftEdge-154.0.4258.37.pkg
+        sha256: dd720250d60a294cc2c0db9ccf05af732cce90d74a088d3e4293b280ef25cc71
+        filename: MicrosoftEdge-154.0.4258.53.pkg
         mode: 420
   stemma/v1alpha1/MacSoftware/microsoft-excel:
     source:
@@ -576,16 +581,17 @@ inputs:
       resolver_version: "2"
       declaration: eaf7222edc7ff70db33673432452afab2166ed185eda8b0fa2ef5ab6b670351d
       observation:
-        filename: Microsoft_Excel_16.113.26092012_Installer.pkg
-        url: https://res.public.onecdn.static.microsoft/mro1cdnstorage/C1297A47-86C4-4C1F-97FA-950631F94777/MacAutoupdate/Microsoft_Excel_16.113.26092012_Installer.pkg
-        version: 16.113.26092012
+        filename: Microsoft_Excel_16.113.26092714_Installer.pkg
+        url: https://res.public.onecdn.static.microsoft/mro1cdnstorage/C1297A47-86C4-4C1F-97FA-950631F94777/MacAutoupdate/Microsoft_Excel_16.113.26092714_Installer.pkg
+        version: 16.113.26092714
       content:
-        sha256: cfd6ef609fe96e5de049310f9410c18ee2c4e53825731095a940e9c6bcbcc79f
-        filename: Microsoft_Excel_16.113.26092012_Installer.pkg
+        sha256: b8295928d6a9834e5e56e5142042088b2d3a13faaabc6e069f706ddbb4d9ac65
+        filename: Microsoft_Excel_16.113.26092714_Installer.pkg
         mode: 420
+      input_version: 16.113.26092714
       evidence:
         microsoft:
-          version: 16.113.26092012
+          version: 16.113.26092714
   stemma/v1alpha1/MacSoftware/microsoft-onenote:
     source:
       version: 1
@@ -593,16 +599,17 @@ inputs:
       resolver_version: "2"
       declaration: e1169584a74b40d552ccde05c15d68a488336719ef441658439aba4077accea7
       observation:
-        filename: Microsoft_OneNote_16.113.26092012_Updater.pkg
-        url: https://res.public.onecdn.static.microsoft/mro1cdnstorage/C1297A47-86C4-4C1F-97FA-950631F94777/MacAutoupdate/Microsoft_OneNote_16.113.26092012_Updater.pkg
-        version: 16.113.26092012
+        filename: Microsoft_OneNote_16.113.26092714_Updater.pkg
+        url: https://res.public.onecdn.static.microsoft/mro1cdnstorage/C1297A47-86C4-4C1F-97FA-950631F94777/MacAutoupdate/Microsoft_OneNote_16.113.26092714_Updater.pkg
+        version: 16.113.26092714
       content:
-        sha256: 388282f207837bfff7663cf57681fea33cc32fcd878c84a12413253928ccfc03
-        filename: Microsoft_OneNote_16.113.26092012_Updater.pkg
+        sha256: f6a51131f8ce8231d248d97ed17eff5251bc73c17f5819c585959bd9d449dbbc
+        filename: Microsoft_OneNote_16.113.26092714_Updater.pkg
         mode: 420
+      input_version: 16.113.26092714
       evidence:
         microsoft:
-          version: 16.113.26092012
+          version: 16.113.26092714
   stemma/v1alpha1/MacSoftware/microsoft-outlook:
     source:
       version: 1
@@ -610,16 +617,17 @@ inputs:
       resolver_version: "2"
       declaration: af7038425c6324fab22b3e4ac5c48e355b9bebea80e35a30bcd0da726d55ebd5
       observation:
-        filename: Microsoft_Outlook_16.113.26092012_Installer.pkg
-        url: https://res.public.onecdn.static.microsoft/mro1cdnstorage/C1297A47-86C4-4C1F-97FA-950631F94777/MacAutoupdate/Microsoft_Outlook_16.113.26092012_Installer.pkg
-        version: 16.113.26092012
+        filename: Microsoft_Outlook_16.113.26092714_Installer.pkg
+        url: https://res.public.onecdn.static.microsoft/mro1cdnstorage/C1297A47-86C4-4C1F-97FA-950631F94777/MacAutoupdate/Microsoft_Outlook_16.113.26092714_Installer.pkg
+        version: 16.113.26092714
       content:
-        sha256: e036d4b1fee9ab1c341b00e929446667c24a72df2f72f5a7561ff96ba0a8faaf
-        filename: Microsoft_Outlook_16.113.26092012_Installer.pkg
+        sha256: 70578c35f43d5683b43728e846c67c97588c8d70ff027712326986ba1c7ef010
+        filename: Microsoft_Outlook_16.113.26092714_Installer.pkg
         mode: 420
+      input_version: 16.113.26092714
       evidence:
         microsoft:
-          version: 16.113.26092012
+          version: 16.113.26092714
   stemma/v1alpha1/MacSoftware/microsoft-powerpoint:
     source:
       version: 1
@@ -627,16 +635,17 @@ inputs:
       resolver_version: "2"
       declaration: 94371a1c5d90baf3b1999052a36539079296bd270d51132389bdac7dd271b44b
       observation:
-        filename: Microsoft_PowerPoint_16.113.26092012_Installer.pkg
-        url: https://res.public.onecdn.static.microsoft/mro1cdnstorage/C1297A47-86C4-4C1F-97FA-950631F94777/MacAutoupdate/Microsoft_PowerPoint_16.113.26092012_Installer.pkg
-        version: 16.113.26092012
+        filename: Microsoft_PowerPoint_16.113.26092714_Installer.pkg
+        url: https://res.public.onecdn.static.microsoft/mro1cdnstorage/C1297A47-86C4-4C1F-97FA-950631F94777/MacAutoupdate/Microsoft_PowerPoint_16.113.26092714_Installer.pkg
+        version: 16.113.26092714
       content:
-        sha256: 62597acd30ca4f32b96aa8c15a1445fc34cac32c9b3eef057d5476efcbe7ce04
-        filename: Microsoft_PowerPoint_16.113.26092012_Installer.pkg
+        sha256: 178e17850181c0b7ef769c2b68997d6d0117db519468fa62b27dff4304ff3125
+        filename: Microsoft_PowerPoint_16.113.26092714_Installer.pkg
         mode: 420
+      input_version: 16.113.26092714
       evidence:
         microsoft:
-          version: 16.113.26092012
+          version: 16.113.26092714
   stemma/v1alpha1/MacSoftware/microsoft-teams:
     source:
       version: 1
@@ -648,7 +657,7 @@ inputs:
         url: https://statics.teams.cdn.office.net/production-osx/enterprise/webview2/lkg/MicrosoftTeams.pkg
         version: ""
       content:
-        sha256: b3b91321a40a1fb30aee7b98de6b2e544be934b374ecc24b1caf1f27d610279f
+        sha256: 8acd944d7ba670a8ff1b363ee2cfbf4b94dd2c2ce7c1393245422718519f39c9
         filename: MicrosoftTeams.pkg
         mode: 420
   stemma/v1alpha1/MacSoftware/microsoft-word:
@@ -658,16 +667,17 @@ inputs:
       resolver_version: "2"
       declaration: 410435cfc92bd8175e8c8cadb22af92eeab6f4f55138456a40ca7a2beab8adab
       observation:
-        filename: Microsoft_Word_16.113.26092012_Installer.pkg
-        url: https://res.public.onecdn.static.microsoft/mro1cdnstorage/C1297A47-86C4-4C1F-97FA-950631F94777/MacAutoupdate/Microsoft_Word_16.113.26092012_Installer.pkg
-        version: 16.113.26092012
+        filename: Microsoft_Word_16.113.26092714_Installer.pkg
+        url: https://res.public.onecdn.static.microsoft/mro1cdnstorage/C1297A47-86C4-4C1F-97FA-950631F94777/MacAutoupdate/Microsoft_Word_16.113.26092714_Installer.pkg
+        version: 16.113.26092714
       content:
-        sha256: 747876ba0c52d2b1b6cc0abdc62716cda6fd2a2a5d5cff0358e3fae5a8f269c5
-        filename: Microsoft_Word_16.113.26092012_Installer.pkg
+        sha256: 39daf8780d4a73950beb357e1631a7a8022092f6e8bd35f857b08707f1c39f3e
+        filename: Microsoft_Word_16.113.26092714_Installer.pkg
         mode: 420
+      input_version: 16.113.26092714
       evidence:
         microsoft:
-          version: 16.113.26092012
+          version: 16.113.26092714
   stemma/v1alpha1/MacSoftware/minecraft-education:
     source:
       version: 1
@@ -705,11 +715,13 @@ inputs:
         filename: munkitools-7.3.0.5808.pkg
         release: v7.3.0
         release_id: 376493304
+        sha256: 4ed826bd32811ef54524a10300f66c9af4c9fdd8c243ada146d468485e1bffcc
         url: https://github.com/munki/munki/releases/download/v7.3.0/munkitools-7.3.0.5808.pkg
       content:
         sha256: 4ed826bd32811ef54524a10300f66c9af4c9fdd8c243ada146d468485e1bffcc
         filename: munkitools-7.3.0.5808.pkg
         mode: 420
+      input_version: v7.3.0
   stemma/v1alpha1/MacSoftware/nap-locked-down-browser:
     source:
       version: 1
@@ -730,7 +742,7 @@ inputs:
       declaration: dadabd51248a3dc24856547f78d713775074264656b4f2b66b9bb83f9e0ba740
       observation: {}
       content:
-        sha256: 90ce9b187eff3a2f279a069020599013f784037a93be763bc76bcd49ef886edf
+        sha256: b3b2e0cd98019e9367c2d14bbf16f4bde8fcc7d7454fa2b26d1ae301120512c9
         filename: Numbers Creator Studio.app
         tree: true
         mode: 493
@@ -756,7 +768,7 @@ inputs:
       declaration: 1f473604462ddcd0f41b788cbe534634df2e0bc43c50675a2c26da7aefcba9c9
       observation: {}
       content:
-        sha256: 0ebbde1276625f2831a00764fdef2bac99401166db0f2def33e6b0cc1a71d3f0
+        sha256: 721bb1703a61f800a0106a7c9bc186241a171337ce0bb8bea1c2c6fe5379ad72
         filename: Pages Creator Studio.app
         tree: true
         mode: 493
@@ -771,11 +783,13 @@ inputs:
         filename: Plinth-0.1.10.pkg
         release: 0.1.10
         release_id: 394322308
+        sha256: 39d388a7e2c72cca76c05025a876da1a12409992f4171550f5dacef579d3d93b
         url: https://github.com/woodleighschool/plinth/releases/download/0.1.10/Plinth-0.1.10.pkg
       content:
         sha256: 39d388a7e2c72cca76c05025a876da1a12409992f4171550f5dacef579d3d93b
         filename: Plinth-0.1.10.pkg
         mode: 420
+      input_version: 0.1.10
   stemma/v1alpha1/MacSoftware/python:
     source:
       version: 1
@@ -783,16 +797,17 @@ inputs:
       resolver_version: "2"
       declaration: 3501e129389d0d032dfad059f8086ccf36e840b9311e07fd0763a9b870a76816
       observation:
-        filename: python-3.13.15-macos11.pkg
-        url: https://www.python.org/ftp/python/3.13.15/python-3.13.15-macos11.pkg
-        version: 3.13.15
+        filename: python-3.13.16-macos11.pkg
+        url: https://www.python.org/ftp/python/3.13.16/python-3.13.16-macos11.pkg
+        version: 3.13.16
       content:
-        sha256: 3b7eaf7f29825f796e8267024435540ddf1f17fc9a97ad58095daa7a75bfdcd3
-        filename: python-3.13.15-macos11.pkg
+        sha256: 30666509020b4da0dd8bc2e773255f34d76b7bb80b66960a928d5f6daa0192d7
+        filename: python-3.13.16-macos11.pkg
         mode: 420
+      input_version: 3.13.16
       evidence:
         python:
-          version: 3.13.15
+          version: 3.13.16
   stemma/v1alpha1/MacSoftware/rekordbox-7:
     source:
       version: 1
@@ -816,11 +831,13 @@ inputs:
         filename: SafeExamBrowser-3.7.1.dmg
         release: 3.7.1
         release_id: 385854580
+        sha256: d9a11b2f5f35f5681b0f0f204a217bdcb90413481748f34cbff2ae86044e6086
         url: https://github.com/SafeExamBrowser/seb-mac/releases/download/3.7.1/SafeExamBrowser-3.7.1.dmg
       content:
         sha256: d9a11b2f5f35f5681b0f0f204a217bdcb90413481748f34cbff2ae86044e6086
         filename: SafeExamBrowser-3.7.1.dmg
         mode: 420
+      input_version: 3.7.1
   stemma/v1alpha1/MacSoftware/santa:
     source:
       version: 1
@@ -832,11 +849,13 @@ inputs:
         filename: santa-2026.8.pkg
         release: "2026.8"
         release_id: 390112701
+        sha256: 0aaa970c7ddc63fe6a55c3144c825acb7f6bfa9cb15bcba1bffcaf2b5efc952a
         url: https://github.com/northpolesec/santa/releases/download/2026.8/santa-2026.8.pkg
       content:
         sha256: 0aaa970c7ddc63fe6a55c3144c825acb7f6bfa9cb15bcba1bffcaf2b5efc952a
         filename: santa-2026.8.pkg
         mode: 420
+      input_version: "2026.8"
   stemma/v1alpha1/MacSoftware/sketchup-2026:
     source:
       version: 1
@@ -856,7 +875,7 @@ inputs:
       declaration: d4af667d4d1d3b061a84c51f69cdea7765e10beceae9629053c1f5fcc7d1b295
       observation: {}
       content:
-        sha256: 30171cb041c07749ad41fc0487c6d9c0e283b97a945c347d6719ec6ffe21be07
+        sha256: 57947b58c3282186379eef81382deea0efecc4e3eb76ce813ea9b4537bc159a3
         filename: SpotifyARM64.dmg
         mode: 420
   stemma/v1alpha1/MacSoftware/swiftdialog:
@@ -870,11 +889,13 @@ inputs:
         filename: dialog-3.1.0-4994.pkg
         release: v3.1.0
         release_id: 353749918
+        sha256: 462921537425146b00b936448e518578b58d5177c039a609532cfea349c3e166
         url: https://github.com/swiftDialog/swiftDialog/releases/download/v3.1.0/dialog-3.1.0-4994.pkg
       content:
         sha256: 462921537425146b00b936448e518578b58d5177c039a609532cfea349c3e166
         filename: dialog-3.1.0-4994.pkg
         mode: 420
+      input_version: v3.1.0
   stemma/v1alpha1/MacSoftware/ti-nspire-student:
     source:
       version: 1
@@ -910,11 +931,13 @@ inputs:
         filename: UltiMaker-Cura-5.13.0-macos-ARM64.dmg
         release: 5.13.0
         release_id: 330225040
+        sha256: 1483806486a19728bc0f363f847d75be3f179ea43c7f074bfc327f5b5c6e05ad
         url: https://github.com/Ultimaker/Cura/releases/download/5.13.0/UltiMaker-Cura-5.13.0-macos-ARM64.dmg
       content:
         sha256: 1483806486a19728bc0f363f847d75be3f179ea43c7f074bfc327f5b5c6e05ad
         filename: UltiMaker-Cura-5.13.0-macos-ARM64.dmg
         mode: 420
+      input_version: 5.13.0
   stemma/v1alpha1/MacSoftware/unity-hub:
     source:
       version: 1
@@ -959,7 +982,7 @@ inputs:
       declaration: 6f113c46478ef79c97a521f218037bbe906df1c1c98628f803cb14e3457314eb
       observation: {}
       content:
-        sha256: 474dc8042e5c371018701aaa10e17e5b39f11173fef4ac7e7540125d9275c819
+        sha256: 59cc77128b4e4551da0c97f0437fd61d3d0b2bc47d80c3b929c859368a39a1d3
         filename: VSCode-darwin-arm64.dmg
         mode: 420
   stemma/v1alpha1/MacSoftware/vivi:
@@ -1029,12 +1052,12 @@ inputs:
       resolver_version: "2"
       declaration: 942bf334b59409af1fb6332da4b905c3d2d14c07f9d49588819a8a712063209a
       observation:
-        filename: Windows_App_11.4.2_installer.pkg
-        url: https://res.public.onecdn.static.microsoft/mro1cdnstorage/C1297A47-86C4-4C1F-97FA-950631F94777/MacAutoupdate/Windows_App_11.4.2_installer.pkg
+        filename: Windows_App_11.4.3_installer.pkg
+        url: https://res.public.onecdn.static.microsoft/mro1cdnstorage/C1297A47-86C4-4C1F-97FA-950631F94777/MacAutoupdate/Windows_App_11.4.3_installer.pkg
         version: ""
       content:
-        sha256: e6f97a8422adc8267ceb4e17a484192bd90b3ac9b2df2bc48923144f33371d4f
-        filename: Windows_App_11.4.2_installer.pkg
+        sha256: 9dc0e5f4abecfe9dc02d45fafc9813881bd24ecb84125eabe522b01b11a039ca
+        filename: Windows_App_11.4.3_installer.pkg
         mode: 420
   stemma/v1alpha1/MacSoftware/woodsweep:
     source:
