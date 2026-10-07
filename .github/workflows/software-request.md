@@ -60,7 +60,7 @@ permissions:
 
 steps:
   - name: Setup Mise
-    uses: jdx/mise-action@v5.1.0
+    uses: jdx/mise-action@v5.1.1
     with:
       cache: false
       experimental: true
