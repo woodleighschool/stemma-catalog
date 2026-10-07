@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.10](https://github.com/woodleighschool/stemma-catalog/compare/v0.3.9...v0.3.10) (2026-10-07)
+
+
+### Features
+
+* **downloads:** add Blackmagic resolver ([7a46c49](https://github.com/woodleighschool/stemma-catalog/commit/7a46c4911dd8638d0406e38f565a1ffa84da9cc6))
+
 ## [0.3.9](https://github.com/woodleighschool/stemma-catalog/compare/v0.3.8...v0.3.9) (2026-10-06)
 
 
