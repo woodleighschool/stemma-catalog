@@ -13,6 +13,7 @@ spec:
         (KHTML, like Gecko) Version/16.6 Safari/605.1.15
   package_path: "*.pkg"
   application:
+    bundle_id: com.pioneerdj.rekordboxdj
     installed_path: "/Applications/rekordbox 7/rekordbox.app"
   signatures:
     - signer: apple:developer-id:6BRHGXQ6VU # AlphaTheta Corporation

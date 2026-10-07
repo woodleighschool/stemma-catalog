@@ -8,6 +8,7 @@ spec:
   source:
     url: https://api.vivi.io/mac
   application:
+    bundle_id: au.com.viviaustralia.mac
     installed_path: /Applications/Vivi.app
   signatures:
     - signer: apple:developer-id:3NRCUJ8TJC # VIVI AUSTRALIA PTY LTD

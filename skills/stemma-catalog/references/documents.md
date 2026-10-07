@@ -71,6 +71,13 @@
 
 ## Installation contract
 
+PKGs default to installer metadata and receipt detection. An explicit `application.path` or
+`application.bundle_id` selects the app supplying version, detection and icon evidence. Disk
+images and archives containing one app select it automatically. Follow the catalog's detection
+policy: receipts record package installation, while `installs` checks installed files or bundles.
+A selected app can generate `installs` without repeating its metadata in destination YAML. Use
+explicit native `installs` when detection should differ from the selected app or package version.
+
 Preparation must produce an artifact that installs the requested product. An executable installer
 app needs its documented invocation. Reuse an existing wrapper composition: `BuildMacPkg` carries
 it in `scripts` and invokes it from `postinstall`; `MacSoftware` publishes the resulting package.
