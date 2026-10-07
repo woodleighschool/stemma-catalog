@@ -1,0 +1,43 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/woodleighschool/stemma-catalog/main/stemma.schema.json
+apiVersion: stemma/v1alpha1
+kind: MacSoftware
+metadata:
+  name: davinci-resolve
+spec:
+  extends: mac-software
+  source:
+    resolver: blackmagic
+    product: DaVinci Resolve
+    name_pattern: '^DaVinci Resolve (?P<version>[0-9]+(?:\.[0-9]+)*)(?: Update)?$'
+    registration:
+      firstname: "Woodleigh"
+      lastname: "IT"
+      email: "downloads@example.invalid"
+      phone: "(03) 5971 6100"
+      street: "485 Golf Links Road"
+      city: "Langwarrin South"
+      country: "au"
+      policy: false
+  application:
+    bundle_id: com.blackmagic-design.DaVinciResolve
+    installed_path: /Applications/DaVinci Resolve/DaVinci Resolve.app
+  signatures:
+    - signer: apple:developer-id:9ZGFBWLSYP # Blackmagic Design Inc
+  icon: davinci-resolve
+  destinations:
+    woodstar:
+      pkginfo:
+        category: Media
+        name: DaVinci Resolve
+        display_name: DaVinci Resolve
+        description: DaVinci Resolve combines editing, color correction, visual effects, motion
+          graphics and audio post production in one application.
+        developer: Blackmagic Design
+        unattended_install: true
+      targets:
+        include:
+          - label_name: All Hosts
+            actions:
+              - optional_installs
+              - managed_updates
+        exclude: []

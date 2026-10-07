@@ -329,6 +329,24 @@ inputs:
         sha256: 8d23b26a1b8b6601f4c5dc370bfcfea7558ec18c297992306830d0205d571a1c
         filename: DVS-4.5.2.3_macos.dmg
         mode: 420
+  stemma/v1alpha1/MacSoftware/davinci-resolve:
+    source:
+      version: 1
+      resolver: blackmagic
+      resolver_version: "2"
+      declaration: 4c171fc96e9e9fcc68fa29ae42f4b18a90a7972623b685b0f01dad18dde4ed7e
+      observation:
+        download_id: fe9e4851d000487588709802e9694b59
+        requires_registration: true
+        version: 21.1.1
+      content:
+        sha256: dfe8a7c1ee189a141310afdeebf3fff33316d9be7967ad3116b8b62e2bb4fe14
+        filename: DaVinci_Resolve_21.1.1_Mac.zip
+        mode: 420
+      input_version: 21.1.1
+      evidence:
+        blackmagic:
+          version: 21.1.1
   stemma/v1alpha1/MacSoftware/docker-desktop:
     source:
       version: 1
