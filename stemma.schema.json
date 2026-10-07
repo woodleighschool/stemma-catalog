@@ -1748,6 +1748,167 @@
           "type": "object"
         },
         {
+          "$id": "https://stemma.invalid/editor/blackmagic/input",
+          "additionalProperties": false,
+          "properties": {
+            "name_pattern": {
+              "anyOf": [
+                {
+                  "minLength": 1,
+                  "type": "string"
+                },
+                {
+                  "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                  "type": "string"
+                }
+              ],
+              "description": "Regular expression matching release names, with a named version group containing a dotted numeric version. Determines edition, release channel and any major-version policy."
+            },
+            "platform": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                  "type": "string"
+                }
+              ],
+              "default": "Mac OS X",
+              "description": "Platform key in the vendor feed, such as Mac OS X, Windows or Linux."
+            },
+            "product": {
+              "anyOf": [
+                {
+                  "minLength": 1,
+                  "type": "string"
+                },
+                {
+                  "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                  "type": "string"
+                }
+              ],
+              "description": "Product name sent to Blackmagic, such as DaVinci Resolve or DaVinci Resolve Studio."
+            },
+            "registration": {
+              "anyOf": [
+                {
+                  "additionalProperties": false,
+                  "properties": {
+                    "city": {
+                      "anyOf": [
+                        {
+                          "minLength": 1,
+                          "type": "string"
+                        },
+                        {
+                          "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "country": {
+                      "anyOf": [
+                        {
+                          "pattern": "^[a-z]{2}$",
+                          "type": "string"
+                        },
+                        {
+                          "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                          "type": "string"
+                        }
+                      ],
+                      "description": "Two-letter lowercase country code, such as au."
+                    },
+                    "email": {
+                      "anyOf": [
+                        {
+                          "minLength": 1,
+                          "type": "string"
+                        },
+                        {
+                          "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "firstname": {
+                      "anyOf": [
+                        {
+                          "minLength": 1,
+                          "type": "string"
+                        },
+                        {
+                          "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "lastname": {
+                      "anyOf": [
+                        {
+                          "minLength": 1,
+                          "type": "string"
+                        },
+                        {
+                          "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "phone": {
+                      "anyOf": [
+                        {
+                          "minLength": 1,
+                          "type": "string"
+                        },
+                        {
+                          "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                          "type": "string"
+                        }
+                      ]
+                    }
+                  },
+                  "propertyNames": {
+                    "not": {
+                      "pattern": "\\{\\{"
+                    }
+                  },
+                  "required": [
+                    "firstname",
+                    "lastname",
+                    "email",
+                    "phone",
+                    "city",
+                    "country"
+                  ],
+                  "type": "object"
+                },
+                {
+                  "pattern": "^\\{\\{[\\s\\S]+\\}\\}$",
+                  "type": "string"
+                }
+              ],
+              "description": "Registration details sent to Blackmagic when acquiring the recorded installer."
+            },
+            "resolver": {
+              "const": "blackmagic",
+              "description": "Loaded resolver selecting this input."
+            }
+          },
+          "propertyNames": {
+            "not": {
+              "pattern": "\\{\\{"
+            }
+          },
+          "required": [
+            "product",
+            "name_pattern",
+            "resolver"
+          ],
+          "type": "object"
+        },
+        {
           "$id": "https://stemma.invalid/editor/cricut/input",
           "additionalProperties": false,
           "properties": {
@@ -10565,6 +10726,154 @@
           "$id": "https://stemma.invalid/editor/partial-input/resource/1",
           "additionalProperties": false,
           "properties": {
+            "name_pattern": {
+              "anyOf": [
+                {
+                  "minLength": 1,
+                  "type": "string"
+                },
+                {
+                  "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                  "type": "string"
+                }
+              ],
+              "description": "Regular expression matching release names, with a named version group containing a dotted numeric version. Determines edition, release channel and any major-version policy."
+            },
+            "platform": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                  "type": "string"
+                }
+              ],
+              "default": "Mac OS X",
+              "description": "Platform key in the vendor feed, such as Mac OS X, Windows or Linux."
+            },
+            "product": {
+              "anyOf": [
+                {
+                  "minLength": 1,
+                  "type": "string"
+                },
+                {
+                  "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                  "type": "string"
+                }
+              ],
+              "description": "Product name sent to Blackmagic, such as DaVinci Resolve or DaVinci Resolve Studio."
+            },
+            "registration": {
+              "anyOf": [
+                {
+                  "additionalProperties": false,
+                  "properties": {
+                    "city": {
+                      "anyOf": [
+                        {
+                          "minLength": 1,
+                          "type": "string"
+                        },
+                        {
+                          "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "country": {
+                      "anyOf": [
+                        {
+                          "pattern": "^[a-z]{2}$",
+                          "type": "string"
+                        },
+                        {
+                          "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                          "type": "string"
+                        }
+                      ],
+                      "description": "Two-letter lowercase country code, such as au."
+                    },
+                    "email": {
+                      "anyOf": [
+                        {
+                          "minLength": 1,
+                          "type": "string"
+                        },
+                        {
+                          "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "firstname": {
+                      "anyOf": [
+                        {
+                          "minLength": 1,
+                          "type": "string"
+                        },
+                        {
+                          "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "lastname": {
+                      "anyOf": [
+                        {
+                          "minLength": 1,
+                          "type": "string"
+                        },
+                        {
+                          "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "phone": {
+                      "anyOf": [
+                        {
+                          "minLength": 1,
+                          "type": "string"
+                        },
+                        {
+                          "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                          "type": "string"
+                        }
+                      ]
+                    }
+                  },
+                  "propertyNames": {
+                    "not": {
+                      "pattern": "\\{\\{"
+                    }
+                  },
+                  "type": "object"
+                },
+                {
+                  "pattern": "^\\{\\{[\\s\\S]+\\}\\}$",
+                  "type": "string"
+                }
+              ],
+              "description": "Registration details sent to Blackmagic when acquiring the recorded installer."
+            },
+            "resolver": {
+              "const": "blackmagic",
+              "description": "Loaded resolver selecting this input."
+            }
+          },
+          "propertyNames": {
+            "not": {
+              "pattern": "\\{\\{"
+            }
+          },
+          "type": "object"
+        },
+        {
+          "$id": "https://stemma.invalid/editor/partial-input/resource/2",
+          "additionalProperties": false,
+          "properties": {
             "resolver": {
               "const": "cricut",
               "description": "Loaded resolver selecting this input."
@@ -10592,7 +10901,7 @@
           "type": "object"
         },
         {
-          "$id": "https://stemma.invalid/editor/partial-input/resource/2",
+          "$id": "https://stemma.invalid/editor/partial-input/resource/3",
           "additionalProperties": false,
           "properties": {
             "cti": {
@@ -10675,7 +10984,7 @@
           "type": "object"
         },
         {
-          "$id": "https://stemma.invalid/editor/partial-input/resource/3",
+          "$id": "https://stemma.invalid/editor/partial-input/resource/4",
           "additionalProperties": false,
           "properties": {
             "channel": {
@@ -10752,7 +11061,7 @@
           "type": "object"
         },
         {
-          "$id": "https://stemma.invalid/editor/partial-input/resource/4",
+          "$id": "https://stemma.invalid/editor/partial-input/resource/5",
           "additionalProperties": false,
           "properties": {
             "branch": {

@@ -4,16 +4,49 @@ Vendor discovery plugins for Stemma.
 
 ## 🧩 Operations
 
-| Resolver    | Configuration                                          | Selection                                                 |
-| ----------- | ------------------------------------------------------ | --------------------------------------------------------- |
-| `python`    | `branch`, such as `"3.13"`                             | Latest stable macOS PKG within the branch; 3.10 and later |
-| `cricut`    | `shard: a`                                             | The shard's update manifest and installer API             |
-| `epson`     | `device_id`, `os`, `cti`; `region: GB`, `language: en` | Matching Download Center content type                     |
-| `microsoft` | `product`; `channel: production`; `type: standalone`   | Office MAU metadata or the product’s standalone download  |
+| Resolver     | Configuration                                                            | Selection                                                 |
+| ------------ | ------------------------------------------------------------------------ | --------------------------------------------------------- |
+| `blackmagic` | `product`, `name_pattern`; `platform: Mac OS X`; optional `registration` | Highest matching numeric version for the platform         |
+| `python`     | `branch`, such as `"3.13"`                                               | Latest stable macOS PKG within the branch; 3.10 and later |
+| `cricut`     | `shard: a`                                                               | The shard's update manifest and installer API             |
+| `epson`      | `device_id`, `os`, `cti`; `region: GB`, `language: en`                   | Matching Download Center content type                     |
+| `microsoft`  | `product`; `channel: production`; `type: standalone`                     | Office MAU metadata or the product’s standalone download  |
 
 Values shown after a colon are defaults unless alternatives are listed.
 
 Keep installer signature requirements on the software resource.
+
+### Blackmagic
+
+```yaml
+source:
+  resolver: blackmagic
+  product: DaVinci Resolve
+  name_pattern: '^DaVinci Resolve (?P<version>[0-9]+(?:\.[0-9]+)*)(?: Update)?$'
+  registration:
+    firstname: "{{ env.BLACKMAGIC_FIRSTNAME }}"
+    lastname: "{{ env.BLACKMAGIC_LASTNAME }}"
+    email: "{{ env.BLACKMAGIC_EMAIL }}"
+    phone: "{{ env.BLACKMAGIC_PHONE }}"
+    city: "{{ env.BLACKMAGIC_CITY }}"
+    country: "{{ env.BLACKMAGIC_COUNTRY }}"
+```
+
+`product` is the name sent to Blackmagic's download API. `platform` is the feed's
+platform key, such as `Mac OS X`, `Windows` or `Linux`. `name_pattern` selects the
+product, edition and release channel; its named `version` group must capture a
+numeric version with optional dot-separated components. The highest matching
+version wins, independent of feed order. The example follows final free Resolve
+releases across majors; other products and policies use their own patterns.
+
+Discovery records the download ID and version. Acquisition requests a fresh URL
+for that recorded ID, without selecting a newer release. Registration is optional
+for downloads that do not require it; when supplied, all six fields are required.
+`country` is a lowercase two-letter code. Registration details are sent only when
+acquiring the installer and are not included in the observation.
+
+The selected version is available as `{{ evidence.blackmagic.version }}`.
+The protocol follows [AutoPkg's provider](https://github.com/autopkg/timsutton-recipes/blob/master/Blackmagic/BlackMagicURLProvider.py).
 
 ### Python
 

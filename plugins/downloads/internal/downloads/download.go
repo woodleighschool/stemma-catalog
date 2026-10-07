@@ -11,7 +11,7 @@ import (
 )
 
 // Client bounds metadata requests and refuses insecure redirects. Resolvers use public
-// vendor endpoints; credentials and arbitrary request headers are not accepted.
+// vendor endpoints; arbitrary request headers are not accepted.
 func Client() *http.Client {
 	return &http.Client{
 		Timeout: 15 * time.Minute,
