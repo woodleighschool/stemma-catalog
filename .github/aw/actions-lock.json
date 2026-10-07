@@ -5,10 +5,10 @@
       "version": "v0.89.21",
       "sha": "924af5fdc64061cfbf66fb584c8b07e2ac230c60"
     },
-    "jdx/mise-action@v5.1.0": {
+    "jdx/mise-action@v5.1.1": {
       "repo": "jdx/mise-action",
-      "version": "v5.1.0",
-      "sha": "94c60b39bc2d90ab2f9bab27f38d3cc4812c1834"
+      "version": "v5.1.1",
+      "sha": "2d8d4cafcbd33be2ea37d2b6f5ad595363d1f1ca"
     }
   }
 }
