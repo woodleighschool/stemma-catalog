@@ -1,3 +1,4 @@
+---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/woodleighschool/stemma-catalog/main/stemma.schema.json
 apiVersion: stemma/v1alpha1
 kind: BuildMacPkg
@@ -23,6 +24,7 @@ spec:
     identifier: au.edu.vic.woodleigh.garageband-all-sounds
     version: 2.0.3.1
 ---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/woodleighschool/stemma-catalog/main/stemma.schema.json
 apiVersion: stemma/v1alpha1
 kind: BuildMacPkg
 metadata:
