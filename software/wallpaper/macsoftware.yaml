@@ -1,0 +1,43 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/woodleighschool/stemma-catalog/main/stemma.schema.json
+apiVersion: stemma/v1alpha1
+kind: MacSoftware
+metadata:
+  name: wallpaper
+spec:
+  source:
+    resource:
+      kind: BuildMacPkg
+      name: wallpaper
+  minimum_os: "11.0"
+  icon: branding
+  destinations:
+    intune:
+      display_name: Wallpaper
+      description: Applies the Woodleigh wallpaper once. The wallpaper remains customisable after
+        setup.
+      publisher: &publisher Woodleigh School
+      developer: *publisher
+      categories:
+        - Computer Management
+      pre_install_script: |-
+        #!/bin/zsh --no-rcs
+
+        # Wait until someone has logged in and their Dock is up. The Intune agent stops a
+        # script that runs too long and runs a failed one again at its next check-in.
+        until
+            user=$(/usr/bin/stat -f %Su /dev/console)
+            [[ $user != (root|loginwindow|_mbsetupuser|) ]] && /usr/bin/pgrep -q -x -u "$user" Dock
+        do
+            /bin/sleep 5
+        done
+      post_install_script: |-
+        #!/bin/zsh --no-rcs
+
+        user=$(/usr/bin/stat -f %Su /dev/console)
+        /bin/launchctl asuser "$(/usr/bin/id -u "$user")" /usr/bin/sudo -u "$user" \
+            /usr/bin/osascript -l JavaScript -e 'ObjC.import("AppKit"); $.NSWorkspace.sharedWorkspace.setDesktopImageURLForScreenOptionsError($.NSURL.fileURLWithPath("/Library/Desktop Pictures/Woodleigh.jpg"), $.NSScreen.mainScreen, $({}), null)'
+      ignore_version_detection: false
+      assignments:
+        - intent: required
+          group: d66e93af-3c1b-4c40-b235-b2f56374c7e8 # Intune - Dedicated Macs

@@ -150,6 +150,17 @@ inputs:
         sha256: 4500602e80500112ba6eb158d9283c5ad369e9e3d5ef0fddfdc2000582734800
         filename: SophosInstall.zip
         mode: 420
+  stemma/v1alpha1/BuildMacPkg/wallpaper:
+    wallpaper:
+      version: 1
+      resolver: http
+      resolver_version: "2"
+      declaration: 877a7da1fd412b71ac4080072804bc41f5b0d28732341f859e303a22ca666acc
+      observation: {}
+      content:
+        sha256: 0797320d16824611e9fc413b9e642f14adf550134a51cb4f2efa5af07df5ab76
+        filename: Woodleigh.jpg
+        mode: 420
   stemma/v1alpha1/MacSoftware/1password:
     source:
       version: 1
