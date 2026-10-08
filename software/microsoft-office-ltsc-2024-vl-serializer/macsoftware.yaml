@@ -7,9 +7,7 @@ metadata:
 suspend: true
 spec:
   source:
-    resource:
-      kind: BuildMacPkg
-      name: microsoft-office-ltsc-2024-vl-serializer
+    path: Assets/Microsoft_Office_LTSC_2024_VL_Serializer.pkg
   minimum_os: "10.15"
   icon: microsoft-office-ltsc-2024-vl-serializer
   destinations:
@@ -23,6 +21,10 @@ spec:
       categories:
         - Computer Management
       ignore_version_detection: false
+      # Every Office installer also writes com.microsoft.pkg.licensing, at its own version.
+      included_apps:
+        - id: com.microsoft.pkg.licensing.volume
+          version: 16.89.24080626
       assignments:
         - intent: required
           group: ac987f08-8b83-4a09-ba53-5f8e244ce206 # Intune - SAC Macbooks
