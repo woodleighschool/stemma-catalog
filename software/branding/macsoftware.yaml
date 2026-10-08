@@ -10,7 +10,6 @@ spec:
     resource:
       kind: BuildMacPkg
       name: branding
-      output: installer
   icon: branding
   destinations:
     woodstar:

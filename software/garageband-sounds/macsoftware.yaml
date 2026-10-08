@@ -10,7 +10,6 @@ spec:
     resource:
       kind: BuildMacPkg
       name: garageband-all-sounds
-      output: installer
   minimum_os: "14.0"
   icon: garageband-sounds
   destinations:
@@ -93,7 +92,6 @@ spec:
     resource:
       kind: BuildMacPkg
       name: garageband-essential-sounds
-      output: installer
   minimum_os: "14.0"
   icon: garageband-sounds
   destinations:
