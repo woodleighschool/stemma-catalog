@@ -10,6 +10,7 @@ spec:
     path: Assets/auth-agent.pkg
   signatures:
     - signer: apple:developer-id:5S77G864UH # B Communications Pty Ltd
+  icon: linewize-authentication-agent
   destinations:
     woodstar:
       pkginfo:
@@ -49,6 +50,7 @@ spec:
     url: https://qoria-mza-installers.linewize.net/Connect%20Installer.pkg
   signatures:
     - signer: apple:developer-id:5S77G864UH # FAMILY ZONE CYBER SAFETY LIMITED
+  icon: linewize-connect
   destinations:
     woodstar:
       pkginfo:
@@ -85,9 +87,6 @@ spec:
             actions:
               - managed_installs
           - label_name: CRT/Spare Shared MacBooks
-            actions:
-              - managed_installs
-          - label_name: SAC MacBooks
             actions:
               - managed_installs
         exclude: []

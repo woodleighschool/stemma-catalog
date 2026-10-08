@@ -1,0 +1,81 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/woodleighschool/stemma-catalog/main/stemma.schema.json
+apiVersion: stemma/v1alpha1
+kind: BuildMacPkg
+metadata:
+  name: linewize-connect-intune
+suspend: true
+spec:
+  inputs:
+    agent:
+      resource:
+        kind: MacSoftware
+        name: linewize-authentication-agent
+    connect:
+      resource:
+        kind: MacSoftware
+        name: linewize-connect
+  signatures:
+    - input: agent
+      signer: apple:developer-id:5S77G864UH # B Communications Pty Ltd
+    - input: connect
+      signer: apple:developer-id:5S77G864UH # FAMILY ZONE CYBER SAFETY LIMITED
+  scripts:
+    postinstall: |-
+      #!/bin/zsh --no-rcs
+
+      setopt errexit
+
+      directory=${0:A:h}
+      app=/Applications/FamilyZone/MobileZoneAgent/bin/Connect.app
+
+      # Both installers carry Intel binaries.
+      if ! /usr/bin/arch -x86_64 /usr/bin/true 2> /dev/null; then
+          /usr/sbin/softwareupdate --install-rosetta --agree-to-license
+      fi
+
+      if [[ -d $app ]]; then
+          /usr/bin/chflags -R noschg "$app"
+      fi
+
+      /usr/sbin/installer -pkg "$directory/auth-agent.pkg" -target /
+      /usr/sbin/installer -pkg "$directory/connect.pkg" -target /
+    auth-agent.pkg:
+      $input: agent
+    connect.pkg:
+      $input: connect
+  package:
+    identifier: com.github.woodleighschool.pkg.LinewizeConnect
+    version: "{{ inputs.connect.version }}"
+---
+apiVersion: stemma/v1alpha1
+kind: MacSoftware
+metadata:
+  name: linewize-connect-intune
+suspend: true
+spec:
+  source:
+    resource:
+      kind: BuildMacPkg
+      name: linewize-connect-intune
+  minimum_os: "14.0"
+  icon: linewize-connect
+  destinations:
+    intune:
+      display_name: Linewize Connect
+      description: Linewize Connect is the endpoint agent used by Linewize Filter to provide
+        filtering and classroom controls.
+      publisher: &publisher Qoria
+      developer: *publisher
+      information_url: https://help.linewize.com/hc/en-gb/categories/5777169631132-Linewize-Connect
+      categories:
+        - Computer Management
+      ignore_version_detection: true
+      # The receipts of the two installers the package runs.
+      included_apps:
+        - id: com.familyzone.connect
+          version: "{{ facts['PackageInfo'].package.version }}"
+        - id: com.familyzone.AuthenticationAgent
+          version: "0"
+      assignments:
+        - intent: required
+          group: ac987f08-8b83-4a09-ba53-5f8e244ce206 # Intune - SAC Macbooks

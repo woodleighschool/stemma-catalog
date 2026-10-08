@@ -1,0 +1,62 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/woodleighschool/stemma-catalog/main/stemma.schema.json
+apiVersion: stemma/v1alpha1
+kind: BuildMacPkg
+metadata:
+  name: senior-campus-printers-intune
+spec:
+  inputs:
+    driver:
+      resource:
+        kind: MacSoftware
+        name: epson-drivers
+  signatures:
+    - input: driver
+      signer: apple:developer-id:TXAEAV5RN4 # Seiko Epson Corporation
+  scripts:
+    postinstall: |-
+      #!/bin/zsh --no-rcs
+
+      setopt errexit
+
+      /usr/sbin/installer -pkg "${0:A:h}/driver.pkg" -target /
+
+      /usr/sbin/lpadmin -p senior_campus -E \
+          -v lpd://sc-printserver.woodleighschool.net/SCPQ \
+          -P "/Library/Printers/PPDs/Contents/Resources/EPSON AM-C6000 Series.gz" \
+          -D "Senior Campus" \
+          -L "Senior Campus" \
+          -o printer-is-shared=false \
+          -o EPIJ_Bidi_Com=0 \
+          -o EPIJ_FUnt=2 \
+          -o EPIJ_Fnsr=4 \
+          -o EPIJ_OptFUnit=2 \
+          -o EPIJ_PUnt=2
+    driver.pkg:
+      $input: driver
+  package:
+    identifier: au.edu.vic.woodleigh.senior-campus-printers
+    version: "{{ inputs.driver.version }}-1"
+---
+apiVersion: stemma/v1alpha1
+kind: MacSoftware
+metadata:
+  name: senior-campus-printers-intune
+spec:
+  source:
+    resource:
+      kind: BuildMacPkg
+      name: senior-campus-printers-intune
+  minimum_os: "11.0"
+  icon: printers
+  destinations:
+    intune:
+      display_name: Senior Campus Printers
+      description: Adds the Senior Campus print queue and the Epson driver it uses.
+      publisher: &publisher Woodleigh School
+      developer: *publisher
+      categories:
+        - Computer Management
+      ignore_version_detection: false
+      assignments:
+        - intent: required
+          group: ac987f08-8b83-4a09-ba53-5f8e244ce206 # Intune - SAC Macbooks

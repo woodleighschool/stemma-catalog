@@ -15,6 +15,20 @@ spec:
     - signer: apple:developer-id:UBF8T346G9 # Microsoft Corporation
   icon: microsoft-powerpoint
   destinations:
+    intune:
+      display_name: Microsoft PowerPoint
+      description: &description Design impactful presentations with stunning visuals and engaging
+        content to captivate your audience.
+      publisher: &publisher Microsoft
+      developer: *publisher
+      information_url: https://www.microsoft.com/en-us/microsoft-365/powerpoint
+      privacy_url: https://www.microsoft.com/en-us/privacy/privacystatement
+      categories:
+        - Productivity
+      ignore_version_detection: true
+      assignments:
+        - intent: required
+          group: ac987f08-8b83-4a09-ba53-5f8e244ce206 # Intune - SAC Macbooks
     woodstar:
       pkginfo:
         blocking_applications:
@@ -22,9 +36,8 @@ spec:
           - Microsoft Error Reporting
           - Microsoft PowerPoint
         category: Productivity
-        description: Design impactful presentations with stunning visuals and engaging content to
-          captivate your audience.
-        developer: Microsoft
+        description: *description
+        developer: *publisher
         name: Microsoft PowerPoint
         unattended_install: true
         uninstallable: false

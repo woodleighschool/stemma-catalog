@@ -550,6 +550,28 @@ inputs:
         filename: Keynote Creator Studio.app
         tree: true
         mode: 493
+  stemma/v1alpha1/MacSoftware/linewize-authentication-agent:
+    source:
+      version: 1
+      resolver: file
+      resolver_version: "2"
+      declaration: 8e3e65539a17e0f54274d17f6635387a1257878ffcc757109b47b5133621260a
+      observation: {}
+      content:
+        sha256: 15587de55d972cf9d28a5f070e2da2dd8eaa520deaad66f72e2e00010e6ea5da
+        filename: auth-agent.pkg
+        mode: 420
+  stemma/v1alpha1/MacSoftware/linewize-connect:
+    source:
+      version: 1
+      resolver: http
+      resolver_version: "2"
+      declaration: ef23608b62eac75c1672622a7af67f28b8b6b1fd9a52cee782861f64499ea16b
+      observation: {}
+      content:
+        sha256: 4f3e405718c08e4764e41404fb03c5a9b82e799221bbd6883cb1970c5c3df69b
+        filename: Connect Installer.pkg
+        mode: 420
   stemma/v1alpha1/MacSoftware/microsoft-365-business-pro-suite:
     source:
       version: 1
@@ -563,20 +585,6 @@ inputs:
       content:
         sha256: 6d80aaa0d67531c5e0d5365a74d6a7124f9f8befc417b5c45a116c9f311085f8
         filename: Microsoft_365_and_Office_16.113.26092714_BusinessPro_Installer.pkg
-        mode: 420
-  stemma/v1alpha1/MacSoftware/microsoft-defender:
-    source:
-      version: 1
-      resolver: microsoft
-      resolver_version: "2"
-      declaration: 04ddabe065356a0c36b72ee2c0b1bf6063ef6e8bd0860858dd20ec6757423350
-      observation:
-        filename: wdav.pkg
-        url: https://res.public.onecdn.static.microsoft/mro1cdnstorage/C1297A47-86C4-4C1F-97FA-950631F94777/MacAutoupdate/wdav.pkg
-        version: ""
-      content:
-        sha256: 4f2670eb11eb080e864605ff41310277228991f4ebe16a651880cb3435e4f8b7
-        filename: wdav.pkg
         mode: 420
   stemma/v1alpha1/MacSoftware/microsoft-edge:
     source:
@@ -610,6 +618,17 @@ inputs:
       evidence:
         microsoft:
           version: 16.113.26092714
+  stemma/v1alpha1/MacSoftware/microsoft-office-ltsc-2024-vl-serializer:
+    source:
+      version: 1
+      resolver: file
+      resolver_version: "2"
+      declaration: 7d69ad6bfb6199065940a2ba499ed0fac9f979aa7394fff72b1215405fd1ffac
+      observation: {}
+      content:
+        sha256: 083b505d9ac880629d7ef560e2baaaf59343721ac7e892be737a2403d7a63de1
+        filename: Microsoft_Office_LTSC_2024_VL_Serializer.pkg
+        mode: 365
   stemma/v1alpha1/MacSoftware/microsoft-onenote:
     source:
       version: 1

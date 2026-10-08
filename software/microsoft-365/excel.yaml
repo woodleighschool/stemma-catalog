@@ -15,6 +15,20 @@ spec:
     - signer: apple:developer-id:UBF8T346G9 # Microsoft Corporation
   icon: microsoft-excel
   destinations:
+    intune:
+      display_name: Microsoft Excel
+      description: &description Harness the power of advanced spreadsheets to analyze data,
+        visualize trends, and streamline complex calculations.
+      publisher: &publisher Microsoft
+      developer: *publisher
+      information_url: https://www.microsoft.com/en-us/microsoft-365/excel
+      privacy_url: https://www.microsoft.com/en-us/privacy/privacystatement
+      categories:
+        - Productivity
+      ignore_version_detection: true
+      assignments:
+        - intent: required
+          group: ac987f08-8b83-4a09-ba53-5f8e244ce206 # Intune - SAC Macbooks
     woodstar:
       pkginfo:
         blocking_applications:
@@ -22,9 +36,8 @@ spec:
           - Microsoft Error Reporting
           - Microsoft Excel
         category: Productivity
-        description: Harness the power of advanced spreadsheets to analyze data, visualize trends,
-          and streamline complex calculations.
-        developer: Microsoft
+        description: *description
+        developer: *publisher
         name: Microsoft Excel
         unattended_install: true
         uninstallable: false

@@ -30,3 +30,5 @@ spec:
       assignments:
         - intent: required
           all_devices: true
+        - intent: required
+          exclude_group: d66e93af-3c1b-4c40-b235-b2f56374c7e8 # Intune - Dedicated Macs

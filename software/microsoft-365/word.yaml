@@ -15,6 +15,20 @@ spec:
     - signer: apple:developer-id:UBF8T346G9 # Microsoft Corporation
   icon: microsoft-word
   destinations:
+    intune:
+      display_name: Microsoft Word
+      description: &description Create and edit professional-looking documents with ease, whether
+        it's for business reports, academic papers, or personal projects.
+      publisher: &publisher Microsoft
+      developer: *publisher
+      information_url: https://www.microsoft.com/en-us/microsoft-365/word
+      privacy_url: https://www.microsoft.com/en-us/privacy/privacystatement
+      categories:
+        - Productivity
+      ignore_version_detection: true
+      assignments:
+        - intent: required
+          group: ac987f08-8b83-4a09-ba53-5f8e244ce206 # Intune - SAC Macbooks
     woodstar:
       pkginfo:
         blocking_applications:
@@ -22,9 +36,8 @@ spec:
           - Microsoft Error Reporting
           - Microsoft Word
         category: Productivity
-        description: Create and edit professional-looking documents with ease, whether it's for
-          business reports, academic papers, or personal projects.
-        developer: Microsoft
+        description: *description
+        developer: *publisher
         name: Microsoft Word
         unattended_install: true
         uninstallable: false

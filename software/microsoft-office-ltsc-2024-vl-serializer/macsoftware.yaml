@@ -5,28 +5,27 @@ metadata:
   name: microsoft-office-ltsc-2024-vl-serializer
 suspend: true
 spec:
-  extends: mac-software
   source:
     path: Assets/Microsoft_Office_LTSC_2024_VL_Serializer.pkg
   minimum_os: "10.15"
   icon: microsoft-office-ltsc-2024-vl-serializer
   destinations:
-    woodstar:
-      pkginfo:
-        category: System
-        description: Activates volume-licensed installations of Microsoft Office LTSC 2024 for Mac.
-        developer: Microsoft
-        name: Microsoft Office LTSC 2024 VL Serializer
-        unattended_install: true
-        uninstall_method: null
-        uninstallable: false
-        version: 16.89.24080626
-      targets:
-        include:
-          - label_name: CRT/Spare Shared MacBooks
-            actions:
-              - managed_installs
-          - label_name: SAC MacBooks
-            actions:
-              - managed_installs
-        exclude: []
+    intune:
+      display_name: Microsoft Office LTSC 2024 VL Serializer
+      description: Activates volume-licensed installations of Microsoft Office LTSC
+        2024 for Mac.
+      publisher: &publisher Microsoft
+      developer: *publisher
+      information_url: https://learn.microsoft.com/microsoft-365-apps/mac/volume-license-serializer
+      categories:
+        - Computer Management
+      ignore_version_detection: false
+      # Every Office installer also writes com.microsoft.pkg.licensing, at its own version.
+      included_apps:
+        - id: com.microsoft.pkg.licensing.volume
+          version: 16.89.24080626
+      assignments:
+        - intent: required
+          group: ac987f08-8b83-4a09-ba53-5f8e244ce206 # Intune - SAC Macbooks
+        - intent: required
+          group: 7a90d612-27b2-488a-949a-d6d480b67c1f # Intune - No User Affinity
