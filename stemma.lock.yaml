@@ -1168,14 +1168,14 @@ inputs:
       observation:
         filename: googlechromestandaloneenterprise64.msi
         package: Google.Chrome
-        sha256: 728bea0eb25389b9f308034725434288d3143827bebdf0abbd4a634df9c00a0c
+        sha256: 32ba438dea18f0fed1ec621bfb274a2669adec67be2aa91d96b3cc6c64779276
         url: https://dl.google.com/dl/chrome/install/googlechromestandaloneenterprise64.msi
-        version: 154.0.8037.98
+        version: 155.0.8059.40
       content:
-        sha256: 728bea0eb25389b9f308034725434288d3143827bebdf0abbd4a634df9c00a0c
+        sha256: 32ba438dea18f0fed1ec621bfb274a2669adec67be2aa91d96b3cc6c64779276
         filename: googlechromestandaloneenterprise64.msi
         mode: 420
-      input_version: 154.0.8037.98
+      input_version: 155.0.8059.40
       evidence:
         winget.installer:
           apps_and_features_entries:
@@ -1191,13 +1191,13 @@ inputs:
             - webp
             - xht
             - xhtml
-          installer_sha256: 728bea0eb25389b9f308034725434288d3143827bebdf0abbd4a634df9c00a0c
+          installer_sha256: 32ba438dea18f0fed1ec621bfb274a2669adec67be2aa91d96b3cc6c64779276
           installer_type: wix
           installer_url: https://dl.google.com/dl/chrome/install/googlechromestandaloneenterprise64.msi
           package_identifier: Google.Chrome
           package_name: Google Chrome
-          package_version: 154.0.8037.98
-          product_code: '{97466CBF-3317-36FC-BC77-CF240B7DA61B}'
+          package_version: 155.0.8059.40
+          product_code: '{AE41646D-561A-3316-9B94-DD3EA96EF975}'
           protocols:
             - http
             - https
@@ -1206,7 +1206,7 @@ inputs:
             - tel
             - webcal
           publisher: Google LLC
-          release_date: "2026-10-02"
+          release_date: "2026-10-06"
           scope: machine
           upgrade_behavior: install
   stemma/v1alpha1/WindowsSoftware/lenovo-commercial-vantage:
