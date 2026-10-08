@@ -682,17 +682,17 @@ inputs:
       resolver_version: "2"
       declaration: 94371a1c5d90baf3b1999052a36539079296bd270d51132389bdac7dd271b44b
       observation:
-        filename: Microsoft_PowerPoint_16.113.26092714_Installer.pkg
-        url: https://res.public.onecdn.static.microsoft/mro1cdnstorage/C1297A47-86C4-4C1F-97FA-950631F94777/MacAutoupdate/Microsoft_PowerPoint_16.113.26092714_Installer.pkg
-        version: 16.113.26092714
+        filename: Microsoft_PowerPoint_16.113.26100421_Installer.pkg
+        url: https://res.public.onecdn.static.microsoft/mro1cdnstorage/C1297A47-86C4-4C1F-97FA-950631F94777/MacAutoupdate/Microsoft_PowerPoint_16.113.26100421_Installer.pkg
+        version: 16.113.26100421
       content:
-        sha256: 178e17850181c0b7ef769c2b68997d6d0117db519468fa62b27dff4304ff3125
-        filename: Microsoft_PowerPoint_16.113.26092714_Installer.pkg
+        sha256: d57fa2e07da6c5256c5887ba24bbf895281def6ca4b9e89b5da079adc7564688
+        filename: Microsoft_PowerPoint_16.113.26100421_Installer.pkg
         mode: 420
-      input_version: 16.113.26092714
+      input_version: 16.113.26100421
       evidence:
         microsoft:
-          version: 16.113.26092714
+          version: 16.113.26100421
   stemma/v1alpha1/MacSoftware/microsoft-teams:
     source:
       version: 1
