@@ -704,7 +704,7 @@ inputs:
         url: https://statics.teams.cdn.office.net/production-osx/enterprise/webview2/lkg/MicrosoftTeams.pkg
         version: ""
       content:
-        sha256: 8acd944d7ba670a8ff1b363ee2cfbf4b94dd2c2ce7c1393245422718519f39c9
+        sha256: bda3a6a8c1085191126058311761069c4274d9a0fbb663038ee25b211ae1046d
         filename: MicrosoftTeams.pkg
         mode: 420
   stemma/v1alpha1/MacSoftware/microsoft-word:
