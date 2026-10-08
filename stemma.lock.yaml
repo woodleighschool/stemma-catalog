@@ -922,7 +922,7 @@ inputs:
       declaration: d4af667d4d1d3b061a84c51f69cdea7765e10beceae9629053c1f5fcc7d1b295
       observation: {}
       content:
-        sha256: 57947b58c3282186379eef81382deea0efecc4e3eb76ce813ea9b4537bc159a3
+        sha256: dcfee9980ef026affb94af0f07f1fb3500f2ff031cbcb9955a798f1678401b0f
         filename: SpotifyARM64.dmg
         mode: 420
   stemma/v1alpha1/MacSoftware/swiftdialog:
