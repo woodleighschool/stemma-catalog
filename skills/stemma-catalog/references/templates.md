@@ -17,6 +17,7 @@ Use an existing Git root when available. For a requested new catalog, create a G
 `stemma.yaml` and a `software/` directory. Start its Project with:
 
 ```yaml
+---
 apiVersion: stemma/v1alpha1
 kind: Project
 metadata:
@@ -45,11 +46,13 @@ spec:
 
 Keep that output directory out of Git. Other destinations need their own schema-defined connection
 settings; use environment expressions for credentials. For editor support, generate the project's
-schema with `stemma schema --output-file stemma.schema.json` after configuring its operations.
+schema with `stemma schema --output-file stemma.schema.json` after configuring its operations, and
+give every document the schema comment described in [documents.md](documents.md#yaml-style).
 
 ## Homebrew cask
 
 ```yaml
+---
 apiVersion: stemma/v1alpha1
 kind: MacSoftware
 metadata:
@@ -88,6 +91,7 @@ the installer.
 ## Vendor PKG at a stable URL
 
 ```yaml
+---
 apiVersion: stemma/v1alpha1
 kind: MacSoftware
 metadata:
@@ -143,6 +147,7 @@ The selected PKG is published as if it had been downloaded directly.
 ## Windows MSI
 
 ```yaml
+---
 apiVersion: stemma/v1alpha1
 kind: WindowsSoftware
 metadata:
@@ -193,6 +198,7 @@ and expose the command through a relative link. Replace `example-cli` with the f
 adjust the command path to the selected bottle:
 
 ```yaml
+---
 apiVersion: stemma/v1alpha1
 kind: BuildMacPkg
 metadata:
@@ -225,6 +231,7 @@ built package from a `MacSoftware` resource using `source.resource`, as in the n
 ## Package built from files
 
 ```yaml
+---
 apiVersion: stemma/v1alpha1
 kind: BuildMacPkg
 metadata:
@@ -262,6 +269,7 @@ changes.
 ## Policy without an installer
 
 ```yaml
+---
 apiVersion: stemma/v1alpha1
 kind: MacSoftware
 metadata:

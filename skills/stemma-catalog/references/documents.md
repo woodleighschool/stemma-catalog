@@ -13,8 +13,9 @@
   version only when majors install side by side as separate products.
 - Place the file as the repository's instructions say. Otherwise use `software/<name>.yaml` for
   one standalone resource. Put genuine families, such as platform editions, side-by-side majors,
-  or a build and its publisher, in `software/<name>/` with a file per resource. Keep the Project at
-  `stemma.yaml` and import those files. A resource need not acquire a folder pre-emptively.
+  or a build and its publisher, in `software/<name>/` with a file per resource. A resource that
+  only feeds a build shares the build's file, above the build. Keep the Project at `stemma.yaml` and
+  import those files. A resource need not acquire a folder pre-emptively.
 
 ## Declare what you mean
 
@@ -85,6 +86,13 @@ Select archive contents with `$input` and `path: .`, and locate script resources
 Verify the consumed vendor input in the build's `signatures`; the software publishing the built
 package needs none.
 
+A build's paths are exact and a direct input's facts stop at the packages it holds. When the
+wrapper carries a package found by a glob inside a vendor image, or needs a version only an
+application supplies, select it in a `MacSoftware` resource without destinations and name that
+resource as the build's input: `resource` in place of a source, then `$input` and
+`inputs.<name>.version` as usual. The chain is three documents: the selected installer, the build
+and the software that publishes the build.
+
 Stemma inspects static contents and never executes installer hooks. For script-driven installs,
 establish product detection, minimum OS and removal from vendor documentation and corroborating
 automation. Declare supported overrides in the publishing document. A wrapper receipt records the
@@ -114,6 +122,9 @@ that would express it. See [plugin-gaps.md](plugin-gaps.md).
 
 - Follow any repository formatter. Otherwise use two-space indentation, sequences indented under
   their key, one final newline and no trailing whitespace. Format only the files you change.
+- Begin every file with `---` and separate documents with it. Where the repository has an editor
+  schema, put its `# yaml-language-server: $schema=` comment on the line after each `---`: the
+  comment covers one document, so every document in a file has its own.
 - Quote only values YAML would misread: versions such as `"1.0"`, octal modes such as `"0644"`,
   expressions, and strings starting with a special character. Write a regular expression plain, or
   in single quotes when it needs quoting, so its backslashes stay single.
