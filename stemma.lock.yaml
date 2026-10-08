@@ -1029,7 +1029,7 @@ inputs:
       declaration: 6f113c46478ef79c97a521f218037bbe906df1c1c98628f803cb14e3457314eb
       observation: {}
       content:
-        sha256: 59cc77128b4e4551da0c97f0437fd61d3d0b2bc47d80c3b929c859368a39a1d3
+        sha256: ab0ecc74855d5d38e898605234bc033b27b79f202e6f12a11442fc410ae06561
         filename: VSCode-darwin-arm64.dmg
         mode: 420
   stemma/v1alpha1/MacSoftware/vivi:
