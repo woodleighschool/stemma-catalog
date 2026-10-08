@@ -1,0 +1,24 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/woodleighschool/stemma-catalog/main/stemma.schema.json
+apiVersion: stemma/v1alpha1
+kind: BuildMacPkg
+metadata:
+  name: microsoft-office-ltsc-2024-vl-serializer
+suspend: true
+spec:
+  inputs:
+    serializer:
+      path: Assets/Microsoft_Office_LTSC_2024_VL_Serializer.pkg
+  signatures:
+    - input: serializer
+      signer: apple:developer-id:UBF8T346G9 # Microsoft Corporation
+  scripts:
+    postinstall: |-
+      #!/bin/zsh --no-rcs
+
+      /usr/sbin/installer -pkg "${0:A:h}/serializer.pkg" -target /
+    serializer.pkg:
+      $input: serializer
+  package:
+    # The wrapper receipt persists independently of Microsoft's licensing receipts.
+    identifier: com.github.woodleighschool.pkg.MicrosoftOfficeLTSC2024VLSerializer
+    version: "{{ inputs.serializer.facts['Office16_all_volume_licensing.pkg/PackageInfo'].package.version }}"

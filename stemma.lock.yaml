@@ -100,6 +100,17 @@ inputs:
         sha256: 28d41efa231019b51f51fa54b650f4fe468c5d0a2869c38cfa622242690a826a
         filename: logioptionsplus_installer_offline.zip
         mode: 420
+  stemma/v1alpha1/BuildMacPkg/microsoft-office-ltsc-2024-vl-serializer:
+    serializer:
+      version: 1
+      resolver: file
+      resolver_version: "2"
+      declaration: 7d69ad6bfb6199065940a2ba499ed0fac9f979aa7394fff72b1215405fd1ffac
+      observation: {}
+      content:
+        sha256: 083b505d9ac880629d7ef560e2baaaf59343721ac7e892be737a2403d7a63de1
+        filename: Microsoft_Office_LTSC_2024_VL_Serializer.pkg
+        mode: 365
   stemma/v1alpha1/BuildMacPkg/mole:
     mole:
       version: 1
@@ -618,17 +629,6 @@ inputs:
       evidence:
         microsoft:
           version: 16.113.26092714
-  stemma/v1alpha1/MacSoftware/microsoft-office-ltsc-2024-vl-serializer:
-    source:
-      version: 1
-      resolver: file
-      resolver_version: "2"
-      declaration: 7d69ad6bfb6199065940a2ba499ed0fac9f979aa7394fff72b1215405fd1ffac
-      observation: {}
-      content:
-        sha256: 083b505d9ac880629d7ef560e2baaaf59343721ac7e892be737a2403d7a63de1
-        filename: Microsoft_Office_LTSC_2024_VL_Serializer.pkg
-        mode: 365
   stemma/v1alpha1/MacSoftware/microsoft-onenote:
     source:
       version: 1

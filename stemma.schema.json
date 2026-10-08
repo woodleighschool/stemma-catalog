@@ -250,7 +250,7 @@
                       "type": "string"
                     }
                   ],
-                  "description": "Installed absolute paths mapped to files, trees, literal text, relative symlinks or directory declarations."
+                  "description": "Installed absolute paths mapped to files, trees, literal text, relative symlinks or directory declarations. Omit or use {} for an empty payload; every built package leaves a receipt after successful installation."
                 },
                 "scripts": {
                   "anyOf": [
@@ -705,7 +705,7 @@
                           "type": "string"
                         }
                       ],
-                      "description": "Installed absolute paths mapped to files, trees, literal text, relative symlinks or directory declarations."
+                      "description": "Installed absolute paths mapped to files, trees, literal text, relative symlinks or directory declarations. Omit or use {} for an empty payload; every built package leaves a receipt after successful installation."
                     },
                     "scripts": {
                       "anyOf": [
@@ -2280,7 +2280,7 @@
                       "type": "string"
                     }
                   ],
-                  "description": "Select the application that supplies version, detection and icon metadata, and that an archive publishes in a new disk image. Packages default to installer metadata and receipts; selecting a package application requires path or bundle_id."
+                  "description": "Select the application that supplies version, detection and icon metadata. An archive publishes it in a new disk image; package publishes it from an archive, tree or disk image in a new PKG. Vendor packages default to installer metadata and receipts; selecting a package application requires path or bundle_id."
                 },
                 "destinations": {
                   "additionalProperties": false,
@@ -2359,6 +2359,56 @@
                   ],
                   "description": "Minimum macOS release, such as 14.0. Destinations receive this instead of the installer's and the selected application's requirements. Omit to use the latest of those."
                 },
+                "package": {
+                  "anyOf": [
+                    {
+                      "additionalProperties": false,
+                      "properties": {
+                        "compression": {
+                          "anyOf": [
+                            {
+                              "enum": [
+                                "gzip",
+                                "xz"
+                              ],
+                              "type": "string"
+                            },
+                            {
+                              "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                              "type": "string"
+                            }
+                          ],
+                          "description": "Payload compression: gzip or xz. Omit for gzip. xz builds a smaller package, costs far more CPU to build and read, and installs on macOS 10.10 or later."
+                        },
+                        "identifier": {
+                          "anyOf": [
+                            {
+                              "maxLength": 255,
+                              "pattern": "^[A-Za-z0-9][A-Za-z0-9.-]*$",
+                              "type": "string"
+                            },
+                            {
+                              "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                              "type": "string"
+                            }
+                          ],
+                          "description": "Package identifier written into the installation receipt. Omit to use the application's bundle identifier."
+                        }
+                      },
+                      "propertyNames": {
+                        "not": {
+                          "pattern": "\\{\\{"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    {
+                      "pattern": "^\\{\\{[\\s\\S]+\\}\\}$",
+                      "type": "string"
+                    }
+                  ],
+                  "description": "Publish the selected application in a new component PKG that installs it at application.installed_path, whether it came from an archive, a tree or a disk image. {} takes every default. The PKG is unsigned and has no scripts; BuildMacPkg builds any other payload. A vendor PKG is published as it is, so package does not apply to one."
+                },
                 "package_path": {
                   "anyOf": [
                     {
@@ -2369,7 +2419,7 @@
                       "type": "string"
                     }
                   ],
-                  "description": "Archive-relative path or glob selecting one installer package or disk image. Selection must be unambiguous."
+                  "description": "Path or glob selecting one installer package, relative to the archive or disk image holding it. It may instead name a disk image to open. Selection must be unambiguous."
                 },
                 "signatures": {
                   "anyOf": [
@@ -2510,7 +2560,7 @@
                       "type": "string"
                     }
                   ],
-                  "description": "Signing expectations for the published PKG or every top-level application in the published disk image. Omit to make no signing assertion; a package BuildMacPkg built needs none. Derive with stemma signature."
+                  "description": "Signing expectations for the published vendor PKG, for every top-level application in the published disk image, or for the application package publishes. Omit to make no signing assertion; a package BuildMacPkg built needs none. Derive with stemma signature."
                 },
                 "source": {
                   "$ref": "https://stemma.invalid/catalog.schema.json#/$defs/Input",
@@ -2684,7 +2734,7 @@
                           "type": "string"
                         }
                       ],
-                      "description": "Select the application that supplies version, detection and icon metadata, and that an archive publishes in a new disk image. Packages default to installer metadata and receipts; selecting a package application requires path or bundle_id."
+                      "description": "Select the application that supplies version, detection and icon metadata. An archive publishes it in a new disk image; package publishes it from an archive, tree or disk image in a new PKG. Vendor packages default to installer metadata and receipts; selecting a package application requires path or bundle_id."
                     },
                     "destinations": {
                       "additionalProperties": false,
@@ -2767,6 +2817,56 @@
                       ],
                       "description": "Minimum macOS release, such as 14.0. Destinations receive this instead of the installer's and the selected application's requirements. Omit to use the latest of those."
                     },
+                    "package": {
+                      "anyOf": [
+                        {
+                          "additionalProperties": false,
+                          "properties": {
+                            "compression": {
+                              "anyOf": [
+                                {
+                                  "enum": [
+                                    "gzip",
+                                    "xz"
+                                  ],
+                                  "type": "string"
+                                },
+                                {
+                                  "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                                  "type": "string"
+                                }
+                              ],
+                              "description": "Payload compression: gzip or xz. Omit for gzip. xz builds a smaller package, costs far more CPU to build and read, and installs on macOS 10.10 or later."
+                            },
+                            "identifier": {
+                              "anyOf": [
+                                {
+                                  "maxLength": 255,
+                                  "pattern": "^[A-Za-z0-9][A-Za-z0-9.-]*$",
+                                  "type": "string"
+                                },
+                                {
+                                  "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                                  "type": "string"
+                                }
+                              ],
+                              "description": "Package identifier written into the installation receipt. Omit to use the application's bundle identifier."
+                            }
+                          },
+                          "propertyNames": {
+                            "not": {
+                              "pattern": "\\{\\{"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        {
+                          "pattern": "^\\{\\{[\\s\\S]+\\}\\}$",
+                          "type": "string"
+                        }
+                      ],
+                      "description": "Publish the selected application in a new component PKG that installs it at application.installed_path, whether it came from an archive, a tree or a disk image. {} takes every default. The PKG is unsigned and has no scripts; BuildMacPkg builds any other payload. A vendor PKG is published as it is, so package does not apply to one."
+                    },
                     "package_path": {
                       "anyOf": [
                         {
@@ -2777,7 +2877,7 @@
                           "type": "string"
                         }
                       ],
-                      "description": "Archive-relative path or glob selecting one installer package or disk image. Selection must be unambiguous."
+                      "description": "Path or glob selecting one installer package, relative to the archive or disk image holding it. It may instead name a disk image to open. Selection must be unambiguous."
                     },
                     "signatures": {
                       "anyOf": [
@@ -2914,7 +3014,7 @@
                           "type": "string"
                         }
                       ],
-                      "description": "Signing expectations for the published PKG or every top-level application in the published disk image. Omit to make no signing assertion; a package BuildMacPkg built needs none. Derive with stemma signature."
+                      "description": "Signing expectations for the published vendor PKG, for every top-level application in the published disk image, or for the application package publishes. Omit to make no signing assertion; a package BuildMacPkg built needs none. Derive with stemma signature."
                     },
                     "source": {
                       "$ref": "https://stemma.invalid/catalog.schema.json#/$defs/PartialInput",
@@ -5510,6 +5610,48 @@
                 }
               ],
               "description": "Owner label."
+            },
+            "post_install_script": {
+              "anyOf": [
+                {
+                  "anyOf": [
+                    {
+                      "maxLength": 15359,
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                {
+                  "pattern": "^\\{\\{[\\s\\S]+\\}\\}$",
+                  "type": "string"
+                }
+              ],
+              "description": "Script that runs after a PKG app installs. Intune reports the app as installed whatever the script's exit status. PKG apps only; a disk image app has no scripts. Null removes the script. Plans report a change without the script text. Never executed by Stemma."
+            },
+            "pre_install_script": {
+              "anyOf": [
+                {
+                  "anyOf": [
+                    {
+                      "maxLength": 15359,
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                {
+                  "pattern": "^\\{\\{[\\s\\S]+\\}\\}$",
+                  "type": "string"
+                }
+              ],
+              "description": "Script that runs before a PKG app installs. A nonzero exit stops the installation, which Intune tries again at the next check-in. PKG apps only; a disk image app has no scripts. Null removes the script. Plans report a change without the script text. Never executed by Stemma."
             },
             "privacy_url": {
               "anyOf": [
