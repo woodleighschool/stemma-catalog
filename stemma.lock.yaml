@@ -1075,14 +1075,14 @@ inputs:
       resolver_version: "2"
       declaration: d1aa0882d9907b7e24f07f8eaf01f425b742ef9b3cb1798f8b2b32d44f3adf34
       observation:
-        filename: WacomTablet_6.4.14-2.dmg
-        sha256: 9165218f880057c9b95b3a8b450ad795e359cbb2bb7078e6c7a450bd119d0a10
-        url: https://cdn.wacom.com/u/productsupport/drivers/mac/professional/WacomTablet_6.4.14-2.dmg
+        filename: WacomTablet_6.4.15-1.dmg
+        sha256: 1eb81473e03345f6cd06c55aa05ba40a5bbe602b3a4dabc83fe6bc9b8395cbc5
+        url: https://cdn.wacom.com/u/productsupport/drivers/mac/professional/WacomTablet_6.4.15-1.dmg
       content:
-        sha256: 9165218f880057c9b95b3a8b450ad795e359cbb2bb7078e6c7a450bd119d0a10
-        filename: WacomTablet_6.4.14-2.dmg
+        sha256: 1eb81473e03345f6cd06c55aa05ba40a5bbe602b3a4dabc83fe6bc9b8395cbc5
+        filename: WacomTablet_6.4.15-1.dmg
         mode: 420
-      input_version: 6.4.14-2
+      input_version: 6.4.15-1
       evidence:
         homebrew.cask:
           artifacts:
@@ -1091,7 +1091,7 @@ inputs:
           macos: "27"
           name: wacom-tablet
           target_architecture: arm64
-          version: 6.4.14-2
+          version: 6.4.15-1
   stemma/v1alpha1/MacSoftware/windows-app:
     source:
       version: 1
