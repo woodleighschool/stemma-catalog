@@ -7,15 +7,13 @@ metadata:
 spec:
   extends: mac-software
   source:
-    url: https://www.activsoftware.co.uk/update/Inspire/updatemac.txt
-    match: 'https?://www\.activsoftware\.co\.uk/update/Inspire/update/mac/ActivInspire_Application_v[0-9.]+_MAC\.dmg'
-  package_path: ActivInspire_Application_*_MAC.pkg
-  application:
-    path: InspireInstaller.pkg/Payload/Applications/Promethean/Activsoftware Inspire/Inspire.app
-    installed_path: /Applications/Promethean/Activsoftware Inspire/Inspire.app
-  signatures:
-    - signer: apple:developer-id:PQ96WVYU2E # Promethean
+    resource:
+      kind: BuildMacPkg
+      name: activinspire
   icon: activinspire
+  subjects:
+    wrapper:
+      kind: package
   destinations:
     woodstar:
       pkginfo:
@@ -23,6 +21,11 @@ spec:
         description: ActivInspire lesson delivery software is a free teaching software tool for
           classroom interactive touchboards, displays, and whiteboards.
         developer: Promethean
+        installs:
+          - path: /Applications/Promethean/Activsoftware Inspire/Inspire.app
+            type: application
+            CFBundleIdentifier: com.prometheanworld.ActivSoftware.ActivInspire.1
+            CFBundleShortVersionString: "{{ facts.wrapper.package.version }}"
         name: ActivInspire
         postinstall_script: |-
           #!/bin/zsh --no-rcs
@@ -40,10 +43,22 @@ spec:
             <serial>{{ env.ACTIVINSPIRE_SERIAL }}</serial>
           </License>
           EOF
+
+          /usr/sbin/chown root:wheel "$directory/.inspire_license.xml"
+          /bin/chmod 0644 "$directory/.inspire_license.xml"
         postuninstall_script: |-
           #!/bin/zsh --no-rcs
 
           /bin/rm -rf /Users/Shared/Promethean
+        # The receipts of the installer the package runs.
+        receipts:
+          - packageid: com.promethean.pkg.ActivsoftwareInspire
+          - packageid: com.promethean.ActivsoftwareInspireHelpGBR
+          - packageid: com.promethean.ActivsoftwareInspireResourcesGBR
+        requires:
+          - resource:
+              kind: MacSoftware
+              name: rosetta
         unattended_install: true
         unattended_uninstall: true
         uninstall_method: removepackages
@@ -51,6 +66,10 @@ spec:
       targets:
         include:
           - label_name: All Staff
+            actions:
+              - optional_installs
+              - managed_updates
+          - label_name: CRT/Spare Shared MacBooks
             actions:
               - optional_installs
               - managed_updates

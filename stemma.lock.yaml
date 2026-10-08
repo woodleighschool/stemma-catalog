@@ -172,17 +172,16 @@ inputs:
         sha256: 902b8021c308185f30e92a86a31132a59a4d71681cceded6b52d90ec7ab9b353
         filename: 1Password.pkg
         mode: 420
-  stemma/v1alpha1/MacSoftware/activinspire:
+  stemma/v1alpha1/MacSoftware/activinspire-installer:
     source:
       version: 1
       resolver: http
       resolver_version: "2"
-      declaration: 270cc135957ec00d354a72683ea3e8d9b90a2b7b66d90c826df10d5cd711f9c1
-      observation:
-        url: http://www.activsoftware.co.uk/update/Inspire/update/mac/ActivInspire_Application_v3.4.16_MAC.dmg
+      declaration: d3133db5e672e2e8b854b9807b50872a7d0ef71892b0944cfa665c2809603bc5
+      observation: {}
       content:
-        sha256: be9337a23401fc3e1fdaae8e529f102cd10fe89b97c9b8a69ad5d5bed7ee6eea
-        filename: ActivInspire_Application_v3.4.16_MAC.dmg
+        sha256: ed5f94596198896aace5af2152065665bd328c677ecc649dbcbac4ecb7232035
+        filename: ActivInspire_en_GB_mac.dmg
         mode: 420
   stemma/v1alpha1/MacSoftware/assetcache-exporter:
     source:
