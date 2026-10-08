@@ -5,46 +5,47 @@ kind: MacSoftware
 metadata:
   name: woodsweep
 spec:
-  extends: mac-software
   source:
     resolver: github
     repository: woodleighschool/woodsweep
     asset: WoodSweep-*.zip
   application:
     bundle_id: au.edu.vic.woodleigh.WoodSweep
+  package: {}
   signatures:
     - signer: apple:developer-id:SMLKBTR495 # Woodleigh School
   icon: woodsweep
   destinations:
-    woodstar:
-      pkginfo:
-        category: System
-        description: WoodSweep snapshots a configured local account, resets Microsoft Office user
-          state, and reconciles the account home after the snapshot succeeds.
-        developer: Woodleigh School
-        name: WoodSweep
-        postinstall_script: |-
-          #!/bin/zsh --no-rcs
+    intune:
+      display_name: WoodSweep
+      description: WoodSweep snapshots a configured local account, resets Microsoft Office user
+        state, and reconciles the account home after the snapshot succeeds.
+      publisher: &publisher Woodleigh School
+      developer: *publisher
+      information_url: https://github.com/woodleighschool/woodsweep
+      categories:
+        - Computer Management
+      pre_install_script: |-
+        #!/bin/zsh --no-rcs
 
-          user=$(/usr/bin/stat -f %Su /dev/console)
-          /bin/launchctl asuser "$(/usr/bin/id -u "$user")" /usr/bin/sudo -u "$user" \
-              /Applications/WoodSweep.app/Contents/MacOS/WoodSweep bootstrap \
-              --server-url '{{ env.WOODSWEEP_SERVER_URL }}' \
-              --bootstrap-user '{{ env.WOODSWEEP_BOOTSTRAP_USER }}' \
-              --bootstrap-password '{{ env.WOODSWEEP_BOOTSTRAP_PASSWORD }}'
-        preinstall_script: |-
-          #!/bin/zsh --no-rcs
+        # Wait until someone has logged in and their Dock is up. The Intune agent stops a
+        # script that runs too long and runs a failed one again at its next check-in.
+        until
+            user=$(/usr/bin/stat -f %Su /dev/console)
+            [[ $user != (root|loginwindow|_mbsetupuser|) ]] && /usr/bin/pgrep -q -x -u "$user" Dock
+        do
+            /bin/sleep 5
+        done
+      post_install_script: |-
+        #!/bin/zsh --no-rcs
 
-          case $(/usr/bin/stat -f %Su /dev/console) in
-              root | loginwindow | _mbsetupuser | "") exit 1 ;;
-          esac
-        unattended_install: true
-        unattended_uninstall: true
-        uninstall_method: remove_copied_items
-        uninstallable: true
-      targets:
-        include:
-          - label_name: SAC MacBooks
-            actions:
-              - managed_installs
-        exclude: []
+        user=$(/usr/bin/stat -f %Su /dev/console)
+        /bin/launchctl asuser "$(/usr/bin/id -u "$user")" /usr/bin/sudo -u "$user" \
+            /Applications/WoodSweep.app/Contents/MacOS/WoodSweep bootstrap \
+            --server-url '{{ env.WOODSWEEP_SERVER_URL }}' \
+            --bootstrap-user '{{ env.WOODSWEEP_BOOTSTRAP_USER }}' \
+            --bootstrap-password '{{ env.WOODSWEEP_BOOTSTRAP_PASSWORD }}'
+      ignore_version_detection: false
+      assignments:
+        - intent: required
+          group: ac987f08-8b83-4a09-ba53-5f8e244ce206 # Intune - SAC Macbooks
