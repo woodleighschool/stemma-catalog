@@ -56,7 +56,13 @@
 - Where the kind supports an icon, declare its name (`icon: <name>` uses `icons/<name>.png`) and
   create it from locked software with `stemma icon Kind/name`, unless suitable artwork exists.
   For a wrapper, select its vendor artwork with `stemma icon MacSoftware/name --input vendor --path Installer.app`
-  in the CLI or the equivalent MCP fields. Report extraction errors with their cause.
+  in the CLI or the equivalent MCP fields. Software with no artwork of its own, such as fonts or a
+  configuration package, takes it from a local application, installer or artwork file with
+  `--from PATH` or MCP `from`, which needs no source or lock entry. `--path` names one of several
+  applications; inside a package it is the subject path `stemma inspect` reports, such as
+  `Payload/Example.app`. When the prepared package holds several and the document selects none,
+  give `--from` the path `stemma artifact Kind/name` prints. Report extraction errors with their
+  cause.
 - Refer to other catalog resources by `kind` and `name`, not by native names. `source.resource`
   consumes another resource's output, which is a build dependency. Destination relationships, such
   as Munki `requires` or Intune `dependencies`, are publication dependencies. Don't use one for the
