@@ -27,9 +27,10 @@ spec:
     - software/**/*.yaml
 ```
 
-Create at least one resource before validation: every import pattern must match. Keep standalone
-resources in `software/<name>.yaml`; use `software/<name>/` for a real family such as a build and
-its publisher. A builder or a source-only `MacSoftware` resource can prepare without destinations.
+Create at least one resource before validation: every import pattern must match. Name each file
+for the resources it holds, `software/<name>.yaml`, with a build above the item that publishes it;
+use a folder only for a real group or for files a document reads. A builder or a source-only
+`MacSoftware` resource can prepare without destinations.
 There is no need to add plugins, components or reconciliation settings up front.
 
 When Munki publication to a local directory is requested, this Project fragment defines the

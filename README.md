@@ -6,9 +6,9 @@ Our software catalog, its Stemma plugins and an agent skill for Stemma catalogs.
 
 `stemma.yaml` owns imports, shared settings and destination connections.
 `software/` contains the managed items and their package inputs; `icons/` contains
-reviewed artwork. Standalone items use `software/<slug>.yaml`; folders group
-related product editions, application configuration, suites and package inputs.
-`microsoft-365/`, `windows-app/` and `printers/` group related items; Mail2Outlook
+reviewed artwork. Each file is named for the resources it holds, `<name>.yaml`; folders
+group related items and hold the files their documents read.
+`windows-app/` and `printers/` group related items; the Microsoft 365 apps, Mail2Outlook
 and Epson drivers remain standalone. Resource identities do not depend on directory names.
 
 Runs without a profile skip the `apple-apps` profile: Apple's apps captured from

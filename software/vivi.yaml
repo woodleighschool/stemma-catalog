@@ -1,6 +1,42 @@
 ---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/woodleighschool/stemma-catalog/main/stemma.schema.json
 apiVersion: stemma/v1alpha1
+kind: MacSoftware
+metadata:
+  name: vivi
+spec:
+  extends: mac-software
+  source:
+    url: https://api.vivi.io/mac
+  application:
+    bundle_id: au.com.viviaustralia.mac
+    installed_path: /Applications/Vivi.app
+  signatures:
+    - signer: apple:developer-id:3NRCUJ8TJC # VIVI AUSTRALIA PTY LTD
+  icon: vivi
+  destinations:
+    woodstar:
+      pkginfo:
+        category: Communication
+        description: Vivi is the only scalable, easy-to-use wireless screensharing and student
+          engagement platform engineered for, and by, the education sector. Any device, any number
+          of users or classrooms, any media type, any learning type, any display.
+        developer: Vivi
+        name: Vivi
+        unattended_install: true
+        unattended_uninstall: true
+        uninstall_method: removepackages
+        uninstallable: true
+      targets:
+        include:
+          - label_name: All Hosts
+            actions:
+              - optional_installs
+              - managed_updates
+        exclude: []
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/woodleighschool/stemma-catalog/main/stemma.schema.json
+apiVersion: stemma/v1alpha1
 kind: WindowsSoftware
 metadata:
   name: vivi

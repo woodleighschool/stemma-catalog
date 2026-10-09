@@ -1,6 +1,31 @@
 ---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/woodleighschool/stemma-catalog/main/stemma.schema.json
 apiVersion: stemma/v1alpha1
+kind: BuildMacPkg
+metadata:
+  name: garageband-all-sounds
+spec:
+  inputs:
+    assets:
+      path: Assets
+    scripts:
+      path: Scripts
+  scripts:
+    postinstall:
+      $input: scripts
+      path: all-sounds-postinstall
+    loopdown:
+      $input: assets
+      path: loopdown
+    loopdown-LICENSE.txt:
+      $input: assets
+      path: loopdown-LICENSE.txt
+  package:
+    identifier: au.edu.vic.woodleigh.garageband-all-sounds
+    version: 2.0.3.1
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/woodleighschool/stemma-catalog/main/stemma.schema.json
+apiVersion: stemma/v1alpha1
 kind: MacSoftware
 metadata:
   name: garageband-all-sounds
@@ -79,56 +104,4 @@ spec:
             actions:
               - optional_installs
               - managed_updates
-        exclude: []
----
-# yaml-language-server: $schema=https://raw.githubusercontent.com/woodleighschool/stemma-catalog/main/stemma.schema.json
-apiVersion: stemma/v1alpha1
-kind: MacSoftware
-metadata:
-  name: garageband-essential-sounds
-spec:
-  extends: mac-software
-  source:
-    resource:
-      kind: BuildMacPkg
-      name: garageband-essential-sounds
-  minimum_os: "14.0"
-  icon: garageband-sounds
-  destinations:
-    woodstar:
-      pkginfo:
-        blocking_applications:
-          - GarageBand
-        category: Media
-        description: Essential sounds and instruments for GarageBand.
-        developer: Apple
-        installcheck_script: |-
-          #!/bin/zsh --no-rcs
-          setopt pipefail
-
-          manifests=(/Applications/GarageBand.app/Contents/Resources/garageband<->.plist(Nn))
-          receipts=($(/usr/sbin/pkgutil --pkgs))
-
-          installed() { (( $receipts[(Ie)$1] )) }
-          any_exist() { local file; for file; do [[ -e $file ]] && return 0; done; return 1 }
-
-          packages=$(
-              /usr/bin/plutil -extract Packages json -o - "$manifests[-1]" |
-                  /usr/bin/jq -r '.[] | select(.IsMandatory and .PackageID) | [.PackageID, .FileCheck] | flatten | @tsv'
-          ) || exit 0
-
-          while IFS=$'\t' read -rA package; do
-              installed $package[1] && any_exist $package[2,-1] || exit 0
-          done <<< $packages
-          exit 1
-        name: GarageBand Essential Sounds
-        requires:
-          - GarageBand
-        unattended_install: true
-        uninstallable: false
-        update_for:
-          - GarageBand
-        version: 2.0.3.2
-      targets:
-        include: []
         exclude: []

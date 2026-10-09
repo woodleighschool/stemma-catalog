@@ -1,6 +1,46 @@
 ---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/woodleighschool/stemma-catalog/main/stemma.schema.json
 apiVersion: stemma/v1alpha1
+kind: MacSoftware
+metadata:
+  name: globalprotect
+spec:
+  extends: mac-software
+  source:
+    url: https://access.woodleigh.vic.edu.au/global-protect/getmsi.esp?platform=mac
+  application:
+    bundle_id: com.paloaltonetworks.GlobalProtect.client
+    installed_path: /Applications/GlobalProtect.app
+  signatures:
+    - signer: apple:developer-id:PXPZ95SK77 # Palo Alto Networks
+  icon: globalprotect
+  destinations:
+    woodstar:
+      pkginfo:
+        blocking_applications: [] # installer auto-quits
+        category: Security
+        description: GlobalProtect secures intranet, private cloud, public cloud, and internet
+          traffic and allows access to company resources from anywhere in the world.
+        developer: Palo Alto
+        name: GlobalProtect
+        unattended_install: true
+        unattended_uninstall: true
+        uninstall_method: uninstall_script
+        uninstall_script: |-
+          #!/bin/zsh --no-rcs
+
+          exec /Applications/GlobalProtect.app/Contents/Resources/uninstall_gp.sh
+        uninstallable: true
+      targets:
+        include:
+          - label_name: All Staff
+            actions:
+              - optional_installs
+              - managed_updates
+        exclude: []
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/woodleighschool/stemma-catalog/main/stemma.schema.json
+apiVersion: stemma/v1alpha1
 kind: WindowsSoftware
 metadata:
   name: globalprotect

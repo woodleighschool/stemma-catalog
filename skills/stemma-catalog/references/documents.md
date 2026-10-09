@@ -11,11 +11,13 @@
 - `metadata.name` is the stable resource identity; renaming it can change destination bindings.
   Use the product's plain name in lowercase kebab case, such as `google-chrome`. Add a major
   version only when majors install side by side as separate products.
-- Place the file as the repository's instructions say. Otherwise use `software/<name>.yaml` for
-  one standalone resource. Put genuine families, such as platform editions, side-by-side majors,
-  or a build and its publisher, in `software/<name>/` with a file per resource. A resource that
-  only feeds a build shares the build's file, above the build. Keep the Project at `stemma.yaml` and
-  import those files. A resource need not acquire a folder pre-emptively.
+- Place the file as the repository's instructions say. Otherwise name a file for the resources it
+  holds: `software/<name>.yaml` has every resource called `<name>`, in the order they feed each
+  other. A resource that only feeds the build comes first, then the build, then the item for each
+  platform. Use a folder only to group related items, such as side-by-side majors or an
+  application with its configuration, or to hold files a document reads; a file keeps its name
+  there. Moving a document that reads local files changes their lock entries, so run
+  `stemma update` for it. Keep the Project at `stemma.yaml` and import those files.
 
 ## Declare what you mean
 

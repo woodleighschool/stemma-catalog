@@ -1,6 +1,42 @@
 ---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/woodleighschool/stemma-catalog/main/stemma.schema.json
 apiVersion: stemma/v1alpha1
+kind: MacSoftware
+metadata:
+  name: zoom
+spec:
+  extends: mac-software
+  source:
+    resolver: homebrew
+    cask: zoom-for-it-admins
+  application:
+    bundle_id: us.zoom.xos
+    installed_path: /Applications/zoom.us.app
+  signatures:
+    - signer: apple:developer-id:BJ4HAAB9B3 # Zoom Video Communications, Inc.
+  icon: zoom
+  destinations:
+    woodstar:
+      pkginfo:
+        category: Communication
+        description: Zoom is a cloud-based video conferencing platform that can be used for video
+          conferencing meetings, audio conferencing, webinars, meeting recordings, and live chat.
+        developer: Zoom
+        name: Zoom
+        unattended_install: true
+        unattended_uninstall: true
+        uninstall_method: removepackages
+        uninstallable: true
+      targets:
+        include:
+          - label_name: All Hosts
+            actions:
+              - optional_installs
+              - managed_updates
+        exclude: []
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/woodleighschool/stemma-catalog/main/stemma.schema.json
+apiVersion: stemma/v1alpha1
 kind: WindowsSoftware
 metadata:
   name: zoom
