@@ -11,7 +11,7 @@ spec:
     downloads:
       image: ghcr.io/woodleighschool/stemma-catalog/downloads:0.3.11@sha256:8c2c0d8d69f8733f17934519a879f5d1633d7400f32ddf0aa50ea30dd6609996
     woodstar:
-      image: ghcr.io/woodleighschool/woodstar/stemma:1.1.1@sha256:035cf5cb058812f22856f0981ae9f8516a15f0dd42fcf6deddc6941f8197cd19
+      image: ghcr.io/woodleighschool/woodstar/stemma:1.1.2@sha256:130a9218fd9d19160025030b633d6c1cd4251a2ea72eae0e9346fceeb181de84
   components:
     mac-software:
       destinations:
