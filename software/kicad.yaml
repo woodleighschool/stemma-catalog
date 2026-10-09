@@ -1,0 +1,38 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/woodleighschool/stemma-catalog/main/stemma.schema.json
+apiVersion: stemma/v1alpha1
+kind: MacSoftware
+metadata:
+  name: kicad
+spec:
+  extends: mac-software
+  source:
+    resolver: github
+    repository: KiCad/kicad-source-mirror
+    asset: kicad-unified-universal-*.dmg
+  application:
+    path: KiCad/KiCad.app
+    installed_path: /Applications/KiCad/KiCad.app
+  signatures:
+    - signer: apple:developer-id:9FQDHNY6U2 # KiCad Services Corporation
+  icon: kicad
+  destinations:
+    woodstar:
+      pkginfo:
+        category: Graphics & Design
+        description: KiCad is a free and open source electronics design automation suite for
+          schematic capture and PCB layout.
+        developer: KiCad
+        items_to_copy:
+          - destination_path: /Applications
+            source_item: KiCad
+        name: KiCad
+        unattended_install: true
+        unattended_uninstall: true
+      targets:
+        include:
+          - label_name: All Hosts
+            actions:
+              - optional_installs
+              - managed_updates
+        exclude: []

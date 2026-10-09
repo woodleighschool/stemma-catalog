@@ -1,0 +1,34 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/woodleighschool/stemma-catalog/main/stemma.schema.json
+apiVersion: stemma/v1alpha1
+kind: MacSoftware
+metadata:
+  name: handbrake
+spec:
+  extends: mac-software
+  source:
+    resolver: github
+    repository: HandBrake/HandBrake
+    asset: HandBrake-*.dmg
+  application:
+    bundle_id: fr.handbrake.HandBrake
+  signatures:
+    - signer: apple:developer-id:5X9DE89KYV # I.D.&.A. di Galassi Damiano & C. S.a.s.
+  icon: handbrake
+  destinations:
+    woodstar:
+      pkginfo:
+        category: Media
+        description: HandBrake is an open source tool for converting video from nearly any format to
+          a selection of modern, widely supported codecs.
+        developer: The HandBrake Team
+        name: HandBrake
+        unattended_install: true
+        unattended_uninstall: true
+      targets:
+        include:
+          - label_name: All Hosts
+            actions:
+              - optional_installs
+              - managed_updates
+        exclude: []

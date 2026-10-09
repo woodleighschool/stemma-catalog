@@ -406,6 +406,24 @@ inputs:
           name: docker-desktop
           target_architecture: arm64
           version: 4.94.0,241994
+  stemma/v1alpha1/MacSoftware/drawio:
+    source:
+      version: 1
+      resolver: github
+      resolver_version: "2"
+      declaration: 426172f7c83ab17e28c07d6b3978783b800d8526a542b739b76131e9d76070e3
+      observation:
+        asset_id: 619117287
+        filename: draw.io-arm64-32.3.0.dmg
+        release: v32.3.0
+        release_id: 405917743
+        sha256: c29d5729198f3b0ac7b9836803459fccbfaa3b8778013d1653aa17d5b645f94d
+        url: https://github.com/jgraph/drawio-desktop/releases/download/v32.3.0/draw.io-arm64-32.3.0.dmg
+      content:
+        sha256: c29d5729198f3b0ac7b9836803459fccbfaa3b8778013d1653aa17d5b645f94d
+        filename: draw.io-arm64-32.3.0.dmg
+        mode: 420
+      input_version: v32.3.0
   stemma/v1alpha1/MacSoftware/easyfind:
     source:
       version: 1
@@ -536,6 +554,24 @@ inputs:
         sha256: 20df0f4927f312f8d47e60294b9a77fd60e44be61476a581fb9195c029ba0893
         filename: googleearthpromac-intel.dmg
         mode: 420
+  stemma/v1alpha1/MacSoftware/handbrake:
+    source:
+      version: 1
+      resolver: github
+      resolver_version: "2"
+      declaration: fef1f747a7a6d286db3c92fbbe48a23b482dd8a117fdb8346effe65f1bfa3bc6
+      observation:
+        asset_id: 441100095
+        filename: HandBrake-1.11.2.dmg
+        release: 1.11.2
+        release_id: 335656806
+        sha256: 4afe27aaa77a7bbb0dcda1a335d96a5f53649f2649fb84de6982ffecc35de9d7
+        url: https://github.com/HandBrake/HandBrake/releases/download/1.11.2/HandBrake-1.11.2.dmg
+      content:
+        sha256: 4afe27aaa77a7bbb0dcda1a335d96a5f53649f2649fb84de6982ffecc35de9d7
+        filename: HandBrake-1.11.2.dmg
+        mode: 420
+      input_version: 1.11.2
   stemma/v1alpha1/MacSoftware/imovie:
     source:
       version: 1
@@ -560,6 +596,24 @@ inputs:
         filename: Keynote Creator Studio.app
         tree: true
         mode: 493
+  stemma/v1alpha1/MacSoftware/kicad:
+    source:
+      version: 1
+      resolver: github
+      resolver_version: "2"
+      declaration: 71bda1e6ac141fba18f266e570558f67201f938013f8535ab936140a7d8c48a7
+      observation:
+        asset_id: 536738445
+        filename: kicad-unified-universal-10.0.6.dmg
+        release: 10.0.6
+        release_id: 379027496
+        sha256: ef4dcd4278c46d3efcd28c8db273d5957d68efda028f6bf79b4811fc5302dc68
+        url: https://github.com/KiCad/kicad-source-mirror/releases/download/10.0.6/kicad-unified-universal-10.0.6.dmg
+      content:
+        sha256: ef4dcd4278c46d3efcd28c8db273d5957d68efda028f6bf79b4811fc5302dc68
+        filename: kicad-unified-universal-10.0.6.dmg
+        mode: 420
+      input_version: 10.0.6
   stemma/v1alpha1/MacSoftware/linewize-authentication-agent:
     source:
       version: 1
@@ -781,6 +835,31 @@ inputs:
         sha256: 0c52500ff74f25dd7bc1080381cdf9c44695e796c614f347b0dd1c4ba4f91ea0
         filename: NAP Locked down browser - Release - 5.10.5.pkg
         mode: 420
+  stemma/v1alpha1/MacSoftware/notion:
+    source:
+      version: 1
+      resolver: homebrew
+      resolver_version: "2"
+      declaration: e6ea418382a997cd6a4d0d0033a079dfcb7586c37a8b3f5a056edb8e3e9daa5e
+      observation:
+        filename: Notion-7.37.1-arm64.dmg
+        sha256: 730773ed44c78010968fa3af9ec5d4e5b91021149cbf04b729799091ca785a51
+        url: https://desktop-release.notion-static.com/Notion-7.37.1-arm64.dmg
+      content:
+        sha256: 730773ed44c78010968fa3af9ec5d4e5b91021149cbf04b729799091ca785a51
+        filename: Notion-7.37.1-arm64.dmg
+        mode: 420
+      input_version: 7.37.1
+      evidence:
+        homebrew.cask:
+          artifacts:
+            - app:
+                - Notion.app
+              target: /Applications/Notion.app
+          macos: "27"
+          name: notion
+          target_architecture: arm64
+          version: 7.37.1
   stemma/v1alpha1/MacSoftware/numbers:
     source:
       version: 1
@@ -793,6 +872,42 @@ inputs:
         filename: Numbers Creator Studio.app
         tree: true
         mode: 493
+  stemma/v1alpha1/MacSoftware/obs-studio:
+    source:
+      version: 1
+      resolver: github
+      resolver_version: "2"
+      declaration: 826f6f146aec439b84bc60f279116cbd4614f79ea69d90c0474baabd0f61d1a0
+      observation:
+        asset_id: 515013679
+        filename: OBS-Studio-32.2.2-macOS-Apple.dmg
+        release: 32.2.2
+        release_id: 370856907
+        sha256: 920d6f26703d2df6e4085bd3c1cbed30488325084136c7a6e9e37021fbd6aaf7
+        url: https://github.com/obsproject/obs-studio/releases/download/32.2.2/OBS-Studio-32.2.2-macOS-Apple.dmg
+      content:
+        sha256: 920d6f26703d2df6e4085bd3c1cbed30488325084136c7a6e9e37021fbd6aaf7
+        filename: OBS-Studio-32.2.2-macOS-Apple.dmg
+        mode: 420
+      input_version: 32.2.2
+  stemma/v1alpha1/MacSoftware/obsidian:
+    source:
+      version: 1
+      resolver: github
+      resolver_version: "2"
+      declaration: f6bba441ab1b80dae4e79b0ee9ebceb9473aaa13c6a9d91387544733490df21a
+      observation:
+        asset_id: 612754416
+        filename: Obsidian-1.14.4.dmg
+        release: v1.14.4
+        release_id: 403788299
+        sha256: dcf818dd20ee5d9dd3e782eee0c0c4c47cc225383b051c2fc9af7d5772f59f70
+        url: https://github.com/obsidianmd/obsidian-releases/releases/download/v1.14.4/Obsidian-1.14.4.dmg
+      content:
+        sha256: dcf818dd20ee5d9dd3e782eee0c0c4c47cc225383b051c2fc9af7d5772f59f70
+        filename: Obsidian-1.14.4.dmg
+        mode: 420
+      input_version: v1.14.4
   stemma/v1alpha1/MacSoftware/onedrive:
     source:
       version: 1
@@ -855,6 +970,31 @@ inputs:
       evidence:
         python:
           version: 3.13.16
+  stemma/v1alpha1/MacSoftware/qlab:
+    source:
+      version: 1
+      resolver: homebrew
+      resolver_version: "2"
+      declaration: 6428a2e239f41510025c81f77e7a9461ad3f604a9469deaa18701468de182280
+      observation:
+        filename: QLab-5.6.3.zip
+        sha256: fa655221b20f5add503faedfacd1d8d3b37a24f0ac7b05736c3e61e905300dea
+        url: https://qlab.app/downloads/archive/QLab-5.6.3.zip
+      content:
+        sha256: fa655221b20f5add503faedfacd1d8d3b37a24f0ac7b05736c3e61e905300dea
+        filename: QLab-5.6.3.zip
+        mode: 420
+      input_version: 5.6.3
+      evidence:
+        homebrew.cask:
+          artifacts:
+            - app:
+                - QLab.app
+              target: /Applications/QLab.app
+          macos: "27"
+          name: qlab
+          target_architecture: arm64
+          version: 5.6.3
   stemma/v1alpha1/MacSoftware/rekordbox-7:
     source:
       version: 1
@@ -1092,6 +1232,17 @@ inputs:
           name: wacom-tablet
           target_architecture: arm64
           version: 6.4.15-1
+  stemma/v1alpha1/MacSoftware/webex:
+    source:
+      version: 1
+      resolver: http
+      resolver_version: "2"
+      declaration: 9de0a04accbe2724592428cdaea6e697abd2a3aca20e0f5bb5b0756ea705f063
+      observation: {}
+      content:
+        sha256: 7eab3456034d14cb125f4cd1a7238d1c564c27003446d04f51fbbd392987f535
+        filename: Webex.dmg
+        mode: 420
   stemma/v1alpha1/MacSoftware/windows-app:
     source:
       version: 1

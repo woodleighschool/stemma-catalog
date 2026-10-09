@@ -1,0 +1,31 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/woodleighschool/stemma-catalog/main/stemma.schema.json
+apiVersion: stemma/v1alpha1
+kind: MacSoftware
+metadata:
+  name: webex
+spec:
+  extends: mac-software
+  source:
+    url: https://binaries.webex.com/webex-macos-apple-silicon/Webex.dmg
+  application:
+    bundle_id: Cisco-Systems.Spark
+  signatures:
+    - signer: apple:developer-id:DE8Y96K9QP # Cisco
+  icon: webex
+  destinations:
+    woodstar:
+      pkginfo:
+        category: Communication
+        description: Webex is an app for meetings, messaging and calling.
+        developer: Cisco
+        name: Webex
+        unattended_install: true
+        unattended_uninstall: true
+      targets:
+        include:
+          - label_name: All Hosts
+            actions:
+              - optional_installs
+              - managed_updates
+        exclude: []
