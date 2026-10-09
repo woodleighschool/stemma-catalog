@@ -69,7 +69,7 @@ jobs:
         run: echo "version=${RELEASE_TAG#v}" >> "$GITHUB_OUTPUT"
 
       - name: Publish plugin
-        uses: woodleighschool/stemma/actions/publish-plugin@eb291797c01bf088a92057bdb4a9ca9012b8a4ac # v0.10.2
+        uses: woodleighschool/stemma/actions/publish-plugin@ad5ce2fe574e02e89692ce9837be6633d3e36186 # v0.10.3
         with:
           workdir: plugins/downloads
           image: ghcr.io/woodleighschool/stemma-catalog/downloads:${{ steps.release-version.outputs.version }}
