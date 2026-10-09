@@ -11,14 +11,13 @@ spec:
     product: DaVinci Resolve
     name_pattern: '^DaVinci Resolve (?P<version>[0-9]+(?:\.[0-9]+)*)(?: Update)?$'
     registration:
-      firstname: "Woodleigh"
-      lastname: "IT"
-      email: "downloads@example.invalid"
-      phone: "(03) 5971 6100"
-      street: "485 Golf Links Road"
-      city: "Langwarrin South"
+      firstname: "Definitely"
+      lastname: "NotARealCustomer"
+      email: "stop.harvesting@my.data.invalid"
+      phone: "(03) 0000 0000"
+      street: "404 Consent Not Found Road"
+      city: "Bureaucracy Bay"
       country: "au"
-      policy: false
   application:
     bundle_id: com.blackmagic-design.DaVinciResolve
     installed_path: /Applications/DaVinci Resolve/DaVinci Resolve.app
