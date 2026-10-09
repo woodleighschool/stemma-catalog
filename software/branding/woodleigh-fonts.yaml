@@ -29,6 +29,7 @@ spec:
     resource:
       kind: BuildMacPkg
       name: woodleigh-fonts
+  icon: woodleigh-fonts
   destinations:
     woodstar:
       pkginfo:
