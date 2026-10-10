@@ -657,12 +657,12 @@ inputs:
       resolver_version: "2"
       declaration: d956aada387ef75bf2fb0fe0bd97c798c490d054a44548d654141352d33ceb97
       observation:
-        filename: MicrosoftEdge-154.0.4258.62.pkg
-        url: https://msedge.sf.dl.delivery.mp.microsoft.com/filestreamingservice/files/a51ab0b3-605c-4237-9ea5-eedd05bb664a/MicrosoftEdge-154.0.4258.62.pkg
+        filename: MicrosoftEdge-155.0.4283.45.pkg
+        url: https://msedge.sf.dl.delivery.mp.microsoft.com/filestreamingservice/files/e7bb64c8-bda9-4a93-8a9c-1016b460d50c/MicrosoftEdge-155.0.4283.45.pkg
         version: ""
       content:
-        sha256: 78caa04b44745573cb82645968a915bc010359000e2e15210be76cf4ba4f5af1
-        filename: MicrosoftEdge-154.0.4258.62.pkg
+        sha256: 9f34fb05d8c66440cd8f972dc0c34d0f9e9ef25827525c093117ba61d69ee2e1
+        filename: MicrosoftEdge-155.0.4283.45.pkg
         mode: 420
   stemma/v1alpha1/MacSoftware/microsoft-excel:
     source:
