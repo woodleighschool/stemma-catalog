@@ -5,7 +5,7 @@ _.file = ["{{config_root}}/.env"]
 
 [tools]
 "github:woodleighschool/stemma" = "v0.10.4"
-lefthook = "2.1.17"
+lefthook = "2.2.0"
 actionlint = "1.7.12"
 zizmor = "1.30.1"
 "github:github/gh-aw" = { version = "0.89.21", bin = "gh-aw" }
