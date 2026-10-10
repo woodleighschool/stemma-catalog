@@ -262,8 +262,8 @@ Closes #N
 - Signer.
 - Decisions: what was chosen on the issue, and choices of yours the diff doesn't explain.
 
-Icon rendered on Linux; `mise exec -- stemma icon --force MacSoftware/<name>` on a Mac replaces it
-with the native one.
+Icon rendered on Linux; `stemma icon --force MacSoftware/<name>` on a Mac replaces it with the
+native one.
 ```
 
 Use `Refs #N` while another requested platform waits on a question or is stopped; each requested

@@ -29,7 +29,7 @@ The catalog uses the plugin images pinned in `stemma.yaml`:
 
 ```sh
 mise run schema
-mise exec -- stemma validate --offline
+stemma validate --offline
 ```
 
 See the [download resolvers](plugins/downloads/README.md) for configuration and
