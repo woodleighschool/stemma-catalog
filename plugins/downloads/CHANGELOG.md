@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.12](https://github.com/woodleighschool/stemma-catalog/compare/v0.3.11...v0.3.12) (2026-10-10)
+
+
+### Bug Fixes
+
+* **build:** update Go toolchain and vulnerable dependencies ([a3a864b](https://github.com/woodleighschool/stemma-catalog/commit/a3a864be18411652a51ee2a54fa61c8537c6bc64))
+
 ## [0.3.11](https://github.com/woodleighschool/stemma-catalog/compare/v0.3.10...v0.3.11) (2026-10-08)
 
 
