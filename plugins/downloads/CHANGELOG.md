@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.13](https://github.com/woodleighschool/stemma-catalog/compare/v0.3.12...v0.3.13) (2026-10-10)
+
+
+### Features
+
+* **downloads:** add Unity resolver ([17b6e4a](https://github.com/woodleighschool/stemma-catalog/commit/17b6e4a9bea6e8131d22829f3368868b04049d1d))
+
 ## [0.3.12](https://github.com/woodleighschool/stemma-catalog/compare/v0.3.11...v0.3.12) (2026-10-10)
 
 
