@@ -1,0 +1,71 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/woodleighschool/stemma-catalog/main/stemma.schema.json
+apiVersion: stemma/v1alpha1
+kind: MacSoftware
+metadata:
+  name: unity-editor
+spec:
+  extends: mac-software
+  source:
+    resolver: unity
+    line: "6000.3"
+  application:
+    bundle_id: com.unity3d.UnityEditor5.x
+    version_key: CFBundleVersion
+  signatures:
+    - signer: apple:developer-id:9QW8UQUTAA # Unity Technologies SF
+  icon: unity-editor
+  subjects:
+    editor:
+      bundle_id: com.unity3d.UnityEditor5.x
+  destinations:
+    woodstar:
+      pkginfo:
+        category: Developer Tools
+        description: Unity Editor is the development environment for building 2D and 3D games and
+          interactive experiences. Unity Hub opens projects with it.
+        developer: Unity Technologies
+        installs:
+          - path: /Applications/Unity/Hub/Editor/{{ facts.editor.app.build }}/Unity.app
+            type: application
+            CFBundleIdentifier: com.unity3d.UnityEditor5.x
+            CFBundleVersion: "{{ facts.editor.app.build }}"
+            version_comparison_key: CFBundleVersion
+        name: Unity Editor
+        postinstall_script: |-
+          #!/bin/zsh --no-rcs
+
+          setopt errexit
+
+          # The package installs to Unity-<version>. Unity Hub lists the version-named
+          # folders in Hub/Editor for every user.
+          /bin/mkdir -p /Applications/Unity/Hub/Editor
+          /bin/mv /Applications/Unity/Unity-{{ facts.editor.app.build }} /Applications/Unity/Hub/Editor/{{ facts.editor.app.build }}
+
+          # Unity's licensing client asks for an administrator unless every user can write here.
+          /bin/mkdir -p "/Library/Application Support/Unity/config"
+          /bin/chmod a+rwx "/Library/Application Support/Unity"
+
+          # Munki updates Unity Hub.
+          print -r -- '{"hubDisableAutoUpdate": true}' > "/Library/Application Support/Unity/config/services-config.json"
+        preinstall_script: |-
+          #!/bin/zsh --no-rcs
+
+          # One editor per Mac. The package's own preinstall also waits on a dialog while an
+          # earlier install is in this folder.
+          /bin/rm -rf /Applications/Unity
+        unattended_install: true
+        unattended_uninstall: true
+        uninstall_method: uninstall_script
+        uninstall_script: |-
+          #!/bin/zsh --no-rcs
+
+          /bin/rm -rf /Applications/Unity "/Library/Application Support/Unity/config/services-config.json"
+        uninstallable: true
+        update_for:
+          - resource:
+              kind: MacSoftware
+              name: unity-hub
+      targets:
+        include: []
+        exclude: []

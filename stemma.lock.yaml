@@ -1193,6 +1193,24 @@ inputs:
         filename: UltiMaker-Cura-5.13.0-macos-ARM64.dmg
         mode: 420
       input_version: 5.13.0
+  stemma/v1alpha1/MacSoftware/unity-editor:
+    source:
+      version: 1
+      resolver: unity
+      resolver_version: "2"
+      declaration: 908a7a60c098d3a4cbc4685033cbdcae22b429e6bf4384ca01250c96e3ade3ef
+      observation:
+        filename: Unity-6000.3.26f1.pkg
+        url: https://download.unity3d.com/download_unity/de8167e7440c/MacEditorInstallerArm64/Unity-6000.3.26f1.pkg
+        version: 6000.3.26f1
+      content:
+        sha256: f193b01430dfdde6167b15b55cd4d138ff6adb269ee3760690d33363a5777df0
+        filename: Unity-6000.3.26f1.pkg
+        mode: 420
+      input_version: 6000.3.26f1
+      evidence:
+        unity:
+          version: 6000.3.26f1
   stemma/v1alpha1/MacSoftware/unity-hub:
     source:
       version: 1

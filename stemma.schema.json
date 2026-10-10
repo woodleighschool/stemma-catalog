@@ -2169,6 +2169,58 @@
             "resolver"
           ],
           "type": "object"
+        },
+        {
+          "$id": "https://stemma.invalid/editor/unity/input",
+          "additionalProperties": false,
+          "properties": {
+            "line": {
+              "anyOf": [
+                {
+                  "pattern": "^[0-9]+\\.[0-9]+$",
+                  "type": "string"
+                },
+                {
+                  "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                  "type": "string"
+                }
+              ],
+              "description": "Editor release line as major.minor, such as 6000.3. Releases of other lines are never selected."
+            },
+            "resolver": {
+              "const": "unity",
+              "description": "Loaded resolver selecting this input."
+            },
+            "stream": {
+              "anyOf": [
+                {
+                  "enum": [
+                    "lts",
+                    "supported",
+                    "beta",
+                    "alpha"
+                  ],
+                  "type": "string"
+                },
+                {
+                  "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                  "type": "string"
+                }
+              ],
+              "default": "lts",
+              "description": "Release stream the line's releases must belong to. Long-term support lines use lts and update release lines use supported."
+            }
+          },
+          "propertyNames": {
+            "not": {
+              "pattern": "\\{\\{"
+            }
+          },
+          "required": [
+            "line",
+            "resolver"
+          ],
+          "type": "object"
         }
       ],
       "type": "object"
@@ -11273,6 +11325,54 @@
             "resolver": {
               "const": "python",
               "description": "Loaded resolver selecting this input."
+            }
+          },
+          "propertyNames": {
+            "not": {
+              "pattern": "\\{\\{"
+            }
+          },
+          "type": "object"
+        },
+        {
+          "$id": "https://stemma.invalid/editor/partial-input/resource/6",
+          "additionalProperties": false,
+          "properties": {
+            "line": {
+              "anyOf": [
+                {
+                  "pattern": "^[0-9]+\\.[0-9]+$",
+                  "type": "string"
+                },
+                {
+                  "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                  "type": "string"
+                }
+              ],
+              "description": "Editor release line as major.minor, such as 6000.3. Releases of other lines are never selected."
+            },
+            "resolver": {
+              "const": "unity",
+              "description": "Loaded resolver selecting this input."
+            },
+            "stream": {
+              "anyOf": [
+                {
+                  "enum": [
+                    "lts",
+                    "supported",
+                    "beta",
+                    "alpha"
+                  ],
+                  "type": "string"
+                },
+                {
+                  "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                  "type": "string"
+                }
+              ],
+              "default": "lts",
+              "description": "Release stream the line's releases must belong to. Long-term support lines use lts and update release lines use supported."
             }
           },
           "propertyNames": {
