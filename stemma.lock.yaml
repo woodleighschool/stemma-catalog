@@ -344,7 +344,7 @@ inputs:
       version: 1
       resolver: blackmagic
       resolver_version: "2"
-      declaration: 4c171fc96e9e9fcc68fa29ae42f4b18a90a7972623b685b0f01dad18dde4ed7e
+      declaration: 96eae527934d535ea3ae0c51120b4784620ecd8543481999693ec18699897f0b
       observation:
         download_id: fe9e4851d000487588709802e9694b59
         requires_registration: true
