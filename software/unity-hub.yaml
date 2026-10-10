@@ -12,6 +12,8 @@ spec:
   application:
     path: Unity Hub.app
     bundle_id: com.unity3d.unityhub
+  signatures:
+    - signer: apple:developer-id:9QW8UQUTAA # Unity Technologies SF
   icon: unity-hub
   destinations:
     woodstar:
