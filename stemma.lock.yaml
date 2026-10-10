@@ -1013,6 +1013,31 @@ inputs:
           name: qlab
           target_architecture: arm64
           version: 5.6.3
+  stemma/v1alpha1/MacSoftware/reaper:
+    source:
+      version: 1
+      resolver: homebrew
+      resolver_version: "2"
+      declaration: 8004d58d5535ccad537ecc4eab82a83be08acd6578af93239fca61d30389914b
+      observation:
+        filename: reaper782_universal.dmg
+        sha256: 27b1ff603d6e7941f158e1ea6e3e8009e4d8447857e06df00241900c42ff0491
+        url: https://dlcf.reaper.fm/7.x/reaper782_universal.dmg
+      content:
+        sha256: 27b1ff603d6e7941f158e1ea6e3e8009e4d8447857e06df00241900c42ff0491
+        filename: reaper782_universal.dmg
+        mode: 420
+      input_version: "7.82"
+      evidence:
+        homebrew.cask:
+          artifacts:
+            - app:
+                - REAPER.app
+              target: /Applications/REAPER.app
+          macos: "27"
+          name: reaper
+          target_architecture: arm64
+          version: "7.82"
   stemma/v1alpha1/MacSoftware/rekordbox-7:
     source:
       version: 1
