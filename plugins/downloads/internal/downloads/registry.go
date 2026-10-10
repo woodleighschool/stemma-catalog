@@ -21,6 +21,7 @@ func Register(registry *plugin.Registry, client *http.Client) error {
 		plugin.Register(registry, resolver("cricut"), configured(client, "cricut", discovery.Cricut, discovery.CricutDownload)),
 		plugin.Register(registry, resolver("microsoft"), configured(client, "microsoft", discovery.Microsoft, nil)),
 		plugin.Register(registry, resolver("epson"), configured(client, "epson", discovery.Epson, nil)),
+		plugin.Register(registry, resolver("unity"), configured(client, "unity", discovery.Unity, nil)),
 	} {
 		if err != nil {
 			return err

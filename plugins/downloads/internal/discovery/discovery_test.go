@@ -187,6 +187,70 @@ func TestEpsonRejectsAmbiguousOrMalformedMetadata(t *testing.T) {
 	}
 }
 
+const unityFeed = "https://services.api.unity.com/unity/editor/release/v1/releases?architecture=ARM64&limit=1&order=RELEASE_DATE_DESC&platform=MAC_OS"
+
+func TestUnitySelectsNewestReleaseOfLineAndStream(t *testing.T) {
+	client := fixtureClient(t, map[string]string{
+		unityFeed + "&stream=LTS&version=6000.3.": `{"offset":0,"limit":1,"total":9,"results":[{"version":"6000.3.9f1","stream":"LTS","downloads":[
+			{"url":"https://download.unity3d.com/download_unity/0123456789ab/LinuxEditorInstaller/Unity-6000.3.9f1.tar.xz","type":"TAR_XZ","platform":"LINUX","architecture":"X86_64"},
+			{"url":"https://download.unity3d.com/download_unity/0123456789ab/MacEditorInstallerArm64/Unity-6000.3.9f1.pkg","type":"PKG","platform":"MAC_OS","architecture":"ARM64"}
+		]}]}`,
+		unityFeed + "&stream=SUPPORTED&version=6000.3.": `{"offset":0,"limit":1,"total":0,"results":[]}`,
+	})
+	got, err := Unity(t.Context(), client, UnityConfig{Line: "6000.3", Stream: UnityLTS})
+	if err != nil {
+		t.Fatal(err)
+	}
+	want := Release{
+		URL:      "https://download.unity3d.com/download_unity/0123456789ab/MacEditorInstallerArm64/Unity-6000.3.9f1.pkg",
+		Filename: "Unity-6000.3.9f1.pkg",
+		Version:  "6000.3.9f1",
+	}
+	if got != want {
+		t.Fatalf("release = %+v, want %+v", got, want)
+	}
+	if _, err := Unity(t.Context(), client, UnityConfig{Line: "6000.3", Stream: UnitySupported}); err == nil {
+		t.Fatal("accepted a line with no release in the stream")
+	}
+}
+
+func TestUnityRejectsUnexpectedMetadata(t *testing.T) {
+	installer := func(address string) string {
+		return `{"url":"` + address + `","type":"PKG","platform":"MAC_OS","architecture":"ARM64"}`
+	}
+	release := func(version string, downloads ...string) string {
+		return `{"version":"` + version + `","downloads":[` + strings.Join(downloads, ",") + `]}`
+	}
+	valid := installer("https://download.unity3d.com/download_unity/0123456789ab/MacEditorInstallerArm64/Unity-6000.3.9f1.pkg")
+	for _, test := range []struct {
+		name    string
+		payload string
+	}{
+		{"missing results", `{}`},
+		{"nonobject", `[]`},
+		{"several releases", `{"results":[` + release("6000.3.9f1", valid) + `,` + release("6000.3.8f1", valid) + `]}`},
+		{"other line", `{"results":[` + release("6000.30.1f1", valid) + `]}`},
+		{"missing version", `{"results":[{"downloads":[` + valid + `]}]}`},
+		{"invalid version", `{"results":[` + release(`6000.3.9f1\n`, valid) + `]}`},
+		{"no installer", `{"results":[` + release("6000.3.9f1") + `]}`},
+		{"ambiguous installer", `{"results":[` + release("6000.3.9f1", valid, valid) + `]}`},
+		{"other platform", `{"results":[` + release("6000.3.9f1", `{"url":"https://download.unity3d.com/download_unity/0123456789ab/Windows64EditorInstaller/UnitySetup64-6000.3.9f1.exe","type":"EXE","platform":"WINDOWS","architecture":"X86_64"}`) + `]}`},
+		{"foreign host", `{"results":[` + release("6000.3.9f1", installer("https://evil.example/download_unity/Unity-6000.3.9f1.pkg")) + `]}`},
+		{"plaintext", `{"results":[` + release("6000.3.9f1", installer("http://download.unity3d.com/download_unity/Unity-6000.3.9f1.pkg")) + `]}`},
+		{"userinfo", `{"results":[` + release("6000.3.9f1", installer("https://name@download.unity3d.com/download_unity/Unity-6000.3.9f1.pkg")) + `]}`},
+		{"traversal", `{"results":[` + release("6000.3.9f1", installer("https://download.unity3d.com/download_unity/%2e%2e/Unity-6000.3.9f1.pkg")) + `]}`},
+		{"directory", `{"results":[` + release("6000.3.9f1", installer("https://download.unity3d.com/download_unity/0123456789ab/")) + `]}`},
+		{"other file type", `{"results":[` + release("6000.3.9f1", installer("https://download.unity3d.com/download_unity/0123456789ab/Unity-6000.3.9f1.dmg")) + `]}`},
+	} {
+		t.Run(test.name, func(t *testing.T) {
+			client := fixtureClient(t, map[string]string{unityFeed + "&stream=LTS&version=6000.3.": test.payload})
+			if _, err := Unity(t.Context(), client, UnityConfig{Line: "6000.3", Stream: UnityLTS}); err == nil {
+				t.Fatal("accepted unexpected metadata")
+			}
+		})
+	}
+}
+
 func TestMetadataBoundsAndHTTPFailures(t *testing.T) {
 	for _, test := range []struct {
 		name   string

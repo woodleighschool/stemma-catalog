@@ -66,6 +66,7 @@ func TestRunReturnsOnlyTheObservedDownload(t *testing.T) {
 		"microsoft": `{"product":"outlook"}`,
 		"python":    `{"branch":"3.13"}`,
 		"epson":     `{"device_id":"AM-C6000 Series","os":"MAC26","cti":"2001"}`,
+		"unity":     `{"line":"6000.3"}`,
 	}
 	observation := json.RawMessage(`{"url":"https://downloads.example.test/releases/old.pkg","filename":"old.pkg","version":"1.2.3"}`)
 	for operation, config := range configs {
@@ -203,6 +204,10 @@ func TestValidationRejectsInvalidConfigurationWithoutNetwork(t *testing.T) {
 		{"epson", `{"device_id":"Printer","os":"MAC26","cti":"2001","region":"gb"}`},
 		{"cricut", `{"operating_system":"windows"}`},
 		{"epson", `{"device_id":"Printer","os":"MAC26","cti":2001}`},
+		{"unity", `{}`},
+		{"unity", `{"line":"6000"}`},
+		{"unity", `{"line":"6000.3.26f1"}`},
+		{"unity", `{"line":"6000.3","stream":"tech"}`},
 	} {
 		for _, method := range []string{"validate", "discover", "run"} {
 			if _, err := invoke(t, registry, method, test.operation, plugin.ResolveRequest[json.RawMessage]{Config: json.RawMessage(test.config)}); err == nil {
@@ -218,6 +223,11 @@ func TestValidationRejectsInvalidConfigurationWithoutNetwork(t *testing.T) {
 
 	if _, err := invoke(t, registry, "validate", "python", plugin.ResolveRequest[json.RawMessage]{Config: json.RawMessage(`{"branch":"3.13"}`)}); err != nil {
 		t.Fatal(err)
+	}
+	for _, config := range []string{`{"line":"6000.3"}`, `{"line":"6000.6","stream":"supported"}`} {
+		if _, err := invoke(t, registry, "validate", "unity", plugin.ResolveRequest[json.RawMessage]{Config: json.RawMessage(config)}); err != nil {
+			t.Fatal(err)
+		}
 	}
 }
 

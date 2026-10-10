@@ -11,6 +11,7 @@ Vendor discovery plugins for Stemma.
 | `cricut`     | `shard: a`                                                               | The shard's update manifest and installer API             |
 | `epson`      | `device_id`, `os`, `cti`; `region: GB`, `language: en`                   | Matching Download Center content type                     |
 | `microsoft`  | `product`; `channel: production`; `type: standalone`                     | Office MAU metadata or the product’s standalone download  |
+| `unity`      | `line`, such as `"6000.3"`; `stream: lts`                                | Newest Apple silicon Editor installer of the line         |
 
 Values shown after a colon are defaults unless alternatives are listed.
 
@@ -93,6 +94,22 @@ Package inspection supplies the version.
 The feed mapping and Office selection follow
 [AutoPkg's provider](https://github.com/autopkg/recipes/blob/master/MSOfficeUpdates/MSOfficeMacURLandUpdateInfoProvider.py),
 using [Microsoft's current MAU endpoints](https://learn.microsoft.com/en-us/microsoft-365-apps/mac/mau-configure-organization-specific-updates).
+
+### Unity
+
+```yaml
+source:
+  resolver: unity
+  line: "6000.3"
+```
+
+`line` is the Editor's `major.minor` release line. `stream` is the stream its releases
+belong to: `lts`, `supported` for update releases, `beta` or `alpha`. The newest release of
+the line in that stream wins, and a line with none fails. Following another line is a change
+to `line`.
+
+The selected version is available as `{{ evidence.unity.version }}`. The feed is Unity's
+[release API](https://services.docs.unity.com/release/v1/).
 
 ## 🧑‍💻 Development
 
