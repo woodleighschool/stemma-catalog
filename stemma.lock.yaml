@@ -413,17 +413,17 @@ inputs:
       resolver_version: "2"
       declaration: 426172f7c83ab17e28c07d6b3978783b800d8526a542b739b76131e9d76070e3
       observation:
-        asset_id: 619117287
-        filename: draw.io-arm64-32.3.0.dmg
-        release: v32.3.0
-        release_id: 405917743
-        sha256: c29d5729198f3b0ac7b9836803459fccbfaa3b8778013d1653aa17d5b645f94d
-        url: https://github.com/jgraph/drawio-desktop/releases/download/v32.3.0/draw.io-arm64-32.3.0.dmg
+        asset_id: 623126744
+        filename: draw.io-arm64-32.4.1.dmg
+        release: v32.4.1
+        release_id: 407294089
+        sha256: 85e3bd6956b79bc0ff6f36237abd7b5527b1654802ead742c8a78b657e01740c
+        url: https://github.com/jgraph/drawio-desktop/releases/download/v32.4.1/draw.io-arm64-32.4.1.dmg
       content:
-        sha256: c29d5729198f3b0ac7b9836803459fccbfaa3b8778013d1653aa17d5b645f94d
-        filename: draw.io-arm64-32.3.0.dmg
+        sha256: 85e3bd6956b79bc0ff6f36237abd7b5527b1654802ead742c8a78b657e01740c
+        filename: draw.io-arm64-32.4.1.dmg
         mode: 420
-      input_version: v32.3.0
+      input_version: v32.4.1
   stemma/v1alpha1/MacSoftware/easyfind:
     source:
       version: 1
