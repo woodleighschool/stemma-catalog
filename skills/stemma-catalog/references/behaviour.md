@@ -16,12 +16,16 @@ not automatically CLI commands.
 | Inspect a builder input before it can build       | `stemma inspect Kind/name --input vendor [--path Installer.app] --json`    | `inspect` with `resource`, `input` and optional `path`                               |
 | Read one file inside an installer                 | `stemma artifact Kind/name --read PATH`; `stemma inspect` takes it too     | `inspect` with `read` returns a text file inside an input                            |
 | Check a change                                    | `stemma prepare --changed-since REV`, then `stemma validate`               | `check` with `since: REV`                                                            |
+| Compare the lock with the declarations            | `stemma validate --locked`; acquires or reads no input content             | `check` with `locked: true`                                                          |
 
 There is no CLI `describe` or `check`. `stemma mcp` serves an existing project; the skill does not
 configure or connect it automatically. Use the CLI when MCP is unavailable. Trial preparation
 can download installers: use `update` for an update check that only needs release and digest
 changes. `artifact --no-input-lock` still enforces declared signatures, whereas MCP `prepare`
 derives signing expectations for a draft. Neither refreshes plugin locks.
+
+`validate --locked` compares declarations only: it verifies no digest and no signature. It names
+each input it could not compare, because the declaration reads environment values, as unresolved.
 
 `--read` prints one file without materializing the artifact. In a package it names an entry, such
 as `Distribution`, or a file in a component's `Scripts` or `Payload`, such as
@@ -30,7 +34,7 @@ into a package found there. A directory prints the names it holds; `.` is the ro
 
 ## The lockfile
 
-- `update` resolves sources and records them in `stemma.lock.yaml`, preserving unselected resources'
+- `update` resolves sources and records them in `stemma.lock/`, one document per resource, preserving unselected resources'
   entries. Homebrew records and WinGet manifests with hashes let it pin a release without fetching
   its installer, even with an empty artifact cache. Hashless Homebrew casks still need their vendor
   bytes. Preparation fetches locked bytes when needed and verifies the recorded digest.

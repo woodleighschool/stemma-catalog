@@ -25,8 +25,13 @@
   component for a new catalog or copy a component name from an example. Extract shared defaults
   only when actual resources need them.
 - Review Stemma's selected application and derived metadata against the intended installation.
-  Correct selection using a stable identifier when needed. Supply explicit metadata where artifact
-  evidence cannot describe the installed product; see the installation contract below.
+  `publications` in `stemma prepare Kind/name --json`, and in MCP `prepare`, has an entry for each
+  destination, made with no connection to it. An entry with `metadata` describes the fields the publication
+  manages: declared and derived values, null or empty for fields it clears, and their origins.
+  `plan` compares those fields with the destination's current state. An entry with `deferred` and no `metadata` is not a
+  preview; `deferred` says why. Correct selection using a stable identifier when needed. Supply
+  explicit metadata where artifact evidence cannot describe the installed product; see the
+  installation contract below.
 - An application's `architectures` fact names what its main executable runs on. `x86_64` alone
   needs Rosetta on Apple silicon: follow the repository's rule for such software. An absent list
   means unknown, not unsupported.
@@ -89,6 +94,16 @@ images and archives containing one app select it automatically. Follow the catal
 policy: receipts record package installation, while `installs` checks installed files or bundles.
 A selected app can generate `installs` without repeating its metadata in destination YAML. Use
 explicit native `installs` when detection should differ from the selected app or package version.
+
+When several installed applications together represent a suite's state, name them under
+`subjects` and list them as `installs` items, written `"{{ facts.<name> }}"`. Detection and
+version are separate. `installs` decides which Macs need the installer; the version is what the
+installer, the selected application or the declared `version` states. Stemma never composes one
+from several applications. A source that reports a version exposes it as
+`evidence.source.version`; use it by writing it into the destination's `version`. If an
+application's version advances while the package version stays the same, publishing replaces
+that item and `installs` detects the older application. Changed bytes with unchanged detection
+versions do not by themselves make Munki reinstall it.
 
 Preparation must produce an artifact that installs the requested product. An executable installer
 app needs its documented invocation. Reuse an existing wrapper composition: `BuildMacPkg` carries

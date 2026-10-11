@@ -53,7 +53,8 @@ YAML files reference the tracked root `stemma.schema.json` through its
 [raw repository URL](https://raw.githubusercontent.com/woodleighschool/stemma-catalog/main/stemma.schema.json)
 in their `$schema` modelines. Run `mise run schema` after changing plugin types,
 registrations or destination names, then commit the regenerated schema. The command
-uses the plugins configured in `stemma.yaml`; `.stemma/` contains disposable cache.
+uses the plugins configured in `stemma.yaml`. `stemma cache path` prints the disposable
+cache location; `.stemma/` holds local process and runner state.
 
 ## 🧑‍💻 Development
 
