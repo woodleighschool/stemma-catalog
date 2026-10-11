@@ -9,7 +9,7 @@ spec:
     - software/**/*.yaml
   plugins:
     downloads:
-      image: ghcr.io/woodleighschool/stemma-catalog/downloads:0.3.13@sha256:e3da2a8bd020d920de8415a733799356794dc7bcbc1350968f08868ac6adafea
+      image: ghcr.io/woodleighschool/stemma-catalog/downloads:0.3.14@sha256:0b4dc819fecefb84f1341dc1aa722b8201a131f23bb164513aaf50b2c5801885
     woodstar:
       image: ghcr.io/woodleighschool/woodstar/stemma:2.0.0@sha256:77ccf291ec9b3e85caf5192721217af26183b24c6758e0b39f2e251c5a9d53e2
   components:
