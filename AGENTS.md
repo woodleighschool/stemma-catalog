@@ -1,20 +1,77 @@
 # AGENTS.md
 
-This catalog describes our real applications while Stemma remains unreleased. Expect the documents and the sibling `../stemma` implementation to change together.
+This catalog expresses our deployment policy. The reusable [catalog skill](skills/stemma-catalog/SKILL.md)
+works with other catalogs; keep our naming, layout, audiences and defaults here.
 
-- Follow the [stemma-catalog skill](skills/stemma-catalog/SKILL.md) when adding, changing or reviewing software.
-- Name a file for the resources it holds: `<name>.yaml` has every resource called `<name>`, in the order they feed each other, the package build, then the Mac item, then the Windows item. Files go in `software/`. Use a folder only for a real group, such as major versions installed side by side, an application with its dedicated configuration or campus printer configurations, or for files a document reads, such as scripts and private inputs; a file keeps its name there. Use `windows-app/` for the app and RDS configuration and `printers/` for campus configurations. Keep the Microsoft 365 apps, Mail2Outlook and Epson drivers standalone. Independent policy items have their own files even when they depend on another application. Keep resource-relative asset paths correct when moving documents. The root `kind: Project` owns imports and connections.
-- Every YAML file begins with `---`. Every document, including each one after a separator, has `# yaml-language-server: $schema=https://raw.githubusercontent.com/woodleighschool/stemma-catalog/main/stemma.schema.json` on the line after its `---`. The editor applies that comment to one document, and a comment above a `---` belongs to the document before it.
-- A resource that only feeds a build, such as the vendor installer a wrapper carries, has no destinations, is named `<product>-installer` and comes first in the product's file.
-- Intune can't order Mac apps or publish an item without a package. Where Woodstar composes several items and Intune needs one self-installing package instead, name that package's build and item `<product>-intune`, which gives them their own file. The product's other documents stay as they are.
-- Prefer app detection for application products when a stable installed app and its version represent the product. Select it explicitly with `application.path` or `application.bundle_id` so Stemma derives `installs`; use native `installs` when detection must differ from the selected application. Keep receipt detection for package installation state, such as licensing and component packages, and assess wrappers and suites separately.
-- All managed Macs are Apple silicon: use the arm64 or universal build and don't ask about Intel.
-- The `apple-apps` profile holds the Apple apps whose source is the app installed in `/Applications` on the packaging Mac: Pages, Numbers, Keynote, iMovie and GarageBand. Ordinary runs and pull request checks skip them; a maintainer runs `--profile apple-apps` on that Mac. Installing to `/Applications`, or adding to one of those apps as the GarageBand sound packages do, doesn't put an item in the profile. `suspend` stays for items whose files or download link the repository doesn't carry. Neither follows from the source type alone, and a new profile needs a maintainer's decision.
-- Woodstar categories are `Browsers`, `Communication`, `Developer Tools`, `Education`, `Graphics & Design`, `Media`, `Printing`, `Productivity`, `Security`, `System` and `Utilities`. `System` holds management tools and configuration rather than apps people use for their work; `Utilities` holds general tools with no more specific category.
-- Assign software only where a request says who it's available to or required for, and leave `targets` and `assignments` out otherwise. Available means Woodstar `optional_installs` with `managed_updates`, or Intune `available`; required means `managed_installs`, or Intune `required`. This repository is public, so it assigns only the audiences it already names; leave any other for a maintainer:
-  - Woodstar labels: `All Hosts` (every Mac, built in), `All Staff`, `All Students`, `CRT/Spare Shared MacBooks`, `NAPLAN Students`, `Minecraft Education Licence`, `Senior Campus`, `Minimbah Campus`, `Penbank Campus` and `Defender Test`.
-  - Intune: `all_devices` (All devices) and `all_users` (All users), built in; Lenovo devices as `all_devices` with the include filter `cd983881-4372-48e5-bee3-182ab8c9ded5`; and the groups `88208ef5-07a0-4627-ad8f-e9c1c0ff5f15` (Intune - Apple Content Caches), `1cf8b79a-f545-4e84-98d7-154e2efec27a` (Intune - Library Kiosk iMacs), `ac987f08-8b83-4a09-ba53-5f8e244ce206` (Intune - SAC Macbooks) and `d66e93af-3c1b-4c40-b235-b2f56374c7e8` (Intune - Dedicated Macs). Dedicated Macs get their software from Intune and no Munki, so SAC MacBooks are assigned as required through their Intune group.
-- Treat the AutoPkg chains in `../autopkg` as evidence. Preserve their intended device behaviour; remove processor choreography that exists only to expose or copy artifacts.
-- Use `mise tasks` and read `.mise/config.toml`. Run Stemma through `mise exec --`, which loads `.env`. Lefthook extends the shared organisation hooks; read `.lefthook.toml` and use `lefthook dump` when merged hook behaviour matters. Run `mise run format` before finishing a change.
-- Finish a change with `stemma validate` and `stemma prepare --changed-since origin/main`. Pull requests run both without destination credentials.
-- Keep private installers, licensed fonts, credentials and destination state out of Git. No live destinations, commits, pushes or deployment without explicit instruction.
+## Layout and documents
+
+- `stemma.yaml` owns imports, components, plugin declarations and destination connections.
+  `software/` holds resource documents and their local inputs; `icons/` holds reviewed artwork.
+  Reviewed inputs and plugins are locked under `stemma.lock/`. `stemma cache path` locates the
+  disposable cache; `.stemma/` holds the project process lock and local command state.
+- Name files for their resources: `<name>.yaml` contains the input resources, build and software
+  that form one item, in dependency order. A build-only vendor installer is `<product>-installer`
+  and has no destinations. Use folders for related items or local inputs, as in `windows-app/`
+  and `printers/`; keep resource-relative paths correct when moving files.
+- Each resource document starts with `---`, followed by
+  `# yaml-language-server: $schema=https://raw.githubusercontent.com/woodleighschool/stemma-catalog/main/stemma.schema.json`.
+  The editor applies that comment to one document.
+- Order a resource as `apiVersion`, `kind`, `metadata`, `profiles`, `suspend`, `spec`. Within `spec`,
+  put `extends`, acquisition, selection or build instructions, signatures, other artifact metadata,
+  then `destinations`. Sort named maps and native Munki pkginfo keys; keep list order meaningful.
+  Let the formatter own whitespace and quote values YAML would misread.
+
+## Deployment policy
+
+- All managed Macs are Apple silicon. Prefer arm64 or universal builds. Intel-only apps declare
+  a dependency on `MacSoftware/rosetta`; an absent architecture fact means unknown.
+- Prefer application detection when installed apps represent the product. Select a single app
+  with `application.path` or `application.bundle_id`; for a suite, use the relevant inspected
+  subjects in `installs`. Keep receipt detection for package state, such as licensing or component
+  packages. Explicit `uninstallable: false` is an intentional per-item policy.
+- The `apple-apps` profile captures Pages, Numbers, Keynote, iMovie and GarageBand from
+  `/Applications` on the packaging Mac. Run `--profile apple-apps` there. Other apps and content
+  installed into `/Applications` do not belong to that profile merely because of their location.
+  Use `suspend` for items whose installer or download link the repository cannot carry.
+- Where Woodstar composes several items but Intune needs one self-installing Mac package, name
+  its build and software `<product>-intune` in their own file. Intune cannot order Mac apps or
+  publish a package-free Mac policy.
+- Woodstar categories are `Browsers`, `Communication`, `Developer Tools`, `Education`,
+  `Graphics & Design`, `Media`, `Printing`, `Productivity`, `Security`, `System` and `Utilities`.
+  `System` is for management and configuration; `Utilities` is for user tools without a more
+  specific category.
+- Assign software only to audiences the request identifies. Otherwise omit `targets` and
+  `assignments`. Available means Woodstar `optional_installs` with `managed_updates`, or Intune
+  `available`; required means `managed_installs`, or Intune `required`. Dedicated Macs use Intune
+  without Munki; SAC MacBooks receive required software through their Intune group.
+- Keep private installers, licensed fonts, credentials and destination state out of Git.
+
+This public catalog uses these established audiences. New audiences are a maintainer decision:
+
+- Woodstar: `All Hosts`, `All Staff`, `All Students`, `CRT/Spare Shared MacBooks`, `NAPLAN Students`,
+  `Minecraft Education Licence`, `Senior Campus`, `Minimbah Campus`, `Penbank Campus`, `Defender Test`.
+- Intune: `all_devices`, `all_users`; Lenovo devices use `all_devices` with include filter
+  `cd983881-4372-48e5-bee3-182ab8c9ded5`. Groups are
+  `88208ef5-07a0-4627-ad8f-e9c1c0ff5f15` (Apple Content Caches),
+  `1cf8b79a-f545-4e84-98d7-154e2efec27a` (Library Kiosk iMacs),
+  `ac987f08-8b83-4a09-ba53-5f8e244ce206` (SAC MacBooks) and
+  `d66e93af-3c1b-4c40-b235-b2f56374c7e8` (Dedicated Macs).
+
+## Working here
+
+- Follow the catalog skill for software work. Treat existing items and AutoPkg recipes as evidence
+  of intended device behaviour, not instructions to reproduce their implementation.
+- Mise owns tools and tasks. Read `.mise/config.toml` and run `mise tasks`; each plugin has its own
+  `.mise.toml`. `mise run format` formats catalog documents. Read `.lefthook.toml` and use
+  `lefthook dump` for the merged hooks before committing.
+- Validate documents and prepare the affected resources. `prepare --changed-since REV` checks
+  acquisition and packaging changes; prepare an item by name to check its publication metadata.
+  `validate` and `prepare` need no destination credentials. `plan` reads destinations;
+  `apply` and `reconcile` publish. No workflow here publishes software.
+- Regenerate `stemma.schema.json` when the configured operations or their schemas change.
+  Run `mise run aw` after editing `.github/workflows/*.md`; commit the compiled workflow outputs
+  with their source. Keep local development overrides out of tracked configuration.
+- The download plugin's README describes its API and development tasks. Use idiomatic Go and
+  synthetic fixtures or local HTTP servers for its tests. Verify dependency APIs from source.
+- Preserve unrelated work. Use focused Conventional Commits when committing is requested.
+  Publishing, pushes and live destination operations require an explicit request.

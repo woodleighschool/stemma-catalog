@@ -72,6 +72,11 @@ source:
   cti: "2001"
 ```
 
+`device_id` is the model or series identifier accepted by Epson Download Center; `os` is its
+OS token. Those fields, region and language select the available download list. Choose `cti`
+from that response for the intended driver or utility. Exactly one entry must match; zero or
+multiple matches fail. A printer's selection does not establish a scanner's download.
+
 The selected version is available as `{{ evidence.epson.version }}`.
 
 ### Microsoft
