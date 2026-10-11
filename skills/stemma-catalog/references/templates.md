@@ -118,8 +118,8 @@ spec:
     match: https://[^"\s]+Example-[0-9.]+\.dmg
 ```
 
-`match` selects the one link on the page. With one app in the image, Stemma selects it; add
-`application.path` only when there are several.
+`match` selects the one link on the page, or the highest `(?P<version>[0-9.]+)` among several. With
+one app in the image, Stemma selects it; add `application.path` only when there are several.
 
 ## App in a GitHub release archive
 

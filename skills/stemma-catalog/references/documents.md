@@ -27,6 +27,9 @@
 - Review Stemma's selected application and derived metadata against the intended installation.
   Correct selection using a stable identifier when needed. Supply explicit metadata where artifact
   evidence cannot describe the installed product; see the installation contract below.
+- An application's `architectures` fact names what its main executable runs on. `x86_64` alone
+  needs Rosetta on Apple silicon: follow the repository's rule for such software. An absent list
+  means unknown, not unsupported.
 - Leave out a field the destination fills in from other fields, as its description says, unless
   that default is wrong for this software. Munki, for example, blocks on the applications in
   `installs` when `blocking_applications` is absent.
@@ -61,8 +64,8 @@
   `--from PATH` or MCP `from`, which needs no source or lock entry. `--path` names one of several
   applications; inside a package it is the subject path `stemma inspect` reports, such as
   `Payload/Example.app`. When the prepared package holds several and the document selects none,
-  give `--from` the path `stemma artifact Kind/name` prints. Report extraction errors with their
-  cause.
+  the command lists them: name one with `--path` alone, or MCP `path` alone. Report extraction
+  errors with their cause.
 - Refer to other catalog resources by `kind` and `name`, not by native names. `source.resource`
   consumes another resource's output, which is a build dependency. Destination relationships, such
   as Munki `requires` or Intune `dependencies`, are publication dependencies. Don't use one for the

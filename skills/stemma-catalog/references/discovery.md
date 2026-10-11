@@ -32,7 +32,9 @@ Compare the sources that express that intent:
    for mutable URLs can lag replaced bytes; weigh their release metadata against that risk.
 4. **Simple first-party page or feed discovery.** Use `url` with `match` when one stable page or
    feed exposes one distinct current download. HTML matches element attributes; text feeds match
-   the body. Do not add Go discovery code for selection the native HTTP resolver already supports.
+   the body. When the page keeps older releases with the same URL shape, name a `version` group,
+   as in `App-(?P<version>[0-9.]+)\.dmg`: the highest dotted-number version selects the URL. Do not
+   add Go discovery code for selection the native HTTP resolver already supports.
 5. **Community automation as evidence.** Use recipes and manifests to discover an official
    mechanism, then express it with one of these sources.
 
@@ -90,7 +92,10 @@ appropriate; matching current bytes is strong evidence of equivalence.
 
 Then declare it, validate, and use `stemma update Kind/name` to resolve and lock it. Prepare when
 artifact inspection is required, following [behaviour.md](behaviour.md). The resolver rejects a
-`match` that selects no URL or several; preparation shows what the selected bytes contain.
+`match` that selects no URL, several without a `version` group, or several tied for the highest
+version, and lists the URLs it matched;
+preparation shows what the selected bytes contain. GitHub lookups are limited to 60 an hour per
+address unless `GH_TOKEN` or `GITHUB_TOKEN` is set.
 
 ## Learn from community automation
 

@@ -14,6 +14,7 @@ not automatically CLI commands.
 | Trial current sources without writing input locks | `stemma artifact Kind/name --no-input-lock` materializes an artifact       | `prepare` with `resources: ["Kind/name"]` reports artifacts and signing expectations |
 | Derive signing expectations from locked inputs    | `stemma signature Kind/name`                                               | Included in trial `prepare`                                                          |
 | Inspect a builder input before it can build       | `stemma inspect Kind/name --input vendor [--path Installer.app] --json`    | `inspect` with `resource`, `input` and optional `path`                               |
+| Read one file inside an installer                 | `stemma artifact Kind/name --read PATH`; `stemma inspect` takes it too     | `inspect` with `read` returns a text file inside an input                            |
 | Check a change                                    | `stemma prepare --changed-since REV`, then `stemma validate`               | `check` with `since: REV`                                                            |
 
 There is no CLI `describe` or `check`. `stemma mcp` serves an existing project; the skill does not
@@ -21,6 +22,11 @@ configure or connect it automatically. Use the CLI when MCP is unavailable. Tria
 can download installers: use `update` for an update check that only needs release and digest
 changes. `artifact --no-input-lock` still enforces declared signatures, whereas MCP `prepare`
 derives signing expectations for a draft. Neither refreshes plugin locks.
+
+`--read` prints one file without materializing the artifact. In a package it names an entry, such
+as `Distribution`, or a file in a component's `Scripts` or `Payload`, such as
+`Foo.pkg/Scripts/postinstall`. In a disk image, archive or folder it names a path, which continues
+into a package found there. A directory prints the names it holds; `.` is the root.
 
 ## The lockfile
 
