@@ -1,200 +1,89 @@
-# Writing resource documents
+# Resource documents
 
-## Kind, name and file
+Use the catalog's conventions for files, naming, categories, audiences and YAML style. In a new
+catalog, start with a Project importing the resource files; add shared components only when
+several resources need the same values. Resource identity comes from kind and name, not the file
+path. Moving a document changes the base for its relative inputs and assets.
 
-- Pick the kind from what is delivered: an existing vendor installer or application uses the
-  platform's software kind, files you assemble use the package builder, and a policy with no
-  installer uses the software kind's source-free form where the destination supports one.
-- The generated schema gives the installed kinds' and destinations' fields. When MCP is connected,
-  `describe` gives their types, required fields, allowed values, defaults and descriptions. Its
-  `destination` parameter names a Project connection; `field` narrows to a block such as `pkginfo`.
-- `metadata.name` is the stable resource identity; renaming it can change destination bindings.
-  Use the product's plain name in lowercase kebab case, such as `google-chrome`. Add a major
-  version only when majors install side by side as separate products.
-- Place the file as the repository's instructions say. Otherwise name a file for the resources it
-  holds: `software/<name>.yaml` has every resource called `<name>`, in the order they feed each
-  other. A resource that only feeds the build comes first, then the build, then the item for each
-  platform. Use a folder only to group related items, such as side-by-side majors or an
-  application with its configuration, or to hold files a document reads; a file keeps its name
-  there. Moving a document that reads local files changes their lock entries, so run
-  `stemma update` for it. Keep the Project at `stemma.yaml` and import those files.
+The schema describes the available kinds, selectors and destination fields. An existing vendor
+installer or application belongs in a software kind; files assembled into a package belong in a
+builder. Source-free policies need a destination that supports them. See [templates.md](templates.md).
 
-## Declare what you mean
+## Composition and publication
 
-- Extend an existing Project component when its shared defaults fit this item. Do not require a
-  component for a new catalog or copy a component name from an example. Extract shared defaults
-  only when actual resources need them.
-- Review Stemma's selected application and derived metadata against the intended installation.
-  `publications` in `stemma prepare Kind/name --json`, and in MCP `prepare`, has an entry for each
-  destination, made with no connection to it. An entry with `metadata` describes the fields the publication
-  manages: declared and derived values, null or empty for fields it clears, and their origins.
-  `plan` compares those fields with the destination's current state. An entry with `deferred` and no `metadata` is not a
-  preview; `deferred` says why. Correct selection using a stable identifier when needed. Supply
-  explicit metadata where artifact evidence cannot describe the installed product; see the
-  installation contract below.
-- An application's `architectures` fact names what its main executable runs on. `x86_64` alone
-  needs Rosetta on Apple silicon: follow the repository's rule for such software. An absent list
-  means unknown, not unsupported.
-- Leave out a field the destination fills in from other fields, as its description says, unless
-  that default is wrong for this software. Munki, for example, blocks on the applications in
-  `installs` when `blocking_applications` is absent.
-- Set descriptive fields yourself: display name, description, publisher or developer, category.
-- Describe the software itself. Start from the vendor's short product description and trim it for
-  grammar, repetition, marketing or length; write a short factual one only when the vendor has
-  nothing usable. Keep good vendor copy rather than rewriting it into a house voice.
-- Leave deployment context to the fields that carry it: management state, who deploys or requires
-  the item, audiences, policy, the destination, and the platform unless it distinguishes the item.
-  Name the organisation only when the item is its own, such as its branding, fonts or a
-  configuration of its systems. A product that takes part in a local policy, such as a filtering
-  agent, is still described as the product.
-- Say what an application does, not that it is installed. Installs, adds or configures belong to
-  items where that action is the item: a driver, content pack, printer, configuration or other
-  custom payload.
-- Treat categories as a short browsing list when the destination uses them. Follow an existing
-  repository list; without one, choose a broad category for the item's main purpose. Don't add a near-duplicate such as
-  `Browser` beside `Browsers`, adopt a vendor's narrower term or keep a category the list no longer
-  has; a new category is a repository decision.
-- Declare the signing expectations `stemma signature` reports wherever the kind supports them: each
-  subject with its signer or `unsigned: true`. An entry without `subject` covers the only signing
-  subject of the published installer or of a build input; name subjects only where there are
-  several, such as a disk image holding two applications. Software that publishes a package build
-  declares none: the builder never signs, and the command reports nothing for its package. Review
-  intentionally unsigned vendor sources before declaring them; report invalid or unsupported
-  signatures rather than omitting the assertion.
-- Where the kind supports an icon, declare its name (`icon: <name>` uses `icons/<name>.png`) and
-  create it from locked software with `stemma icon Kind/name`, unless suitable artwork exists.
-  For a wrapper, select its vendor artwork with `stemma icon MacSoftware/name --input vendor --path Installer.app`
-  in the CLI or the equivalent MCP fields. Software with no artwork of its own, such as fonts or a
-  configuration package, takes it from a local application, installer or artwork file with
-  `--from PATH` or MCP `from`, which needs no source or lock entry. `--path` names one of several
-  applications; inside a package it is the subject path `stemma inspect` reports, such as
-  `Payload/Example.app`. When the prepared package holds several and the document selects none,
-  the command lists them: name one with `--path` alone, or MCP `path` alone. Report extraction
-  errors with their cause.
-- Refer to other catalog resources by `kind` and `name`, not by native names. `source.resource`
-  consumes another resource's output, which is a build dependency. Destination relationships, such
-  as Munki `requires` or Intune `dependencies`, are publication dependencies. Don't use one for the
-  other.
-- Add only destinations the request needs. Each resource destination key names a connection in
-  the Project; define that connection from the installed schema instead of assuming example
-  aliases are configured. Keep metadata in the destination's vocabulary, such as Munki pkginfo keys.
-- Supply secrets through environment expressions such as `"{{ env.VENDOR_TOKEN }}"`. Keep licensed
-  installers, private files and credentials out of Git; a resource that needs files the repository
-  can't carry sets `suspend: true`.
-- Give a resource `profiles` only when it belongs to a workload the repository already runs
-  separately, such as software captured on one prepared machine, and use that profile's existing
-  name. A new profile is a repository decision. See
-  [behaviour.md](behaviour.md#profiles-and-suspend).
+`extends` uses a Project component: maps merge, while lists and null replace inherited values.
+`source.resource` consumes another resource's output and is a build dependency. Destination
+relationships such as Munki `requires` or Intune `dependencies` order publications; they do not
+supply build inputs. Name related resources by kind and name.
 
-## Installation contract
+Destination keys identify connections in the Project. Keep metadata in the destination's
+vocabulary, including native Munki pkginfo keys. Describe the product and set its intended
+publication policy. Reuse appropriate vendor copy; assignments and management fields carry the
+deployment context. Omit values that derivation already supplies correctly.
 
-PKGs default to installer metadata and receipt detection. An explicit `application.path` or
-`application.bundle_id` selects the app supplying version, detection and icon evidence. Disk
-images and archives containing one app select it automatically. Follow the catalog's detection
-policy: receipts record package installation, while `installs` checks installed files or bundles.
-A selected app can generate `installs` without repeating its metadata in destination YAML. Use
-explicit native `installs` when detection should differ from the selected app or package version.
+`prepare --json` reports `publications` without destination credentials. An entry with `metadata`
+shows declared and derived fields, values to clear and their origins. An entry with `deferred`
+explains why a preview is unavailable. `plan` compares this managed metadata with remote state.
 
-When several installed applications together represent a suite's state, name them under
-`subjects` and list them as `installs` items, written `"{{ facts.<name> }}"`. Detection and
-version are separate. `installs` decides which Macs need the installer; the version is what the
-installer, the selected application or the declared `version` states. Stemma never composes one
-from several applications. A source that reports a version exposes it as
-`evidence.source.version`; use it by writing it into the destination's `version`. If an
-application's version advances while the package version stays the same, publishing replaces
-that item and `installs` detects the older application. Changed bytes with unchanged detection
-versions do not by themselves make Munki reinstall it.
+Omitted fields preserve remote values unless Stemma derives them. Explicit values override
+inference, supplied lists replace their collections, and supported nulls clear fields. Deleting
+a declaration does not generally clear the remote value. For example, `exclude: []` beside an
+`include` explicitly clears exclusions.
 
-Preparation must produce an artifact that installs the requested product. An executable installer
-app needs its documented invocation. Reuse an existing wrapper composition: `BuildMacPkg` carries
-it in `scripts` and invokes it from `postinstall`; `MacSoftware` publishes the resulting package.
+## Installation, version and detection
+
+A vendor PKG keeps its payload and installer behaviour. By default, its package metadata supplies
+the version and receipts. `application.path` or `application.bundle_id` selects an app supplying
+version, detection and icon evidence; it does not remove other payloads from the PKG. A disk
+image or archive containing one app selects it automatically.
+
+Review that selection against the product. Receipts establish package installation state;
+application `installs` entries establish that the installed product is present at the expected
+version. Components can be conditional on OS or architecture, so requiring every observed receipt
+may repeatedly request installation of a correctly installed suite. Select the evidence that
+represents the intended state; optional components need not be mandatory detection items.
+
+For several applications, name inspected subjects and use `"{{ facts.<name> }}"` as `installs`
+items. Each supplies its installed path, bundle identifier and comparison version. Native
+`installs` entries remain available when detection differs from those facts. A DMG folder can be
+copied with `items_to_copy`; its nested apps are detected at the resulting installed paths.
+
+Detection and the managed version are separate. Use the installer, a selected app or an explicit
+component/source expression for the release version; Stemma does not combine app versions.
+When the managed version stays the same, changed installer content replaces that publication.
+Munki uses detection versions to decide which Macs need it; changed bytes alone do not trigger
+reinstallation. [Templates](templates.md#suite-detection-and-component-version) show the selectors.
+
+An app's `architectures` fact describes its main executable. An Intel-only app needs Rosetta on
+Apple silicon; the catalog decides how to provide it. An absent fact means unknown. Likewise,
+static inspection cannot establish behaviours implemented only by installer scripts.
+
+## Wrappers and assembled packages
+
+An executable installer app needs its documented unattended invocation. A `BuildMacPkg` can
+carry it in `scripts` and invoke it from `postinstall`; `MacSoftware` publishes that package.
 Select archive contents with `$input` and `path: .`, and locate script resources beside `$0`.
-Verify the consumed vendor input in the build's `signatures`; the software publishing the built
-package needs none.
+Verify vendor inputs through the build's `signatures`; the builder's own package is unsigned.
 
-A build's paths are exact and a direct input's facts stop at the packages it holds. When the
-wrapper carries a package found by a glob inside a vendor image, or needs a version only an
-application supplies, select it in a `MacSoftware` resource without destinations and name that
-resource as the build's input: `resource` in place of a source, then `$input` and
-`inputs.<name>.version` as usual. The chain is three documents: the selected installer, the build
-and the software that publishes the build.
+Build paths are exact and direct input facts stop at the packages they contain. If a build needs
+to select a nested package by glob or use facts from inside it, select it in a software resource
+without destinations and consume that resource as the build input. This preserves the vendor
+artifact without duplicating selection logic in scripts.
 
-Stemma inspects static contents and never executes installer hooks. For script-driven installs,
-establish product detection, minimum OS and removal from vendor documentation and corroborating
-automation. Declare supported overrides in the publishing document. A wrapper receipt records the
-wrapper installation; assess whether it represents the product's continued presence. Managed
-upgrades need version detection: distinguish absent, older, current and newer installations.
-Use native `installs` application or bundle entries when the installed version is known; use
-`version_script` when a script must discover it. Establish how the installed product version
-relates to the packaged release. Report unresolved deployment behaviour before completion.
+A wrapper receipt records the wrapper installation, which may not establish the product's
+continued presence. Use vendor documentation and corroborating automation to establish installed
+paths, versions, minimum OS and removal. Prefer native detection when it expresses those facts;
+use `version_script` when the installed version requires a script. Check absent, older, current
+and newer installations where runtime verification is needed.
 
-## Omitted destination fields
+## Signatures and artwork
 
-A destination field you omit keeps its current value unless Stemma derives it. A supplied list
-replaces the whole collection, an empty list clears it and a supported `null` clears a value. So:
+Declare the expectations reported by `stemma signature` or trial MCP `prepare`. An entry without
+`subject` covers a sole signing subject; identify subjects when there are several. Review
+unsigned observations explicitly. Invalid or unsupported signatures are not unsigned inputs.
+Software consuming an unsigned package build declares no signer for that output.
 
-- deleting a field from the YAML doesn't clear it on the destination; set `null` or `[]`;
-- declare a managed block whole: beside an `include`, `exclude: []` states that nothing is excluded
-  instead of leaving exclusions to the destination;
-- add a field when you mean to own its value, not to repeat the value you expect.
-
-## Gaps
-
-If an ordinary policy needs a no-op source, a weakened or removed verification, duplicated values or
-a copied private file to pass validation, stop and report the gap with the smallest Stemma change
-that would express it. See [plugin-gaps.md](plugin-gaps.md).
-
-## YAML style
-
-- Follow any repository formatter. Otherwise use two-space indentation, sequences indented under
-  their key, one final newline and no trailing whitespace. Format only the files you change.
-- Begin every file with `---` and separate documents with it. Where the repository has an editor
-  schema, put its `# yaml-language-server: $schema=` comment on the line after each `---`: the
-  comment covers one document, so every document in a file has its own.
-- Quote only values YAML would misread: versions such as `"1.0"`, octal modes such as `"0644"`,
-  expressions, and strings starting with a special character. Write a regular expression plain, or
-  in single quotes when it needs quoting, so its backslashes stay single.
-- Repeat a value within one document with an anchor and alias rather than copying it, such as
-  `publisher: &publisher Vendor` and `developer: *publisher`. Merge keys (`<<`) are rejected.
-- Keep a description on its key's line when it fits the formatter's print width. Otherwise wrap it
-  as plain text at that width, continuing two spaces deeper than the key, and use a folded block
-  (`>-`) only for text plain YAML would misread.
-- Comment only what a reviewer needs and the YAML can't say, such as the name behind a signer or
-  group ID.
-- Leave unrelated documents as they are.
-
-## Field order
-
-Fields go in the order Stemma uses them, so a document reads from what is fetched to where it is
-published.
-
-A resource document: `apiVersion`, `kind`, `metadata`, `profiles`, `suspend`, `spec`.
-
-A resource `spec`:
-
-1. `extends`
-2. what is acquired: `source` or `inputs`
-3. what is selected or built from it, such as `package_path`, `application`, `disk_image`,
-   `content`, `setup_file`, `payload`, `scripts` and the built `package`
-4. what is verified: `signatures`. A package build verifies an input before it builds, so its
-   `signatures` follows `inputs`
-5. what is published: `minimum_os`, `icon`, `subjects`, then `destinations` last
-
-The Project `spec`: `imports`, `plugins`, `components`, `destinations`, `reconcile`. A destination
-connection: `operation`, then `config`.
-
-Within a block:
-
-- The field that says what something is comes first, such as `resolver`, `url`, `path`, `resource`,
-  `type`, `operation`, `intent` or `label_name`. The fields that refine it follow in the order they
-  apply: `url` before `match`, `include` before `exclude`.
-- Destination metadata runs from what the item is to what happens to old versions: identity and
-  description, requirements, installation, detection, relationships, assignment, retention.
-- Maps keyed by name, such as destinations, inputs, components, plugins and payload paths, are
-  alphabetical, unless the names have an order of use, such as `preinstall` before `postinstall`.
-- An embedded native document keeps its own convention: Munki pkginfo keys are sorted, as Munki
-  writes them.
-- Lists keep their order.
-
-A kind or field not named here follows the same sequence: acquisition, selection, verification,
-publication.
+Use suitable existing artwork or extract it with `stemma icon`. An input can be selected with
+`--input vendor`; `--path` chooses among apps using the inspected subject path, including inside
+packages. `--from PATH` reads a local application, installer or image without a resource source
+or lock. Declare the icon according to the target catalog's layout.

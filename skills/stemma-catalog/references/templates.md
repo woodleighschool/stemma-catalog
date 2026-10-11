@@ -27,11 +27,9 @@ spec:
     - software/**/*.yaml
 ```
 
-Create at least one resource before validation: every import pattern must match. Name each file
-for the resources it holds, `software/<name>.yaml`, with a build above the item that publishes it;
-use a folder only for a real group or for files a document reads. A builder or a source-only
-`MacSoftware` resource can prepare without destinations.
-There is no need to add plugins, components or reconciliation settings up front.
+Every import pattern must match a file before validation. This layout is illustrative; follow
+the target catalog's conventions. A builder or source-only `MacSoftware` can prepare without
+destinations.
 
 When Munki publication to a local directory is requested, this Project fragment defines the
 connection used by the examples:
@@ -48,7 +46,7 @@ spec:
 Keep that output directory out of Git. Other destinations need their own schema-defined connection
 settings; use environment expressions for credentials. For editor support, generate the project's
 schema with `stemma schema --output-file stemma.schema.json` after configuring its operations, and
-give every document the schema comment described in [documents.md](documents.md#yaml-style).
+reference it in the editor according to the catalog's conventions.
 
 ## Homebrew cask
 
@@ -119,7 +117,7 @@ spec:
 ```
 
 `match` selects the one link on the page, or the highest `(?P<version>[0-9.]+)` among several. With
-one app in the image, Stemma selects it; add `application.path` only when there are several.
+one app in the image, Stemma selects it; use a path or bundle ID to select among several.
 
 ## App in a GitHub release archive
 
@@ -144,6 +142,69 @@ spec:
 ```
 
 The selected PKG is published as if it had been downloaded directly.
+
+## Vendor folder in a DMG
+
+Copy the folder intact while selecting its main app for version and icon evidence:
+
+```yaml
+spec:
+  source:
+    url: https://vendor.example/downloads/Example.dmg
+  application:
+    path: Example Suite/Editor.app
+    installed_path: /Applications/Example Suite/Editor.app
+  destinations:
+    munki:
+      pkginfo:
+        items_to_copy:
+          - source_item: Example Suite
+            destination_path: /Applications
+```
+
+The selected app's detection path follows the copy to `/Applications/Example Suite/Editor.app`.
+Supporting files stay beside it; no package builder is needed for this Munki copy operation.
+
+## Select an app in a vendor PKG
+
+```yaml
+spec:
+  source:
+    url: https://vendor.example/downloads/Example.pkg
+  application:
+    bundle_id: com.vendor.editor
+```
+
+Selection supplies version and detection evidence. The full vendor PKG is still delivered.
+
+## Suite detection and component version
+
+Select the apps that represent the installed suite and, when needed, a component that supplies
+the managed version:
+
+```yaml
+spec:
+  source:
+    url: https://vendor.example/downloads/Suite.pkg
+  subjects:
+    core:
+      package_id: com.vendor.suite.core
+    draw:
+      bundle_id: com.vendor.suite.draw
+    graph:
+      bundle_id: com.vendor.suite.graph
+  destinations:
+    munki:
+      pkginfo:
+        installs:
+          - "{{ facts.draw }}"
+          - "{{ facts.graph }}"
+        version: "{{ facts.core.package.version }}"
+```
+
+Each selector must match exactly one inspected subject. The apps keep their own detection
+versions; `core` supplies the managed version without depending on a package filename. Omit this
+version override when the installer or selected application already supplies the right value.
 
 ## Windows MSI
 

@@ -1,144 +1,70 @@
 # Finding a source
 
-A good source is official and keeps finding the vendor's current release without edits to the
-document. Every fetch of one release returns the same bytes.
+Preserve the requested product, edition, channel, release line, architecture, language and
+installation behaviour. Distinguish those choices from limitations of an old resolver.
 
-Use the cheapest check that answers the question: registry records for releases and hashes,
-`curl` for pages and redirects, then preparation when the artifact itself needs checking. The
-`http` resolver reads the HTML that `curl` receives,
-without running scripts, so a link that only a browser shows isn't available to it. Judge pages with
-`curl`, not a browser.
+Use the cheapest evidence that answers the question: release metadata for versions and hashes,
+HTTP responses for pages and redirects, then artifact inspection for contents. Stemma's HTTP
+resolver reads the response body without running JavaScript; a link visible only after browser
+interaction may not be available to it.
 
-## Choose by release and deployment semantics
+## Choose the mechanism
 
-Preserve the product, edition, channel, intentional release line, architecture, language and
-managed installer first. Distinguish requested policy from restrictions imposed by an old resolver.
-A source that changes those semantics is not equivalent, even if discovery is easier.
+- **Publisher release metadata.** Official GitHub Releases work with the native `github` resolver.
+  Select one asset; use a release-tag pattern for an intentional release line and prereleases only
+  when requested.
+- **Homebrew or WinGet.** Their metadata is useful when it turns a mutable vendor endpoint into a
+  specific release, installer and digest. Check the current record's architecture, channel, scope,
+  language and installer type. A hashless entry around the same URL may add little, and registry
+  hashes can lag a vendor replacing bytes at a mutable URL.
+- **Stable vendor downloads.** A long-lived official URL remains a good source, including one
+  redirecting to a fresh signed URL. Stemma does not lock the transient redirect. Prefer a complete
+  managed installer over a stub whose later download cannot be inspected or verified.
+- **Pages and feeds.** `url` with `match` selects links in HTML attributes or matches a text body.
+  One URL must match, or a named `version` group selects the highest dotted-number version. Ties
+  fail. Do not write a resolver merely to perform this selection.
+- **Vendor APIs.** Dependent requests, product/channel selection or refreshing signed URLs for a
+  previously selected release may justify a plugin. Check [plugin-gaps.md](plugin-gaps.md).
 
-Compare the sources that express that intent:
+Prefer native sources where they express the same behaviour. Existing custom code and community
+recipes are evidence of a mechanism, not a requirement to keep it.
 
-1. **The publisher's structured release system.** Official GitHub Releases are first-party release
-   metadata. Use native `github` with an asset glob selecting exactly one artifact, a `release`
-   tag glob for an intentional release line, and `include_prereleases` only when requested.
-   Routing the same release through Homebrew adds little unless it supplies required semantics.
-2. **Homebrew or WinGet when maintained metadata improves vendor discovery.** Use `homebrew`
-   casks or `winget` packages when they turn a mutable URL, page, feed or version API into a
-   concrete version, official installer and digest. Check architecture, channel, edition, scope
-   and language selectors against the installed schema and current registry record. A cask's
-   existence alone is not a reason to use it.
-3. **A stable official vendor URL.** Use `url` for a long-lived endpoint serving the intended
-   artifact. This remains a good source, particularly for managed PKGs and enterprise installers.
-   Hashless or `no_check` registry entries around the same URL may add little. Registry hashes
-   for mutable URLs can lag replaced bytes; weigh their release metadata against that risk.
-4. **Simple first-party page or feed discovery.** Use `url` with `match` when one stable page or
-   feed exposes one distinct current download. HTML matches element attributes; text feeds match
-   the body. When the page keeps older releases with the same URL shape, name a `version` group,
-   as in `App-(?P<version>[0-9.]+)\.dmg`: the highest dotted-number version selects the URL. Do not
-   add Go discovery code for selection the native HTTP resolver already supports.
-5. **Community automation as evidence.** Use recipes and manifests to discover an official
-   mechanism, then express it with one of these sources.
-
-Prefer native Stemma sources over catalog-owned code when they express the same behaviour.
-An installed vendor plugin gets no priority merely because it exists. Re-evaluate older plugins
-when Stemma gains built-in capabilities and delete redundant implementations and tests.
-
-A plugin is appropriate when it models a real gap: dependent requests, structured product/channel
-selection, authenticated acquisition or refreshed signed URLs. Microsoft's product/channel/package
-model and Cricut's signed-URL workflow can justify custom resolvers. Do not flatten meaningful
-vendor semantics into a collection of casks merely to avoid a plugin. See
-[plugin-gaps.md](plugin-gaps.md).
-
-Do not casually exchange a managed/admin PKG for a consumer installer, or a vendor DMG for an
-application ZIP that Stemma repackages. Compare the actual URLs, containers and contents. Preserve
-the useful deployment artifact unless there is a specific reason to change it.
-
-Registry hashes let `stemma update` lock a release without downloading its installer. Preparation
-fetches and verifies the bytes; hashless sources still need vendor downloads during update.
-Stemma reads Homebrew metadata, not its install, uninstall or postflight actions.
-The generated schema describes each source form; CLI help lists available commands.
+Changing an equivalent application's container from DMG to ZIP can be harmless when the app,
+signature, supporting files and installed layout are preserved. Replacing a vendor PKG is a
+different choice: it can lose scripts, receipts or other installation behaviour. Compare contents
+and deployment semantics rather than imposing a container preference.
 
 ## Check a candidate
 
-```sh
-curl -sSIL 'https://vendor.example/download/latest'
-curl -fsSL 'https://vendor.example/downloads/' | grep -oE 'href="[^"]*\.(dmg|pkg|zip|msi|exe)"' | sort -u
-```
+Confirm the publisher's URL or CDN, release selection and intended build. Read redirects and
+content types before downloading large installers. Once login, entitlement or an unavailable file
+explains an access failure, repeated probes add little; use an authorized supported source or
+report the missing input.
 
-The first shows the redirect chain, final filename and content type. The second lists the links a
-`match` can select. A candidate passes when it is:
+A fixed release URL does not follow future releases; use discovery unless an exact pin is wanted.
+A stable source must acquire the same bytes for a locked selection or fail verification. When
+replacing a source, compare releases, URLs, installer types and hashes where available, then inspect
+identity, signatures and derived publication metadata. Matching bytes is strong evidence of
+equivalence, but does not establish future release selection.
 
-- **Official.** The vendor's domain, CDN or GitHub organisation. Avoid third-party download portals
-  and unverified mirrors. Homebrew core bottles are an explicit exception: use `formula` only
-  for standalone bottles the resolver accepts, then declare their installed layout in
-  `BuildMacPkg`. Preserve support files and licences; do not copy symlinked commands alone.
-- **Current.** It follows the latest stable release. A version in the URL means the document never
-  updates; discover the version with a resolver instead, unless the request is to pin that release.
-- **Long-lived.** No expiring signatures, session tokens or per-visit query strings. Stemma follows
-  redirects and does not keep temporary URLs in the lock, so a stable URL that redirects to a signed
-  one works.
-- **The right build.** Platform, architecture, language and edition. Prefer universal builds; when
-  the vendor splits by architecture, say which one you chose.
-- **Made for deployment.** Prefer the vendor's installer for managed deployment (an admin PKG or
-  MSI, an enterprise or offline installer) over a stub that downloads the application later, which
-  can't be inspected or verified.
-- **Accessible to the runner.** Prefer anonymous downloads without click-through. Where authorized
-  credentials are necessary, use supported `token` or header fields with environment expressions;
-  keep restricted vendor files out of Git.
+Registry hashes can let `update` lock a release without downloading it. Hashless sources require
+acquisition and hashing. Preparation verifies the bytes. Stemma reads Homebrew metadata, not its
+install, uninstall or postflight actions.
 
-When replacing a source, compare the old and proposed current releases, vendor URLs, artifact types
-and SHA-256 values where available. Prepare the resource and inspect its application/package
-identity and signatures. Confirm destination configuration and derived deployment behaviour remain
-appropriate; matching current bytes is strong evidence of equivalence.
+## Learn from other automation
 
-Then declare it, validate, and use `stemma update Kind/name` to resolve and lock it. Prepare when
-artifact inspection is required, following [behaviour.md](behaviour.md). The resolver rejects a
-`match` that selects no URL, several without a `version` group, or several tied for the highest
-version, and lists the URLs it matched;
-preparation shows what the selected bytes contain. GitHub lookups are limited to 60 an hour per
-address unless `GH_TOKEN` or `GITHUB_TOKEN` is set.
+- Homebrew's cask API at `https://formulae.brew.sh/api/cask/<token>.json` supplies the selected URL,
+  version and Ruby source path. The cask's `livecheck` block can reveal the vendor's release feed.
+- AutoPkg's index at `https://raw.githubusercontent.com/autopkg/index/main/index.json` identifies
+  recipes. Read parent recipes and custom processors to understand discovery and device behaviour.
+- Installomator labels show download and version mechanisms; WinGet manifests describe installer
+  selection and metadata.
 
-## Learn from community automation
+Verify those mechanisms against current vendor responses. An AutoPkg chain that finds a link,
+downloads, unpacks and verifies a DMG can become one Stemma source with ordinary preparation and
+signature expectations. Preserve what it installs and detects, not processor choreography.
 
-Other automation often knows where a vendor publishes. Cheapest first:
-
-- **Homebrew casks.**
-  `curl -fsSL https://formulae.brew.sh/api/cask/<token>.json | jq '{url, version, ruby_source_path}'`
-  shows the vendor URL for the current release. The cask source at
-  `https://raw.githubusercontent.com/Homebrew/homebrew-cask/HEAD/<ruby_source_path>` has a
-  `livecheck` block naming where new versions appear.
-- **AutoPkg.** Search the public index, then read the download recipe and any custom processor:
-
-  ```sh
-  curl -fsSL https://raw.githubusercontent.com/autopkg/index/main/index.json |
-    jq -r '.identifiers | to_entries[] | select(.value.name // "" | test("firefox"; "i")) | "\(.key)\t\(.value.repo)\t\(.value.path)"'
-  ```
-
-  A recipe is at `https://raw.githubusercontent.com/<repo>/HEAD/<path>`. One with a `ParentRecipe`
-  inherits its download steps from that identifier.
-
-- **Installomator labels** show `downloadURL` and how `appNewVersion` is found.
-- **winget manifests** show `InstallerUrl` for Windows installers.
-
-Take the mechanism, not the steps. An AutoPkg chain of `URLTextSearcher`, `URLDownloader`,
-`Unarchiver` and `CodeSignatureVerifier` usually comes down to "the download page links a versioned
-DMG": one `match` source, with unpacking, selection and signature checks left to Stemma. A custom
-processor that calls an undocumented JSON API suggests the vendor needs a resolver.
-
-Recipes and manifests go stale. Confirm what they say with `curl` against the vendor's current site.
-
-## When a URL is not enough
-
-- A feed lists several releases and the newest has to be chosen by version or date.
-- The download URL has to be built from values in an API response.
-- Discovery takes more than one dependent request.
-- The version is only available from an API, and destinations need it without downloading.
-
-Check whether an available registry or vendor resolver already models the selection. If none does,
-write the proposal described in [plugin-gaps.md](plugin-gaps.md). A regular expression that happens
-to match today's page breaks with the next redesign.
-
-Homebrew formula sources do not install Homebrew or execute formula actions. Bottles that need
-relocation, runtime formula dependencies or a fixed Cellar are unsupported. A command archive
-belongs in `BuildMacPkg`; `MacSoftware` publishes the resulting package. Use relative `symlink`
-payload entries to expose commands from a private `/usr/local/libexec` directory. The bundled
-[templates](templates.md#command-archive) show that layout without requiring another catalog.
+Homebrew formula bottles are a separate case: supported standalone contents belong in
+`BuildMacPkg`, with required files, licences and relative command links preserved. Stemma does not
+install Homebrew, relocate Cellar-dependent binaries or run formula actions. See the
+[command archive example](templates.md#command-archive).

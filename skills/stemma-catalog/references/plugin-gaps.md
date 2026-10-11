@@ -1,76 +1,35 @@
-# When Stemma is not enough
+# Gaps in Stemma or a resolver
 
-Most catalog problems are source problems, and most source problems have a generic answer. Before
-proposing a plugin, check:
+First check whether the available operations express the intended release and deployment
+behaviour. A built-in source, vendor registry or small extension to an existing resolver may
+already cover it; see [discovery.md](discovery.md).
 
-1. Can a built-in source preserve the intended product, release stream and deployment artifact?
-   Follow [source selection](discovery.md); an installed plugin has no incumbency advantage.
-2. Does official GitHub metadata, a matching Homebrew/WinGet entry, a stable vendor URL or simple
-   first-party page/feed discovery already express the selection?
-3. Could an existing resolver cover it with a small extension, such as a new product value?
-4. Is what's missing stable, vendor-specific discovery that other vendors don't share?
+Choose the owner of the missing behaviour:
 
-When the answer to 4 is yes and the earlier options do not fit, propose a resolver plugin with a
-clear owner. A catalog may keep one locally or consume a separately maintained plugin; do not
-assume plugin code or build tooling already exists. When the missing behaviour
-would serve many vendors, such as a common feed format or release API, propose it as a Stemma
-feature instead.
+| Missing contract                                                                       | Owner           |
+| -------------------------------------------------------------------------------------- | --------------- |
+| Vendor-specific product selection, dependent API requests or authenticated acquisition | Resolver plugin |
+| Common feed format or generally useful acquisition/inspection behaviour                | Stemma          |
+| Artifact assembly that no existing builder expresses                                   | Resource kind   |
+| Publication to another service                                                         | Destination     |
 
-## Kinds of gap
+An installed plugin has no incumbency advantage. Remove catalog-owned discovery code when a
+native operation expresses the same semantics. Conversely, keep a vendor model when flattening
+it into URLs would lose product, channel or acquisition behaviour.
 
-| Gap           | Sign                                                                           | Proposal                                              |
-| ------------- | ------------------------------------------------------------------------------ | ----------------------------------------------------- |
-| Resolver      | The generic resolvers can't find or pin the vendor's download                  | A resolver plugin, or a new value in an installed one |
-| Resource kind | Preparation fits no kind: the artifact needs assembly no kind supports         | A resource-kind plugin                                |
-| Destination   | The publishing target isn't supported                                          | A destination plugin                                  |
-| Stemma        | An ordinary policy needs a workaround, such as a no-op source or copied values | A Stemma change                                       |
+For a resolver proposal, state the product it selects, required configuration, discovery
+mechanism and how acquisition retrieves that exact selection. Explain which available source
+cannot express it. Distinguish a malformed vendor artifact from an inspection bug using the
+failing file, command and error; debugging Stemma can then stay within the agreed scope.
 
-Resolver gaps are by far the most common.
+A resolver contract should establish:
 
-## Propose a resolver
+- one selected release, with its immutable identity and filename;
+- a trusted content digest when the publisher supplies one, or the need to acquire and hash bytes;
+- a stable download handoff, refreshing expiring URLs for the selected release when needed;
+- namespaced version evidence that destinations can use;
+- credentials in environment-backed configuration, outside observations and evidence.
 
-Describe the contract. Write code only when asked.
-
-```text
-Proposed resolver: vendorname
-
-Purpose:
-  Resolve the latest stable macOS installer from Vendor's release API.
-
-Inputs:
-  product       required string
-  channel       optional enum, default stable
-  architecture  optional enum
-
-Observation:
-  immutable release or build identifier
-  filename
-  vendor version where available
-
-Evidence:
-  vendorname.version
-
-Content and download, when the vendor supplies a digest:
-  published SHA-256, stable filename and download URL
-
-Why a plugin:
-  The release API needs two dependent requests and returns no download link that a
-  generic http match could select without embedding a transient URL.
-```
-
-A sound resolver contract:
-
-- discovers exactly one release, using release records without downloading the installer when
-  possible;
-- supplies published content identity and a supported download handoff so Stemma can update the
-  lock before acquisition; when no trusted digest exists, acknowledges that update must fetch and
-  hash the artifact;
-- marks the observation immutable when it always fetches the same bytes;
-- returns the vendor's version as namespaced evidence that destination metadata can use;
-- keeps credentials, signed URLs and per-request tokens out of observations and evidence;
-- takes inputs that select a product, not URLs or patterns that restate the vendor's site.
-
-To build it when requested, follow any repository instructions and reuse an existing plugin project
-when appropriate. Otherwise create a separately owned implementation using the
-[plugin documentation](https://woodleighschool.github.io/stemma/writing-plugins) for the installed
-Stemma version.
+Configuration selects products and release policies; it should not make each catalog reconstruct
+the vendor's API choreography. Implement a plugin only within the requested scope, following the
+[plugin contract](https://woodleighschool.github.io/stemma/writing-plugins) and relevant source.
