@@ -35,8 +35,6 @@ spec:
             choiceIdentifier: org.python.Python.PythonProfileChanges-3.13
         name: Python 3.13
         unattended_install: true
-        uninstall_method: removepackages
-        uninstallable: true
       targets:
         include:
           - label_name: All Hosts

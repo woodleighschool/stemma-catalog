@@ -32,8 +32,6 @@ spec:
         name: EPSON Drivers
         unattended_install: true
         unattended_uninstall: true
-        uninstall_method: removepackages
-        uninstallable: true
         version: "{{ evidence.epson.version }}"
       targets:
         include:

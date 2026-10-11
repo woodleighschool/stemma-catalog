@@ -30,7 +30,6 @@ spec:
           #!/bin/zsh --no-rcs
 
           exec /Applications/GlobalProtect.app/Contents/Resources/uninstall_gp.sh
-        uninstallable: true
       targets:
         include:
           - label_name: All Staff

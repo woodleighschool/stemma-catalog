@@ -24,8 +24,6 @@ spec:
         name: iMovie
         unattended_install: true
         unattended_uninstall: true
-        uninstall_method: remove_copied_items
-        uninstallable: true
       targets:
         include:
           - label_name: All Hosts

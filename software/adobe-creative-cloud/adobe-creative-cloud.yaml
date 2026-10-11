@@ -62,7 +62,6 @@ spec:
           [[ -d $app ]] || exit 0
           "$uninstaller" --uninstall=1
           [[ ! -d $app ]]
-        uninstallable: true
       targets:
         include:
           - label_name: All Hosts

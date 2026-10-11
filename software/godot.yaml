@@ -27,7 +27,6 @@ spec:
         name: Godot
         unattended_install: true
         unattended_uninstall: true
-        uninstallable: true
       targets:
         include:
           - label_name: All Hosts

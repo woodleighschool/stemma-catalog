@@ -29,8 +29,6 @@ spec:
         developer: Audinate
         name: Dante Controller
         unattended_install: true
-        uninstall_method: removepackages
-        uninstallable: true
       targets:
         include:
           - label_name: All Hosts

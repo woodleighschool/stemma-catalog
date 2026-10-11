@@ -39,7 +39,6 @@ spec:
           #!/bin/zsh --no-rcs
 
           /bin/rm -rf "/Applications/rekordbox 7"
-        uninstallable: true
       targets:
         include:
           - label_name: All Hosts

@@ -47,7 +47,6 @@ spec:
           if /usr/bin/lpstat -p penbank_campus &> /dev/null; then
               /usr/sbin/lpadmin -x penbank_campus
           fi
-        uninstallable: true
         version: "1.2"
       targets:
         include:

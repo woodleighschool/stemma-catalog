@@ -38,8 +38,6 @@ spec:
         name: SketchUp 2026
         unattended_install: true
         unattended_uninstall: true
-        uninstall_method: remove_copied_items
-        uninstallable: true
       targets:
         include:
           - label_name: All Hosts

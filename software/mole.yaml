@@ -41,5 +41,3 @@ spec:
         developer: tw93
         unattended_install: true
         unattended_uninstall: true
-        uninstall_method: removepackages
-        uninstallable: true

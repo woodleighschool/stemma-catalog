@@ -26,8 +26,6 @@ spec:
         name: TI-Nspire CX Student Software
         unattended_install: true
         unattended_uninstall: true
-        uninstall_method: removepackages
-        uninstallable: true
       targets:
         include:
           - label_name: All Students

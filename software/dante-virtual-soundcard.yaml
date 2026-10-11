@@ -39,7 +39,6 @@ spec:
           #!/bin/zsh --no-rcs
 
           exec "/Library/Application Support/Audinate/DanteVirtualSoundcard/Uninstall DVS.app/Contents/Resources/uninstall.sh"
-        uninstallable: true
       targets:
         include:
           - label_name: All Hosts

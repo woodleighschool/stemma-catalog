@@ -61,7 +61,6 @@ spec:
           #!/bin/zsh --no-rcs
 
           /bin/rm -rf /Applications/Unity "/Library/Application Support/Unity/config/services-config.json"
-        uninstallable: true
         update_for:
           - resource:
               kind: MacSoftware
