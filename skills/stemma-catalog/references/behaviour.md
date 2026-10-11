@@ -43,7 +43,7 @@ inspection does not prove an unattended installer invocation works.
 `update` records source selections under `stemma.lock/`, preserving unselected entries. Trusted
 release hashes can avoid downloading installers during update; preparation fetches and verifies
 locked content when needed. CLI `prepare`, `signature`, `icon`, `plan` and `apply`, and MCP `check`
-and `icon`, reject missing or stale inputs. `--offline` requires verified cached inputs.
+and `icon`, reject missing or stale inputs. `--offline` requires cached inputs.
 Plugin tags and local paths use locks; digest-pinned images identify their code directly.
 
 `validate --locked` compares declarations without acquiring content or checking signatures and
