@@ -1,0 +1,51 @@
+version: 5
+inputs:
+  source:
+    version: 1
+    resolver: winget
+    resolver_version: "2"
+    declaration: a8da10a7454449cd2680d4284275f6c4e7a5c3b89b497491e8a1a24f3642944d
+    observation:
+      filename: googlechromestandaloneenterprise64.msi
+      package: Google.Chrome
+      sha256: 32ba438dea18f0fed1ec621bfb274a2669adec67be2aa91d96b3cc6c64779276
+      url: https://dl.google.com/dl/chrome/install/googlechromestandaloneenterprise64.msi
+      version: 155.0.8059.40
+    content:
+      sha256: 32ba438dea18f0fed1ec621bfb274a2669adec67be2aa91d96b3cc6c64779276
+      filename: googlechromestandaloneenterprise64.msi
+      mode: 420
+    input_version: 155.0.8059.40
+    evidence:
+      winget.installer:
+        apps_and_features_entries:
+          - upgrade_code: '{C1DFDF69-5945-32F2-A35E-EE94C99C7CF4}'
+        architecture: x64
+        elevation_requirement: elevatesSelf
+        file_extensions:
+          - htm
+          - html
+          - pdf
+          - shtml
+          - svg
+          - webp
+          - xht
+          - xhtml
+        installer_sha256: 32ba438dea18f0fed1ec621bfb274a2669adec67be2aa91d96b3cc6c64779276
+        installer_type: wix
+        installer_url: https://dl.google.com/dl/chrome/install/googlechromestandaloneenterprise64.msi
+        package_identifier: Google.Chrome
+        package_name: Google Chrome
+        package_version: 155.0.8059.40
+        product_code: '{AE41646D-561A-3316-9B94-DD3EA96EF975}'
+        protocols:
+          - http
+          - https
+          - mailto
+          - mms
+          - tel
+          - webcal
+        publisher: Google LLC
+        release_date: "2026-10-06"
+        scope: machine
+        upgrade_behavior: install

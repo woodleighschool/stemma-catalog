@@ -1,0 +1,13 @@
+version: 5
+inputs:
+  source:
+    version: 1
+    resolver: http
+    resolver_version: "2"
+    declaration: b9d7a9a1bec9e2ca853c2748791cfa32b4384c2ac381f4d6d337393d721baf60
+    observation:
+      url: https://cdn.rekordbox.com/files/20260914095016/Install_rekordbox_7_2_19.pkg_.zip
+    content:
+      sha256: 17d9bf51c75df6f06be73f039c7acd95bcbb2700c10ff39cf360034fec8a2e03
+      filename: Install_rekordbox_7_2_19.pkg_.zip
+      mode: 420

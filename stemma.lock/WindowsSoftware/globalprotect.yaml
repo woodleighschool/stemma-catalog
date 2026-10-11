@@ -1,0 +1,12 @@
+version: 5
+inputs:
+  source:
+    version: 1
+    resolver: http
+    resolver_version: "2"
+    declaration: 1019f743806cbe7daf68e2b993dafdb57f9155d0763c40ac8389d8e7186cc048
+    observation: {}
+    content:
+      sha256: 6c67253fba0da8d1c6ee18d5f96de16ea2ba7a49bdabadb7d3ac27b7e44154e8
+      filename: GlobalProtect64.msi
+      mode: 420

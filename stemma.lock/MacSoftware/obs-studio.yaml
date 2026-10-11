@@ -1,0 +1,19 @@
+version: 5
+inputs:
+  source:
+    version: 1
+    resolver: github
+    resolver_version: "2"
+    declaration: 826f6f146aec439b84bc60f279116cbd4614f79ea69d90c0474baabd0f61d1a0
+    observation:
+      asset_id: 515013679
+      filename: OBS-Studio-32.2.2-macOS-Apple.dmg
+      release: 32.2.2
+      release_id: 370856907
+      sha256: 920d6f26703d2df6e4085bd3c1cbed30488325084136c7a6e9e37021fbd6aaf7
+      url: https://github.com/obsproject/obs-studio/releases/download/32.2.2/OBS-Studio-32.2.2-macOS-Apple.dmg
+    content:
+      sha256: 920d6f26703d2df6e4085bd3c1cbed30488325084136c7a6e9e37021fbd6aaf7
+      filename: OBS-Studio-32.2.2-macOS-Apple.dmg
+      mode: 420
+    input_version: 32.2.2

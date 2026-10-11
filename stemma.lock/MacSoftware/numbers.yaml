@@ -1,0 +1,13 @@
+version: 5
+inputs:
+  source:
+    version: 1
+    resolver: file
+    resolver_version: "2"
+    declaration: dadabd51248a3dc24856547f78d713775074264656b4f2b66b9bb83f9e0ba740
+    observation: {}
+    content:
+      sha256: b3b2e0cd98019e9367c2d14bbf16f4bde8fcc7d7454fa2b26d1ae301120512c9
+      filename: Numbers Creator Studio.app
+      tree: true
+      mode: 493

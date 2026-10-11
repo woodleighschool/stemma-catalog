@@ -1,0 +1,19 @@
+version: 5
+inputs:
+  source:
+    version: 1
+    resolver: github
+    resolver_version: "2"
+    declaration: 33aca2fd47e67c6923bba1f6c14041a00a937384d37e2c9acc932bfbdb43323b
+    observation:
+      asset_id: 533213276
+      filename: WoodSweep-0.2.3.zip
+      release: v0.2.3
+      release_id: 378248387
+      sha256: c2b1b555f68252717486038d5110f1873ca4f941c5167d2a2be497a1ed330a5c
+      url: https://github.com/woodleighschool/woodsweep/releases/download/v0.2.3/WoodSweep-0.2.3.zip
+    content:
+      sha256: c2b1b555f68252717486038d5110f1873ca4f941c5167d2a2be497a1ed330a5c
+      filename: WoodSweep-0.2.3.zip
+      mode: 420
+    input_version: v0.2.3

@@ -1,0 +1,26 @@
+version: 5
+inputs:
+  source:
+    version: 1
+    resolver: homebrew
+    resolver_version: "2"
+    declaration: bd239bbe121a4ac862d65358ae9a59714203e373080005a90260b277af01a016
+    observation:
+      filename: EasyFind.app.zip
+      sha256: 1539a562539e3b3a243da864fddee0351a4c7d109aa9dcae436775ecbb288fc9
+      url: https://download.devontechnologies.com/download/freeware/easyfind/5.0.2/EasyFind.app.zip
+    content:
+      sha256: 1539a562539e3b3a243da864fddee0351a4c7d109aa9dcae436775ecbb288fc9
+      filename: EasyFind.app.zip
+      mode: 420
+    input_version: 5.0.2
+    evidence:
+      homebrew.cask:
+        artifacts:
+          - app:
+              - EasyFind.app
+            target: /Applications/EasyFind.app
+        macos: "27"
+        name: easyfind
+        target_architecture: arm64
+        version: 5.0.2

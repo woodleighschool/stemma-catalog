@@ -1,0 +1,15 @@
+version: 5
+inputs:
+  source:
+    version: 1
+    resolver: microsoft
+    resolver_version: "2"
+    declaration: 57b005d3ce8541a109b820cb630bc290ec15c6a0b72a9a3bb3fd3116eef51bb6
+    observation:
+      filename: CompanyPortal-Installer.pkg
+      url: https://res.public.onecdn.static.microsoft/mro1cdnstorage/C1297A47-86C4-4C1F-97FA-950631F94777/MacAutoupdate/CompanyPortal-Installer.pkg
+      version: ""
+    content:
+      sha256: 08f18b9b1c0db678ef80b5e560bb29aa45074218b56685765a6d964eb3dda9f7
+      filename: CompanyPortal-Installer.pkg
+      mode: 420

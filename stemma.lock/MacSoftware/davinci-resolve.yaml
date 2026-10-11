@@ -1,0 +1,19 @@
+version: 5
+inputs:
+  source:
+    version: 1
+    resolver: blackmagic
+    resolver_version: "2"
+    declaration: 96eae527934d535ea3ae0c51120b4784620ecd8543481999693ec18699897f0b
+    observation:
+      download_id: fe9e4851d000487588709802e9694b59
+      requires_registration: true
+      version: 21.1.1
+    content:
+      sha256: dfe8a7c1ee189a141310afdeebf3fff33316d9be7967ad3116b8b62e2bb4fe14
+      filename: DaVinci_Resolve_21.1.1_Mac.zip
+      mode: 420
+    input_version: 21.1.1
+    evidence:
+      blackmagic:
+        version: 21.1.1

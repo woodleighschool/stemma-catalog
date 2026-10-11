@@ -1,0 +1,26 @@
+version: 5
+inputs:
+  source:
+    version: 1
+    resolver: homebrew
+    resolver_version: "2"
+    declaration: c6c98922d9d15f476fd17ea4797b068ce6f64583173ae84622d62cb8b779a181
+    observation:
+      filename: vlc-3.0.24-arm64.dmg
+      sha256: 64a89d93cdd30b0e97131743e246373db82d6826ea882d265d46d74b136da2b7
+      url: https://get.videolan.org/vlc/3.0.24/macosx/vlc-3.0.24-arm64.dmg
+    content:
+      sha256: 64a89d93cdd30b0e97131743e246373db82d6826ea882d265d46d74b136da2b7
+      filename: vlc-3.0.24-arm64.dmg
+      mode: 420
+    input_version: 3.0.24
+    evidence:
+      homebrew.cask:
+        artifacts:
+          - app:
+              - VLC.app
+            target: /Applications/VLC.app
+        macos: "27"
+        name: vlc
+        target_architecture: arm64
+        version: 3.0.24

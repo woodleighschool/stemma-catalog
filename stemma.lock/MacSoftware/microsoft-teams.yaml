@@ -1,0 +1,15 @@
+version: 5
+inputs:
+  source:
+    version: 1
+    resolver: microsoft
+    resolver_version: "2"
+    declaration: 3529326da253b87d7da01a5936d58816e1c49b2e469a85dd4367bcd0897bd7a4
+    observation:
+      filename: MicrosoftTeams.pkg
+      url: https://statics.teams.cdn.office.net/production-osx/enterprise/webview2/lkg/MicrosoftTeams.pkg
+      version: ""
+    content:
+      sha256: bda3a6a8c1085191126058311761069c4274d9a0fbb663038ee25b211ae1046d
+      filename: MicrosoftTeams.pkg
+      mode: 420

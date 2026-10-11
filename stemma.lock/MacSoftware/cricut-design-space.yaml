@@ -1,0 +1,14 @@
+version: 5
+inputs:
+  source:
+    version: 1
+    resolver: cricut
+    resolver_version: "2"
+    declaration: 5d0b7971524b0688b5d02356b7abf764ae962aba9373bcd32801774de9e428f9
+    observation:
+      filename: CricutDesignSpace-Install-v9.83.76.dmg
+      version: ""
+    content:
+      sha256: a2b5cc505f5660e984cdc2f4cb7d6d81c5192ebdb505dc9b65b4fc09d3523851
+      filename: CricutDesignSpace-Install-v9.83.76.dmg
+      mode: 420

@@ -1,0 +1,13 @@
+version: 5
+inputs:
+  source:
+    version: 1
+    resolver: file
+    resolver_version: "2"
+    declaration: bcaf607a6382aaa2572aa49983e94b83640e7b0bdee4f4aabc0bde83ecb812aa
+    observation: {}
+    content:
+      sha256: a2b840e6196f964a8d9bee14c6666962893d57802c7409daa2470d71a688e1a8
+      filename: iMovie.app
+      tree: true
+      mode: 493

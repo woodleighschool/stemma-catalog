@@ -1,0 +1,12 @@
+version: 5
+inputs:
+  source:
+    version: 1
+    resolver: http
+    resolver_version: "2"
+    declaration: b9a2bb608d5ccc7306532ef7acc7befccc9e3e775576146f922c05239b17fac6
+    observation: {}
+    content:
+      sha256: 20df0f4927f312f8d47e60294b9a77fd60e44be61476a581fb9195c029ba0893
+      filename: googleearthpromac-intel.dmg
+      mode: 420

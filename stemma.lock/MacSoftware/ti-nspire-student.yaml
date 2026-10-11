@@ -1,0 +1,13 @@
+version: 5
+inputs:
+  source:
+    version: 1
+    resolver: http
+    resolver_version: "2"
+    declaration: 868870163a67845512cac87ee807e18438180aa3ef62fdf588087010933f7e06
+    observation:
+      url: https://education.ti.com/download/en/ed-tech/AFCFF2853BC34DEFB4C0B8B156F92404/C2917C2F3F26448CA245096925D9F715/TINspireCXStudentSoftware-6.3.0.119.dmg
+    content:
+      sha256: 4366d0d9d424684dd8ec8cb9bd98aaa9f512ff39867d19e3d03867a03d452fe7
+      filename: TINspireCXStudentSoftware-6.3.0.119.dmg
+      mode: 420

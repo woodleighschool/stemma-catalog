@@ -1,0 +1,12 @@
+version: 5
+inputs:
+  source:
+    version: 1
+    resolver: http
+    resolver_version: "2"
+    declaration: dd0ae3433758942b619c363306541a4dd4323f09237ae0f7e76f69e833a92a40
+    observation: {}
+    content:
+      sha256: a242c182adbe8bfc8ec4ea9fd50dba2ed6a692e75cf79cf41e05a448a5fd7a6f
+      filename: Vernier-Graphical-Analysis.dmg
+      mode: 420

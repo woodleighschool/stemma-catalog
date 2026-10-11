@@ -8,7 +8,7 @@ on:
       - software/**
       - icons/**
       - stemma.yaml
-      - stemma.lock.yaml
+      - stemma.lock/**
       - .mise/**
       - .github/workflows/catalog.yaml
 

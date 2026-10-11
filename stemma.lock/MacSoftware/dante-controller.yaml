@@ -1,0 +1,25 @@
+version: 5
+inputs:
+  source:
+    version: 1
+    resolver: homebrew
+    resolver_version: "2"
+    declaration: 86451c2b589c6d9d3670aafa789916e294bf8eae97b657d45d66453d66625648
+    observation:
+      filename: DanteController-4.18.1.1-macos-arm64.dmg
+      sha256: 4515cd12b4b185e4b6317db6de7ea5306ba33381baa2fce4ee08f5fc1b6538ff
+      url: https://audinate-software-updates.sgp1.cdn.digitaloceanspaces.com/DanteController/4/4.18/apple_silicon/DanteController-4.18.1.1-macos-arm64.dmg
+    content:
+      sha256: 4515cd12b4b185e4b6317db6de7ea5306ba33381baa2fce4ee08f5fc1b6538ff
+      filename: DanteController-4.18.1.1-macos-arm64.dmg
+      mode: 420
+    input_version: 4.18.1.1
+    evidence:
+      homebrew.cask:
+        artifacts:
+          - pkg:
+              - DanteController.pkg
+        macos: "27"
+        name: dante-controller
+        target_architecture: arm64
+        version: 4.18.1.1

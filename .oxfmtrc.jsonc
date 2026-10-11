@@ -4,7 +4,7 @@
     ".release-please-manifest.json",
     ".mise/locks/",
     "stemma.schema.json",
-    "stemma.lock.yaml",
+    "stemma.lock/",
     ".github/workflows/*.lock.yml",
   ],
   "printWidth": 100,

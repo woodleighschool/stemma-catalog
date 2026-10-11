@@ -1,0 +1,26 @@
+version: 5
+inputs:
+  source:
+    version: 1
+    resolver: homebrew
+    resolver_version: "2"
+    declaration: ca8b9ed77f550e68e6d68a801761c682033798b1815d24d56e1d71851e2c6085
+    observation:
+      filename: blender-5.2.2-macos-arm64.dmg
+      sha256: dc4125399b8bfefe283cc1624d6cfc7809d1cac20ace51072127eb371f31f210
+      url: https://download.blender.org/release/Blender5.2/blender-5.2.2-macos-arm64.dmg
+    content:
+      sha256: dc4125399b8bfefe283cc1624d6cfc7809d1cac20ace51072127eb371f31f210
+      filename: blender-5.2.2-macos-arm64.dmg
+      mode: 420
+    input_version: 5.2.2
+    evidence:
+      homebrew.cask:
+        artifacts:
+          - app:
+              - Blender.app
+            target: /Applications/Blender.app
+        macos: "27"
+        name: blender
+        target_architecture: arm64
+        version: 5.2.2

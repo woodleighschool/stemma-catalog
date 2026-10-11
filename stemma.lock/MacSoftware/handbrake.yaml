@@ -1,0 +1,19 @@
+version: 5
+inputs:
+  source:
+    version: 1
+    resolver: github
+    resolver_version: "2"
+    declaration: fef1f747a7a6d286db3c92fbbe48a23b482dd8a117fdb8346effe65f1bfa3bc6
+    observation:
+      asset_id: 441100095
+      filename: HandBrake-1.11.2.dmg
+      release: 1.11.2
+      release_id: 335656806
+      sha256: 4afe27aaa77a7bbb0dcda1a335d96a5f53649f2649fb84de6982ffecc35de9d7
+      url: https://github.com/HandBrake/HandBrake/releases/download/1.11.2/HandBrake-1.11.2.dmg
+    content:
+      sha256: 4afe27aaa77a7bbb0dcda1a335d96a5f53649f2649fb84de6982ffecc35de9d7
+      filename: HandBrake-1.11.2.dmg
+      mode: 420
+    input_version: 1.11.2

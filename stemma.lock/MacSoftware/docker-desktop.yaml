@@ -1,0 +1,50 @@
+version: 5
+inputs:
+  source:
+    version: 1
+    resolver: homebrew
+    resolver_version: "2"
+    declaration: e831e5c87c365f437b0f2ac44ee77d7be4e6c0770283a57d0a0f3ec3a6ff1fbb
+    observation:
+      filename: Docker.dmg
+      sha256: 02147e4d559ff41e1d9d7be63a554101340237064c7b6df234548aa111ebf04c
+      url: https://desktop.docker.com/mac/main/arm64/241994/Docker.dmg
+    content:
+      sha256: 02147e4d559ff41e1d9d7be63a554101340237064c7b6df234548aa111ebf04c
+      filename: Docker.dmg
+      mode: 420
+    input_version: 4.94.0,241994
+    evidence:
+      homebrew.cask:
+        artifacts:
+          - app:
+              - Docker.app
+            target: /Applications/Docker.app
+          - binary:
+              - $APPDIR/Docker.app/Contents/Resources/bin/docker-credential-ecr-login
+              - target: /usr/local/bin/docker-credential-ecr-login
+            target: /usr/local/bin/docker-credential-ecr-login
+          - binary:
+              - $APPDIR/Docker.app/Contents/Resources/bin/docker-credential-osxkeychain
+              - target: /usr/local/bin/docker-credential-osxkeychain
+            target: /usr/local/bin/docker-credential-osxkeychain
+          - binary:
+              - $APPDIR/Docker.app/Contents/Resources/bin/kubectl
+              - target: /usr/local/bin/kubectl.docker
+            target: /usr/local/bin/kubectl.docker
+          - binary:
+              - $APPDIR/Docker.app/Contents/Resources/cli-plugins/docker-compose
+              - target: /usr/local/cli-plugins/docker-compose
+            target: /usr/local/cli-plugins/docker-compose
+          - binary:
+              - $APPDIR/Docker.app/Contents/Resources/bin/docker
+              - target: /usr/local/bin/docker
+            target: /usr/local/bin/docker
+          - binary:
+              - $APPDIR/Docker.app/Contents/Resources/bin/docker-credential-desktop
+              - target: /usr/local/bin/docker-credential-desktop
+            target: /usr/local/bin/docker-credential-desktop
+        macos: "27"
+        name: docker-desktop
+        target_architecture: arm64
+        version: 4.94.0,241994

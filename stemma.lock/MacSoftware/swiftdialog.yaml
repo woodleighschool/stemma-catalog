@@ -1,0 +1,19 @@
+version: 5
+inputs:
+  source:
+    version: 1
+    resolver: github
+    resolver_version: "2"
+    declaration: 008ab0f414c41733deee04060410782bb844b4ffd873a4fd97c85e816c6bf6bd
+    observation:
+      asset_id: 476624493
+      filename: dialog-3.1.0-4994.pkg
+      release: v3.1.0
+      release_id: 353749918
+      sha256: 462921537425146b00b936448e518578b58d5177c039a609532cfea349c3e166
+      url: https://github.com/swiftDialog/swiftDialog/releases/download/v3.1.0/dialog-3.1.0-4994.pkg
+    content:
+      sha256: 462921537425146b00b936448e518578b58d5177c039a609532cfea349c3e166
+      filename: dialog-3.1.0-4994.pkg
+      mode: 420
+    input_version: v3.1.0

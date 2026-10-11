@@ -1,0 +1,12 @@
+version: 5
+inputs:
+  source:
+    version: 1
+    resolver: file
+    resolver_version: "2"
+    declaration: 8e3e65539a17e0f54274d17f6635387a1257878ffcc757109b47b5133621260a
+    observation: {}
+    content:
+      sha256: 15587de55d972cf9d28a5f070e2da2dd8eaa520deaad66f72e2e00010e6ea5da
+      filename: auth-agent.pkg
+      mode: 420

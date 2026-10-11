@@ -1,0 +1,13 @@
+version: 5
+inputs:
+  source:
+    version: 1
+    resolver: http
+    resolver_version: "2"
+    declaration: d34da181a79d98ca8da579dc7d0121aa003bce0b9619f69897a524aaa80a5a49
+    observation:
+      url: https://pages.assessform.edu.au/uploads/files/Release/NAP%20Locked%20down%20browser%20-%20Release%20-%205.10.5.pkg
+    content:
+      sha256: 0c52500ff74f25dd7bc1080381cdf9c44695e796c614f347b0dd1c4ba4f91ea0
+      filename: NAP Locked down browser - Release - 5.10.5.pkg
+      mode: 420

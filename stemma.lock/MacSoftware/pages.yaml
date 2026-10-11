@@ -1,0 +1,13 @@
+version: 5
+inputs:
+  source:
+    version: 1
+    resolver: file
+    resolver_version: "2"
+    declaration: 1f473604462ddcd0f41b788cbe534634df2e0bc43c50675a2c26da7aefcba9c9
+    observation: {}
+    content:
+      sha256: 721bb1703a61f800a0106a7c9bc186241a171337ce0bb8bea1c2c6fe5379ad72
+      filename: Pages Creator Studio.app
+      tree: true
+      mode: 493

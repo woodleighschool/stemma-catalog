@@ -1,0 +1,12 @@
+version: 5
+inputs:
+  source:
+    version: 1
+    resolver: http
+    resolver_version: "2"
+    declaration: 0062d540b624fb66501fc959ae83d38d32c1ac530a5ffbb8829b8abb52f5bfce
+    observation: {}
+    content:
+      sha256: 356f0632a17a86a624bc752e911141d143a56bf7269c37dbdb87d17847fd4cd2
+      filename: ViviSetup64-3.12.2.msi
+      mode: 420

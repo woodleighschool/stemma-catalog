@@ -1,0 +1,19 @@
+version: 5
+inputs:
+  source:
+    version: 1
+    resolver: github
+    resolver_version: "2"
+    declaration: deaab5499cc3886799f441032d82b183ef0be6afff93bd30b0cd1a17140eacc8
+    observation:
+      asset_id: 523213191
+      filename: Bambu_Studio_mac-v02.08.02.61-20260820225108.dmg
+      release: v02.08.02.61
+      release_id: 374152182
+      sha256: cf648a95858fb630e1353c4987038df60d6caab693f18411fb95fb809f2d6926
+      url: https://github.com/bambulab/BambuStudio/releases/download/v02.08.02.61/Bambu_Studio_mac-v02.08.02.61-20260820225108.dmg
+    content:
+      sha256: cf648a95858fb630e1353c4987038df60d6caab693f18411fb95fb809f2d6926
+      filename: Bambu_Studio_mac-v02.08.02.61-20260820225108.dmg
+      mode: 420
+    input_version: v02.08.02.61

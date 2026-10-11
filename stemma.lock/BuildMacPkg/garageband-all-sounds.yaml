@@ -1,0 +1,24 @@
+version: 5
+inputs:
+  assets:
+    version: 1
+    resolver: file
+    resolver_version: "2"
+    declaration: df591292cfca427c4ce53684161f25b5860b57a6459320c8783005b04336650f
+    observation: {}
+    content:
+      sha256: d555fcd04538a3829eab6708f222a8e69ee43f0a6cbadfab61eaae17467857a0
+      filename: Assets
+      tree: true
+      mode: 493
+  scripts:
+    version: 1
+    resolver: file
+    resolver_version: "2"
+    declaration: cea9101c8bc3ce861692d8478cd7ed7df85ced58da4a7326e409dd278eb30ee3
+    observation: {}
+    content:
+      sha256: 7aecffd41eddc013d43343d468aa9dde43170aa50179fe18de7ebd56ce98c705
+      filename: Scripts
+      tree: true
+      mode: 493

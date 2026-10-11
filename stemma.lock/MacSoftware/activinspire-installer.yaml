@@ -1,0 +1,12 @@
+version: 5
+inputs:
+  source:
+    version: 1
+    resolver: http
+    resolver_version: "2"
+    declaration: d3133db5e672e2e8b854b9807b50872a7d0ef71892b0944cfa665c2809603bc5
+    observation: {}
+    content:
+      sha256: ed5f94596198896aace5af2152065665bd328c677ecc649dbcbac4ecb7232035
+      filename: ActivInspire_en_GB_mac.dmg
+      mode: 420

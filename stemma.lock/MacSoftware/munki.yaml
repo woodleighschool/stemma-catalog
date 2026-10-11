@@ -1,0 +1,19 @@
+version: 5
+inputs:
+  source:
+    version: 1
+    resolver: github
+    resolver_version: "2"
+    declaration: a8d81db788be465ce11d9710b9dfbb3bc56f532702129350ccf44e868289dd4a
+    observation:
+      asset_id: 529357077
+      filename: munkitools-7.3.0.5808.pkg
+      release: v7.3.0
+      release_id: 376493304
+      sha256: 4ed826bd32811ef54524a10300f66c9af4c9fdd8c243ada146d468485e1bffcc
+      url: https://github.com/munki/munki/releases/download/v7.3.0/munkitools-7.3.0.5808.pkg
+    content:
+      sha256: 4ed826bd32811ef54524a10300f66c9af4c9fdd8c243ada146d468485e1bffcc
+      filename: munkitools-7.3.0.5808.pkg
+      mode: 420
+    input_version: v7.3.0

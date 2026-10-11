@@ -1,0 +1,12 @@
+version: 5
+inputs:
+  source:
+    version: 1
+    resolver: http
+    resolver_version: "2"
+    declaration: c1b9baf463643ba228eafe725f05825ba0655910604a834a183c47c099c656a2
+    observation: {}
+    content:
+      sha256: 3a89d6ea7a5eddbd97521bde884f528f2dd6348b6408b74651551fb89d27c344
+      filename: SketchUp2026.dmg
+      mode: 420

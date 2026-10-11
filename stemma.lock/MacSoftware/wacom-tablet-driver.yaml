@@ -1,0 +1,25 @@
+version: 5
+inputs:
+  source:
+    version: 1
+    resolver: homebrew
+    resolver_version: "2"
+    declaration: d1aa0882d9907b7e24f07f8eaf01f425b742ef9b3cb1798f8b2b32d44f3adf34
+    observation:
+      filename: WacomTablet_6.4.15-1.dmg
+      sha256: 1eb81473e03345f6cd06c55aa05ba40a5bbe602b3a4dabc83fe6bc9b8395cbc5
+      url: https://cdn.wacom.com/u/productsupport/drivers/mac/professional/WacomTablet_6.4.15-1.dmg
+    content:
+      sha256: 1eb81473e03345f6cd06c55aa05ba40a5bbe602b3a4dabc83fe6bc9b8395cbc5
+      filename: WacomTablet_6.4.15-1.dmg
+      mode: 420
+    input_version: 6.4.15-1
+    evidence:
+      homebrew.cask:
+        artifacts:
+          - pkg:
+              - Install Wacom Tablet.pkg
+        macos: "27"
+        name: wacom-tablet
+        target_architecture: arm64
+        version: 6.4.15-1

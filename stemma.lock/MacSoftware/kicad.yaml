@@ -1,0 +1,19 @@
+version: 5
+inputs:
+  source:
+    version: 1
+    resolver: github
+    resolver_version: "2"
+    declaration: 71bda1e6ac141fba18f266e570558f67201f938013f8535ab936140a7d8c48a7
+    observation:
+      asset_id: 536738445
+      filename: kicad-unified-universal-10.0.6.dmg
+      release: 10.0.6
+      release_id: 379027496
+      sha256: ef4dcd4278c46d3efcd28c8db273d5957d68efda028f6bf79b4811fc5302dc68
+      url: https://github.com/KiCad/kicad-source-mirror/releases/download/10.0.6/kicad-unified-universal-10.0.6.dmg
+    content:
+      sha256: ef4dcd4278c46d3efcd28c8db273d5957d68efda028f6bf79b4811fc5302dc68
+      filename: kicad-unified-universal-10.0.6.dmg
+      mode: 420
+    input_version: 10.0.6

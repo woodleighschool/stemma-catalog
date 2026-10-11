@@ -1,0 +1,15 @@
+version: 5
+inputs:
+  source:
+    version: 1
+    resolver: microsoft
+    resolver_version: "2"
+    declaration: 942bf334b59409af1fb6332da4b905c3d2d14c07f9d49588819a8a712063209a
+    observation:
+      filename: Windows_App_11.4.3_installer.pkg
+      url: https://res.public.onecdn.static.microsoft/mro1cdnstorage/C1297A47-86C4-4C1F-97FA-950631F94777/MacAutoupdate/Windows_App_11.4.3_installer.pkg
+      version: ""
+    content:
+      sha256: 9dc0e5f4abecfe9dc02d45fafc9813881bd24ecb84125eabe522b01b11a039ca
+      filename: Windows_App_11.4.3_installer.pkg
+      mode: 420

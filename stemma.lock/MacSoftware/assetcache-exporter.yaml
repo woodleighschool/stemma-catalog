@@ -1,0 +1,19 @@
+version: 5
+inputs:
+  source:
+    version: 1
+    resolver: github
+    resolver_version: "2"
+    declaration: faa0d255567959117f90f69dbe2ed3b1e2bbcb5f333bd6608b2d2a3d1f71197c
+    observation:
+      asset_id: 554516707
+      filename: assetcache-exporter-1.3.0.pkg
+      release: v1.3.0
+      release_id: 386084636
+      sha256: 7213002dd1900bcf0a0a8294e291e2a8cbbff62143bc3f61e21cf5bc68239a5d
+      url: https://github.com/woodleighschool/assetcache-exporter/releases/download/v1.3.0/assetcache-exporter-1.3.0.pkg
+    content:
+      sha256: 7213002dd1900bcf0a0a8294e291e2a8cbbff62143bc3f61e21cf5bc68239a5d
+      filename: assetcache-exporter-1.3.0.pkg
+      mode: 420
+    input_version: v1.3.0

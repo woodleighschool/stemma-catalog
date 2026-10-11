@@ -1,0 +1,12 @@
+version: 5
+inputs:
+  source:
+    version: 1
+    resolver: http
+    resolver_version: "2"
+    declaration: a98e54abc224f1e9c372a4040578efc9c436ae7ee96caccdf359b0e91734cbf6
+    observation: {}
+    content:
+      sha256: 4136c718caf3cbe8bb29e16cc21b92efea1dbb7851f19e508d857d246644ead2
+      filename: GlobalProtect.pkg
+      mode: 420

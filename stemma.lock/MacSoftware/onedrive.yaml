@@ -1,0 +1,15 @@
+version: 5
+inputs:
+  source:
+    version: 1
+    resolver: microsoft
+    resolver_version: "2"
+    declaration: 320a79396f607c13944f2186c535aaa4967658ce358e2617d93a2e18518be6f7
+    observation:
+      filename: OneDrive.pkg
+      url: https://oneclient.sfx.ms/Mac/Installers/26.153.0809.0004/universal/OneDrive.pkg
+      version: ""
+    content:
+      sha256: 35d67e76de8579fa0b533fff7ff3b618ea54f574a8a557bb9d3d736b14029f78
+      filename: OneDrive.pkg
+      mode: 420

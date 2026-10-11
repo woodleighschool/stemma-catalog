@@ -1,0 +1,19 @@
+version: 5
+inputs:
+  source:
+    version: 1
+    resolver: github
+    resolver_version: "2"
+    declaration: 32b0f2e3df0bab7c0d3ec1c779a126f29bc93ee495ccf3449719e71b7fd9d565
+    observation:
+      asset_id: 568406356
+      filename: santa-2026.8.pkg
+      release: "2026.8"
+      release_id: 390112701
+      sha256: 0aaa970c7ddc63fe6a55c3144c825acb7f6bfa9cb15bcba1bffcaf2b5efc952a
+      url: https://github.com/northpolesec/santa/releases/download/2026.8/santa-2026.8.pkg
+    content:
+      sha256: 0aaa970c7ddc63fe6a55c3144c825acb7f6bfa9cb15bcba1bffcaf2b5efc952a
+      filename: santa-2026.8.pkg
+      mode: 420
+    input_version: "2026.8"

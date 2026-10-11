@@ -1,0 +1,13 @@
+version: 5
+inputs:
+  source:
+    version: 1
+    resolver: file
+    resolver_version: "2"
+    declaration: 8e6cf5dadd899aa6f81549a988428b298d88d646b2dbf191a5a14c227b40a02a
+    observation: {}
+    content:
+      sha256: cb2fce0074815937c6717fa295184db00b1e709cb39402307009facf69255f3f
+      filename: Keynote Creator Studio.app
+      tree: true
+      mode: 493

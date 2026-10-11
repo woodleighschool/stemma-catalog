@@ -1,0 +1,13 @@
+version: 5
+inputs:
+  source:
+    version: 1
+    resolver: http
+    resolver_version: "2"
+    declaration: 6164b7a0ff74c4827391d5a091102c9d859a76331d8c2dbd26bce4eac7b1471a
+    observation:
+      url: https://education.ti.com/download/en/ed-tech/B993F3BD97D94D7EA35E5D514DD57FB5/293CCDED1CD94E5B85FA44E8C8B73833/TINspireCXPremiumTeacherSoftware-6.4.0.74.dmg
+    content:
+      sha256: e7e8b666b1cb7de6c0d85064df5f85366ad0e3a4c411ee316b4daa02202d5d3f
+      filename: TINspireCXPremiumTeacherSoftware-6.4.0.74.dmg
+      mode: 420

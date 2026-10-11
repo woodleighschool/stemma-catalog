@@ -1,0 +1,19 @@
+version: 5
+inputs:
+  source:
+    version: 1
+    resolver: github
+    resolver_version: "2"
+    declaration: 15cecaf406a3cf789debd84d76c8212e72e3ca39f3f2c7295914262455d9d82f
+    observation:
+      asset_id: 519677553
+      filename: Godot_v4.7.2-stable_macos.universal.zip
+      release: 4.7.2-stable
+      release_id: 372477026
+      sha256: c58a24e31d720be9d62f60cb5627c4e695fb72f21b0cfe1bc9ccaa9a3b3ba63e
+      url: https://github.com/godotengine/godot-builds/releases/download/4.7.2-stable/Godot_v4.7.2-stable_macos.universal.zip
+    content:
+      sha256: c58a24e31d720be9d62f60cb5627c4e695fb72f21b0cfe1bc9ccaa9a3b3ba63e
+      filename: Godot_v4.7.2-stable_macos.universal.zip
+      mode: 420
+    input_version: 4.7.2-stable

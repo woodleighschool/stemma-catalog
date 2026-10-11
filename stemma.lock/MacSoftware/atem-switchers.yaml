@@ -1,0 +1,19 @@
+version: 5
+inputs:
+  source:
+    version: 1
+    resolver: blackmagic
+    resolver_version: "2"
+    declaration: 0951d95a2356309d57e2b67a9772ca13edbc5c2040b40d54ed75f236d656cf71
+    observation:
+      download_id: a41b2cbe1d7b40eeb03ec792dabce71c
+      requires_registration: false
+      version: 10.4.1
+    content:
+      sha256: 2d18ea6d1c1553d9eb1a2cd568c4ed08df2d41d11c62ab96635448d7917dc751
+      filename: Blackmagic_ATEM_Switchers_Macintosh_10.4.1.zip
+      mode: 420
+    input_version: 10.4.1
+    evidence:
+      blackmagic:
+        version: 10.4.1

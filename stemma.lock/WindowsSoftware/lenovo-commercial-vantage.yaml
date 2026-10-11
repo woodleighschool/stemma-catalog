@@ -1,0 +1,12 @@
+version: 5
+inputs:
+  source:
+    version: 1
+    resolver: http
+    resolver_version: "2"
+    declaration: 54adc1b6b4597d3c14987715759cfd57646a47412bdf9354bccbaa868343318e
+    observation: {}
+    content:
+      sha256: 9e1d02be669fed2eb8c0e964bac3ce6a01ecd8a094904cdc87a063eed0ac87fe
+      filename: LenovoCommercialVantage_20.2606.24.0.20260917014203.zip
+      mode: 420

@@ -1,0 +1,12 @@
+version: 5
+inputs:
+  source:
+    version: 1
+    resolver: http
+    resolver_version: "2"
+    declaration: 67e4194a8106f7b3037621b4a391f859ed73c0fa9a5de7533d96f078def3aaa4
+    observation: {}
+    content:
+      sha256: 6d76da9b5c118dcf60b8bff73a9112a63430b2fffbaacc8e26c22579803f43e4
+      filename: Vivi-3.12.2.pkg
+      mode: 420

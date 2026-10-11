@@ -1,0 +1,12 @@
+version: 5
+inputs:
+  source:
+    version: 1
+    resolver: http
+    resolver_version: "2"
+    declaration: 6f113c46478ef79c97a521f218037bbe906df1c1c98628f803cb14e3457314eb
+    observation: {}
+    content:
+      sha256: ab0ecc74855d5d38e898605234bc033b27b79f202e6f12a11442fc410ae06561
+      filename: VSCode-darwin-arm64.dmg
+      mode: 420

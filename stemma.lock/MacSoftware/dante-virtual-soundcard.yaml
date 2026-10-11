@@ -1,0 +1,13 @@
+version: 5
+inputs:
+  source:
+    version: 1
+    resolver: http
+    resolver_version: "2"
+    declaration: e9fae0d39f27ae4ecc103aec214484481fa614c7e6bcd4d9e0ec8bc5bfbe86de
+    observation:
+      url: https://audinate-software-updates.sgp1.cdn.digitaloceanspaces.com/DanteVirtualSoundcard/4/4.5/macOS/DVS-4.5.2.3_macos.dmg
+    content:
+      sha256: 8d23b26a1b8b6601f4c5dc370bfcfea7558ec18c297992306830d0205d571a1c
+      filename: DVS-4.5.2.3_macos.dmg
+      mode: 420

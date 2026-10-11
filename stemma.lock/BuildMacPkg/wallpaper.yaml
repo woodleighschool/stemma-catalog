@@ -1,0 +1,12 @@
+version: 5
+inputs:
+  wallpaper:
+    version: 1
+    resolver: http
+    resolver_version: "2"
+    declaration: 877a7da1fd412b71ac4080072804bc41f5b0d28732341f859e303a22ca666acc
+    observation: {}
+    content:
+      sha256: 0797320d16824611e9fc413b9e642f14adf550134a51cb4f2efa5af07df5ab76
+      filename: Woodleigh.jpg
+      mode: 420

@@ -1,0 +1,25 @@
+version: 5
+inputs:
+  source:
+    version: 1
+    resolver: homebrew
+    resolver_version: "2"
+    declaration: 42d1a3017dc5529ac89fa2491048e86361f1ea2d3200dc1bb2b28c38826674e6
+    observation:
+      filename: GameMaker-2024.14.4.222.pkg
+      sha256: 8cbd33a9a92ed60ebd53734413b33afdeb8c677326ada0c80971e9f91555cc7f
+      url: https://gms.yoyogames.com/GameMaker-2024.14.4.222.pkg
+    content:
+      sha256: 8cbd33a9a92ed60ebd53734413b33afdeb8c677326ada0c80971e9f91555cc7f
+      filename: GameMaker-2024.14.4.222.pkg
+      mode: 420
+    input_version: 2024.14.4.222
+    evidence:
+      homebrew.cask:
+        artifacts:
+          - pkg:
+              - GameMaker-2024.14.4.222.pkg
+        macos: "27"
+        name: gamemaker
+        target_architecture: arm64
+        version: 2024.14.4.222

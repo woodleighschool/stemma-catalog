@@ -1,0 +1,13 @@
+version: 5
+inputs:
+  source:
+    version: 1
+    resolver: file
+    resolver_version: "2"
+    declaration: b632f558a97a1f6eb95c6224e717645e0b206336ae6ebd7892af254e47157afc
+    observation: {}
+    content:
+      sha256: 3f7d51be783c084174d8e3fa6cd4198484e2177ed570a7d1ae68c3da4ef89cac
+      filename: GarageBand.app
+      tree: true
+      mode: 493

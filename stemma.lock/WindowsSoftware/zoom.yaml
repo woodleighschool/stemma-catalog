@@ -1,0 +1,40 @@
+version: 5
+inputs:
+  source:
+    version: 1
+    resolver: winget
+    resolver_version: "2"
+    declaration: a4a72e1d40f3b460d80e18bd16e3285c9906665ea378244e5dd781d1ade46fbe
+    observation:
+      filename: ZoomInstallerFull.msi
+      package: Zoom.Zoom
+      sha256: b0dac9fa5237d2e18144ca723644460e7cc26675e5d3db0f89fdfe47ad8c429b
+      url: https://zoom.us/client/7.2.1.48556/ZoomInstallerFull.msi?archType=x64
+      version: 7.2.48556
+    content:
+      sha256: b0dac9fa5237d2e18144ca723644460e7cc26675e5d3db0f89fdfe47ad8c429b
+      filename: ZoomInstallerFull.msi
+      mode: 420
+    input_version: 7.2.48556
+    evidence:
+      winget.installer:
+        apps_and_features_entries:
+          - upgrade_code: '{C819B794-A45C-4F27-9860-0C86492A52CC}'
+        architecture: x64
+        file_extensions:
+          - zoommtg
+          - zoomphonecall
+        installer_sha256: b0dac9fa5237d2e18144ca723644460e7cc26675e5d3db0f89fdfe47ad8c429b
+        installer_type: msi
+        installer_url: https://zoom.us/client/7.2.1.48556/ZoomInstallerFull.msi?archType=x64
+        package_identifier: Zoom.Zoom
+        package_name: Zoom Workplace
+        package_version: 7.2.48556
+        product_code: '{518AB954-56D5-4942-802D-ED4A1DAA61FD}'
+        protocols:
+          - zoom
+          - zoommtg
+        publisher: Zoom
+        release_date: "2026-09-21"
+        scope: machine
+        upgrade_behavior: install

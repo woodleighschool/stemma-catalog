@@ -1,0 +1,19 @@
+version: 5
+inputs:
+  source:
+    version: 1
+    resolver: epson
+    resolver_version: "2"
+    declaration: befddb0176cdc80cf2158e6f1b039b60d6689f8a78bc3b3dd10fe493e743d1a2
+    observation:
+      filename: AMC6000_AMC5000_AMC4000_1348AW_21.dmg
+      url: https://d21ceiiri21o6e.cloudfront.net/f/module/3d238dc5-9ccc-4d31-b74f-6ab6a284ad7f/AMC6000_AMC5000_AMC4000_1348AW_21.dmg
+      version: "13.48"
+    content:
+      sha256: 0882e77c517e6941233d464a746b51200645f5ec9d58d417cfc7426241ce30cb
+      filename: AMC6000_AMC5000_AMC4000_1348AW_21.dmg
+      mode: 420
+    input_version: "13.48"
+    evidence:
+      epson:
+        version: "13.48"

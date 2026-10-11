@@ -1,0 +1,12 @@
+version: 5
+inputs:
+  source:
+    version: 1
+    resolver: http
+    resolver_version: "2"
+    declaration: d4af667d4d1d3b061a84c51f69cdea7765e10beceae9629053c1f5fcc7d1b295
+    observation: {}
+    content:
+      sha256: dcfee9980ef026affb94af0f07f1fb3500f2ff031cbcb9955a798f1678401b0f
+      filename: SpotifyARM64.dmg
+      mode: 420

@@ -1,0 +1,12 @@
+version: 5
+inputs:
+  vendor:
+    version: 1
+    resolver: http
+    resolver_version: "2"
+    declaration: 4802a2ef7af946a75e3cd5761a92797e7a838aec16385f2c473599aca991d72d
+    observation: {}
+    content:
+      sha256: 4500602e80500112ba6eb158d9283c5ad369e9e3d5ef0fddfdc2000582734800
+      filename: SophosInstall.zip
+      mode: 420
