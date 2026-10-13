@@ -1,0 +1,6 @@
+{
+  "task": "aw",
+  "tools": "github:github/gh-aw",
+  "paths": [".github/workflows/*.lock.yml", ".github/aw/actions-lock.json"],
+  "workflows": true
+}
