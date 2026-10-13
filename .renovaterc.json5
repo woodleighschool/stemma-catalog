@@ -1,6 +1,8 @@
 {
   $schema: "https://docs.renovatebot.com/renovate-schema.json",
   extends: ["local>woodleighschool/renovate-config"],
+  // The central regeneration workflow commits compiled gh-aw output as Woodmin.
+  gitIgnoredAuthors: ["225126206+woodmin[bot]@users.noreply.github.com"],
   postUpdateOptions: ["gomodTidy", "gomodUpdateImportPaths"],
   // Read action references from the gh-aw source, not its generated YAML.
   "github-actions": {
@@ -18,19 +20,6 @@
       matchFileNames: [".github/workflows/*.md"],
       // The compiler pins these tags to digests.
       pinDigests: false,
-    },
-    {
-      description: "Agentic Workflow Recompile",
-      matchJsonata: [
-        "manager = 'mise' and packageName = 'github/gh-aw'",
-        "manager = 'github-actions' and $contains(packageFile, /\\.md$/)",
-      ],
-      postUpgradeTasks: {
-        commands: ["mise exec github:github/gh-aw -- gh-aw compile"],
-        executionMode: "branch",
-        installTools: { mise: {}, gh: {} },
-        fileFilters: [".github/workflows/*.lock.yml", ".github/aw/actions-lock.json"],
-      },
     },
     {
       description: "Stemma Group",
