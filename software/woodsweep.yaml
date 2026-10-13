@@ -18,30 +18,18 @@ spec:
   destinations:
     intune:
       display_name: WoodSweep
-      description: WoodSweep snapshots a configured local account, resets Microsoft Office user
-        state, and reconciles the account home after the snapshot succeeds.
+      description: WoodSweep snapshots the logged-in account, resets Microsoft Office user state,
+        and reconciles the account home after the snapshot succeeds.
       publisher: &publisher Woodleigh School
       developer: *publisher
       information_url: https://github.com/woodleighschool/woodsweep
       categories:
         - Computer Management
-      pre_install_script: |-
-        #!/bin/zsh --no-rcs
-
-        # Wait until someone has logged in and their Dock is up. The Intune agent stops a
-        # script that runs too long and runs a failed one again at its next check-in.
-        until
-            user=$(/usr/bin/stat -f %Su /dev/console)
-            [[ $user != (root|loginwindow|_mbsetupuser|) ]] && /usr/bin/pgrep -q -x -u "$user" Dock
-        do
-            /bin/sleep 5
-        done
+      pre_install_script: null
       post_install_script: |-
         #!/bin/zsh --no-rcs
 
-        user=$(/usr/bin/stat -f %Su /dev/console)
-        /bin/launchctl asuser "$(/usr/bin/id -u "$user")" /usr/bin/sudo -u "$user" \
-            /Applications/WoodSweep.app/Contents/MacOS/WoodSweep bootstrap \
+        exec /Applications/WoodSweep.app/Contents/MacOS/WoodSweep bootstrap \
             --server-url '{{ env.WOODSWEEP_SERVER_URL }}' \
             --bootstrap-user '{{ env.WOODSWEEP_BOOTSTRAP_USER }}' \
             --bootstrap-password '{{ env.WOODSWEEP_BOOTSTRAP_PASSWORD }}'
