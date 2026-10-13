@@ -42,11 +42,7 @@ jobs:
           REPOSITORY: ${{ github.event.repository.name }}
           PR_NUMBER: ${{ github.event.pull_request.number }}
           HEAD_SHA: ${{ github.event.pull_request.head.sha }}
-          GENERATED_PATHS: |
-            .github/workflows/*.lock.yml
-            .github/aw/actions-lock.json
         run: |
           run_url=$(gh workflow run renovate-regenerate.yaml --repo woodleighschool/.github --ref main \
-            --field "repository=${REPOSITORY}" --field "pull-request=${PR_NUMBER}" --field "head-sha=${HEAD_SHA}" \
-            --field task=aw --field tools=github:github/gh-aw --field workflows=true --field "paths=${GENERATED_PATHS}")
+            --field "repository=${REPOSITORY}" --field "pull-request=${PR_NUMBER}" --field "head-sha=${HEAD_SHA}")
           gh run watch --repo woodleighschool/.github "${run_url##*/}" --exit-status
