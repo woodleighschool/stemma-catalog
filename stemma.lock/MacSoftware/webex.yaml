@@ -7,6 +7,6 @@ inputs:
     declaration: 9de0a04accbe2724592428cdaea6e697abd2a3aca20e0f5bb5b0756ea705f063
     observation: {}
     content:
-      sha256: 7eab3456034d14cb125f4cd1a7238d1c564c27003446d04f51fbbd392987f535
+      sha256: 3640327de157b84b5447481675a84219f404cdd0bb39a6b39e4c48c9f5605423
       filename: Webex.dmg
       mode: 420

@@ -7,6 +7,6 @@ inputs:
     declaration: d4af667d4d1d3b061a84c51f69cdea7765e10beceae9629053c1f5fcc7d1b295
     observation: {}
     content:
-      sha256: dcfee9980ef026affb94af0f07f1fb3500f2ff031cbcb9955a798f1678401b0f
+      sha256: dbb7c390675fc0322146c81f263a79c948244aaa2ef0afe1e0f4af76da610cbd
       filename: SpotifyARM64.dmg
       mode: 420
