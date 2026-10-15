@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.15](https://github.com/woodleighschool/stemma-catalog/compare/v0.3.14...v0.3.15) (2026-10-15)
+
+
+### Bug Fixes
+
+* **go:** update stemma (v0.11.0 → v0.11.1) ([#194](https://github.com/woodleighschool/stemma-catalog/issues/194)) ([343abff](https://github.com/woodleighschool/stemma-catalog/commit/343abff98ebdc53b73720ee52215858703c40b6c))
+
 ## [0.3.14](https://github.com/woodleighschool/stemma-catalog/compare/v0.3.13...v0.3.14) (2026-10-11)
 
 
