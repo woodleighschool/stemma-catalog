@@ -25,7 +25,25 @@ spec:
         postinstall_script: |-
           #!/bin/zsh --no-rcs
 
+          setopt errexit
+
           /bin/chmod -R go+rX /Applications/Spotify.app
+
+          user=$(/usr/bin/stat -f %Su /dev/console)
+          case $user in
+              root | loginwindow | _mbsetupuser | "") exit 0 ;;
+          esac
+
+          /usr/bin/sudo -H -u "$user" /bin/zsh --no-rcs <<'EOF'
+          setopt errexit
+
+          update="$HOME/Library/Application Support/Spotify/PersistentCache/Update"
+          [[ ! -L $update ]] || exit 1
+          /bin/mkdir -p "$update"
+          /usr/bin/chflags -R -P nouchg "$update"
+          /bin/rm -rf -- "$update"/*(DN)
+          /usr/bin/chflags uchg "$update"
+          EOF
         unattended_install: true
         unattended_uninstall: true
       targets:

@@ -24,6 +24,22 @@ spec:
           securely connecting you to Windows devices and apps.
         developer: Microsoft
         name: Windows App
+        postinstall_script: |-
+          #!/bin/zsh --no-rcs
+
+          user=$(/usr/bin/stat -f %Su /dev/console)
+          case $user in
+              root | loginwindow | _mbsetupuser | "") exit 0 ;;
+          esac
+
+          /bin/launchctl asuser "$(/usr/bin/id -u "$user")" /usr/bin/sudo -H -u "$user" \
+              /usr/bin/perl -e 'alarm 15; exec @ARGV' \
+              "/Applications/Windows App.app/Contents/MacOS/Windows App" --script \
+              bookmark write 7A91ED4C-BEA5-453E-91AC-4F0A7C266390 \
+              --hostname rds.woodleigh.vic.edu.au \
+              --friendlyname RDS \
+              --redirectprinters true \
+              --username "$user"
         unattended_install: true
         unattended_uninstall: true
       targets:

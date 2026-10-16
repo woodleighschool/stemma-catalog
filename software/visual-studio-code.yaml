@@ -26,8 +26,13 @@ spec:
         postinstall_script: |-
           #!/bin/zsh --no-rcs
 
+          setopt errexit
+
           /bin/mkdir -p /usr/local/bin
           /bin/ln -sf "/Applications/Visual Studio Code.app/Contents/Resources/app/bin/code" /usr/local/bin/code
+
+          /usr/bin/defaults write /Library/Preferences/com.microsoft.VSCode UpdateMode -string none
+          /bin/chmod 0644 /Library/Preferences/com.microsoft.VSCode.plist
         postuninstall_script: |-
           #!/bin/zsh --no-rcs
 
