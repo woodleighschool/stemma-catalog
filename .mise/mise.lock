@@ -26,26 +26,26 @@ url_api = "https://api.github.com/repos/rhysd/actionlint/releases/assets/3849248
 provenance = "github-attestations"
 
 [[tools."github:github/gh-aw"]]
-version = "0.89.21"
+version = "0.91.12"
 backend = "github:github/gh-aw"
-specifiers = ["0.89.21"]
+specifiers = ["v0.91.12"]
 
 [tools."github:github/gh-aw"."platforms.linux-arm64"]
-checksum = "sha256:4e521be28bd45030e8165c8654ee69ea1d6830b4e0fdefdd020ab1a9b1dd19ae"
-url = "https://github.com/github/gh-aw/releases/download/v0.89.21/linux-arm64"
-url_api = "https://api.github.com/repos/github/gh-aw/releases/assets/584531727"
+checksum = "sha256:c8fc25e43fba0e0eed9b98db0d052954f96b8591b1bcffa74f39b572ad48019c"
+url = "https://github.com/github/gh-aw/releases/download/v0.91.12/linux-arm64"
+url_api = "https://api.github.com/repos/github/gh-aw/releases/assets/639256034"
 provenance = "github-attestations"
 
 [tools."github:github/gh-aw"."platforms.linux-x64"]
-checksum = "sha256:1c74ff5fc28b1891d32b67f4348a9b7f750946b6d4a721e909187a848868016b"
-url = "https://github.com/github/gh-aw/releases/download/v0.89.21/linux-amd64"
-url_api = "https://api.github.com/repos/github/gh-aw/releases/assets/584531705"
+checksum = "sha256:004808fd27a4f1aec7f4ad5976769f16e3ae771886f3592d9f708a2c68981bf5"
+url = "https://github.com/github/gh-aw/releases/download/v0.91.12/linux-amd64"
+url_api = "https://api.github.com/repos/github/gh-aw/releases/assets/639256013"
 provenance = "github-attestations"
 
 [tools."github:github/gh-aw"."platforms.macos-arm64"]
-checksum = "sha256:a2bd9cedfe5e6bdb8932a01644585a0fba446043f69ee146856b01372a4e4159"
-url = "https://github.com/github/gh-aw/releases/download/v0.89.21/darwin-arm64"
-url_api = "https://api.github.com/repos/github/gh-aw/releases/assets/584531664"
+checksum = "sha256:1bf033fdb69d657ac76e882d5c69c86f3380dfb74cb6e8a3526ebed625b44190"
+url = "https://github.com/github/gh-aw/releases/download/v0.91.12/darwin-arm64"
+url_api = "https://api.github.com/repos/github/gh-aw/releases/assets/639255924"
 provenance = "github-attestations"
 
 [[tools."github:woodleighschool/stemma"]]
