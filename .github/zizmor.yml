@@ -12,3 +12,7 @@ rules:
     ignore:
       # The empty bot name is an expression on purpose; see the workflow source.
       - software-request.lock.yml
+  dangerous-triggers:
+    ignore:
+      # Comment runs need the writer role check and an open needs-input request.
+      - software-request.lock.yml
