@@ -6,17 +6,17 @@ inputs:
     resolver_version: "2"
     declaration: 34c5216410cb719e2a1f2a1fb64a0dbf0acd4ac33e69136192cc679a586045d8
     observation:
-      filename: ACCCx6_10_0_252_41.dmg
-      sha256: 5115a16e2ecddade5d37e50fc55721521f92882bf3796ff0fa6fc345719801f7
-      url: https://ccmdls.adobe.com/AdobeProducts/StandaloneBuilds/ACCC/ESD/6.10.0/252.41/macarm64/ACCCx6_10_0_252_41.dmg
+      filename: ACCCx6_11_0_478_6.dmg
+      sha256: 724c1e76ff4886cb135988d1bf46d28bf33e784840e9b160b3c6932cac62c541
+      url: https://ccmdls.adobe.com/AdobeProducts/StandaloneBuilds/ACCC/ESD/6.11.0/478.6/macarm64/ACCCx6_11_0_478_6.dmg
     content:
-      sha256: 5115a16e2ecddade5d37e50fc55721521f92882bf3796ff0fa6fc345719801f7
-      filename: ACCCx6_10_0_252_41.dmg
+      sha256: 724c1e76ff4886cb135988d1bf46d28bf33e784840e9b160b3c6932cac62c541
+      filename: ACCCx6_11_0_478_6.dmg
       mode: 420
-    input_version: 6.10.0.252.41
+    input_version: 6.11.0.478.6
     evidence:
       homebrew.cask:
         macos: "27"
         name: adobe-creative-cloud
         target_architecture: arm64
-        version: 6.10.0.252.41
+        version: 6.11.0.478.6

@@ -6,14 +6,14 @@ inputs:
     resolver_version: "2"
     declaration: 33aca2fd47e67c6923bba1f6c14041a00a937384d37e2c9acc932bfbdb43323b
     observation:
-      asset_id: 635432271
-      filename: WoodSweep-0.2.6.zip
-      release: v0.2.6
-      release_id: 411115744
-      sha256: 56e2c79d23398c37ee34f6cd1164f025510d13a3e48a7bde36d8e6d2a49b2aea
-      url: https://github.com/woodleighschool/woodsweep/releases/download/v0.2.6/WoodSweep-0.2.6.zip
+      asset_id: 645873056
+      filename: WoodSweep-0.2.8.zip
+      release: v0.2.8
+      release_id: 414469085
+      sha256: bb0f3cdc9fc26398473ed04e152ac9a8fbd7517f1c4b00158767be9b6340aee8
+      url: https://github.com/woodleighschool/woodsweep/releases/download/v0.2.8/WoodSweep-0.2.8.zip
     content:
-      sha256: 56e2c79d23398c37ee34f6cd1164f025510d13a3e48a7bde36d8e6d2a49b2aea
-      filename: WoodSweep-0.2.6.zip
+      sha256: bb0f3cdc9fc26398473ed04e152ac9a8fbd7517f1c4b00158767be9b6340aee8
+      filename: WoodSweep-0.2.8.zip
       mode: 420
-    input_version: v0.2.6
+    input_version: v0.2.8

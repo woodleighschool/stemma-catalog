@@ -7,13 +7,13 @@ inputs:
     declaration: e831e5c87c365f437b0f2ac44ee77d7be4e6c0770283a57d0a0f3ec3a6ff1fbb
     observation:
       filename: Docker.dmg
-      sha256: 7857222d3c009d787e7f8347b12e24bfee44e49a68cf455cb4b612991d2492c1
-      url: https://desktop.docker.com/mac/main/arm64/242831/Docker.dmg
+      sha256: d21bd8787e8761b22c2b1b78c34ffa99abb6c06219b43ba84b6b45087a35c9fe
+      url: https://desktop.docker.com/mac/main/arm64/243774/Docker.dmg
     content:
-      sha256: 7857222d3c009d787e7f8347b12e24bfee44e49a68cf455cb4b612991d2492c1
+      sha256: d21bd8787e8761b22c2b1b78c34ffa99abb6c06219b43ba84b6b45087a35c9fe
       filename: Docker.dmg
       mode: 420
-    input_version: 4.95.0,242831
+    input_version: 4.96.0,243774
     evidence:
       homebrew.cask:
         artifacts:
@@ -47,4 +47,4 @@ inputs:
         macos: "27"
         name: docker-desktop
         target_architecture: arm64
-        version: 4.95.0,242831
+        version: 4.96.0,243774
