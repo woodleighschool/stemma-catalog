@@ -26,26 +26,26 @@ url_api = "https://api.github.com/repos/rhysd/actionlint/releases/assets/3849248
 provenance = "github-attestations"
 
 [[tools."github:github/gh-aw"]]
-version = "0.89.21"
+version = "0.92.0"
 backend = "github:github/gh-aw"
-specifiers = ["0.89.21"]
+specifiers = ["v0.92.0"]
 
 [tools."github:github/gh-aw"."platforms.linux-arm64"]
-checksum = "sha256:4e521be28bd45030e8165c8654ee69ea1d6830b4e0fdefdd020ab1a9b1dd19ae"
-url = "https://github.com/github/gh-aw/releases/download/v0.89.21/linux-arm64"
-url_api = "https://api.github.com/repos/github/gh-aw/releases/assets/584531727"
+checksum = "sha256:04dec2df0ebf6b88b9b80e21189d08e590739ec4889ee83edcc84ec901cf75cc"
+url = "https://github.com/github/gh-aw/releases/download/v0.92.0/linux-arm64"
+url_api = "https://api.github.com/repos/github/gh-aw/releases/assets/642698799"
 provenance = "github-attestations"
 
 [tools."github:github/gh-aw"."platforms.linux-x64"]
-checksum = "sha256:1c74ff5fc28b1891d32b67f4348a9b7f750946b6d4a721e909187a848868016b"
-url = "https://github.com/github/gh-aw/releases/download/v0.89.21/linux-amd64"
-url_api = "https://api.github.com/repos/github/gh-aw/releases/assets/584531705"
+checksum = "sha256:4f1753b20416024b15ff2cbea3f5a8745d7473bd8c73d99b4e8a79d69bb0fe83"
+url = "https://github.com/github/gh-aw/releases/download/v0.92.0/linux-amd64"
+url_api = "https://api.github.com/repos/github/gh-aw/releases/assets/642698777"
 provenance = "github-attestations"
 
 [tools."github:github/gh-aw"."platforms.macos-arm64"]
-checksum = "sha256:a2bd9cedfe5e6bdb8932a01644585a0fba446043f69ee146856b01372a4e4159"
-url = "https://github.com/github/gh-aw/releases/download/v0.89.21/darwin-arm64"
-url_api = "https://api.github.com/repos/github/gh-aw/releases/assets/584531664"
+checksum = "sha256:221523316811d86cc43b74fc66f912dc44e15a1cc155958ddd095f57d698a2fe"
+url = "https://github.com/github/gh-aw/releases/download/v0.92.0/darwin-arm64"
+url_api = "https://api.github.com/repos/github/gh-aw/releases/assets/642698685"
 provenance = "github-attestations"
 
 [[tools."github:woodleighschool/stemma"]]
@@ -98,10 +98,10 @@ backend = "npm:@commitlint/cli"
 specifiers = ["21.2.4"]
 
 [[tools.oxfmt]]
-version = "0.73.0"
-aube = { path = "locks/oxfmt/0.73.0", digest = "sha256:e42eeebedd060ec6393c40caa35362b541991453b9aab2de3d33d41a0c245a62" }
+version = "0.74.0"
+aube = { path = "locks/oxfmt/0.74.0", digest = "sha256:b7977a181c0e11736ab44f83b24a4b862754204c253477e29d1758b0f898aad7" }
 backend = "npm:oxfmt"
-specifiers = ["0.73.0"]
+specifiers = ["0.74.0"]
 
 [[tools.zizmor]]
 version = "1.31.1"
