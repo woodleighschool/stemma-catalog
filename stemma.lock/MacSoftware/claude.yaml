@@ -1,0 +1,26 @@
+version: 5
+inputs:
+  source:
+    version: 1
+    resolver: homebrew
+    resolver_version: "2"
+    declaration: efb0fb62c9d24192b7b2fafc09ab5088f781c6f2724d4fe688342ba95aa617d6
+    observation:
+      filename: Claude-8576520051724193e9f74fc538f9ce8125e9ddd2.zip
+      sha256: 3ce879784507147267e656c81c5eea96979f4db462c3569a4d9cb9e5c22d1953
+      url: https://downloads.claude.ai/releases/darwin/universal/2.31226.1/Claude-8576520051724193e9f74fc538f9ce8125e9ddd2.zip
+    content:
+      sha256: 3ce879784507147267e656c81c5eea96979f4db462c3569a4d9cb9e5c22d1953
+      filename: Claude-8576520051724193e9f74fc538f9ce8125e9ddd2.zip
+      mode: 420
+    input_version: 2.31226.1,8576520051724193e9f74fc538f9ce8125e9ddd2
+    evidence:
+      homebrew.cask:
+        artifacts:
+          - app:
+              - Claude.app
+            target: /Applications/Claude.app
+        macos: "27"
+        name: claude
+        target_architecture: arm64
+        version: 2.31226.1,8576520051724193e9f74fc538f9ce8125e9ddd2

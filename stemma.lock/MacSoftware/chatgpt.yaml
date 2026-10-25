@@ -1,0 +1,26 @@
+version: 5
+inputs:
+  source:
+    version: 1
+    resolver: homebrew
+    resolver_version: "2"
+    declaration: 39ff19237ac24c9ace629c3f22a812e9820d6ba59b99eb80b6d848aba85b73df
+    observation:
+      filename: ChatGPT-darwin-arm64-26.1007.30912.zip
+      sha256: b699a8c2d5a2f23cac59dc67388e25af4bf5fc2fb6ab30ffa243a968e4f815a3
+      url: https://persistent.oaistatic.com/codex-app-prod/ChatGPT-darwin-arm64-26.1007.30912.zip
+    content:
+      sha256: b699a8c2d5a2f23cac59dc67388e25af4bf5fc2fb6ab30ffa243a968e4f815a3
+      filename: ChatGPT-darwin-arm64-26.1007.30912.zip
+      mode: 420
+    input_version: 26.1007.30912
+    evidence:
+      homebrew.cask:
+        artifacts:
+          - app:
+              - ChatGPT.app
+            target: /Applications/ChatGPT.app
+        macos: "27"
+        name: chatgpt
+        target_architecture: arm64
+        version: 26.1007.30912
