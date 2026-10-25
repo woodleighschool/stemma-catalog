@@ -4,7 +4,6 @@ apiVersion: stemma/v1alpha1
 kind: MacSoftware
 metadata:
   name: dymo-connect
-suspend: true
 spec:
   extends: mac-software
   source:
