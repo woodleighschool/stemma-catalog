@@ -1,0 +1,35 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/woodleighschool/stemma-catalog/main/stemma.schema.json
+apiVersion: stemma/v1alpha1
+kind: MacSoftware
+metadata:
+  name: musescore-studio
+suspend: true
+spec:
+  extends: mac-software
+  source:
+    resolver: github
+    repository: musescore/MuseScore
+    asset: MuseScore-Studio-*.dmg
+  application:
+    bundle_id: org.musescore.MuseScore
+  signatures:
+    - signer: apple:developer-id:6EPAF2X3PR # MuseScore
+  icon: musescore-studio
+  destinations:
+    woodstar:
+      pkginfo:
+        category: Media
+        description: MuseScore Studio is free music notation software for creating, playing back and
+          printing sheet music.
+        developer: MuseScore
+        name: MuseScore Studio
+        unattended_install: true
+        unattended_uninstall: true
+      targets:
+        include:
+          - label_name: All Hosts
+            actions:
+              - optional_installs
+              - managed_updates
+        exclude: []

@@ -1,0 +1,19 @@
+version: 5
+inputs:
+  source:
+    version: 1
+    resolver: github
+    resolver_version: "2"
+    declaration: 601e5f9e8709b67b957eca6bb736fea4ed521de7040c726123efcd08cd2f9d6c
+    observation:
+      asset_id: 550581792
+      filename: MuseScore-Studio-4.7.5.260831071.dmg
+      release: v4.7.5
+      release_id: 384764238
+      sha256: 5a8cc26994d3f346d3e7d88c6a1583959e990ee9346b00d7b1d3f9498de6473a
+      url: https://github.com/musescore/MuseScore/releases/download/v4.7.5/MuseScore-Studio-4.7.5.260831071.dmg
+    content:
+      sha256: 5a8cc26994d3f346d3e7d88c6a1583959e990ee9346b00d7b1d3f9498de6473a
+      filename: MuseScore-Studio-4.7.5.260831071.dmg
+      mode: 420
+    input_version: v4.7.5
