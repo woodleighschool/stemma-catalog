@@ -1,0 +1,51 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/woodleighschool/stemma-catalog/main/stemma.schema.json
+apiVersion: stemma/v1alpha1
+kind: MacSoftware
+metadata:
+  name: fx-math-tools
+spec:
+  extends: mac-software
+  source:
+    url: https://www.efofex.com/downloadblob.php?file=fxdrawtoolspkg
+    match: https://[^"\s<>]+/FXMathManifest\.pkg
+  application:
+    bundle_id: com.efofex.FXManifest
+  signatures:
+    - signer: apple:developer-id:3PKYL75G98 # Paul Hooper
+  icon: fx-math-tools
+  subjects:
+    draw:
+      bundle_id: com.efofex.FXDraw
+    equation:
+      bundle_id: com.efofex.FXEquation
+    graph:
+      bundle_id: com.efofex.FXGraph
+    manifest:
+      bundle_id: com.efofex.FXManifest
+    stat:
+      bundle_id: com.efofex.FXStat
+  destinations:
+    woodstar:
+      pkginfo:
+        category: Education
+        description: FX Math Tools is a set of tools for mathematics teachers that draw the
+          equations, graphs, statistics charts and diagrams used in tests, exams and worksheets. It
+          includes FX Draw, FX Equation, FX Graph, FX Stat and FX Manifest.
+        developer: Efofex
+        installs:
+          - "{{ facts.draw }}"
+          - "{{ facts.equation }}"
+          - "{{ facts.graph }}"
+          - "{{ facts.manifest }}"
+          - "{{ facts.stat }}"
+        name: FX Math Tools
+        unattended_install: true
+        unattended_uninstall: true
+      targets:
+        include:
+          - label_name: All Staff
+            actions:
+              - optional_installs
+              - managed_updates
+        exclude: []

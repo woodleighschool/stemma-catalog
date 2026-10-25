@@ -1,0 +1,13 @@
+version: 5
+inputs:
+  source:
+    version: 1
+    resolver: http
+    resolver_version: "2"
+    declaration: fd8d5bfe32a7c9ff3ddc334581411c8e4f8ccb07c31f92bb16d9c6ba83840017
+    observation:
+      url: https://dqdcd2e022x79.cloudfront.net/Downloads/FXMathManifest.pkg
+    content:
+      sha256: 3387a0c112e71446542d69e48e1c3857dfa429f5032e44c23ccebf6c4377d28c
+      filename: FXMathManifest.pkg
+      mode: 420
