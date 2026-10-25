@@ -7,23 +7,23 @@ inputs:
     declaration: b4ad1e2c66ad9e2814a370e6e81423e33052b13b886d3c98d640c8aa9c2c61aa
     observation:
       bottle: true
-      filename: mole-1.61.0.arm64_golden_gate.bottle.tar.gz
-      sha256: f6016e9c2ce45107415ef3f101124d33528b688ef0e3867f150ec96b6ac3123b
-      url: https://ghcr.io/v2/homebrew/core/mole/blobs/sha256:f6016e9c2ce45107415ef3f101124d33528b688ef0e3867f150ec96b6ac3123b
+      filename: mole-1.62.0.arm64_golden_gate.bottle.tar.gz
+      sha256: 245ee73856d76ee0f915bd318a523064d5fadc7bf4ab963c1d7c1790d40837a3
+      url: https://ghcr.io/v2/homebrew/core/mole/blobs/sha256:245ee73856d76ee0f915bd318a523064d5fadc7bf4ab963c1d7c1790d40837a3
     content:
-      sha256: f6016e9c2ce45107415ef3f101124d33528b688ef0e3867f150ec96b6ac3123b
-      filename: mole-1.61.0.arm64_golden_gate.bottle.tar.gz
+      sha256: 245ee73856d76ee0f915bd318a523064d5fadc7bf4ab963c1d7c1790d40837a3
+      filename: mole-1.62.0.arm64_golden_gate.bottle.tar.gz
       mode: 420
-    input_version: 1.61.0.0.0
-    content_root: mole/1.61.0
+    input_version: 1.62.0.0.0
+    content_root: mole/1.62.0
     evidence:
       homebrew.formula:
         bottle_tag: arm64_golden_gate
         cellar: any_skip_relocation
         macos: "27"
         name: mole
-        payload_root: mole/1.61.0
+        payload_root: mole/1.62.0
         rebuild: 0
         revision: 0
         target_architecture: arm64
-        version: 1.61.0
+        version: 1.62.0

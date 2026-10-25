@@ -7,6 +7,6 @@ inputs:
     declaration: 6f113c46478ef79c97a521f218037bbe906df1c1c98628f803cb14e3457314eb
     observation: {}
     content:
-      sha256: ac04774aeba3fd7110c92833d9195146d5086427bab2ca902200e7ad9f018a9e
+      sha256: 727c9924e252b50f4ba23143c3770420ca2256b168e65969336b48dd7e5cc393
       filename: VSCode-darwin-arm64.dmg
       mode: 420

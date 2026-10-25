@@ -6,14 +6,14 @@ inputs:
     resolver_version: "2"
     declaration: 908a7a60c098d3a4cbc4685033cbdcae22b429e6bf4384ca01250c96e3ade3ef
     observation:
-      filename: Unity-6000.3.26f1.pkg
-      url: https://download.unity3d.com/download_unity/de8167e7440c/MacEditorInstallerArm64/Unity-6000.3.26f1.pkg
-      version: 6000.3.26f1
+      filename: Unity-6000.3.27f1.pkg
+      url: https://download.unity3d.com/download_unity/672d562a42a7/MacEditorInstallerArm64/Unity-6000.3.27f1.pkg
+      version: 6000.3.27f1
     content:
-      sha256: f193b01430dfdde6167b15b55cd4d138ff6adb269ee3760690d33363a5777df0
-      filename: Unity-6000.3.26f1.pkg
+      sha256: c67f342a4433ab2d33437968427729ffb4d7aded633dbc0afeaf4d3beaa241dc
+      filename: Unity-6000.3.27f1.pkg
       mode: 420
-    input_version: 6000.3.26f1
+    input_version: 6000.3.27f1
     evidence:
       unity:
-        version: 6000.3.26f1
+        version: 6000.3.27f1

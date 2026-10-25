@@ -7,13 +7,13 @@ inputs:
     declaration: e831e5c87c365f437b0f2ac44ee77d7be4e6c0770283a57d0a0f3ec3a6ff1fbb
     observation:
       filename: Docker.dmg
-      sha256: d21bd8787e8761b22c2b1b78c34ffa99abb6c06219b43ba84b6b45087a35c9fe
-      url: https://desktop.docker.com/mac/main/arm64/243774/Docker.dmg
+      sha256: a3ac78b7de67af169ca58f33a4fa4c26007840870574c80c59a7ab0c7f68d954
+      url: https://desktop.docker.com/mac/main/arm64/244472/Docker.dmg
     content:
-      sha256: d21bd8787e8761b22c2b1b78c34ffa99abb6c06219b43ba84b6b45087a35c9fe
+      sha256: a3ac78b7de67af169ca58f33a4fa4c26007840870574c80c59a7ab0c7f68d954
       filename: Docker.dmg
       mode: 420
-    input_version: 4.96.0,243774
+    input_version: 4.96.3,244472
     evidence:
       homebrew.cask:
         artifacts:
@@ -21,9 +21,9 @@ inputs:
               - Docker.app
             target: /Applications/Docker.app
           - binary:
-              - $APPDIR/Docker.app/Contents/Resources/bin/docker-credential-ecr-login
-              - target: /usr/local/bin/docker-credential-ecr-login
-            target: /usr/local/bin/docker-credential-ecr-login
+              - $APPDIR/Docker.app/Contents/Resources/bin/docker-credential-desktop
+              - target: /usr/local/bin/docker-credential-desktop
+            target: /usr/local/bin/docker-credential-desktop
           - binary:
               - $APPDIR/Docker.app/Contents/Resources/bin/docker-credential-osxkeychain
               - target: /usr/local/bin/docker-credential-osxkeychain
@@ -40,11 +40,7 @@ inputs:
               - $APPDIR/Docker.app/Contents/Resources/bin/docker
               - target: /usr/local/bin/docker
             target: /usr/local/bin/docker
-          - binary:
-              - $APPDIR/Docker.app/Contents/Resources/bin/docker-credential-desktop
-              - target: /usr/local/bin/docker-credential-desktop
-            target: /usr/local/bin/docker-credential-desktop
         macos: "27"
         name: docker-desktop
         target_architecture: arm64
-        version: 4.96.0,243774
+        version: 4.96.3,244472

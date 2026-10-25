@@ -6,14 +6,14 @@ inputs:
     resolver_version: "2"
     declaration: bcc1ec8256006de82d8cd0973378c496f98d5f067637e55be9713cbb8f22aca8
     observation:
-      filename: UnityHubSetup-3.22.3-arm64.dmg
-      sha256: a6794e2c8173f72910d630dade43003a37cf45db638cb4df079d23f63ebd970e
-      url: https://public-cdn.cloud.unity3d.com/hub/prod/3.22.3/UnityHubSetup-3.22.3-arm64.dmg
+      filename: UnityHubSetup-3.22.4-arm64.dmg
+      sha256: 9a76c03b8a02e5c61be79b877972a73b093de4eb31b8eb511932744af6f0fc9b
+      url: https://public-cdn.cloud.unity3d.com/hub/prod/3.22.4/UnityHubSetup-3.22.4-arm64.dmg
     content:
-      sha256: a6794e2c8173f72910d630dade43003a37cf45db638cb4df079d23f63ebd970e
-      filename: UnityHubSetup-3.22.3-arm64.dmg
+      sha256: 9a76c03b8a02e5c61be79b877972a73b093de4eb31b8eb511932744af6f0fc9b
+      filename: UnityHubSetup-3.22.4-arm64.dmg
       mode: 420
-    input_version: 3.22.3
+    input_version: 3.22.4
     evidence:
       homebrew.cask:
         artifacts:
@@ -23,4 +23,4 @@ inputs:
         macos: "27"
         name: unity-hub
         target_architecture: arm64
-        version: 3.22.3
+        version: 3.22.4

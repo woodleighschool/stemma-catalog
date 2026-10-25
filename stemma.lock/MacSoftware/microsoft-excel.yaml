@@ -6,14 +6,14 @@ inputs:
     resolver_version: "2"
     declaration: eaf7222edc7ff70db33673432452afab2166ed185eda8b0fa2ef5ab6b670351d
     observation:
-      filename: Microsoft_Excel_16.114.26101123_Installer.pkg
-      url: https://res.public.onecdn.static.microsoft/mro1cdnstorage/C1297A47-86C4-4C1F-97FA-950631F94777/MacAutoupdate/Microsoft_Excel_16.114.26101123_Installer.pkg
-      version: 16.114.26101123
+      filename: Microsoft_Excel_16.114.26102031_Installer.pkg
+      url: https://res.public.onecdn.static.microsoft/mro1cdnstorage/C1297A47-86C4-4C1F-97FA-950631F94777/MacAutoupdate/Microsoft_Excel_16.114.26102031_Installer.pkg
+      version: 16.114.26102031
     content:
-      sha256: 2afbfb3aad1eac7fada58b8c58e5d666509a1e2b3bceef194d81409391bd2bbc
-      filename: Microsoft_Excel_16.114.26101123_Installer.pkg
+      sha256: 13d058e083ac8f31e7b2e36450ea85e022009cac8af60618d6b904a2f882495f
+      filename: Microsoft_Excel_16.114.26102031_Installer.pkg
       mode: 420
-    input_version: 16.114.26101123
+    input_version: 16.114.26102031
     evidence:
       microsoft:
-        version: 16.114.26101123
+        version: 16.114.26102031

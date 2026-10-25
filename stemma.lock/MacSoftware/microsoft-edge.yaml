@@ -6,10 +6,10 @@ inputs:
     resolver_version: "2"
     declaration: d956aada387ef75bf2fb0fe0bd97c798c490d054a44548d654141352d33ceb97
     observation:
-      filename: MicrosoftEdge-155.0.4283.62.pkg
-      url: https://msedge.sf.dl.delivery.mp.microsoft.com/filestreamingservice/files/f1341568-6824-43de-b936-7c2bc3699fb3/MicrosoftEdge-155.0.4283.62.pkg
+      filename: MicrosoftEdge-156.0.4314.42.pkg
+      url: https://msedge.sf.dl.delivery.mp.microsoft.com/filestreamingservice/files/ba907672-5d36-42cb-bd05-d1ff3a6fdb39/MicrosoftEdge-156.0.4314.42.pkg
       version: ""
     content:
-      sha256: d3cefdaa5fd404204a05d3db1b8c071bebabdf32f85f4faa2a8e558d122a8aa7
-      filename: MicrosoftEdge-155.0.4283.62.pkg
+      sha256: e89327a5ac7488a797ad63822cb47d77dcfefdf6aba4d4e8e01a8fe551158ba0
+      filename: MicrosoftEdge-156.0.4314.42.pkg
       mode: 420

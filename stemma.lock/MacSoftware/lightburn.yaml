@@ -6,14 +6,14 @@ inputs:
     resolver_version: "2"
     declaration: 87ec8911c708ddbc4f04ee0cbd3561ff09c58fe8d3f20357f15d23397a97c66f
     observation:
-      filename: LightBurn.V2.1.04.dmg
-      sha256: d888bced55faa15dadd687e15c8d1a51168ba8011ef21ac84b0172ea05e12c3a
-      url: https://release.lightburnsoftware.com/LightBurn/Release/LightBurn-v2.1.04/LightBurn.V2.1.04.dmg
+      filename: LightBurn.V2.2.00.dmg
+      sha256: de599bdbbcc3ca510250616bf2a37f7550e161df7499245d389860292537757f
+      url: https://release.lightburnsoftware.com/LightBurn/Release/LightBurn-v2.2.00/LightBurn.V2.2.00.dmg
     content:
-      sha256: d888bced55faa15dadd687e15c8d1a51168ba8011ef21ac84b0172ea05e12c3a
-      filename: LightBurn.V2.1.04.dmg
+      sha256: de599bdbbcc3ca510250616bf2a37f7550e161df7499245d389860292537757f
+      filename: LightBurn.V2.2.00.dmg
       mode: 420
-    input_version: 2.1.04
+    input_version: 2.2.00
     evidence:
       homebrew.cask:
         artifacts:
@@ -23,4 +23,4 @@ inputs:
         macos: "27"
         name: lightburn
         target_architecture: arm64
-        version: 2.1.04
+        version: 2.2.00

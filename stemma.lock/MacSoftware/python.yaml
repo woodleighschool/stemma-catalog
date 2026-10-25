@@ -6,14 +6,14 @@ inputs:
     resolver_version: "2"
     declaration: 3501e129389d0d032dfad059f8086ccf36e840b9311e07fd0763a9b870a76816
     observation:
-      filename: python-3.13.16-macos11.pkg
-      url: https://www.python.org/ftp/python/3.13.16/python-3.13.16-macos11.pkg
-      version: 3.13.16
+      filename: python-3.13.17-macos11.pkg
+      url: https://www.python.org/ftp/python/3.13.17/python-3.13.17-macos11.pkg
+      version: 3.13.17
     content:
-      sha256: 30666509020b4da0dd8bc2e773255f34d76b7bb80b66960a928d5f6daa0192d7
-      filename: python-3.13.16-macos11.pkg
+      sha256: 3053592af66128269efab37fe7851a4894920b27c442aeec99ce4d34d17c07e3
+      filename: python-3.13.17-macos11.pkg
       mode: 420
-    input_version: 3.13.16
+    input_version: 3.13.17
     evidence:
       python:
-        version: 3.13.16
+        version: 3.13.17
