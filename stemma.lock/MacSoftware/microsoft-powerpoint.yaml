@@ -6,14 +6,14 @@ inputs:
     resolver_version: "2"
     declaration: 94371a1c5d90baf3b1999052a36539079296bd270d51132389bdac7dd271b44b
     observation:
-      filename: Microsoft_PowerPoint_16.114.26102031_Installer.pkg
-      url: https://res.public.onecdn.static.microsoft/mro1cdnstorage/C1297A47-86C4-4C1F-97FA-950631F94777/MacAutoupdate/Microsoft_PowerPoint_16.114.26102031_Installer.pkg
-      version: 16.114.26102031
+      filename: Microsoft_PowerPoint_16.114.26102720_Installer.pkg
+      url: https://res.public.onecdn.static.microsoft/mro1cdnstorage/C1297A47-86C4-4C1F-97FA-950631F94777/MacAutoupdate/Microsoft_PowerPoint_16.114.26102720_Installer.pkg
+      version: 16.114.26102720
     content:
-      sha256: 2a2dd9c91912c4dfe5c14ea69f328ea857ee48970c1842fc07bca73ad02be5e2
-      filename: Microsoft_PowerPoint_16.114.26102031_Installer.pkg
+      sha256: e8f1ef197445d7101601b4f68bb39ccae4eec36cebd98704c1ca55bab8e423d4
+      filename: Microsoft_PowerPoint_16.114.26102720_Installer.pkg
       mode: 420
-    input_version: 16.114.26102031
+    input_version: 16.114.26102720
     evidence:
       microsoft:
-        version: 16.114.26102031
+        version: 16.114.26102720

@@ -6,14 +6,14 @@ inputs:
     resolver_version: "2"
     declaration: a8d81db788be465ce11d9710b9dfbb3bc56f532702129350ccf44e868289dd4a
     observation:
-      asset_id: 529357077
-      filename: munkitools-7.3.0.5808.pkg
-      release: v7.3.0
-      release_id: 376493304
-      sha256: 4ed826bd32811ef54524a10300f66c9af4c9fdd8c243ada146d468485e1bffcc
-      url: https://github.com/munki/munki/releases/download/v7.3.0/munkitools-7.3.0.5808.pkg
+      asset_id: 682111116
+      filename: munkitools-7.4.0.5891.pkg
+      release: v7.4.0
+      release_id: 425689412
+      sha256: 7e790a4047d1de0022f49652480945eb73911b7c93c979b7d2a97852d3d28be4
+      url: https://github.com/munki/munki/releases/download/v7.4.0/munkitools-7.4.0.5891.pkg
     content:
-      sha256: 4ed826bd32811ef54524a10300f66c9af4c9fdd8c243ada146d468485e1bffcc
-      filename: munkitools-7.3.0.5808.pkg
+      sha256: 7e790a4047d1de0022f49652480945eb73911b7c93c979b7d2a97852d3d28be4
+      filename: munkitools-7.4.0.5891.pkg
       mode: 420
-    input_version: v7.3.0
+    input_version: v7.4.0

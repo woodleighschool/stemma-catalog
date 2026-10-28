@@ -6,14 +6,14 @@ inputs:
     resolver_version: "2"
     declaration: 39ff19237ac24c9ace629c3f22a812e9820d6ba59b99eb80b6d848aba85b73df
     observation:
-      filename: ChatGPT-darwin-arm64-26.1021.31345.zip
-      sha256: 2afcd58e0484a76479cca23174e085127a9d9e63466b75739eb6825a5ff613f4
-      url: https://persistent.oaistatic.com/codex-app-prod/ChatGPT-darwin-arm64-26.1021.31345.zip
+      filename: ChatGPT-darwin-arm64-26.1023.51421.zip
+      sha256: 7642b2ac2a7a0742f9a1800abba15eef83f77e69d893be79d6467cf21e5e1110
+      url: https://persistent.oaistatic.com/codex-app-prod/ChatGPT-darwin-arm64-26.1023.51421.zip
     content:
-      sha256: 2afcd58e0484a76479cca23174e085127a9d9e63466b75739eb6825a5ff613f4
-      filename: ChatGPT-darwin-arm64-26.1021.31345.zip
+      sha256: 7642b2ac2a7a0742f9a1800abba15eef83f77e69d893be79d6467cf21e5e1110
+      filename: ChatGPT-darwin-arm64-26.1023.51421.zip
       mode: 420
-    input_version: 26.1021.31345
+    input_version: 26.1023.51421
     evidence:
       homebrew.cask:
         artifacts:
@@ -23,4 +23,4 @@ inputs:
         macos: "27"
         name: chatgpt
         target_architecture: arm64
-        version: 26.1021.31345
+        version: 26.1023.51421

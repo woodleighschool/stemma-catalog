@@ -6,14 +6,14 @@ inputs:
     resolver_version: "2"
     declaration: e6ea418382a997cd6a4d0d0033a079dfcb7586c37a8b3f5a056edb8e3e9daa5e
     observation:
-      filename: Notion-7.40.1-arm64.dmg
-      sha256: f32a241e054e6c308c989a8ca0fda403a20f0ea7ca6250bfcb87ae3c8872abca
-      url: https://desktop-release.notion-static.com/Notion-7.40.1-arm64.dmg
+      filename: Notion-7.41.1-arm64.dmg
+      sha256: c1405a8d9fa26cab8d0d221059f848c39beceb0449026753d501fa2617a72e50
+      url: https://desktop-release.notion-static.com/Notion-7.41.1-arm64.dmg
     content:
-      sha256: f32a241e054e6c308c989a8ca0fda403a20f0ea7ca6250bfcb87ae3c8872abca
-      filename: Notion-7.40.1-arm64.dmg
+      sha256: c1405a8d9fa26cab8d0d221059f848c39beceb0449026753d501fa2617a72e50
+      filename: Notion-7.41.1-arm64.dmg
       mode: 420
-    input_version: 7.40.1
+    input_version: 7.41.1
     evidence:
       homebrew.cask:
         artifacts:
@@ -23,4 +23,4 @@ inputs:
         macos: "27"
         name: notion
         target_architecture: arm64
-        version: 7.40.1
+        version: 7.41.1

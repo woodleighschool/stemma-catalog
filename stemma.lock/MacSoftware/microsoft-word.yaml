@@ -6,14 +6,14 @@ inputs:
     resolver_version: "2"
     declaration: 410435cfc92bd8175e8c8cadb22af92eeab6f4f55138456a40ca7a2beab8adab
     observation:
-      filename: Microsoft_Word_16.114.26102031_Installer.pkg
-      url: https://res.public.onecdn.static.microsoft/mro1cdnstorage/C1297A47-86C4-4C1F-97FA-950631F94777/MacAutoupdate/Microsoft_Word_16.114.26102031_Installer.pkg
-      version: 16.114.26102031
+      filename: Microsoft_Word_16.114.26102720_Installer.pkg
+      url: https://res.public.onecdn.static.microsoft/mro1cdnstorage/C1297A47-86C4-4C1F-97FA-950631F94777/MacAutoupdate/Microsoft_Word_16.114.26102720_Installer.pkg
+      version: 16.114.26102720
     content:
-      sha256: 4150186b39d51a9dbc403b6a9b9c9d75b68a885c97aff8002292903e04d7f523
-      filename: Microsoft_Word_16.114.26102031_Installer.pkg
+      sha256: f7437bd22367653145577fd319e78bee09863f81e2329c6ad0b5b944e2b6a55f
+      filename: Microsoft_Word_16.114.26102720_Installer.pkg
       mode: 420
-    input_version: 16.114.26102031
+    input_version: 16.114.26102720
     evidence:
       microsoft:
-        version: 16.114.26102031
+        version: 16.114.26102720

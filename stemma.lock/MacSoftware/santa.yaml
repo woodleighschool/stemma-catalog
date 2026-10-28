@@ -6,14 +6,14 @@ inputs:
     resolver_version: "2"
     declaration: 32b0f2e3df0bab7c0d3ec1c779a126f29bc93ee495ccf3449719e71b7fd9d565
     observation:
-      asset_id: 568406356
-      filename: santa-2026.8.pkg
-      release: "2026.8"
-      release_id: 390112701
-      sha256: 0aaa970c7ddc63fe6a55c3144c825acb7f6bfa9cb15bcba1bffcaf2b5efc952a
-      url: https://github.com/northpolesec/santa/releases/download/2026.8/santa-2026.8.pkg
+      asset_id: 682013862
+      filename: santa-2026.9.pkg
+      release: "2026.9"
+      release_id: 425643181
+      sha256: 96821b6439d51ece2991e1d9a8ddd9969c6278391325d8e73904ff0961dff6ea
+      url: https://github.com/northpolesec/santa/releases/download/2026.9/santa-2026.9.pkg
     content:
-      sha256: 0aaa970c7ddc63fe6a55c3144c825acb7f6bfa9cb15bcba1bffcaf2b5efc952a
-      filename: santa-2026.8.pkg
+      sha256: 96821b6439d51ece2991e1d9a8ddd9969c6278391325d8e73904ff0961dff6ea
+      filename: santa-2026.9.pkg
       mode: 420
-    input_version: "2026.8"
+    input_version: "2026.9"

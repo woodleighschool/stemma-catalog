@@ -6,14 +6,14 @@ inputs:
     resolver_version: "2"
     declaration: 96eae527934d535ea3ae0c51120b4784620ecd8543481999693ec18699897f0b
     observation:
-      download_id: fe9e4851d000487588709802e9694b59
+      download_id: cef11ad119494da5a908b9a05b332cc7
       requires_registration: true
-      version: 21.1.1
+      version: 21.1.2
     content:
-      sha256: dfe8a7c1ee189a141310afdeebf3fff33316d9be7967ad3116b8b62e2bb4fe14
-      filename: DaVinci_Resolve_21.1.1_Mac.zip
+      sha256: ddfd42ad960c32254752b5e68bc9e3021820ca2200a53a99c38848e110aa32f0
+      filename: DaVinci_Resolve_21.1.2_Mac.zip
       mode: 420
-    input_version: 21.1.1
+    input_version: 21.1.2
     evidence:
       blackmagic:
-        version: 21.1.1
+        version: 21.1.2
