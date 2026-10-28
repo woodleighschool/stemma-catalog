@@ -4,11 +4,11 @@ monorepo_root = true
 _.file = ["{{config_root}}/.env"]
 
 [tools]
-"github:woodleighschool/stemma" = "v0.11.2"
+"github:woodleighschool/stemma" = "v0.12.0"
 lefthook = "2.2.2"
 "aqua:jdx/jactionlint" = "2.3.0"
-"github:github/gh-aw" = { version = "0.89.21", bin = "gh-aw" }
-oxfmt = "0.73.0"
+"github:github/gh-aw" = { version = "v0.93.4", bin = "gh-aw" }
+oxfmt = "0.74.0"
 "npm:@commitlint/cli" = "21.2.4"
 
 [settings]
