@@ -26,47 +26,50 @@ url_api = "https://api.github.com/repos/jdx/jactionlint/releases/assets/66221045
 provenance = "github-attestations"
 
 [[tools."github:github/gh-aw"]]
-version = "0.89.21"
+version = "0.93.4"
 backend = "github:github/gh-aw"
-specifiers = ["0.89.21"]
+specifiers = ["v0.93.4"]
 
 [tools."github:github/gh-aw"."platforms.linux-arm64"]
-checksum = "sha256:4e521be28bd45030e8165c8654ee69ea1d6830b4e0fdefdd020ab1a9b1dd19ae"
-url = "https://github.com/github/gh-aw/releases/download/v0.89.21/linux-arm64"
-url_api = "https://api.github.com/repos/github/gh-aw/releases/assets/584531727"
+checksum = "sha256:285df9efaad9f8ae5e505f96f6472eab6cc4f36492c12d20f9bcebe8e4a9b678"
+url = "https://github.com/github/gh-aw/releases/download/v0.93.4/linux-arm64"
+url_api = "https://api.github.com/repos/github/gh-aw/releases/assets/674303194"
 provenance = "github-attestations"
 
 [tools."github:github/gh-aw"."platforms.linux-x64"]
-checksum = "sha256:1c74ff5fc28b1891d32b67f4348a9b7f750946b6d4a721e909187a848868016b"
-url = "https://github.com/github/gh-aw/releases/download/v0.89.21/linux-amd64"
-url_api = "https://api.github.com/repos/github/gh-aw/releases/assets/584531705"
+checksum = "sha256:208725f63eee07522e878e137c6d306d69dc7b70d1eeff28e9954ebd8b20b049"
+url = "https://github.com/github/gh-aw/releases/download/v0.93.4/linux-amd64"
+url_api = "https://api.github.com/repos/github/gh-aw/releases/assets/674303168"
 provenance = "github-attestations"
 
 [tools."github:github/gh-aw"."platforms.macos-arm64"]
-checksum = "sha256:a2bd9cedfe5e6bdb8932a01644585a0fba446043f69ee146856b01372a4e4159"
-url = "https://github.com/github/gh-aw/releases/download/v0.89.21/darwin-arm64"
-url_api = "https://api.github.com/repos/github/gh-aw/releases/assets/584531664"
+checksum = "sha256:40bbb7a334e3eaa317b40508df9e66cefb5c1f4808d12a15dfc4cc4434f8728f"
+url = "https://github.com/github/gh-aw/releases/download/v0.93.4/darwin-arm64"
+url_api = "https://api.github.com/repos/github/gh-aw/releases/assets/674303108"
 provenance = "github-attestations"
 
 [[tools."github:woodleighschool/stemma"]]
-version = "0.11.2"
+version = "0.12.0"
 backend = "github:woodleighschool/stemma"
-specifiers = ["v0.11.2"]
+specifiers = ["v0.12.0"]
 
 [tools."github:woodleighschool/stemma"."platforms.linux-arm64"]
-checksum = "sha256:d2ea46eec7290c5c04b5d797a9aaa6b8690bdecce5ffec8ea92792af5c7d4b92"
-url = "https://github.com/woodleighschool/stemma/releases/download/v0.11.2/stemma_0.11.2_linux_arm64.tar.gz"
-url_api = "https://api.github.com/repos/woodleighschool/stemma/releases/assets/665680731"
+checksum = "sha256:ca872d1ae5955e0db0690cc1c8e2948fb805dcc1ffe20607ef4a09a349179673"
+checksum_source = "mise-versions"
+url = "https://github.com/woodleighschool/stemma/releases/download/v0.12.0/stemma_0.12.0_linux_arm64.tar.gz"
+url_api = "https://api.github.com/repos/woodleighschool/stemma/releases/assets/683870584"
 
 [tools."github:woodleighschool/stemma"."platforms.linux-x64"]
-checksum = "sha256:b583a49e0a97fa88016c963f82b4220150f060dbf3feb01fa18bfcf1f123bc5b"
-url = "https://github.com/woodleighschool/stemma/releases/download/v0.11.2/stemma_0.11.2_linux_amd64.tar.gz"
-url_api = "https://api.github.com/repos/woodleighschool/stemma/releases/assets/665680742"
+checksum = "sha256:8ff3f56772cdd45da7d3dac8887e9446df56f1ee06720385a261e7d57d632525"
+checksum_source = "mise-versions"
+url = "https://github.com/woodleighschool/stemma/releases/download/v0.12.0/stemma_0.12.0_linux_amd64.tar.gz"
+url_api = "https://api.github.com/repos/woodleighschool/stemma/releases/assets/683870516"
 
 [tools."github:woodleighschool/stemma"."platforms.macos-arm64"]
-checksum = "sha256:2c5d090e0e3a2543b2cf1e07f20459b548a4e19d3e89213d96257393680ca0bd"
-url = "https://github.com/woodleighschool/stemma/releases/download/v0.11.2/stemma_0.11.2_darwin_arm64.tar.gz"
-url_api = "https://api.github.com/repos/woodleighschool/stemma/releases/assets/665680564"
+checksum = "sha256:9f4eada584625be97179167a3bac3a6bc5cd7af021b856ec994f3789876baed8"
+checksum_source = "mise-versions"
+url = "https://github.com/woodleighschool/stemma/releases/download/v0.12.0/stemma_0.12.0_darwin_arm64.tar.gz"
+url_api = "https://api.github.com/repos/woodleighschool/stemma/releases/assets/683870618"
 
 [[tools.lefthook]]
 version = "2.2.2"
@@ -98,7 +101,7 @@ backend = "npm:@commitlint/cli"
 specifiers = ["21.2.4"]
 
 [[tools.oxfmt]]
-version = "0.73.0"
-aube = { path = "locks/oxfmt/0.73.0", digest = "sha256:e42eeebedd060ec6393c40caa35362b541991453b9aab2de3d33d41a0c245a62" }
+version = "0.74.0"
+aube = { path = "locks/oxfmt/0.74.0", digest = "sha256:b7977a181c0e11736ab44f83b24a4b862754204c253477e29d1758b0f898aad7" }
 backend = "npm:oxfmt"
-specifiers = ["0.73.0"]
+specifiers = ["0.74.0"]
