@@ -1,5 +1,0 @@
----
-paths:
-  .github/workflows/*.lock.yml:
-    ignore:
-      - 'unknown permission scope "copilot-requests"'

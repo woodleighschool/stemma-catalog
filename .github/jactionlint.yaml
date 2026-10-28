@@ -1,0 +1,12 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/jdx/jactionlint/main/schema/jactionlint-config.json
+ignores:
+  - rule: dangerous-triggers
+    file: .github/workflows/software-request.lock.yml
+    reason: Comment runs need the writer role check and an open needs-input request.
+  - rule: obfuscation
+    file: .github/workflows/software-request.lock.yml
+    reason: The empty bot name is an expression on purpose; see the workflow source.
+  - rule: pipeline-without-pipefail
+    file: .github/workflows/*.lock.yml
+    reason: gh aw compile writes these steps.
