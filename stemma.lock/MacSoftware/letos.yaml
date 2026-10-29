@@ -1,0 +1,19 @@
+version: 5
+inputs:
+  source:
+    version: 1
+    resolver: github
+    resolver_version: "2"
+    declaration: d8e4176250d93d506e2683e90d5713f53dd0a028fe5198ffc1d549b7041b7ad5
+    observation:
+      asset_id: 643376588
+      filename: letos-4.0.4-macos-universal.dmg
+      release: 4.0.4
+      release_id: 413632304
+      sha256: f62a9592b9f5ed07eec0c581162738708b91754e9d3b96c3d319513ec32b7b5b
+      url: https://github.com/pawelsalawa/letos/releases/download/4.0.4/letos-4.0.4-macos-universal.dmg
+    content:
+      sha256: f62a9592b9f5ed07eec0c581162738708b91754e9d3b96c3d319513ec32b7b5b
+      filename: letos-4.0.4-macos-universal.dmg
+      mode: 420
+    input_version: 4.0.4
