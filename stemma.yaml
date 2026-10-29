@@ -39,6 +39,12 @@ spec:
             - code: 1618
               type: retry
   destinations:
+    jamf:
+      operation: jamf
+      config:
+        url: https://wdm.jamfcloud.com
+        client_id: "{{ env.JAMF_CLIENT_ID }}"
+        client_secret: "{{ env.JAMF_CLIENT_SECRET }}"
     intune:
       operation: intune
       config:

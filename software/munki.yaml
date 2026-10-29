@@ -17,6 +17,7 @@ spec:
   minimum_os: "11.0"
   icon: munki
   destinations:
+    jamf: {}
     intune:
       display_name: Munki
       description: Munki is a set of tools that, used together with a webserver-based repository of
