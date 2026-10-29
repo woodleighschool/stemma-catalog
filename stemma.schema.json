@@ -406,6 +406,18 @@
                                         ],
                                         "description": "Observed subject kind, such as app, container, file, package or msi. A package subject describes a receipt; the outer PKG is a container."
                                       },
+                                      "package_id": {
+                                        "anyOf": [
+                                          {
+                                            "type": "string"
+                                          },
+                                          {
+                                            "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                                            "type": "string"
+                                          }
+                                        ],
+                                        "description": "Package identifier of a component receipt, as macOS records it."
+                                      },
                                       "path": {
                                         "anyOf": [
                                           {
@@ -858,6 +870,18 @@
                                             ],
                                             "description": "Observed subject kind, such as app, container, file, package or msi. A package subject describes a receipt; the outer PKG is a container."
                                           },
+                                          "package_id": {
+                                            "anyOf": [
+                                              {
+                                                "type": "string"
+                                              },
+                                              {
+                                                "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                                                "type": "string"
+                                              }
+                                            ],
+                                            "description": "Package identifier of a component receipt, as macOS records it."
+                                          },
                                           "path": {
                                             "anyOf": [
                                               {
@@ -1232,7 +1256,7 @@
                   "type": "string"
                 }
               ],
-              "description": "Optional bearer token for release discovery and acquisition.",
+              "description": "Optional bearer token for release discovery and acquisition. Without one, discovery uses GH_TOKEN, then GITHUB_TOKEN, then reconcile's GitHub App when its origin is github.com. Fallback tokens are used only for API discovery.",
               "writeOnly": true
             }
           },
@@ -1405,7 +1429,7 @@
                   "type": "string"
                 }
               ],
-              "description": "Download page regular expression whose full matches are URL references resolved against the page's base URL. HTML pages match element attribute values; other pages match the response body. Must identify one distinct stable HTTP(S) download URL."
+              "description": "Download page regular expression whose full matches are URL references resolved against the page's base URL. HTML pages match element attribute values; other pages match the response body. Must identify one distinct stable HTTP(S) download URL. With a named group version capturing dotted numbers, several URLs may match: the highest version selects the URL and becomes the input's version."
             },
             "sha256": {
               "anyOf": [
@@ -1509,7 +1533,7 @@
                   "type": "string"
                 }
               ],
-              "description": "Download page regular expression whose full matches are URL references resolved against the page's base URL. HTML pages match element attribute values; other pages match the response body. Must identify one distinct stable HTTP(S) download URL."
+              "description": "Download page regular expression whose full matches are URL references resolved against the page's base URL. HTML pages match element attribute values; other pages match the response body. Must identify one distinct stable HTTP(S) download URL. With a named group version capturing dotted numbers, several URLs may match: the highest version selects the URL and becomes the input's version."
             },
             "resolver": {
               "const": "http",
@@ -2335,15 +2359,25 @@
                   "description": "Select the application that supplies version, detection and icon metadata. An archive publishes it in a new disk image; package publishes it from an archive, tree or disk image in a new PKG. Vendor packages default to installer metadata and receipts; selecting a package application requires path or bundle_id."
                 },
                 "destinations": {
-                  "additionalProperties": false,
+                  "additionalProperties": {
+                    "anyOf": [
+                      {
+                        "$ref": "https://stemma.invalid/editor/intune/metadata"
+                      },
+                      {
+                        "$ref": "https://stemma.invalid/editor/jamf/metadata"
+                      },
+                      {
+                        "$ref": "https://stemma.invalid/editor/munki/metadata"
+                      },
+                      {
+                        "$ref": "https://stemma.invalid/editor/woodstar/metadata"
+                      }
+                    ]
+                  },
                   "description": "Native metadata for each named Project destination. Explicit values override derived values.",
-                  "properties": {
-                    "intune": {
-                      "$ref": "https://stemma.invalid/editor/intune/metadata"
-                    },
-                    "woodstar": {
-                      "$ref": "https://stemma.invalid/editor/woodstar/metadata"
-                    }
+                  "propertyNames": {
+                    "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$"
                   },
                   "type": "object"
                 },
@@ -2548,6 +2582,18 @@
                                         ],
                                         "description": "Observed subject kind, such as app, container, file, package or msi. A package subject describes a receipt; the outer PKG is a container."
                                       },
+                                      "package_id": {
+                                        "anyOf": [
+                                          {
+                                            "type": "string"
+                                          },
+                                          {
+                                            "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                                            "type": "string"
+                                          }
+                                        ],
+                                        "description": "Package identifier of a component receipt, as macOS records it."
+                                      },
                                       "path": {
                                         "anyOf": [
                                           {
@@ -2661,6 +2707,18 @@
                                   }
                                 ],
                                 "description": "Observed subject kind, such as app, container, file, package or msi. A package subject describes a receipt; the outer PKG is a container."
+                              },
+                              "package_id": {
+                                "anyOf": [
+                                  {
+                                    "type": "string"
+                                  },
+                                  {
+                                    "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                                    "type": "string"
+                                  }
+                                ],
+                                "description": "Package identifier of a component receipt, as macOS records it."
                               },
                               "path": {
                                 "anyOf": [
@@ -2789,15 +2847,25 @@
                       "description": "Select the application that supplies version, detection and icon metadata. An archive publishes it in a new disk image; package publishes it from an archive, tree or disk image in a new PKG. Vendor packages default to installer metadata and receipts; selecting a package application requires path or bundle_id."
                     },
                     "destinations": {
-                      "additionalProperties": false,
+                      "additionalProperties": {
+                        "anyOf": [
+                          {
+                            "$ref": "https://stemma.invalid/editor/intune/metadata"
+                          },
+                          {
+                            "$ref": "https://stemma.invalid/editor/jamf/metadata"
+                          },
+                          {
+                            "$ref": "https://stemma.invalid/editor/munki/metadata"
+                          },
+                          {
+                            "$ref": "https://stemma.invalid/editor/woodstar/metadata"
+                          }
+                        ]
+                      },
                       "description": "Native metadata for each named Project destination. Explicit values override derived values.",
-                      "properties": {
-                        "intune": {
-                          "$ref": "https://stemma.invalid/editor/intune/metadata"
-                        },
-                        "woodstar": {
-                          "$ref": "https://stemma.invalid/editor/woodstar/metadata"
-                        }
+                      "propertyNames": {
+                        "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$"
                       },
                       "type": "object"
                     },
@@ -3002,6 +3070,18 @@
                                             ],
                                             "description": "Observed subject kind, such as app, container, file, package or msi. A package subject describes a receipt; the outer PKG is a container."
                                           },
+                                          "package_id": {
+                                            "anyOf": [
+                                              {
+                                                "type": "string"
+                                              },
+                                              {
+                                                "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                                                "type": "string"
+                                              }
+                                            ],
+                                            "description": "Package identifier of a component receipt, as macOS records it."
+                                          },
                                           "path": {
                                             "anyOf": [
                                               {
@@ -3115,6 +3195,18 @@
                                       }
                                     ],
                                     "description": "Observed subject kind, such as app, container, file, package or msi. A package subject describes a receipt; the outer PKG is a container."
+                                  },
+                                  "package_id": {
+                                    "anyOf": [
+                                      {
+                                        "type": "string"
+                                      },
+                                      {
+                                        "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                                        "type": "string"
+                                      }
+                                    ],
+                                    "description": "Package identifier of a component receipt, as macOS records it."
                                   },
                                   "path": {
                                     "anyOf": [
@@ -5549,47 +5641,63 @@
                   "items": {
                     "anyOf": [
                       {
-                        "additionalProperties": false,
-                        "properties": {
-                          "id": {
-                            "anyOf": [
-                              {
-                                "maxLength": 1000,
-                                "minLength": 1,
-                                "type": "string"
+                        "anyOf": [
+                          {
+                            "additionalProperties": false,
+                            "properties": {
+                              "id": {
+                                "anyOf": [
+                                  {
+                                    "maxLength": 1000,
+                                    "minLength": 1,
+                                    "type": "string"
+                                  },
+                                  {
+                                    "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                                    "type": "string"
+                                  }
+                                ],
+                                "description": "Application bundle identifier, or package receipt identifier for a PKG app."
                               },
-                              {
-                                "pattern": "\\{\\{[\\s\\S]+\\}\\}",
-                                "type": "string"
+                              "version": {
+                                "anyOf": [
+                                  {
+                                    "maxLength": 1000,
+                                    "minLength": 1,
+                                    "type": "string"
+                                  },
+                                  {
+                                    "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                                    "type": "string"
+                                  }
+                                ],
+                                "description": "Application CFBundleShortVersionString or package receipt version."
                               }
+                            },
+                            "propertyNames": {
+                              "not": {
+                                "pattern": "\\{\\{"
+                              }
+                            },
+                            "required": [
+                              "id",
+                              "version"
                             ],
-                            "description": "Application bundle identifier, or package receipt identifier for a PKG app."
+                            "type": "object"
                           },
-                          "version": {
-                            "anyOf": [
-                              {
-                                "maxLength": 1000,
-                                "minLength": 1,
-                                "type": "string"
-                              },
-                              {
-                                "pattern": "\\{\\{[\\s\\S]+\\}\\}",
-                                "type": "string"
+                          {
+                            "additionalProperties": true,
+                            "propertyNames": {
+                              "not": {
+                                "pattern": "\\{\\{"
                               }
+                            },
+                            "required": [
+                              "kind"
                             ],
-                            "description": "Application CFBundleShortVersionString or package receipt version."
+                            "type": "object"
                           }
-                        },
-                        "propertyNames": {
-                          "not": {
-                            "pattern": "\\{\\{"
-                          }
-                        },
-                        "required": [
-                          "id",
-                          "version"
-                        ],
-                        "type": "object"
+                        ]
                       },
                       {
                         "pattern": "^\\{\\{[\\s\\S]+\\}\\}$",
@@ -5606,7 +5714,7 @@
                   "type": "string"
                 }
               ],
-              "description": "Identifiers and versions that detect the installation; every entry must be installed and the first identifies the app. A PKG app accepts package receipts as well as applications. Derived from the selected application, or from receipts when a PKG selects no application, as a payloadless package does. DMG and line-of-business apps only include applications installed under /Applications. Explicit entries replace the derived list. Identifiers must be unique."
+              "description": "Identifiers and versions that detect the installation; every entry must be installed and the first identifies the app. Entries can be identifier/version pairs or inspected subjects, written as expressions such as {{ facts.name }}. Applications use their short version, with their build preserved for line-of-business apps. PKG apps also accept package subjects with a payload, which leaves a receipt. DMG and line-of-business subjects must be applications installed under /Applications. Omission derives the list from the selected application, or from payload receipts when a PKG selects no application. Explicit entries replace the derived list. Identifiers must be unique."
             },
             "information_url": {
               "anyOf": [
@@ -6071,47 +6179,63 @@
                   "items": {
                     "anyOf": [
                       {
-                        "additionalProperties": false,
-                        "properties": {
-                          "id": {
-                            "anyOf": [
-                              {
-                                "maxLength": 1000,
-                                "minLength": 1,
-                                "type": "string"
+                        "anyOf": [
+                          {
+                            "additionalProperties": false,
+                            "properties": {
+                              "id": {
+                                "anyOf": [
+                                  {
+                                    "maxLength": 1000,
+                                    "minLength": 1,
+                                    "type": "string"
+                                  },
+                                  {
+                                    "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                                    "type": "string"
+                                  }
+                                ],
+                                "description": "Application bundle identifier, or package receipt identifier for a PKG app."
                               },
-                              {
-                                "pattern": "\\{\\{[\\s\\S]+\\}\\}",
-                                "type": "string"
+                              "version": {
+                                "anyOf": [
+                                  {
+                                    "maxLength": 1000,
+                                    "minLength": 1,
+                                    "type": "string"
+                                  },
+                                  {
+                                    "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                                    "type": "string"
+                                  }
+                                ],
+                                "description": "Application CFBundleShortVersionString or package receipt version."
                               }
+                            },
+                            "propertyNames": {
+                              "not": {
+                                "pattern": "\\{\\{"
+                              }
+                            },
+                            "required": [
+                              "id",
+                              "version"
                             ],
-                            "description": "Application bundle identifier, or package receipt identifier for a PKG app."
+                            "type": "object"
                           },
-                          "version": {
-                            "anyOf": [
-                              {
-                                "maxLength": 1000,
-                                "minLength": 1,
-                                "type": "string"
-                              },
-                              {
-                                "pattern": "\\{\\{[\\s\\S]+\\}\\}",
-                                "type": "string"
+                          {
+                            "additionalProperties": true,
+                            "propertyNames": {
+                              "not": {
+                                "pattern": "\\{\\{"
                               }
+                            },
+                            "required": [
+                              "kind"
                             ],
-                            "description": "Application CFBundleShortVersionString or package receipt version."
+                            "type": "object"
                           }
-                        },
-                        "propertyNames": {
-                          "not": {
-                            "pattern": "\\{\\{"
-                          }
-                        },
-                        "required": [
-                          "id",
-                          "version"
-                        ],
-                        "type": "object"
+                        ]
                       },
                       {
                         "pattern": "^\\{\\{[\\s\\S]+\\}\\}$",
@@ -6128,7 +6252,7 @@
                   "type": "string"
                 }
               ],
-              "description": "Identifiers and versions that detect the installation; every entry must be installed and the first identifies the app. A PKG app accepts package receipts as well as applications. Derived from the selected application, or from receipts when a PKG selects no application, as a payloadless package does. DMG and line-of-business apps only include applications installed under /Applications. Explicit entries replace the derived list. Identifiers must be unique."
+              "description": "Identifiers and versions that detect the installation; every entry must be installed and the first identifies the app. Entries can be identifier/version pairs or inspected subjects, written as expressions such as {{ facts.name }}. Applications use their short version, with their build preserved for line-of-business apps. PKG apps also accept package subjects with a payload, which leaves a receipt. DMG and line-of-business subjects must be applications installed under /Applications. Omission derives the list from the selected application, or from payload receipts when a PKG selects no application. Explicit entries replace the derived list. Identifiers must be unique."
             },
             "information_url": {
               "anyOf": [
@@ -6822,7 +6946,20 @@
                       "type": "string"
                     }
                   ],
-                  "description": "Display name of an existing patch software title. It must match exactly one title. Until the title defines the software's managed version, the package link, the policy's target version and a new policy wait for it."
+                  "description": "Display name of an existing patch software title. It must match exactly one title. Until the title defines the target version, the package link, the policy's target version and a new policy wait for it."
+                },
+                "version": {
+                  "anyOf": [
+                    {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    {
+                      "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                      "type": "string"
+                    }
+                  ],
+                  "description": "Version defined by the patch title. Defaults to the artifact's managed version. Set this when the title uses a different version or the artifact has no managed version. It only selects the patch title association and policy target; the artifact's version and filename stay unchanged."
                 }
               },
               "propertyNames": {
@@ -7494,6 +7631,13 @@
                 "RestartAction": {
                   "anyOf": [
                     {
+                      "enum": [
+                        "None",
+                        "RequireLogout",
+                        "RecommendRestart",
+                        "RequireRestart",
+                        "RequireShutdown"
+                      ],
                       "type": "string"
                     },
                     {
@@ -7501,7 +7645,26 @@
                       "type": "string"
                     }
                   ],
-                  "description": "Munki restart or logout requirement after installation."
+                  "description": "Munki restart or logout requirement after installation. None declares that there is none."
+                },
+                "RestartActionForUninstall": {
+                  "anyOf": [
+                    {
+                      "enum": [
+                        "None",
+                        "RequireLogout",
+                        "RecommendRestart",
+                        "RequireRestart",
+                        "RequireShutdown"
+                      ],
+                      "type": "string"
+                    },
+                    {
+                      "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                      "type": "string"
+                    }
+                  ],
+                  "description": "Munki restart or logout requirement after removal. Munki uses RestartAction when this is absent."
                 },
                 "autoremove": {
                   "anyOf": [
@@ -7536,7 +7699,70 @@
                       "type": "string"
                     }
                   ],
-                  "description": "Applications that block installation or removal while they run. Munki uses the applications in installs when this is absent; an empty list blocks nothing."
+                  "description": "Applications that block installation or removal while they run. Munki uses the applications in installs when this and blocking_applications_with_launch_args are absent; an empty list blocks nothing."
+                },
+                "blocking_applications_manual_quit_only": {
+                  "anyOf": [
+                    {
+                      "type": "boolean"
+                    },
+                    {
+                      "pattern": "^\\{\\{[\\s\\S]+\\}\\}$",
+                      "type": "string"
+                    }
+                  ],
+                  "description": "Require the user to quit blocking applications instead of offering an assisted quit."
+                },
+                "blocking_applications_quit_script": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                      "type": "string"
+                    }
+                  ],
+                  "description": "Script Managed Software Center runs as the console user to quit blocking applications. Never executed by Stemma."
+                },
+                "blocking_applications_with_launch_args": {
+                  "anyOf": [
+                    {
+                      "additionalProperties": {
+                        "anyOf": [
+                          {
+                            "items": {
+                              "anyOf": [
+                                {
+                                  "type": "string"
+                                },
+                                {
+                                  "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "type": "array"
+                          },
+                          {
+                            "pattern": "^\\{\\{[\\s\\S]+\\}\\}$",
+                            "type": "string"
+                          }
+                        ]
+                      },
+                      "propertyNames": {
+                        "not": {
+                          "pattern": "\\{\\{"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    {
+                      "pattern": "^\\{\\{[\\s\\S]+\\}\\}$",
+                      "type": "string"
+                    }
+                  ],
+                  "description": "Further blocking applications by name or executable path, each with the arguments Managed Software Center passes when it reopens the application after an assisted quit."
                 },
                 "catalogs": {
                   "anyOf": [
@@ -7580,6 +7806,92 @@
                     }
                   ],
                   "description": "Managed Software Center category. Null clears the category."
+                },
+                "custom_action_labels": {
+                  "anyOf": [
+                    {
+                      "additionalProperties": false,
+                      "properties": {
+                        "install": {
+                          "anyOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "installed": {
+                          "anyOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "installing": {
+                          "anyOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "remove": {
+                          "anyOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "removing": {
+                          "anyOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "update": {
+                          "anyOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                              "type": "string"
+                            }
+                          ]
+                        }
+                      },
+                      "propertyNames": {
+                        "not": {
+                          "pattern": "\\{\\{"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    {
+                      "pattern": "^\\{\\{[\\s\\S]+\\}\\}$",
+                      "type": "string"
+                    }
+                  ],
+                  "description": "Managed Software Center button and progress labels for this item. Absent labels use the defaults."
                 },
                 "description": {
                   "anyOf": [
@@ -7640,6 +7952,23 @@
                     }
                   ],
                   "description": "Optional display title. Omission preserves the remote title; null clears it."
+                },
+                "download_on_low_data": {
+                  "anyOf": [
+                    {
+                      "enum": [
+                        "auto",
+                        "always",
+                        "never"
+                      ],
+                      "type": "string"
+                    },
+                    {
+                      "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                      "type": "string"
+                    }
+                  ],
+                  "description": "Whether to download on a low-data connection: always or never; auto follows the client's MaxSizeOverLowDataConnection threshold."
                 },
                 "icon_hash": {
                   "anyOf": [
@@ -7740,136 +8069,152 @@
                       "items": {
                         "anyOf": [
                           {
-                            "additionalProperties": false,
-                            "properties": {
-                              "CFBundleIdentifier": {
-                                "anyOf": [
-                                  {
-                                    "type": "string"
+                            "anyOf": [
+                              {
+                                "additionalProperties": false,
+                                "properties": {
+                                  "CFBundleIdentifier": {
+                                    "anyOf": [
+                                      {
+                                        "type": "string"
+                                      },
+                                      {
+                                        "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                                        "type": "string"
+                                      }
+                                    ]
                                   },
-                                  {
-                                    "pattern": "\\{\\{[\\s\\S]+\\}\\}",
-                                    "type": "string"
+                                  "CFBundleName": {
+                                    "anyOf": [
+                                      {
+                                        "type": "string"
+                                      },
+                                      {
+                                        "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                                        "type": "string"
+                                      }
+                                    ]
+                                  },
+                                  "CFBundleShortVersionString": {
+                                    "anyOf": [
+                                      {
+                                        "type": "string"
+                                      },
+                                      {
+                                        "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                                        "type": "string"
+                                      }
+                                    ]
+                                  },
+                                  "CFBundleVersion": {
+                                    "anyOf": [
+                                      {
+                                        "type": "string"
+                                      },
+                                      {
+                                        "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                                        "type": "string"
+                                      }
+                                    ]
+                                  },
+                                  "installer_item_location": {
+                                    "anyOf": [
+                                      {
+                                        "type": "string"
+                                      },
+                                      {
+                                        "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                                        "type": "string"
+                                      }
+                                    ]
+                                  },
+                                  "md5checksum": {
+                                    "anyOf": [
+                                      {
+                                        "type": "string"
+                                      },
+                                      {
+                                        "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                                        "type": "string"
+                                      }
+                                    ]
+                                  },
+                                  "minimum_update_version": {
+                                    "anyOf": [
+                                      {
+                                        "type": "string"
+                                      },
+                                      {
+                                        "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                                        "type": "string"
+                                      }
+                                    ]
+                                  },
+                                  "minosversion": {
+                                    "anyOf": [
+                                      {
+                                        "type": "string"
+                                      },
+                                      {
+                                        "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                                        "type": "string"
+                                      }
+                                    ]
+                                  },
+                                  "path": {
+                                    "anyOf": [
+                                      {
+                                        "type": "string"
+                                      },
+                                      {
+                                        "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                                        "type": "string"
+                                      }
+                                    ]
+                                  },
+                                  "type": {
+                                    "anyOf": [
+                                      {
+                                        "type": "string"
+                                      },
+                                      {
+                                        "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                                        "type": "string"
+                                      }
+                                    ]
+                                  },
+                                  "version_comparison_key": {
+                                    "anyOf": [
+                                      {
+                                        "type": "string"
+                                      },
+                                      {
+                                        "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                                        "type": "string"
+                                      }
+                                    ]
                                   }
-                                ]
+                                },
+                                "propertyNames": {
+                                  "not": {
+                                    "pattern": "\\{\\{"
+                                  }
+                                },
+                                "type": "object"
                               },
-                              "CFBundleName": {
-                                "anyOf": [
-                                  {
-                                    "type": "string"
-                                  },
-                                  {
-                                    "pattern": "\\{\\{[\\s\\S]+\\}\\}",
-                                    "type": "string"
+                              {
+                                "additionalProperties": true,
+                                "propertyNames": {
+                                  "not": {
+                                    "pattern": "\\{\\{"
                                   }
-                                ]
-                              },
-                              "CFBundleShortVersionString": {
-                                "anyOf": [
-                                  {
-                                    "type": "string"
-                                  },
-                                  {
-                                    "pattern": "\\{\\{[\\s\\S]+\\}\\}",
-                                    "type": "string"
-                                  }
-                                ]
-                              },
-                              "CFBundleVersion": {
-                                "anyOf": [
-                                  {
-                                    "type": "string"
-                                  },
-                                  {
-                                    "pattern": "\\{\\{[\\s\\S]+\\}\\}",
-                                    "type": "string"
-                                  }
-                                ]
-                              },
-                              "installer_item_location": {
-                                "anyOf": [
-                                  {
-                                    "type": "string"
-                                  },
-                                  {
-                                    "pattern": "\\{\\{[\\s\\S]+\\}\\}",
-                                    "type": "string"
-                                  }
-                                ]
-                              },
-                              "md5checksum": {
-                                "anyOf": [
-                                  {
-                                    "type": "string"
-                                  },
-                                  {
-                                    "pattern": "\\{\\{[\\s\\S]+\\}\\}",
-                                    "type": "string"
-                                  }
-                                ]
-                              },
-                              "minimum_update_version": {
-                                "anyOf": [
-                                  {
-                                    "type": "string"
-                                  },
-                                  {
-                                    "pattern": "\\{\\{[\\s\\S]+\\}\\}",
-                                    "type": "string"
-                                  }
-                                ]
-                              },
-                              "minosversion": {
-                                "anyOf": [
-                                  {
-                                    "type": "string"
-                                  },
-                                  {
-                                    "pattern": "\\{\\{[\\s\\S]+\\}\\}",
-                                    "type": "string"
-                                  }
-                                ]
-                              },
-                              "path": {
-                                "anyOf": [
-                                  {
-                                    "type": "string"
-                                  },
-                                  {
-                                    "pattern": "\\{\\{[\\s\\S]+\\}\\}",
-                                    "type": "string"
-                                  }
-                                ]
-                              },
-                              "type": {
-                                "anyOf": [
-                                  {
-                                    "type": "string"
-                                  },
-                                  {
-                                    "pattern": "\\{\\{[\\s\\S]+\\}\\}",
-                                    "type": "string"
-                                  }
-                                ]
-                              },
-                              "version_comparison_key": {
-                                "anyOf": [
-                                  {
-                                    "type": "string"
-                                  },
-                                  {
-                                    "pattern": "\\{\\{[\\s\\S]+\\}\\}",
-                                    "type": "string"
-                                  }
-                                ]
+                                },
+                                "required": [
+                                  "kind"
+                                ],
+                                "type": "object"
                               }
-                            },
-                            "propertyNames": {
-                              "not": {
-                                "pattern": "\\{\\{"
-                              }
-                            },
-                            "type": "object"
+                            ]
                           },
                           {
                             "pattern": "^\\{\\{[\\s\\S]+\\}\\}$",
@@ -7884,7 +8229,7 @@
                       "type": "string"
                     }
                   ],
-                  "description": "Complete native detection list using application or bundle or plist or file entries."
+                  "description": "Complete native detection list using application or bundle or plist or file entries. An item can instead be an inspected application, written as an expression such as {{ facts.name }}, which is detected at its installed path by its bundle identifier and version."
                 },
                 "items_to_copy": {
                   "anyOf": [
@@ -8689,7 +9034,7 @@
                       "type": "string"
                     }
                   ],
-                  "description": "Applications that block installation or removal while they run. Munki uses the applications in installs when this is absent; an empty list blocks nothing."
+                  "description": "Applications that block installation or removal while they run. Munki uses the applications in installs when this and blocking_applications_with_launch_args are absent; an empty list blocks nothing."
                 },
                 "blocking_applications_manual_quit_only": {
                   "anyOf": [
@@ -8720,6 +9065,70 @@
                     }
                   ]
                 },
+                "blocking_applications_with_launch_args": {
+                  "anyOf": [
+                    {
+                      "items": {
+                        "anyOf": [
+                          {
+                            "additionalProperties": false,
+                            "properties": {
+                              "application": {
+                                "anyOf": [
+                                  {
+                                    "type": "string"
+                                  },
+                                  {
+                                    "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                                    "type": "string"
+                                  }
+                                ]
+                              },
+                              "arguments": {
+                                "anyOf": [
+                                  {
+                                    "items": {
+                                      "anyOf": [
+                                        {
+                                          "type": "string"
+                                        },
+                                        {
+                                          "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "type": "array"
+                                  },
+                                  {
+                                    "pattern": "^\\{\\{[\\s\\S]+\\}\\}$",
+                                    "type": "string"
+                                  }
+                                ]
+                              }
+                            },
+                            "propertyNames": {
+                              "not": {
+                                "pattern": "\\{\\{"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          {
+                            "pattern": "^\\{\\{[\\s\\S]+\\}\\}$",
+                            "type": "string"
+                          }
+                        ]
+                      },
+                      "type": "array"
+                    },
+                    {
+                      "pattern": "^\\{\\{[\\s\\S]+\\}\\}$",
+                      "type": "string"
+                    }
+                  ],
+                  "description": "Further blocking applications and the arguments passed when Managed Software Center reopens them after an assisted quit."
+                },
                 "category": {
                   "anyOf": [
                     {
@@ -8738,6 +9147,92 @@
                     }
                   ],
                   "description": "Managed Software Center category."
+                },
+                "custom_action_labels": {
+                  "anyOf": [
+                    {
+                      "additionalProperties": false,
+                      "properties": {
+                        "install": {
+                          "anyOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "installed": {
+                          "anyOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "installing": {
+                          "anyOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "remove": {
+                          "anyOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "removing": {
+                          "anyOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "update": {
+                          "anyOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                              "type": "string"
+                            }
+                          ]
+                        }
+                      },
+                      "propertyNames": {
+                        "not": {
+                          "pattern": "\\{\\{"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    {
+                      "pattern": "^\\{\\{[\\s\\S]+\\}\\}$",
+                      "type": "string"
+                    }
+                  ],
+                  "description": "Managed Software Center button and progress labels for this item."
                 },
                 "description": {
                   "anyOf": [
@@ -8795,6 +9290,26 @@
                     }
                   ],
                   "description": "Software name shown to users in Managed Software Center."
+                },
+                "download_on_low_data": {
+                  "anyOf": [
+                    {
+                      "anyOf": [
+                        {
+                          "description": "Download on a low-data connection always or never. auto follows the client's size threshold.",
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    {
+                      "pattern": "^\\{\\{[\\s\\S]+\\}\\}$",
+                      "type": "string"
+                    }
+                  ],
+                  "description": "Download on a low-data connection always or never. auto follows the client's size threshold."
                 },
                 "force_install_after_date": {
                   "anyOf": [
@@ -8979,136 +9494,152 @@
                       "items": {
                         "anyOf": [
                           {
-                            "additionalProperties": false,
-                            "properties": {
-                              "CFBundleIdentifier": {
-                                "anyOf": [
-                                  {
-                                    "type": "string"
+                            "anyOf": [
+                              {
+                                "additionalProperties": false,
+                                "properties": {
+                                  "CFBundleIdentifier": {
+                                    "anyOf": [
+                                      {
+                                        "type": "string"
+                                      },
+                                      {
+                                        "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                                        "type": "string"
+                                      }
+                                    ]
                                   },
-                                  {
-                                    "pattern": "\\{\\{[\\s\\S]+\\}\\}",
-                                    "type": "string"
+                                  "CFBundleName": {
+                                    "anyOf": [
+                                      {
+                                        "type": "string"
+                                      },
+                                      {
+                                        "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                                        "type": "string"
+                                      }
+                                    ]
+                                  },
+                                  "CFBundleShortVersionString": {
+                                    "anyOf": [
+                                      {
+                                        "type": "string"
+                                      },
+                                      {
+                                        "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                                        "type": "string"
+                                      }
+                                    ]
+                                  },
+                                  "CFBundleVersion": {
+                                    "anyOf": [
+                                      {
+                                        "type": "string"
+                                      },
+                                      {
+                                        "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                                        "type": "string"
+                                      }
+                                    ]
+                                  },
+                                  "installer_item_location": {
+                                    "anyOf": [
+                                      {
+                                        "type": "string"
+                                      },
+                                      {
+                                        "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                                        "type": "string"
+                                      }
+                                    ]
+                                  },
+                                  "md5checksum": {
+                                    "anyOf": [
+                                      {
+                                        "type": "string"
+                                      },
+                                      {
+                                        "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                                        "type": "string"
+                                      }
+                                    ]
+                                  },
+                                  "minimum_update_version": {
+                                    "anyOf": [
+                                      {
+                                        "type": "string"
+                                      },
+                                      {
+                                        "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                                        "type": "string"
+                                      }
+                                    ]
+                                  },
+                                  "minosversion": {
+                                    "anyOf": [
+                                      {
+                                        "type": "string"
+                                      },
+                                      {
+                                        "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                                        "type": "string"
+                                      }
+                                    ]
+                                  },
+                                  "path": {
+                                    "anyOf": [
+                                      {
+                                        "type": "string"
+                                      },
+                                      {
+                                        "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                                        "type": "string"
+                                      }
+                                    ]
+                                  },
+                                  "type": {
+                                    "anyOf": [
+                                      {
+                                        "type": "string"
+                                      },
+                                      {
+                                        "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                                        "type": "string"
+                                      }
+                                    ]
+                                  },
+                                  "version_comparison_key": {
+                                    "anyOf": [
+                                      {
+                                        "type": "string"
+                                      },
+                                      {
+                                        "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                                        "type": "string"
+                                      }
+                                    ]
                                   }
-                                ]
+                                },
+                                "propertyNames": {
+                                  "not": {
+                                    "pattern": "\\{\\{"
+                                  }
+                                },
+                                "type": "object"
                               },
-                              "CFBundleName": {
-                                "anyOf": [
-                                  {
-                                    "type": "string"
-                                  },
-                                  {
-                                    "pattern": "\\{\\{[\\s\\S]+\\}\\}",
-                                    "type": "string"
+                              {
+                                "additionalProperties": true,
+                                "propertyNames": {
+                                  "not": {
+                                    "pattern": "\\{\\{"
                                   }
-                                ]
-                              },
-                              "CFBundleShortVersionString": {
-                                "anyOf": [
-                                  {
-                                    "type": "string"
-                                  },
-                                  {
-                                    "pattern": "\\{\\{[\\s\\S]+\\}\\}",
-                                    "type": "string"
-                                  }
-                                ]
-                              },
-                              "CFBundleVersion": {
-                                "anyOf": [
-                                  {
-                                    "type": "string"
-                                  },
-                                  {
-                                    "pattern": "\\{\\{[\\s\\S]+\\}\\}",
-                                    "type": "string"
-                                  }
-                                ]
-                              },
-                              "installer_item_location": {
-                                "anyOf": [
-                                  {
-                                    "type": "string"
-                                  },
-                                  {
-                                    "pattern": "\\{\\{[\\s\\S]+\\}\\}",
-                                    "type": "string"
-                                  }
-                                ]
-                              },
-                              "md5checksum": {
-                                "anyOf": [
-                                  {
-                                    "type": "string"
-                                  },
-                                  {
-                                    "pattern": "\\{\\{[\\s\\S]+\\}\\}",
-                                    "type": "string"
-                                  }
-                                ]
-                              },
-                              "minimum_update_version": {
-                                "anyOf": [
-                                  {
-                                    "type": "string"
-                                  },
-                                  {
-                                    "pattern": "\\{\\{[\\s\\S]+\\}\\}",
-                                    "type": "string"
-                                  }
-                                ]
-                              },
-                              "minosversion": {
-                                "anyOf": [
-                                  {
-                                    "type": "string"
-                                  },
-                                  {
-                                    "pattern": "\\{\\{[\\s\\S]+\\}\\}",
-                                    "type": "string"
-                                  }
-                                ]
-                              },
-                              "path": {
-                                "anyOf": [
-                                  {
-                                    "type": "string"
-                                  },
-                                  {
-                                    "pattern": "\\{\\{[\\s\\S]+\\}\\}",
-                                    "type": "string"
-                                  }
-                                ]
-                              },
-                              "type": {
-                                "anyOf": [
-                                  {
-                                    "type": "string"
-                                  },
-                                  {
-                                    "pattern": "\\{\\{[\\s\\S]+\\}\\}",
-                                    "type": "string"
-                                  }
-                                ]
-                              },
-                              "version_comparison_key": {
-                                "anyOf": [
-                                  {
-                                    "type": "string"
-                                  },
-                                  {
-                                    "pattern": "\\{\\{[\\s\\S]+\\}\\}",
-                                    "type": "string"
-                                  }
-                                ]
+                                },
+                                "required": [
+                                  "kind"
+                                ],
+                                "type": "object"
                               }
-                            },
-                            "propertyNames": {
-                              "not": {
-                                "pattern": "\\{\\{"
-                              }
-                            },
-                            "type": "object"
+                            ]
                           },
                           {
                             "pattern": "^\\{\\{[\\s\\S]+\\}\\}$",
@@ -9123,7 +9654,7 @@
                       "type": "string"
                     }
                   ],
-                  "description": "Installed filesystem items used to detect the installed version."
+                  "description": "Installed filesystem items used to detect the installed version. An item can instead be an inspected application, written as an expression such as {{ facts.name }}, which is detected at its installed path by its bundle identifier and version."
                 },
                 "items_to_copy": {
                   "anyOf": [
@@ -9742,6 +10273,26 @@
                   ],
                   "description": "Munki software names or references to other catalog resources."
                 },
+                "restart_action_for_uninstall": {
+                  "anyOf": [
+                    {
+                      "anyOf": [
+                        {
+                          "description": "Logout, restart or shutdown requested after removal. None requests nothing; absence applies restart_action.",
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    {
+                      "pattern": "^\\{\\{[\\s\\S]+\\}\\}$",
+                      "type": "string"
+                    }
+                  ],
+                  "description": "Logout, restart or shutdown requested after removal. None requests nothing; absence applies restart_action."
+                },
                 "supported_architectures": {
                   "anyOf": [
                     {
@@ -9764,17 +10315,6 @@
                     }
                   ],
                   "description": "CPU architectures eligible for installation."
-                },
-                "suppress_bundle_relocation": {
-                  "anyOf": [
-                    {
-                      "type": "boolean"
-                    },
-                    {
-                      "pattern": "^\\{\\{[\\s\\S]+\\}\\}$",
-                      "type": "string"
-                    }
-                  ]
                 },
                 "unattended_install": {
                   "anyOf": [
@@ -9805,7 +10345,7 @@
                     {
                       "anyOf": [
                         {
-                          "description": "Method Munki uses to remove the installed software.",
+                          "description": "Method Munki uses to remove the installed software. Defaults to removepackages for package receipts or remove_copied_items for copied content.",
                           "type": "string"
                         },
                         {
@@ -9818,7 +10358,7 @@
                       "type": "string"
                     }
                   ],
-                  "description": "Method Munki uses to remove the installed software."
+                  "description": "Method Munki uses to remove the installed software. Defaults to removepackages for package receipts or remove_copied_items for copied content."
                 },
                 "uninstall_script": {
                   "anyOf": [
@@ -9850,7 +10390,7 @@
                       "type": "string"
                     }
                   ],
-                  "description": "Whether Munki may remove this software."
+                  "description": "Whether Munki may remove this software. Defaults to true when an uninstall method is derived."
                 },
                 "uninstallcheck_script": {
                   "anyOf": [
@@ -10456,7 +10996,7 @@
                   "type": "string"
                 }
               ],
-              "description": "Optional bearer token for release discovery and acquisition.",
+              "description": "Optional bearer token for release discovery and acquisition. Without one, discovery uses GH_TOKEN, then GITHUB_TOKEN, then reconcile's GitHub App when its origin is github.com. Fallback tokens are used only for API discovery.",
               "writeOnly": true
             }
           },
@@ -10615,7 +11155,7 @@
                   "type": "string"
                 }
               ],
-              "description": "Download page regular expression whose full matches are URL references resolved against the page's base URL. HTML pages match element attribute values; other pages match the response body. Must identify one distinct stable HTTP(S) download URL."
+              "description": "Download page regular expression whose full matches are URL references resolved against the page's base URL. HTML pages match element attribute values; other pages match the response body. Must identify one distinct stable HTTP(S) download URL. With a named group version capturing dotted numbers, several URLs may match: the highest version selects the URL and becomes the input's version."
             },
             "sha256": {
               "anyOf": [
@@ -10716,7 +11256,7 @@
                   "type": "string"
                 }
               ],
-              "description": "Download page regular expression whose full matches are URL references resolved against the page's base URL. HTML pages match element attribute values; other pages match the response body. Must identify one distinct stable HTTP(S) download URL."
+              "description": "Download page regular expression whose full matches are URL references resolved against the page's base URL. HTML pages match element attribute values; other pages match the response body. Must identify one distinct stable HTTP(S) download URL. With a named group version capturing dotted numbers, several URLs may match: the highest version selects the URL and becomes the input's version."
             },
             "resolver": {
               "const": "http",
@@ -11735,15 +12275,25 @@
                   "description": "Supporting files added to the setup directory beside the vendor installer."
                 },
                 "destinations": {
-                  "additionalProperties": false,
+                  "additionalProperties": {
+                    "anyOf": [
+                      {
+                        "$ref": "https://stemma.invalid/editor/intune/metadata"
+                      },
+                      {
+                        "$ref": "https://stemma.invalid/editor/jamf/metadata"
+                      },
+                      {
+                        "$ref": "https://stemma.invalid/editor/munki/metadata"
+                      },
+                      {
+                        "$ref": "https://stemma.invalid/editor/woodstar/metadata"
+                      }
+                    ]
+                  },
                   "description": "Native metadata for each named Project destination. Explicit values override derived values.",
-                  "properties": {
-                    "intune": {
-                      "$ref": "https://stemma.invalid/editor/intune/metadata"
-                    },
-                    "woodstar": {
-                      "$ref": "https://stemma.invalid/editor/woodstar/metadata"
-                    }
+                  "propertyNames": {
+                    "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$"
                   },
                   "type": "object"
                 },
@@ -11847,6 +12397,18 @@
                                           }
                                         ],
                                         "description": "Observed subject kind, such as app, container, file, package or msi. A package subject describes a receipt; the outer PKG is a container."
+                                      },
+                                      "package_id": {
+                                        "anyOf": [
+                                          {
+                                            "type": "string"
+                                          },
+                                          {
+                                            "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                                            "type": "string"
+                                          }
+                                        ],
+                                        "description": "Package identifier of a component receipt, as macOS records it."
                                       },
                                       "path": {
                                         "anyOf": [
@@ -11962,6 +12524,18 @@
                                 ],
                                 "description": "Observed subject kind, such as app, container, file, package or msi. A package subject describes a receipt; the outer PKG is a container."
                               },
+                              "package_id": {
+                                "anyOf": [
+                                  {
+                                    "type": "string"
+                                  },
+                                  {
+                                    "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                                    "type": "string"
+                                  }
+                                ],
+                                "description": "Package identifier of a component receipt, as macOS records it."
+                              },
                               "path": {
                                 "anyOf": [
                                   {
@@ -12073,15 +12647,25 @@
                       "description": "Supporting files added to the setup directory beside the vendor installer."
                     },
                     "destinations": {
-                      "additionalProperties": false,
+                      "additionalProperties": {
+                        "anyOf": [
+                          {
+                            "$ref": "https://stemma.invalid/editor/intune/metadata"
+                          },
+                          {
+                            "$ref": "https://stemma.invalid/editor/jamf/metadata"
+                          },
+                          {
+                            "$ref": "https://stemma.invalid/editor/munki/metadata"
+                          },
+                          {
+                            "$ref": "https://stemma.invalid/editor/woodstar/metadata"
+                          }
+                        ]
+                      },
                       "description": "Native metadata for each named Project destination. Explicit values override derived values.",
-                      "properties": {
-                        "intune": {
-                          "$ref": "https://stemma.invalid/editor/intune/metadata"
-                        },
-                        "woodstar": {
-                          "$ref": "https://stemma.invalid/editor/woodstar/metadata"
-                        }
+                      "propertyNames": {
+                        "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$"
                       },
                       "type": "object"
                     },
@@ -12185,6 +12769,18 @@
                                               }
                                             ],
                                             "description": "Observed subject kind, such as app, container, file, package or msi. A package subject describes a receipt; the outer PKG is a container."
+                                          },
+                                          "package_id": {
+                                            "anyOf": [
+                                              {
+                                                "type": "string"
+                                              },
+                                              {
+                                                "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                                                "type": "string"
+                                              }
+                                            ],
+                                            "description": "Package identifier of a component receipt, as macOS records it."
                                           },
                                           "path": {
                                             "anyOf": [
@@ -12299,6 +12895,18 @@
                                       }
                                     ],
                                     "description": "Observed subject kind, such as app, container, file, package or msi. A package subject describes a receipt; the outer PKG is a container."
+                                  },
+                                  "package_id": {
+                                    "anyOf": [
+                                      {
+                                        "type": "string"
+                                      },
+                                      {
+                                        "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                                        "type": "string"
+                                      }
+                                    ],
+                                    "description": "Package identifier of a component receipt, as macOS records it."
                                   },
                                   "path": {
                                     "anyOf": [

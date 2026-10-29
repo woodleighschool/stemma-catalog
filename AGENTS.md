@@ -68,7 +68,8 @@ This public catalog uses these established audiences. New audiences are a mainta
   acquisition and packaging changes; prepare an item by name to check its publication metadata.
   `validate` and `prepare` need no destination credentials. `plan` reads destinations;
   `apply` and `reconcile` publish. No workflow here publishes software.
-- Regenerate `stemma.schema.json` when the configured operations or their schemas change.
+- Regenerate `stemma.schema.json` when operation or plugin contracts change; destination
+  connection names and settings are checked by `stemma validate`.
   Run `mise run aw` after editing `.github/workflows/*.md`; commit the compiled workflow outputs
   with their source. Keep local development overrides out of tracked configuration.
 - The download plugin's README describes its API and development tasks. Use idiomatic Go and

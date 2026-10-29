@@ -4,7 +4,7 @@ monorepo_root = true
 _.file = ["{{config_root}}/.env"]
 
 [tools]
-"github:woodleighschool/stemma" = "v0.12.0"
+"github:woodleighschool/stemma" = "v0.12.1"
 lefthook = "2.2.2"
 "aqua:jdx/jactionlint" = "2.3.0"
 "github:github/gh-aw" = { version = "v0.93.5", bin = "gh-aw" }
