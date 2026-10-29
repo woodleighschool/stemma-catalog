@@ -1,0 +1,57 @@
+---
+# yaml-language-server: $schema=https://goreleaser.com/static/schema.json
+version: 2
+project_name: fleetd
+
+before:
+  hooks:
+    - go mod tidy
+    - mise run notices
+
+builds:
+  - id: plugin
+    main: ./cmd/plugin
+    binary: plugin
+    env:
+      - CGO_ENABLED=0
+    goos:
+      - linux
+      - darwin
+      - windows
+    goarch:
+      - amd64
+      - arm64
+    mod_timestamp: "{{ .CommitTimestamp }}"
+    flags:
+      - -trimpath
+    ldflags:
+      - -s -w
+      - -X main.version={{ .Version }}
+
+archives:
+  - id: plugin
+    ids:
+      - plugin
+    formats:
+      - tar.zst
+    name_template: "{{ .ProjectName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}"
+    files:
+      - src: ../../LICENSE
+        strip_parent: true
+      - third_party_licenses/**/*
+      - src: internal/fleetd/assets/FLEET-LICENSE
+        dst: third_party_licenses/fleet
+        strip_parent: true
+      - src: "{{ .Env.GOROOT }}/LICENSE"
+        dst: third_party_licenses/go
+        strip_parent: true
+
+checksum:
+  name_template: "{{ .ProjectName }}_{{ .Version }}_checksums.txt"
+  algorithm: sha256
+
+release:
+  mode: keep-existing
+
+changelog:
+  disable: true

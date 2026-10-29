@@ -20,7 +20,10 @@ env:
 
 jobs:
   goreleaser:
-    name: GoReleaser
+    name: ${{ matrix.plugin }}
+    strategy:
+      matrix:
+        plugin: [downloads, fleetd]
     runs-on: ubuntu-26.04
     timeout-minutes: 15
     permissions:
@@ -38,7 +41,7 @@ jobs:
         with:
           cache: false
           experimental: true
-          working_directory: plugins/downloads
+          working_directory: plugins/${{ matrix.plugin }}
           install_args: --locked go go:github.com/google/go-licenses/v2 github:woodleighschool/stemma
 
       - name: Log in to GHCR
@@ -50,7 +53,7 @@ jobs:
 
       - name: Resolve GoReleaser version
         id: goreleaser-version
-        working-directory: plugins/downloads
+        working-directory: plugins/${{ matrix.plugin }}
         run: echo "version=$(mise tool goreleaser --requested)" >> "$GITHUB_OUTPUT"
 
       - name: Run GoReleaser
@@ -59,7 +62,7 @@ jobs:
           distribution: goreleaser
           version: ${{ steps.goreleaser-version.outputs.version }}
           args: release --clean --parallelism=2
-          workdir: plugins/downloads
+          workdir: plugins/${{ matrix.plugin }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -70,9 +73,9 @@ jobs:
         run: echo "version=${RELEASE_TAG#v}" >> "$GITHUB_OUTPUT"
 
       - name: Publish plugin
-        working-directory: plugins/downloads
+        working-directory: plugins/${{ matrix.plugin }}
         env:
-          IMAGE: ghcr.io/woodleighschool/stemma-catalog/downloads:${{ steps.release-version.outputs.version }}
+          IMAGE: ghcr.io/woodleighschool/stemma-catalog/${{ matrix.plugin }}:${{ steps.release-version.outputs.version }}
           SOURCE: ${{ github.server_url }}/${{ github.repository }}
         run: >-
           stemma plugins publish "$IMAGE" --goreleaser dist

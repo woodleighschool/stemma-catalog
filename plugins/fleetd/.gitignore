@@ -1,0 +1,5 @@
+/build/
+/dist/
+go.work
+go.work.sum
+/third_party_licenses/

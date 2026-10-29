@@ -1,0 +1,30 @@
+#!/bin/sh
+set -eu
+
+mkdir -p /usr/local/bin
+ln -sf /opt/orbit/bin/orbit/macos/@ORBIT_CHANNEL@/orbit /opt/orbit/bin/orbit/orbit
+ln -sf /opt/orbit/bin/orbit/orbit /usr/local/bin/orbit
+
+restart_service() {
+    pkill -x fleet-desktop || true
+    launchctl bootout system/com.fleetdm.orbit >/dev/null 2>&1 || true
+    launchctl enable system/com.fleetdm.orbit
+    count=0
+    while ! launchctl bootstrap system /Library/LaunchDaemons/com.fleetdm.orbit.plist; do
+        count=$((count + 1))
+        if [ "$count" -ge 30 ]; then
+            echo "Unable to start com.fleetdm.orbit" >&2
+            return 1
+        fi
+        sleep 1
+    done
+    launchctl kickstart system/com.fleetdm.orbit
+}
+
+# Orbit must finish an installation it initiated before its service is stopped.
+if [ -f /opt/orbit/.inband_upgrade ]; then
+    rm -f /opt/orbit/.inband_upgrade
+    (sleep 30; restart_service) >/dev/null 2>&1 &
+else
+    restart_service
+fi
