@@ -41,8 +41,8 @@ github.com/stretchr/testify v1.12.1 h1:EuwCh5fleGS7H32xRwO3wRGT7DxrDhLAT6FF8MpWD
 github.com/stretchr/testify v1.12.1/go.mod h1:MDEgiDPPsNp5cuIrHPPCyornHKgEVbtFUmoNlxoYthg=
 github.com/theupdateframework/go-tuf/v2 v2.4.2 h1:w7976/W8uTwlsegP5nRymlpjPgrwSh+AXUf85is6nJk=
 github.com/theupdateframework/go-tuf/v2 v2.4.2/go.mod h1:JqBrIUnNLAaNq/8GmBcEMFWfAFBbqp/MkJEJseXKbks=
-github.com/woodleighschool/stemma v0.12.1 h1:NzduTXMFuP1T8SJpzxDtussVNs9TVCT2kJ/Sh95maE0=
-github.com/woodleighschool/stemma v0.12.1/go.mod h1:RQNnJl8y3NlI2vw2Q6fxAvBi4s7MKq/E24JBTqwi6RA=
+github.com/woodleighschool/stemma v0.12.2 h1:0Jzie4nGX8bRX4FGHDOOeqEP4dNKZmPkEWJWpE3bhYw=
+github.com/woodleighschool/stemma v0.12.2/go.mod h1:tTX0+0q+o+x2GVK+/SW39PKHtSFdruhm8KdTOkrDOmg=
 github.com/yosida95/uritemplate/v3 v3.0.2 h1:Ed3Oyj9yrmi9087+NczuL5BwkIc4wvTb5zIM+UJPGz4=
 github.com/yosida95/uritemplate/v3 v3.0.2/go.mod h1:ILOh0sOhIJR3+L/8afwt/kE++YT040gmv5BQTMR2HP4=
 github.com/youmark/pkcs8 v0.0.0-20240726163527-a2c0da244d78 h1:ilQV1hzziu+LLM3zUTJ0trRztfwgjqKnBWNtSRkbmwM=
