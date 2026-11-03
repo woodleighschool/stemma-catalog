@@ -6,14 +6,14 @@ inputs:
     resolver_version: "2"
     declaration: f6bba441ab1b80dae4e79b0ee9ebceb9473aaa13c6a9d91387544733490df21a
     observation:
-      asset_id: 666058947
-      filename: Obsidian-1.14.5.dmg
-      release: v1.14.5
-      release_id: 420802120
-      sha256: be79e6410d80fa705218aa4e8cb24ce8418cf16e13be4036227a5659b1f6aab2
-      url: https://github.com/obsidianmd/obsidian-releases/releases/download/v1.14.5/Obsidian-1.14.5.dmg
+      asset_id: 693337944
+      filename: Obsidian-1.15.0.dmg
+      release: v1.15.0
+      release_id: 429462128
+      sha256: d3f837e6fd3efaf65fa0bec987b18296982995d4ddae3171a7f7f67e0e2b7aa8
+      url: https://github.com/obsidianmd/obsidian-releases/releases/download/v1.15.0/Obsidian-1.15.0.dmg
     content:
-      sha256: be79e6410d80fa705218aa4e8cb24ce8418cf16e13be4036227a5659b1f6aab2
-      filename: Obsidian-1.14.5.dmg
+      sha256: d3f837e6fd3efaf65fa0bec987b18296982995d4ddae3171a7f7f67e0e2b7aa8
+      filename: Obsidian-1.15.0.dmg
       mode: 420
-    input_version: v1.14.5
+    input_version: v1.15.0

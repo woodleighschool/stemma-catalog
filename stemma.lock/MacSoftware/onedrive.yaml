@@ -7,9 +7,9 @@ inputs:
     declaration: 320a79396f607c13944f2186c535aaa4967658ce358e2617d93a2e18518be6f7
     observation:
       filename: OneDrive.pkg
-      url: https://oneclient.sfx.ms/Mac/Installers/26.173.0906.0008/universal/OneDrive.pkg
+      url: https://oneclient.sfx.ms/Mac/Installers/26.189.0928.0009/universal/OneDrive.pkg
       version: ""
     content:
-      sha256: cc0270130dc32cf92d27a52a145639a6cbbf0e88287a1b5603be4292af9da66a
+      sha256: 6359d86e263b727c8a1eda634391d1a854bb3f875cb70160936f9d1615c6b0f3
       filename: OneDrive.pkg
       mode: 420

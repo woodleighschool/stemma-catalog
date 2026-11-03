@@ -8,14 +8,14 @@ inputs:
     observation:
       filename: ZoomInstallerFull.msi
       package: Zoom.Zoom
-      sha256: b0dac9fa5237d2e18144ca723644460e7cc26675e5d3db0f89fdfe47ad8c429b
-      url: https://zoom.us/client/7.2.1.48556/ZoomInstallerFull.msi?archType=x64
-      version: 7.2.48556
+      sha256: 8e81e0d7dc401880c4cdfd14db8bed51308608b7aa67fa1e2ca31ccaa71cad93
+      url: https://zoom.us/client/7.2.5.51704/ZoomInstallerFull.msi?archType=x64
+      version: 7.2.51704
     content:
-      sha256: b0dac9fa5237d2e18144ca723644460e7cc26675e5d3db0f89fdfe47ad8c429b
+      sha256: 8e81e0d7dc401880c4cdfd14db8bed51308608b7aa67fa1e2ca31ccaa71cad93
       filename: ZoomInstallerFull.msi
       mode: 420
-    input_version: 7.2.48556
+    input_version: 7.2.51704
     evidence:
       winget.installer:
         apps_and_features_entries:
@@ -24,17 +24,17 @@ inputs:
         file_extensions:
           - zoommtg
           - zoomphonecall
-        installer_sha256: b0dac9fa5237d2e18144ca723644460e7cc26675e5d3db0f89fdfe47ad8c429b
+        installer_sha256: 8e81e0d7dc401880c4cdfd14db8bed51308608b7aa67fa1e2ca31ccaa71cad93
         installer_type: msi
-        installer_url: https://zoom.us/client/7.2.1.48556/ZoomInstallerFull.msi?archType=x64
+        installer_url: https://zoom.us/client/7.2.5.51704/ZoomInstallerFull.msi?archType=x64
         package_identifier: Zoom.Zoom
         package_name: Zoom Workplace
-        package_version: 7.2.48556
-        product_code: '{518AB954-56D5-4942-802D-ED4A1DAA61FD}'
+        package_version: 7.2.51704
+        product_code: '{BFA42BDB-0E66-4161-8D09-B48D2C9FC90F}'
         protocols:
           - zoom
           - zoommtg
         publisher: Zoom
-        release_date: "2026-09-21"
+        release_date: "2026-10-31"
         scope: machine
         upgrade_behavior: install

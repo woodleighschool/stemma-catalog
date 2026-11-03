@@ -6,14 +6,14 @@ inputs:
     resolver_version: "2"
     declaration: 7b612dc6f46c0c96589147b473971ca4b8439626b84d4b8e7bd108c88562c8c7
     observation:
-      filename: Minecraft_Education_1.26.32.0.dmg
-      sha256: 8aaada426842ebc054acb70ecd0a44fcb9abe02988e98d5488f17376380e2960
-      url: https://downloads.minecrafteduservices.com/retailbuilds/MacOS/Minecraft_Education_1.26.32.0.dmg
+      filename: Minecraft_Education_1.26.33.0.dmg
+      sha256: 80bb151b1db4e46edc503230bc8ece25210fff94b7d73d6774559a054398a91e
+      url: https://downloads.minecrafteduservices.com/retailbuilds/MacOS/Minecraft_Education_1.26.33.0.dmg
     content:
-      sha256: 8aaada426842ebc054acb70ecd0a44fcb9abe02988e98d5488f17376380e2960
-      filename: Minecraft_Education_1.26.32.0.dmg
+      sha256: 80bb151b1db4e46edc503230bc8ece25210fff94b7d73d6774559a054398a91e
+      filename: Minecraft_Education_1.26.33.0.dmg
       mode: 420
-    input_version: 1.26.32.0
+    input_version: 1.26.33.0
     evidence:
       homebrew.cask:
         artifacts:
@@ -24,4 +24,4 @@ inputs:
         macos: "27"
         name: minecraft-education
         target_architecture: arm64
-        version: 1.26.32.0
+        version: 1.26.33.0

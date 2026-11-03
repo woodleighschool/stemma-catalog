@@ -7,7 +7,7 @@ inputs:
     declaration: b632f558a97a1f6eb95c6224e717645e0b206336ae6ebd7892af254e47157afc
     observation: {}
     content:
-      sha256: 3f7d51be783c084174d8e3fa6cd4198484e2177ed570a7d1ae68c3da4ef89cac
+      sha256: a387c0dd302d79a9cf5540c80ffa95899852bc6df3e0b03306081c2a21fbea14
       filename: GarageBand.app
       tree: true
       mode: 493
