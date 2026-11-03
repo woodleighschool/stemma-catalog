@@ -11,7 +11,7 @@ spec:
     downloads:
       image: ghcr.io/woodleighschool/stemma-catalog/downloads:0.3.18@sha256:21d0f6025556220e4afbda5615bde235c81cceeeba22ecc315f9ee92d3d0b2cc
     fleetd:
-      image: ghcr.io/woodleighschool/stemma-catalog/fleetd:0.3.17@sha256:ea1238e6335230a737fc1f3ff3a72bb005db6eaa2d307e3e9cd7446121f16df1
+      image: ghcr.io/woodleighschool/stemma-catalog/fleetd:0.3.18@sha256:5cb336fb5f0051c5e206a5756ed1bb323d87510197b982bd0a2d6cddb9055ea3
     woodstar:
       image: ghcr.io/woodleighschool/woodstar/stemma:2.0.2@sha256:6ad81b1bae9816929c2b57291654b4eb2690f82b91aae7b3d6d3e6bd5b83f443
   components:
