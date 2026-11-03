@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.3.18](https://github.com/woodleighschool/stemma-catalog/compare/v0.3.17...v0.3.18) (2026-11-03)
+
+
+### Bug Fixes
+
+* allow plugin release retries ([fa9980a](https://github.com/woodleighschool/stemma-catalog/commit/fa9980ad8ab94884c5a9f656dce33171f44e0dee))
+* **go:** update module github.com/woodleighschool/stemma (v0.12.1 → v0.12.2) ([#237](https://github.com/woodleighschool/stemma-catalog/issues/237)) ([477b7d4](https://github.com/woodleighschool/stemma-catalog/commit/477b7d49b4e5a6ab0c04f98a9ad98e6639a03efa))
+
 ## [0.3.17](https://github.com/woodleighschool/stemma-catalog/compare/v0.3.16...v0.3.17) (2026-10-29)
 
 
