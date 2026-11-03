@@ -13,7 +13,7 @@ spec:
     fleetd:
       image: ghcr.io/woodleighschool/stemma-catalog/fleetd:0.3.18@sha256:5cb336fb5f0051c5e206a5756ed1bb323d87510197b982bd0a2d6cddb9055ea3
     woodstar:
-      image: ghcr.io/woodleighschool/woodstar/stemma:2.0.2@sha256:6ad81b1bae9816929c2b57291654b4eb2690f82b91aae7b3d6d3e6bd5b83f443
+      image: ghcr.io/woodleighschool/woodstar/stemma:2.0.3@sha256:8f2ab2bd45585413cf6dd90a82e921227cdec3cf1c0f7c8d5c839f7830522154
   components:
     mac-software:
       destinations:
