@@ -3,7 +3,7 @@ module github.com/woodleighschool/stemma-catalog/plugins/fleetd
 go 1.27.3
 
 require (
-	github.com/sigstore/sigstore v1.11.1
+	github.com/sigstore/sigstore v1.11.2
 	github.com/theupdateframework/go-tuf/v2 v2.4.2
 	github.com/woodleighschool/stemma v0.12.1
 	howett.net/plist v1.0.1
