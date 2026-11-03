@@ -2081,6 +2081,56 @@
           "type": "object"
         },
         {
+          "$id": "https://stemma.invalid/editor/fleetd/input",
+          "additionalProperties": false,
+          "properties": {
+            "channel": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                  "type": "string"
+                }
+              ],
+              "default": "stable",
+              "description": "Fleet update channel or published component version."
+            },
+            "component": {
+              "anyOf": [
+                {
+                  "enum": [
+                    "orbit",
+                    "osqueryd",
+                    "desktop"
+                  ],
+                  "type": "string"
+                },
+                {
+                  "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                  "type": "string"
+                }
+              ],
+              "description": "Fleet component to acquire for macOS."
+            },
+            "resolver": {
+              "const": "fleetd",
+              "description": "Loaded resolver selecting this input."
+            }
+          },
+          "propertyNames": {
+            "not": {
+              "pattern": "\\{\\{"
+            }
+          },
+          "required": [
+            "component",
+            "resolver"
+          ],
+          "type": "object"
+        },
+        {
           "$id": "https://stemma.invalid/editor/microsoft/input",
           "additionalProperties": false,
           "properties": {
@@ -11775,6 +11825,52 @@
             "channel": {
               "anyOf": [
                 {
+                  "type": "string"
+                },
+                {
+                  "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                  "type": "string"
+                }
+              ],
+              "default": "stable",
+              "description": "Fleet update channel or published component version."
+            },
+            "component": {
+              "anyOf": [
+                {
+                  "enum": [
+                    "orbit",
+                    "osqueryd",
+                    "desktop"
+                  ],
+                  "type": "string"
+                },
+                {
+                  "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                  "type": "string"
+                }
+              ],
+              "description": "Fleet component to acquire for macOS."
+            },
+            "resolver": {
+              "const": "fleetd",
+              "description": "Loaded resolver selecting this input."
+            }
+          },
+          "propertyNames": {
+            "not": {
+              "pattern": "\\{\\{"
+            }
+          },
+          "type": "object"
+        },
+        {
+          "$id": "https://stemma.invalid/editor/partial-input/resource/5",
+          "additionalProperties": false,
+          "properties": {
+            "channel": {
+              "anyOf": [
+                {
                   "enum": [
                     "production",
                     "preview",
@@ -11846,7 +11942,7 @@
           "type": "object"
         },
         {
-          "$id": "https://stemma.invalid/editor/partial-input/resource/5",
+          "$id": "https://stemma.invalid/editor/partial-input/resource/6",
           "additionalProperties": false,
           "properties": {
             "branch": {
@@ -11875,7 +11971,7 @@
           "type": "object"
         },
         {
-          "$id": "https://stemma.invalid/editor/partial-input/resource/6",
+          "$id": "https://stemma.invalid/editor/partial-input/resource/7",
           "additionalProperties": false,
           "properties": {
             "line": {
@@ -12164,6 +12260,315 @@
       },
       "required": [
         "source_control"
+      ],
+      "type": "object"
+    },
+    "Resource_fleetd.payload": {
+      "additionalProperties": false,
+      "properties": {
+        "apiVersion": {
+          "const": "fleetd/v1alpha1"
+        },
+        "kind": {
+          "const": "FleetMacPayload"
+        },
+        "metadata": {
+          "additionalProperties": false,
+          "properties": {
+            "name": {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "name"
+          ],
+          "type": "object"
+        },
+        "profiles": {
+          "description": "Name the opt-in workloads the resource belongs to. Runs take it only when they select one of these profiles, name it, or select a resource consuming its outputs. It still validates and keeps its reviewed lock entries.",
+          "items": {
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+            "type": "string"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "spec": {
+          "anyOf": [
+            {
+              "$id": "https://stemma.invalid/editor/resource/fleetd%2Fv1alpha1%2FFleetMacPayload/complete",
+              "additionalProperties": false,
+              "properties": {
+                "desktop": {
+                  "anyOf": [
+                    {
+                      "type": "boolean"
+                    },
+                    {
+                      "pattern": "^\\{\\{[\\s\\S]+\\}\\}$",
+                      "type": "string"
+                    }
+                  ],
+                  "description": "Include and start Fleet Desktop."
+                },
+                "desktop_channel": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                      "type": "string"
+                    }
+                  ],
+                  "default": "stable",
+                  "description": "Fleet Desktop update channel or component version to resolve when desktop is enabled."
+                },
+                "disable_updates": {
+                  "anyOf": [
+                    {
+                      "type": "boolean"
+                    },
+                    {
+                      "pattern": "^\\{\\{[\\s\\S]+\\}\\}$",
+                      "type": "string"
+                    }
+                  ],
+                  "description": "Disable agent self-updates so package deployment owns component versions."
+                },
+                "enable_scripts": {
+                  "anyOf": [
+                    {
+                      "type": "boolean"
+                    },
+                    {
+                      "pattern": "^\\{\\{[\\s\\S]+\\}\\}$",
+                      "type": "string"
+                    }
+                  ],
+                  "description": "Allow Fleet to execute scripts on the enrolled Mac."
+                },
+                "enroll_secret": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                      "type": "string"
+                    }
+                  ],
+                  "description": "Enrollment secret embedded in the package. Supply through an environment expression; the built package contains this secret.",
+                  "writeOnly": true
+                },
+                "fleet_url": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                      "type": "string"
+                    }
+                  ],
+                  "description": "Fleet server HTTPS URL. Required with enroll_secret unless system configuration supplies enrollment."
+                },
+                "orbit_channel": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                      "type": "string"
+                    }
+                  ],
+                  "default": "stable",
+                  "description": "Orbit update channel or component version to resolve."
+                },
+                "osqueryd_channel": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                      "type": "string"
+                    }
+                  ],
+                  "default": "stable",
+                  "description": "osquery update channel or component version to resolve."
+                },
+                "use_system_configuration": {
+                  "anyOf": [
+                    {
+                      "type": "boolean"
+                    },
+                    {
+                      "pattern": "^\\{\\{[\\s\\S]+\\}\\}$",
+                      "type": "string"
+                    }
+                  ],
+                  "description": "Read enrollment settings from the endpoint's macOS configuration profile."
+                }
+              },
+              "propertyNames": {
+                "not": {
+                  "pattern": "\\{\\{"
+                }
+              },
+              "type": "object"
+            },
+            {
+              "allOf": [
+                {
+                  "$id": "https://stemma.invalid/editor/resource/fleetd%2Fv1alpha1%2FFleetMacPayload/partial",
+                  "additionalProperties": false,
+                  "properties": {
+                    "desktop": {
+                      "anyOf": [
+                        {
+                          "type": "boolean"
+                        },
+                        {
+                          "pattern": "^\\{\\{[\\s\\S]+\\}\\}$",
+                          "type": "string"
+                        }
+                      ],
+                      "description": "Include and start Fleet Desktop."
+                    },
+                    "desktop_channel": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                          "type": "string"
+                        }
+                      ],
+                      "default": "stable",
+                      "description": "Fleet Desktop update channel or component version to resolve when desktop is enabled."
+                    },
+                    "disable_updates": {
+                      "anyOf": [
+                        {
+                          "type": "boolean"
+                        },
+                        {
+                          "pattern": "^\\{\\{[\\s\\S]+\\}\\}$",
+                          "type": "string"
+                        }
+                      ],
+                      "description": "Disable agent self-updates so package deployment owns component versions."
+                    },
+                    "enable_scripts": {
+                      "anyOf": [
+                        {
+                          "type": "boolean"
+                        },
+                        {
+                          "pattern": "^\\{\\{[\\s\\S]+\\}\\}$",
+                          "type": "string"
+                        }
+                      ],
+                      "description": "Allow Fleet to execute scripts on the enrolled Mac."
+                    },
+                    "enroll_secret": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                          "type": "string"
+                        }
+                      ],
+                      "description": "Enrollment secret embedded in the package. Supply through an environment expression; the built package contains this secret.",
+                      "writeOnly": true
+                    },
+                    "extends": {
+                      "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+                      "type": "string"
+                    },
+                    "fleet_url": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                          "type": "string"
+                        }
+                      ],
+                      "description": "Fleet server HTTPS URL. Required with enroll_secret unless system configuration supplies enrollment."
+                    },
+                    "orbit_channel": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                          "type": "string"
+                        }
+                      ],
+                      "default": "stable",
+                      "description": "Orbit update channel or component version to resolve."
+                    },
+                    "osqueryd_channel": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "pattern": "\\{\\{[\\s\\S]+\\}\\}",
+                          "type": "string"
+                        }
+                      ],
+                      "default": "stable",
+                      "description": "osquery update channel or component version to resolve."
+                    },
+                    "use_system_configuration": {
+                      "anyOf": [
+                        {
+                          "type": "boolean"
+                        },
+                        {
+                          "pattern": "^\\{\\{[\\s\\S]+\\}\\}$",
+                          "type": "string"
+                        }
+                      ],
+                      "description": "Read enrollment settings from the endpoint's macOS configuration profile."
+                    }
+                  },
+                  "propertyNames": {
+                    "not": {
+                      "pattern": "\\{\\{"
+                    }
+                  },
+                  "type": "object"
+                },
+                {
+                  "required": [
+                    "extends"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "suspend": {
+          "description": "Keep the resource out of every run that does not name it, whatever profiles the run selects. It still validates and keeps its reviewed lock entries; naming it, or a suspended resource consuming its outputs, runs it.",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "apiVersion",
+        "kind",
+        "metadata",
+        "spec"
       ],
       "type": "object"
     },
@@ -13000,6 +13405,9 @@
     },
     {
       "$ref": "#/$defs/BuildMacPkg"
+    },
+    {
+      "$ref": "#/$defs/Resource_fleetd.payload"
     },
     {
       "$ref": "#/$defs/MacSoftware"

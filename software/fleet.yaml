@@ -1,0 +1,77 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/woodleighschool/stemma-catalog/main/stemma.schema.json
+apiVersion: fleetd/v1alpha1
+kind: FleetMacPayload
+metadata:
+  name: fleet
+spec:
+  fleet_url: "{{ env.FLEET_URL }}"
+  enroll_secret: "{{ env.FLEET_ENROLL_SECRET }}"
+  enable_scripts: true
+  disable_updates: true
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/woodleighschool/stemma-catalog/main/stemma.schema.json
+apiVersion: stemma/v1alpha1
+kind: BuildMacPkg
+metadata:
+  name: fleet
+spec:
+  inputs:
+    payload:
+      resource:
+        apiVersion: fleetd/v1alpha1
+        kind: FleetMacPayload
+        name: fleet
+        output: payload
+    postinstall:
+      resource:
+        apiVersion: fleetd/v1alpha1
+        kind: FleetMacPayload
+        name: fleet
+        output: postinstall
+  package:
+    identifier: com.fleetdm.orbit.base.pkg
+    # Increment for every component or configuration release sent through MDM.
+    version: "2026.10.29.1"
+  signatures:
+    - input: payload
+      signer: apple:developer-id:3522FA9PXF # OSQUERY A Series of LF Projects
+  payload:
+    /:
+      $input: payload
+      path: .
+  scripts:
+    postinstall:
+      $input: postinstall
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/woodleighschool/stemma-catalog/main/stemma.schema.json
+apiVersion: stemma/v1alpha1
+kind: MacSoftware
+metadata:
+  name: fleet
+spec:
+  minimum_os: "15.0"
+  source:
+    resource:
+      kind: BuildMacPkg
+      name: fleet
+  destinations:
+    intune:
+      type: pkg
+      display_name: Fleet
+      description: Fleet agent for device inventory and management.
+      publisher: Fleet Device Management
+      information_url: https://fleetdm.com
+      ignore_version_detection: false
+    jamf:
+      policies:
+        - name: All - Install Orbit - ALL
+          enabled: true
+          triggers: [checkin]
+          frequency: once_per_computer
+          retries: 3
+          event: ""
+          update_inventory: false
+          self_service: false
+          scope:
+            all_computers: true

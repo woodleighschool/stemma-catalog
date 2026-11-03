@@ -1,0 +1,44 @@
+version: 5
+inputs:
+  orbit:
+    version: 1
+    resolver: fleetd
+    resolver_version: "1"
+    declaration: 07b3a03a62c17ed119ea7456c8907519739ad73ad5baa400be6afbc2f8a4176f
+    observation:
+      length: 50225856
+      sha512: 75bf671912642442f90353473aea483031443a5766221eb1ad334b012987721547e6534e5499413dc52a8224e1c471a74816032a3003a22cd9cd3606abd9adae
+      target: orbit/macos/1.63.0/orbit
+      version: 1.63.0
+    content:
+      sha256: 364caacad77dbf3a51766473810db099329edc15e07da12f386505c9887b6242
+      filename: orbit
+      mode: 384
+    input_version: 1.63.0
+    evidence:
+      fleetd:
+        length: 50225856
+        sha512: 75bf671912642442f90353473aea483031443a5766221eb1ad334b012987721547e6534e5499413dc52a8224e1c471a74816032a3003a22cd9cd3606abd9adae
+        target: orbit/macos/1.63.0/orbit
+        version: 1.63.0
+  osqueryd:
+    version: 1
+    resolver: fleetd
+    resolver_version: "1"
+    declaration: efeed9deaeaa488a95b12616d6e17ee7b1fcdef1502af16275731a525d53c02c
+    observation:
+      length: 16670843
+      sha512: a673a715de9dff3bd13e43e676fe8cadba91dc1b18f3062ce6ff1f867cb94e498b59eaac9ad09277d506ccbae244df866f91031ed08c7a0a9b0b136e62d1c6a2
+      target: osqueryd/macos-app/5.24.0/osqueryd.app.tar.gz
+      version: 5.24.0
+    content:
+      sha256: a132f7fe93c3e030c987af82663026c8df4840a2bec71886a894f435da6e11cb
+      filename: osqueryd.app.tar.gz
+      mode: 384
+    input_version: 5.24.0
+    evidence:
+      fleetd:
+        length: 16670843
+        sha512: a673a715de9dff3bd13e43e676fe8cadba91dc1b18f3062ce6ff1f867cb94e498b59eaac9ad09277d506ccbae244df866f91031ed08c7a0a9b0b136e62d1c6a2
+        target: osqueryd/macos-app/5.24.0/osqueryd.app.tar.gz
+        version: 5.24.0
