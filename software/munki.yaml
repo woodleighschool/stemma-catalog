@@ -17,7 +17,18 @@ spec:
   minimum_os: "11.0"
   icon: munki
   destinations:
-    jamf: {}
+    jamf:
+      policies:
+        - name: ALL - Install Munki - ALL
+          enabled: true
+          triggers: [checkin]
+          frequency: once_per_computer
+          retries: 3
+          event: ""
+          update_inventory: false
+          self_service: false
+          scope:
+            all_computers: true
     intune:
       display_name: Munki
       description: Munki is a set of tools that, used together with a webserver-based repository of
