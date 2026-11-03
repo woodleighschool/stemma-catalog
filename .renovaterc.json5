@@ -21,11 +21,6 @@
       // The compiler pins these tags to digests.
       pinDigests: false,
     },
-    {
-      description: "Stemma Releases",
-      matchPackageNames: ["woodleighschool/stemma", "github.com/woodleighschool/stemma"],
-      minimumReleaseAge: null,
-    },
   ],
   customManagers: [
     {
