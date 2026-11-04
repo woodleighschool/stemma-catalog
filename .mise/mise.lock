@@ -2,29 +2,6 @@
 
 lockfile_version = 2
 
-[[tools."aqua:jdx/jactionlint"]]
-version = "2.4.0"
-backend = "aqua:jdx/jactionlint"
-specifiers = ["2.4.0"]
-
-[tools."aqua:jdx/jactionlint"."platforms.linux-arm64"]
-checksum = "sha256:42413391c248f99ff4550d6c866ee717d5ea4ca2b966d9d54ad1503af955e22f"
-url = "https://github.com/jdx/jactionlint/releases/download/v2.4.0/jactionlint_2.4.0_linux_arm64.tar.gz"
-url_api = "https://api.github.com/repos/jdx/jactionlint/releases/assets/688130101"
-provenance = "github-attestations"
-
-[tools."aqua:jdx/jactionlint"."platforms.linux-x64"]
-checksum = "sha256:26ddba81db28fffc51163175c070ee1a9d1150260de4b5232f01d9b749f32d8e"
-url = "https://github.com/jdx/jactionlint/releases/download/v2.4.0/jactionlint_2.4.0_linux_amd64.tar.gz"
-url_api = "https://api.github.com/repos/jdx/jactionlint/releases/assets/688130108"
-provenance = "github-attestations"
-
-[tools."aqua:jdx/jactionlint"."platforms.macos-arm64"]
-checksum = "sha256:349a13dbffdd25376898a256d195806afda08ba97ccc6378cbf2dd11a77ef8e7"
-url = "https://github.com/jdx/jactionlint/releases/download/v2.4.0/jactionlint_2.4.0_darwin_arm64.tar.gz"
-url_api = "https://api.github.com/repos/jdx/jactionlint/releases/assets/688130202"
-provenance = "github-attestations"
-
 [[tools."github:github/gh-aw"]]
 version = "1.0.1"
 backend = "github:github/gh-aw"
@@ -70,6 +47,26 @@ checksum = "sha256:807e0819430835abd827fde069f6854c0efd4d2fa7474a264be18cda201fa
 checksum_source = "mise-versions"
 url = "https://github.com/woodleighschool/stemma/releases/download/v0.12.2/stemma_0.12.2_darwin_arm64.tar.gz"
 url_api = "https://api.github.com/repos/woodleighschool/stemma/releases/assets/703763283"
+
+[[tools.jactionlint]]
+version = "2.4.0"
+backend = "packslip:github.com/jdx/jactionlint"
+specifiers = ["2.4.0"]
+
+[tools.jactionlint."platforms.linux-arm64"]
+checksum = "sha256:42413391c248f99ff4550d6c866ee717d5ea4ca2b966d9d54ad1503af955e22f"
+url = "https://github.com/jdx/jactionlint/releases/download/v2.4.0/jactionlint_2.4.0_linux_arm64.tar.gz"
+signer = "sigstore-oidc:https://github.com/jdx/jactionlint/.github/workflows/release.yaml"
+
+[tools.jactionlint."platforms.linux-x64"]
+checksum = "sha256:26ddba81db28fffc51163175c070ee1a9d1150260de4b5232f01d9b749f32d8e"
+url = "https://github.com/jdx/jactionlint/releases/download/v2.4.0/jactionlint_2.4.0_linux_amd64.tar.gz"
+signer = "sigstore-oidc:https://github.com/jdx/jactionlint/.github/workflows/release.yaml"
+
+[tools.jactionlint."platforms.macos-arm64"]
+checksum = "sha256:349a13dbffdd25376898a256d195806afda08ba97ccc6378cbf2dd11a77ef8e7"
+url = "https://github.com/jdx/jactionlint/releases/download/v2.4.0/jactionlint_2.4.0_darwin_arm64.tar.gz"
+signer = "sigstore-oidc:https://github.com/jdx/jactionlint/.github/workflows/release.yaml"
 
 [[tools.lefthook]]
 version = "2.2.2"
