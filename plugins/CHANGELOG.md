@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.3.19](https://github.com/woodleighschool/stemma-catalog/compare/v0.3.18...v0.3.19) (2026-11-05)
+
+
+### Bug Fixes
+
+* **fleetd:** preserve Orbit directory permissions ([77dac31](https://github.com/woodleighschool/stemma-catalog/commit/77dac318ba84673a95c6951b7a134066b9561160))
+* **release:** include both plugins in shared releases ([b69627d](https://github.com/woodleighschool/stemma-catalog/commit/b69627dc2cc7d29cec30bd8d7190e6c82803d515))
+
 ## [0.3.18](https://github.com/woodleighschool/stemma-catalog/compare/v0.3.17...v0.3.18) (2026-11-03)
 
 
