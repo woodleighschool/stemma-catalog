@@ -81,8 +81,13 @@ func buildPayload(ctx context.Context, request plugin.ResourceRequest[spec]) (_ 
 	defer func() { _ = f.Close() }()
 	w := tar.NewWriter(f)
 	defer func() { _ = w.Close() }()
-	if err := w.WriteHeader(&tar.Header{Name: "var/log/orbit", Typeflag: tar.TypeDir, Mode: 0o755, Format: tar.FormatPAX}); err != nil {
-		return plugin.ResourceResult{}, err
+	installDirectories := []string{"/opt/orbit", "/opt/orbit/bin"}
+	// Declare installed directories so extraction workspace modes cannot
+	// become package metadata. Orbit requires its root directory to be 0755.
+	for _, name := range []string{"Library", "Library/LaunchDaemons", "opt", "opt/orbit", "opt/orbit/bin", "var", "var/log", "var/log/orbit"} {
+		if err := appendDirectory(w, name); err != nil {
+			return plugin.ResourceResult{}, err
+		}
 	}
 	components := []string{"orbit", "osqueryd"}
 	if s.Desktop {
@@ -98,7 +103,14 @@ func buildPayload(ctx context.Context, request plugin.ResourceRequest[spec]) (_ 
 		channel := map[string]string{"orbit": s.OrbitChannel, "osqueryd": s.OsquerydChannel, "desktop": s.DesktopChannel}[component]
 		selected := selection{Component: component, Channel: channel}
 		platform, basename, _ := selected.target()
-		directory := "opt/orbit/bin/" + component + "/" + platform + "/" + channel
+		base := "opt/orbit/bin/" + component
+		directory := base + "/" + platform + "/" + channel
+		for _, name := range []string{base, base + "/" + platform, directory} {
+			if err := appendDirectory(w, name); err != nil {
+				return plugin.ResourceResult{}, err
+			}
+			installDirectories = append(installDirectories, "/"+name)
+		}
 		if component == "orbit" {
 			if err := appendFile(ctx, w, directory+"/"+basename, input.Path, 0o755); err != nil {
 				return plugin.ResourceResult{}, err
@@ -158,6 +170,7 @@ func buildPayload(ctx context.Context, request plugin.ResourceRequest[spec]) (_ 
 		return plugin.ResourceResult{}, err
 	}
 	script := strings.ReplaceAll(string(hook), "@ORBIT_CHANNEL@", s.OrbitChannel)
+	script = strings.ReplaceAll(script, "@INSTALL_DIRECTORIES@", strings.Join(installDirectories, " "))
 	postinstall := filepath.Join(request.Workspace, "postinstall")
 	if err := os.WriteFile(postinstall, []byte(script), 0o755); err != nil {
 		return plugin.ResourceResult{}, err
@@ -198,6 +211,10 @@ func launchDaemon(s spec) ([]byte, error) {
 		"StandardErrorPath": "/var/log/orbit/orbit.stderr.log", "StandardOutPath": "/var/log/orbit/orbit.stdout.log",
 		"ThrottleInterval": 10,
 	}, plist.XMLFormat, "\t")
+}
+
+func appendDirectory(w *tar.Writer, name string) error {
+	return w.WriteHeader(&tar.Header{Name: name, Typeflag: tar.TypeDir, Mode: 0o755, Format: tar.FormatPAX})
 }
 
 func appendText(w *tar.Writer, name, text string, mode int64) error {

@@ -32,7 +32,7 @@ spec:
   package:
     identifier: com.fleetdm.orbit.base.pkg
     # Increment for every component or configuration release sent through MDM.
-    version: "2026.10.29.1"
+    version: "2026.11.5.1"
   signatures:
     - input: payload
       signer: apple:developer-id:3522FA9PXF # OSQUERY A Series of LF Projects
@@ -40,6 +40,7 @@ spec:
     /:
       $input: payload
       path: .
+      mode: "0755"
   scripts:
     postinstall:
       $input: postinstall

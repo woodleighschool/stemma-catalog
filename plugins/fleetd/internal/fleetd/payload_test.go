@@ -121,6 +121,20 @@ func TestPayloadPreservesFleetLayoutWithoutExecutingInputs(t *testing.T) {
 			t.Errorf("missing file or incorrect mode for %s", name)
 		}
 	}
+	// Orbit checks these modes at startup. Omitted TAR directories inherit
+	// extraction workspace permissions when the payload becomes a PKG.
+	directories := []string{"Library", "Library/LaunchDaemons", "opt", "opt/orbit", "opt/orbit/bin", "var", "var/log", "var/log/orbit"}
+	for _, component := range []string{"orbit/macos", "osqueryd/macos-app", "desktop/macos"} {
+		parts := strings.Split(component, "/")
+		base := "opt/orbit/bin/" + parts[0]
+		directories = append(directories, base, base+"/"+parts[1], base+"/"+parts[1]+"/stable")
+	}
+	for _, name := range directories {
+		entry, ok := entries[name]
+		if !ok || entry.header.Typeflag != tar.TypeDir || entry.header.Mode != 0o755 || entry.header.Uid != 0 || entry.header.Gid != 0 {
+			t.Errorf("%s must explicitly declare a root-owned 0755 directory", name)
+		}
+	}
 	if entries["opt/orbit/secret.txt"].body != s.EnrollSecret {
 		t.Error("enrollment secret was not preserved")
 	}
@@ -175,6 +189,9 @@ func TestPayloadPreservesFleetLayoutWithoutExecutingInputs(t *testing.T) {
 	}
 	if strings.Contains(string(hook), "@ORBIT_CHANNEL@") || !strings.Contains(string(hook), "/macos/stable/orbit") {
 		t.Error("postinstall does not select the installed Orbit")
+	}
+	if strings.Contains(string(hook), "@INSTALL_DIRECTORIES@") || !strings.Contains(string(hook), "chmod 0755 /opt/orbit /opt/orbit/bin ") {
+		t.Error("postinstall must repair the modes of existing installation directories")
 	}
 }
 
