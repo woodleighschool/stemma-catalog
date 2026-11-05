@@ -7,6 +7,6 @@ inputs:
     declaration: bce4ed5e78e6c91e0cd711908a02cd8314ae06ca16e7eac8e840f9069c7f93ee
     observation: {}
     content:
-      sha256: ecf1b28bf4e8e8b3434a844eb915118935e6525768efe3dbe622c2a20cba9ec9
+      sha256: 55edacd348b4c1c9b291dab19e4665929c7a127c013d9625970be924f893273f
       filename: googlechromestandaloneenterprise64.msi
       mode: 420

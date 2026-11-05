@@ -27,18 +27,18 @@ inputs:
     resolver_version: "1"
     declaration: efeed9deaeaa488a95b12616d6e17ee7b1fcdef1502af16275731a525d53c02c
     observation:
-      length: 16670843
-      sha512: a673a715de9dff3bd13e43e676fe8cadba91dc1b18f3062ce6ff1f867cb94e498b59eaac9ad09277d506ccbae244df866f91031ed08c7a0a9b0b136e62d1c6a2
-      target: osqueryd/macos-app/5.24.0/osqueryd.app.tar.gz
-      version: 5.24.0
+      length: 16548271
+      sha512: a7e0cd9c5a4f50c5e7025c5e7a5a05792e527bb2da4da15eea19ab23c4900fb8d05ed4a1b01b74d5d9845dc1aaaee0a9ff5ced8c2883c7d20bb49597a2745864
+      target: osqueryd/macos-app/5.24.1/osqueryd.app.tar.gz
+      version: 5.24.1
     content:
-      sha256: a132f7fe93c3e030c987af82663026c8df4840a2bec71886a894f435da6e11cb
+      sha256: f4b3646a2c098206ad14c8a5511cec983840e379803a26d066a5acc9290c3de7
       filename: osqueryd.app.tar.gz
       mode: 384
-    input_version: 5.24.0
+    input_version: 5.24.1
     evidence:
       fleetd:
-        length: 16670843
-        sha512: a673a715de9dff3bd13e43e676fe8cadba91dc1b18f3062ce6ff1f867cb94e498b59eaac9ad09277d506ccbae244df866f91031ed08c7a0a9b0b136e62d1c6a2
-        target: osqueryd/macos-app/5.24.0/osqueryd.app.tar.gz
-        version: 5.24.0
+        length: 16548271
+        sha512: a7e0cd9c5a4f50c5e7025c5e7a5a05792e527bb2da4da15eea19ab23c4900fb8d05ed4a1b01b74d5d9845dc1aaaee0a9ff5ced8c2883c7d20bb49597a2745864
+        target: osqueryd/macos-app/5.24.1/osqueryd.app.tar.gz
+        version: 5.24.1

@@ -8,6 +8,6 @@ inputs:
     observation:
       url: https://dqdcd2e022x79.cloudfront.net/Downloads/FXMathManifest.pkg
     content:
-      sha256: 228eb1f7433830cc2188d15aee65c95f0d097c89922c9d1b357ea5367530e956
+      sha256: ca92af8dfd05d34b54d15867317b83bc24cbfc3580ad274610cec140da32a308
       filename: FXMathManifest.pkg
       mode: 420
