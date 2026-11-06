@@ -27,6 +27,14 @@ run = "stemma schema --output-file stemma.schema.json"
 description = "Compile the agentic workflows"
 run = "gh-aw compile"
 
+[tasks.validate]
+description = "Validate catalog and lock declarations without runtime inputs"
+run = "stemma validate --locked"
+
+[tasks.prepare]
+description = "Prepare resources locally with their required inputs"
+run = "stemma prepare"
+
 [tasks.format]
 run = "oxfmt"
 

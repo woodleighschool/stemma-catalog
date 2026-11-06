@@ -6,9 +6,6 @@ on:
   push:
     branches:
       - main
-    paths-ignore:
-      - "**.md"
-      - ".release-please-manifest.json"
   pull_request:
     branches:
       - main
@@ -23,19 +20,15 @@ permissions:
   contents: read
 
 env:
+  MISE_NO_ENV: "1"
   MISE_NO_HOOKS: "1"
   MISE_TASK_RUN_AUTO_INSTALL: "false"
 
 jobs:
-  workflow-lint:
-    if: >-
-      ${{ !(startsWith(github.head_ref, 'release-please--')
-      && github.event.pull_request.head.repo.full_name == github.repository) }}
-    name: Workflow Lint
+  checks:
+    name: Repository Checks
     runs-on: ubuntu-26.04
     timeout-minutes: 15
-    permissions:
-      contents: read
     steps:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -45,55 +38,17 @@ jobs:
       - name: Setup Mise
         uses: jdx/mise-action@f5be966e4a917d54244728e6a5fdcd1d93a35e6c # v5.2.6
         with:
-          install_args: --locked jactionlint
+          install_args: --locked jactionlint oxfmt github:github/gh-aw
+
+      - name: Check formatting
+        run: mise run fmt-check
 
       - name: Lint workflows
         env:
           GH_TOKEN: ${{ github.token }}
         run: jactionlint --online --shellcheck= --format github
 
-  format:
-    if: >-
-      ${{ !(startsWith(github.head_ref, 'release-please--')
-      && github.event.pull_request.head.repo.full_name == github.repository) }}
-    name: Format
-    runs-on: ubuntu-26.04
-    timeout-minutes: 10
-    steps:
-      - name: Checkout
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-        with:
-          persist-credentials: false
-
-      - name: Setup Mise
-        uses: jdx/mise-action@f5be966e4a917d54244728e6a5fdcd1d93a35e6c # v5.2.6
-        with:
-          install_args: --locked oxfmt
-
-      - name: Check formatting
-        run: mise run fmt-check
-
-  agentic-workflows:
-    if: >-
-      ${{ !(startsWith(github.head_ref, 'release-please--')
-      && github.event.pull_request.head.repo.full_name == github.repository) }}
-    name: Agentic Workflows
-    runs-on: ubuntu-26.04
-    timeout-minutes: 10
-    steps:
-      - name: Checkout
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-        with:
-          persist-credentials: false
-
-      - name: Setup Mise
-        uses: jdx/mise-action@f5be966e4a917d54244728e6a5fdcd1d93a35e6c # v5.2.6
-        with:
-          install_args: --locked github:github/gh-aw
-
-      # The lock files are generated, so a gh-aw bump or a source edit has to
-      # come with a recompile.
-      - name: Compile
+      - name: Compile agentic workflows
         env:
           GH_TOKEN: ${{ github.token }}
         run: mise run aw
@@ -101,21 +56,26 @@ jobs:
       - name: Check compiled workflows
         run: git diff --exit-code -- .github/workflows .github/aw
 
+  catalog:
+    name: Catalog
+    uses: $/.github/workflows/catalog.yaml
+
+  plugins:
+    name: Plugins
+    uses: $/.github/workflows/plugins.yaml
+
   status:
     if: ${{ !cancelled() }}
     name: Build Success
     needs:
-      - workflow-lint
-      - format
-      - agentic-workflows
+      - checks
+      - catalog
+      - plugins
     runs-on: ubuntu-26.04
-    timeout-minutes: 15
+    timeout-minutes: 5
     permissions: {}
     steps:
-      - name: Any jobs failed?
-        if: ${{ contains(needs.*.result, 'failure') || contains(needs.*.result, 'cancelled') }}
-        run: exit 1
-
-      - name: All jobs passed or skipped?
-        if: ${{ !(contains(needs.*.result, 'failure') || contains(needs.*.result, 'cancelled')) }}
-        run: echo "All jobs passed or skipped" && echo "${{ toJSON(needs.*.result) }}"
+      - name: Check results
+        env:
+          RESULTS: ${{ toJSON(needs) }}
+        run: jq -e 'all(.[]; .result == "success")' <<<"$RESULTS"

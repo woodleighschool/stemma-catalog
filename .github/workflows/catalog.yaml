@@ -3,59 +3,31 @@
 name: Catalog
 
 on:
-  pull_request:
-    paths:
-      - software/**
-      - icons/**
-      - stemma.yaml
-      - stemma.lock/**
-      - .mise/**
-      - .github/workflows/catalog.yaml
-
-concurrency:
-  group: ${{ github.workflow }}-${{ github.event.pull_request.number }}
-  cancel-in-progress: true
+  workflow_call:
 
 permissions:
   contents: read
 
 env:
+  MISE_NO_ENV: "1"
   MISE_NO_HOOKS: "1"
   MISE_TASK_RUN_AUTO_INSTALL: "false"
 
 jobs:
   check:
-    name: Check
+    name: Validate
     runs-on: ubuntu-26.04
-    timeout-minutes: 60
-    permissions:
-      contents: read
-      packages: read
+    timeout-minutes: 10
     steps:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          fetch-depth: 0
           persist-credentials: false
 
       - name: Setup Mise
         uses: jdx/mise-action@f5be966e4a917d54244728e6a5fdcd1d93a35e6c # v5.2.6
         with:
-          cache: false
           install_args: --locked github:woodleighschool/stemma
 
-      # Stemma pulls plugin images with Docker credentials.
-      - name: Log in to GHCR
-        uses: docker/login-action@81c6f93d4bc991e510b342a00b419b3bb4efc5c6 # v4.7.0
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Prepare changes
-        run: stemma prepare --changed-since "$BASE"
-        env:
-          BASE: ${{ github.event.pull_request.base.sha }}
-
-      - name: Validate
-        run: stemma validate
+      - name: Validate catalog and lock declarations
+        run: mise run validate

@@ -3,32 +3,13 @@
 name: Plugins
 
 on:
-  push:
-    branches:
-      - main
-    paths:
-      - plugins/**
-      - .mise/**
-      - LICENSE
-      - .github/workflows/plugins.yaml
-      - .github/workflows/release.yaml
-  pull_request:
-    paths:
-      - plugins/**
-      - .mise/**
-      - LICENSE
-      - .github/workflows/plugins.yaml
-      - .github/workflows/release.yaml
-  workflow_dispatch:
-
-concurrency:
-  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
-  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+  workflow_call:
 
 permissions:
   contents: read
 
 env:
+  MISE_NO_ENV: "1"
   MISE_NO_HOOKS: "1"
   MISE_TASK_RUN_AUTO_INSTALL: "false"
 
@@ -36,10 +17,15 @@ jobs:
   check:
     name: ${{ matrix.plugin }}
     strategy:
+      fail-fast: false
       matrix:
         plugin: [downloads, fleetd]
     runs-on: ubuntu-26.04
     timeout-minutes: 20
+    defaults:
+      run:
+        shell: bash
+        working-directory: plugins/${{ matrix.plugin }}
     steps:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -49,28 +35,40 @@ jobs:
       - name: Setup Mise
         uses: jdx/mise-action@f5be966e4a917d54244728e6a5fdcd1d93a35e6c # v5.2.6
         with:
-          cache: false
           experimental: true
           working_directory: plugins/${{ matrix.plugin }}
-          install_args: --locked go golangci-lint go:golang.org/x/vuln/cmd/govulncheck goreleaser
+          install_args: --locked go golangci-lint go:golang.org/x/vuln/cmd/govulncheck
+
+      - name: Resolve Go cache
+        id: go-cache
+        run: |
+          echo "build=$(go env GOCACHE)" >> "$GITHUB_OUTPUT"
+          echo "modules=$(go env GOMODCACHE)" >> "$GITHUB_OUTPUT"
+          echo "version=$(go env GOVERSION)" >> "$GITHUB_OUTPUT"
+
+      - name: Cache Go modules and build
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: |
+            ${{ steps.go-cache.outputs.build }}
+            ${{ steps.go-cache.outputs.modules }}
+          key: ${{ runner.os }}-${{ runner.arch }}-go-${{ steps.go-cache.outputs.version }}-${{ hashFiles(format('plugins/{0}/go.sum', matrix.plugin)) }}
+          restore-keys: ${{ runner.os }}-${{ runner.arch }}-go-
 
       - name: Check formatting
-        run: mise run //plugins/${{ matrix.plugin }}:fmt-check
+        run: mise run fmt-check
 
       - name: Check module tidiness
-        run: mise run //plugins/${{ matrix.plugin }}:tidy-check
+        run: mise run tidy-check
 
       - name: Lint
-        run: mise run //plugins/${{ matrix.plugin }}:lint
+        run: mise run lint
 
       - name: Test
-        run: mise run //plugins/${{ matrix.plugin }}:test
+        run: mise run test
 
       - name: Build
-        run: mise run //plugins/${{ matrix.plugin }}:build
-
-      - name: Validate packaging
-        run: mise run //plugins/${{ matrix.plugin }}:release-check
+        run: mise run build
 
       - name: Check vulnerabilities
-        run: mise run //plugins/${{ matrix.plugin }}:vulncheck
+        run: mise run vulncheck
