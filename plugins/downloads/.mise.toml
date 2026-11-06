@@ -25,10 +25,6 @@ run = "go build -trimpath -o build/plugin ./cmd/plugin"
 description = "Run plugin checks"
 run = ["go vet ./...", "go test -race -count=1 ./..."]
 
-[tasks.notices]
-description = "Collect dependency licenses and notices"
-run = "go-licenses save ./cmd/plugin --save_path third_party_licenses --ignore github.com/woodleighschool/stemma-catalog/plugins/downloads --force"
-
 [tasks.tidy]
 description = "Tidy the plugin module"
 run = "go mod tidy"
