@@ -1,6 +1,6 @@
 {
   $schema: "https://docs.renovatebot.com/renovate-schema.json",
-  extends: ["local>woodleighschool/renovate-config"],
+  extends: ["local>woodleighschool/.github:renovate-config"],
   // The central regeneration workflow commits compiled gh-aw output as Woodmin.
   gitIgnoredAuthors: ["225126206+woodmin[bot]@users.noreply.github.com"],
   postUpdateOptions: ["gomodTidy", "gomodUpdateImportPaths"],
