@@ -6,14 +6,14 @@ inputs:
     resolver_version: "2"
     declaration: e039d70e6a2f4341d89eb308e775336f36e362a41d8f0ee7460dcb1560bbd021
     observation:
-      asset_id: 602942625
-      filename: SafeExamBrowser-3.7.1.1.dmg
-      release: 3.7.1.1
-      release_id: 400748350
-      sha256: 85e774fdc27bba02f0233e5f9ca5b07c43d92058cac44ce666dcca4f68f192ab
-      url: https://github.com/SafeExamBrowser/seb-mac/releases/download/3.7.1.1/SafeExamBrowser-3.7.1.1.dmg
+      asset_id: 709104759
+      filename: SafeExamBrowser-3.7.2.dmg
+      release: 3.7.2
+      release_id: 433772528
+      sha256: a3e1936174a3e75bbe013f5aaf8a9af9d66c3a6d6ddaced608d0223837f0a8ab
+      url: https://github.com/SafeExamBrowser/seb-mac/releases/download/3.7.2/SafeExamBrowser-3.7.2.dmg
     content:
-      sha256: 85e774fdc27bba02f0233e5f9ca5b07c43d92058cac44ce666dcca4f68f192ab
-      filename: SafeExamBrowser-3.7.1.1.dmg
+      sha256: a3e1936174a3e75bbe013f5aaf8a9af9d66c3a6d6ddaced608d0223837f0a8ab
+      filename: SafeExamBrowser-3.7.2.dmg
       mode: 420
-    input_version: 3.7.1.1
+    input_version: 3.7.2

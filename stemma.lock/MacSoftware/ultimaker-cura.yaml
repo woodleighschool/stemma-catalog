@@ -6,14 +6,14 @@ inputs:
     resolver_version: "2"
     declaration: 413ad65148d49a2399d6f9ad9173709ed525bb8b43cf9c8253ae662040d3a1eb
     observation:
-      asset_id: 431951372
-      filename: UltiMaker-Cura-5.13.0-macos-ARM64.dmg
-      release: 5.13.0
-      release_id: 330225040
-      sha256: 1483806486a19728bc0f363f847d75be3f179ea43c7f074bfc327f5b5c6e05ad
-      url: https://github.com/Ultimaker/Cura/releases/download/5.13.0/UltiMaker-Cura-5.13.0-macos-ARM64.dmg
+      asset_id: 713455489
+      filename: UltiMaker-Cura-5.14.0-macos-ARM64.dmg
+      release: 5.14.0
+      release_id: 435020946
+      sha256: b517488218c134ef36a7845540dd0778205ffedb24f83f0ee41f67423ffcbf21
+      url: https://github.com/Ultimaker/Cura/releases/download/5.14.0/UltiMaker-Cura-5.14.0-macos-ARM64.dmg
     content:
-      sha256: 1483806486a19728bc0f363f847d75be3f179ea43c7f074bfc327f5b5c6e05ad
-      filename: UltiMaker-Cura-5.13.0-macos-ARM64.dmg
+      sha256: b517488218c134ef36a7845540dd0778205ffedb24f83f0ee41f67423ffcbf21
+      filename: UltiMaker-Cura-5.14.0-macos-ARM64.dmg
       mode: 420
-    input_version: 5.13.0
+    input_version: 5.14.0
