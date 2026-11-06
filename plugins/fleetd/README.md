@@ -52,9 +52,8 @@ For local development, select `path: plugins/fleetd/build` in the Project. Rebui
 and run `stemma plugins update fleetd` after source changes. Tests use synthetic
 signed metadata and inert binaries.
 
-Run the plugin's `test`, `lint`, `vulncheck` and `release-check` Mise tasks for
-verification. `snapshot` creates portable executables and bundles for macOS,
-Linux and Windows on amd64 and arm64.
+Run `mise run test`, `mise run lint` and `mise run vulncheck` from the plugin directory.
+The release workflow builds portable bundles for macOS, Linux and Windows on amd64 and arm64.
 
 ## 📚 Upstream
 
