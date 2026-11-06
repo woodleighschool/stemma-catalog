@@ -37,10 +37,6 @@ env:
 engine: copilot
 max-daily-ai-credits: -1
 
-# actionlint doesn't know the concurrency queue key yet.
-features:
-  group-concurrency-queue: false
-
 skills:
   - skills/stemma-catalog
 
