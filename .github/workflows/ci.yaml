@@ -45,7 +45,6 @@ jobs:
       - name: Setup Mise
         uses: jdx/mise-action@f5be966e4a917d54244728e6a5fdcd1d93a35e6c # v5.2.6
         with:
-          experimental: true
           install_args: --locked jactionlint
 
       - name: Lint workflows
@@ -69,7 +68,6 @@ jobs:
       - name: Setup Mise
         uses: jdx/mise-action@f5be966e4a917d54244728e6a5fdcd1d93a35e6c # v5.2.6
         with:
-          experimental: true
           install_args: --locked oxfmt
 
       - name: Check formatting
@@ -91,7 +89,6 @@ jobs:
       - name: Setup Mise
         uses: jdx/mise-action@f5be966e4a917d54244728e6a5fdcd1d93a35e6c # v5.2.6
         with:
-          experimental: true
           install_args: --locked github:github/gh-aw
 
       # The lock files are generated, so a gh-aw bump or a source edit has to

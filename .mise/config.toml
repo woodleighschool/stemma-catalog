@@ -20,7 +20,7 @@ minimum_release_age_excludes = ["github:woodleighschool/stemma"]
 config_roots = ["plugins/*"]
 
 [tasks.schema]
-description = "Generate the editor schema using the pinned Stemma release"
+description = "Generate the editor schema with the pinned Stemma CLI"
 run = "stemma schema --output-file stemma.schema.json"
 
 [tasks.aw]
@@ -28,11 +28,9 @@ description = "Compile the agentic workflows"
 run = "gh-aw compile"
 
 [tasks.format]
-description = "Format YAML, JSON and Markdown"
 run = "oxfmt"
 
 [tasks.fmt-check]
-description = "Check YAML, JSON and Markdown formatting"
 run = "oxfmt --check"
 
 [hooks]
