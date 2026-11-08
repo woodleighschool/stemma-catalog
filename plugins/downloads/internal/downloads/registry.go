@@ -54,8 +54,7 @@ func configured[C any](client *http.Client, name string, discover func(context.C
 				release.URL = ""
 			}
 			observation, err := json.Marshal(release)
-			// A vendor version names one build, so it always downloads the same bytes.
-			return plugin.ResolveResponse{Observation: observation, Version: release.Version, Immutable: release.Version != ""}, err
+			return plugin.ResolveResponse{Observation: observation, Version: release.Version}, err
 		}
 		var release discovery.Release
 		if err := json.Unmarshal(request.Observation, &release); err != nil {

@@ -166,7 +166,7 @@ func TestSignedReplayRejectsInvalidObservationsBeforeRequestingAURL(t *testing.T
 	}
 }
 
-func TestDiscoveryRecordsVersionWithoutDownloadInstructions(t *testing.T) {
+func TestVersionedDiscoveryRemainsMutable(t *testing.T) {
 	resolve := configured(Client(), "fixture", func(context.Context, *http.Client, struct{}) (discovery.Release, error) {
 		return discovery.Release{URL: "https://example.test/app.pkg", Filename: "app.pkg", Version: "1.2.3"}, nil
 	}, nil)
@@ -174,7 +174,7 @@ func TestDiscoveryRecordsVersionWithoutDownloadInstructions(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	if result.Version != "1.2.3" || !result.Immutable || result.Download != nil || result.Artifact.Path != "" {
+	if result.Version != "1.2.3" || result.Immutable || result.Download != nil || result.Artifact.Path != "" {
 		t.Fatalf("discovery=%+v", result)
 	}
 }
