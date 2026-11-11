@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.3.20](https://github.com/woodleighschool/stemma-catalog/compare/v0.3.19...v0.3.20) (2026-11-11)
+
+
+### Bug Fixes
+
+* **downloads:** keep versioned vendor URLs mutable ([7caf822](https://github.com/woodleighschool/stemma-catalog/commit/7caf822993b99420466318d596bb844c6ffd782a))
+* **go:** update module github.com/sigstore/sigstore (v1.11.2 → v1.11.3) ([#249](https://github.com/woodleighschool/stemma-catalog/issues/249)) ([f3a6074](https://github.com/woodleighschool/stemma-catalog/commit/f3a607422b876f49ba8247594bac41d4b4f9a2ba))
+* **go:** update module github.com/woodleighschool/stemma (v0.12.2 → v0.12.3) ([#246](https://github.com/woodleighschool/stemma-catalog/issues/246)) ([0630cf0](https://github.com/woodleighschool/stemma-catalog/commit/0630cf081d33b296909b965aaac5a2b598d57124))
+
 ## [0.3.19](https://github.com/woodleighschool/stemma-catalog/compare/v0.3.18...v0.3.19) (2026-11-05)
 
 
