@@ -26,27 +26,27 @@ url_api = "https://api.github.com/repos/github/gh-aw/releases/assets/730089149"
 provenance = "github-attestations"
 
 [[tools."github:woodleighschool/stemma"]]
-version = "0.12.3"
+version = "0.12.4"
 backend = "github:woodleighschool/stemma"
-specifiers = ["v0.12.3"]
+specifiers = ["v0.12.4"]
 
 [tools."github:woodleighschool/stemma"."platforms.linux-arm64"]
-checksum = "sha256:e77faaf666580c7476c80b8fe938ed2b646766e4076605e9dc83d42ab72a55a9"
+checksum = "sha256:f1b440c0841644b0e7b36d9d5366cc4018e1b804a37fd4aa8a091968094b35e2"
 checksum_source = "mise-versions"
-url = "https://github.com/woodleighschool/stemma/releases/download/v0.12.3/stemma_0.12.3_linux_arm64.tar.gz"
-url_api = "https://api.github.com/repos/woodleighschool/stemma/releases/assets/711890299"
+url = "https://github.com/woodleighschool/stemma/releases/download/v0.12.4/stemma_0.12.4_linux_arm64.tar.gz"
+url_api = "https://api.github.com/repos/woodleighschool/stemma/releases/assets/735484961"
 
 [tools."github:woodleighschool/stemma"."platforms.linux-x64"]
-checksum = "sha256:72eeb209f9eae9c8ff63cc547ad799a60541181ad7236490504d6ba19b847f59"
+checksum = "sha256:ed9a629b8a55b2d43b76b3d81fcd88725b1d1d6cd1466a1f110fbaa15ce77261"
 checksum_source = "mise-versions"
-url = "https://github.com/woodleighschool/stemma/releases/download/v0.12.3/stemma_0.12.3_linux_amd64.tar.gz"
-url_api = "https://api.github.com/repos/woodleighschool/stemma/releases/assets/711890332"
+url = "https://github.com/woodleighschool/stemma/releases/download/v0.12.4/stemma_0.12.4_linux_amd64.tar.gz"
+url_api = "https://api.github.com/repos/woodleighschool/stemma/releases/assets/735484963"
 
 [tools."github:woodleighschool/stemma"."platforms.macos-arm64"]
-checksum = "sha256:c905aca7da6b6f149386b13a69ba0ec60767c12d997554f16ddc9550fd1cfcb0"
+checksum = "sha256:062fcaf481396b5c1fea09ec2263da1dd30b926e44f0c168ae1e72eedf5c89cf"
 checksum_source = "mise-versions"
-url = "https://github.com/woodleighschool/stemma/releases/download/v0.12.3/stemma_0.12.3_darwin_arm64.tar.gz"
-url_api = "https://api.github.com/repos/woodleighschool/stemma/releases/assets/711890179"
+url = "https://github.com/woodleighschool/stemma/releases/download/v0.12.4/stemma_0.12.4_darwin_arm64.tar.gz"
+url_api = "https://api.github.com/repos/woodleighschool/stemma/releases/assets/735485046"
 
 [[tools.jactionlint]]
 version = "2.5.0"
