@@ -7,6 +7,6 @@ inputs:
     declaration: f8256e4340990b785cbabaa4fb0861cee091bfa32de2a0b8cb82b21b03d8cbb3
     observation: {}
     content:
-      sha256: 632913b34d7806ff0900632dba70b70d9852c82fee2a76973d36ca4d838d0169
+      sha256: 34b6cfbde780a236ec5c1c1a9300e231ad81acb454fc569f409513a7a6525bef
       filename: GoogleChrome.pkg
       mode: 420

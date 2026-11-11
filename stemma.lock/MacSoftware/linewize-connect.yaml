@@ -7,6 +7,6 @@ inputs:
     declaration: ef23608b62eac75c1672622a7af67f28b8b6b1fd9a52cee782861f64499ea16b
     observation: {}
     content:
-      sha256: 4f3e405718c08e4764e41404fb03c5a9b82e799221bbd6883cb1970c5c3df69b
+      sha256: 244a95f31e5d7837eea5e833fc6fd3e382deab8fa516df6c1018912747133dbc
       filename: Connect Installer.pkg
       mode: 420

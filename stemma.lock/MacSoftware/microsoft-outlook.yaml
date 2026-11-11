@@ -6,14 +6,14 @@ inputs:
     resolver_version: "2"
     declaration: af7038425c6324fab22b3e4ac5c48e355b9bebea80e35a30bcd0da726d55ebd5
     observation:
-      filename: Microsoft_Outlook_16.114.26110224_Installer.pkg
-      url: https://res.public.onecdn.static.microsoft/mro1cdnstorage/C1297A47-86C4-4C1F-97FA-950631F94777/MacAutoupdate/Microsoft_Outlook_16.114.26110224_Installer.pkg
-      version: 16.114.26110224
+      filename: Microsoft_Outlook_16.115.26110837_Installer.pkg
+      url: https://res.public.onecdn.static.microsoft/mro1cdnstorage/C1297A47-86C4-4C1F-97FA-950631F94777/MacAutoupdate/Microsoft_Outlook_16.115.26110837_Installer.pkg
+      version: 16.115.26110837
     content:
-      sha256: da604f32639db5446a8464d41f9fed993174a483710811d7bfc978f2f64c637e
-      filename: Microsoft_Outlook_16.114.26110224_Installer.pkg
+      sha256: 89a5f392de320615c0940716d19778d8c1ef3a012130147aef87d000a0c25675
+      filename: Microsoft_Outlook_16.115.26110837_Installer.pkg
       mode: 420
-    input_version: 16.114.26110224
+    input_version: 16.115.26110837
     evidence:
       microsoft:
-        version: 16.114.26110224
+        version: 16.115.26110837

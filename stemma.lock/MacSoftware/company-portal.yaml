@@ -10,6 +10,6 @@ inputs:
       url: https://res.public.onecdn.static.microsoft/mro1cdnstorage/C1297A47-86C4-4C1F-97FA-950631F94777/MacAutoupdate/CompanyPortal-Installer.pkg
       version: ""
     content:
-      sha256: 08f18b9b1c0db678ef80b5e560bb29aa45074218b56685765a6d964eb3dda9f7
+      sha256: 6e64ca365fce10bb5927bebf71ec0d13a223bb50b8e95d2550a3be0352ab2b55
       filename: CompanyPortal-Installer.pkg
       mode: 420

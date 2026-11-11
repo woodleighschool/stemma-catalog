@@ -6,10 +6,10 @@ inputs:
     resolver_version: "2"
     declaration: 3427a8c8405dd7b54b536bd3b91d66a0f110396fe26ac6ed7e9e3bc9b1a6b334
     observation:
-      filename: Microsoft_365_and_Office_16.114.26110224_BusinessPro_Installer.pkg
-      url: https://res.public.onecdn.static.microsoft/mro1cdnstorage/C1297A47-86C4-4C1F-97FA-950631F94777/MacAutoupdate/Microsoft_365_and_Office_16.114.26110224_BusinessPro_Installer.pkg
+      filename: Microsoft_365_and_Office_16.115.26110837_BusinessPro_Installer.pkg
+      url: https://res.public.onecdn.static.microsoft/mro1cdnstorage/C1297A47-86C4-4C1F-97FA-950631F94777/MacAutoupdate/Microsoft_365_and_Office_16.115.26110837_BusinessPro_Installer.pkg
       version: ""
     content:
-      sha256: 12b47dafe8206427b7cbe2a50c6ade9cee421a0bd2e1af54f4b6308480d8eb4c
-      filename: Microsoft_365_and_Office_16.114.26110224_BusinessPro_Installer.pkg
+      sha256: 1547112b2d8d59297a56fedf5616f4a92dfbe9a928b13f4aa0628532a63a95c4
+      filename: Microsoft_365_and_Office_16.115.26110837_BusinessPro_Installer.pkg
       mode: 420

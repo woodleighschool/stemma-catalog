@@ -6,14 +6,14 @@ inputs:
     resolver_version: "2"
     declaration: ca8b9ed77f550e68e6d68a801761c682033798b1815d24d56e1d71851e2c6085
     observation:
-      filename: blender-5.2.3-macos-arm64.dmg
-      sha256: acc05374485a272342d4b323c15ac01953e7f697da2f1bad8af9c3bf087267a4
-      url: https://download.blender.org/release/Blender5.2/blender-5.2.3-macos-arm64.dmg
+      filename: blender-5.3.0-macos-arm64.dmg
+      sha256: 2d802b54766741e612cead50b03ebbc8eb64dadc71eda932573d256b8a784720
+      url: https://download.blender.org/release/Blender5.3/blender-5.3.0-macos-arm64.dmg
     content:
-      sha256: acc05374485a272342d4b323c15ac01953e7f697da2f1bad8af9c3bf087267a4
-      filename: blender-5.2.3-macos-arm64.dmg
+      sha256: 2d802b54766741e612cead50b03ebbc8eb64dadc71eda932573d256b8a784720
+      filename: blender-5.3.0-macos-arm64.dmg
       mode: 420
-    input_version: 5.2.3
+    input_version: 5.3.0
     evidence:
       homebrew.cask:
         artifacts:
@@ -23,4 +23,4 @@ inputs:
         macos: "27"
         name: blender
         target_architecture: arm64
-        version: 5.2.3
+        version: 5.3.0

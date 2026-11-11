@@ -6,14 +6,14 @@ inputs:
     resolver_version: "2"
     declaration: e1169584a74b40d552ccde05c15d68a488336719ef441658439aba4077accea7
     observation:
-      filename: Microsoft_OneNote_16.114.26110224_Updater.pkg
-      url: https://res.public.onecdn.static.microsoft/mro1cdnstorage/C1297A47-86C4-4C1F-97FA-950631F94777/MacAutoupdate/Microsoft_OneNote_16.114.26110224_Updater.pkg
-      version: 16.114.26110224
+      filename: Microsoft_OneNote_16.115.26110837_Updater.pkg
+      url: https://res.public.onecdn.static.microsoft/mro1cdnstorage/C1297A47-86C4-4C1F-97FA-950631F94777/MacAutoupdate/Microsoft_OneNote_16.115.26110837_Updater.pkg
+      version: 16.115.26110837
     content:
-      sha256: 7c2d3d35c011d63ef8dced8b5370fcf31eb6f1899cba9e682571fcb3559a12c4
-      filename: Microsoft_OneNote_16.114.26110224_Updater.pkg
+      sha256: b3285547848c084afb6ffec4f1e374b12e6225ff6d6824f802079e516707fbb3
+      filename: Microsoft_OneNote_16.115.26110837_Updater.pkg
       mode: 420
-    input_version: 16.114.26110224
+    input_version: 16.115.26110837
     evidence:
       microsoft:
-        version: 16.114.26110224
+        version: 16.115.26110837

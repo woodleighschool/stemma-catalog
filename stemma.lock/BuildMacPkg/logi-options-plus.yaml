@@ -7,6 +7,6 @@ inputs:
     declaration: c33bf724daa7fc1520ebefd3e3e3cdbcac7dcce8da132b537fe4c9b0a9d01d4e
     observation: {}
     content:
-      sha256: 9365cded29f058c12ac97c78dc2bdaec50860cac93fc4e5fe2e10e98a0691fe4
+      sha256: b1b1ddb0805891f0f0ed88b24cde0718cdac0d62b3ee7b520105e8ad53b19573
       filename: logioptionsplus_installer_offline.zip
       mode: 420
