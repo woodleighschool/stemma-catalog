@@ -4,44 +4,61 @@ apiVersion: stemma/v1alpha1
 kind: MacSoftware
 metadata:
   name: linewize-connect
-suspend: true
 spec:
   extends: mac-software
   source:
     url: https://qoria-mza-installers.linewize.net/Connect%20Installer.pkg
   signatures:
     - signer: apple:developer-id:5S77G864UH # FAMILY ZONE CYBER SAFETY LIMITED
+  minimum_os: "14.0"
   icon: linewize-connect
   destinations:
+    intune:
+      display_name: Linewize Connect
+      description: &description Linewize Connect is a digital safety platform for schools,
+        combining web filtering, online activity reporting and classroom management tools.
+      publisher: &publisher Qoria
+      developer: *publisher
+      information_url: https://help.linewize.com/hc/en-gb/categories/5777169631132-Linewize-Connect
+      categories:
+        - Computer Management
+      ignore_version_detection: true
+      pre_install_script: |-
+        #!/bin/zsh --no-rcs
+
+        /usr/bin/arch -x86_64 /usr/bin/true 2> /dev/null && exit 0
+        /usr/sbin/softwareupdate --install-rosetta --agree-to-license
+      assignments:
+        - intent: required
+          group: ac987f08-8b83-4a09-ba53-5f8e244ce206 # Intune - SAC Macbooks
     woodstar:
       pkginfo:
         category: Security
-        description: Linewize Connect is the endpoint agent used by Linewize Filter to provide
-          filtering and classroom controls.
-        developer: Qoria
-        installcheck_script: |-
-          #!/bin/zsh --no-rcs
-
-          service=/Applications/FamilyZone/MobileZoneAgent/bin/fc-system-service_darwin-amd64
-          [[ -x $service ]] && /usr/bin/pgrep -qf "$service" && exit 1
-          exit 0
+        description: *description
+        developer: *publisher
+        installcheck_script: null
+        minimum_munki_version: "7.0"
         name: Linewize Connect
-        preinstall_script: |-
-          #!/bin/zsh --no-rcs
-
-          app=/Applications/FamilyZone/MobileZoneAgent/bin/Connect.app
-          if [[ -d $app ]]; then
-              /usr/bin/chflags -R noschg "$app"
-          fi
+        preinstall_script: null
+        receipts: []
         requires:
-          - resource:
-              kind: MacSoftware
-              name: linewize-authentication-agent
           - resource:
               kind: MacSoftware
               name: rosetta
         unattended_install: true
         uninstallable: false
+        version_script: |-
+          #!/bin/zsh --no-rcs
+
+          setopt pipefail
+
+          service=/Applications/FamilyZone/MobileZoneAgent/bin/fc-system-service_darwin-amd64
+          [[ -x $service ]] || exit 0
+          "$service" -version | /usr/bin/awk '
+              /^Version: / { version = $2 }
+              /^Revision \(Installer\): / { revision = $3 }
+              END { if (version != "" && revision != "") print version "-" revision }
+          '
       targets:
         include:
           - label_name: All Students
