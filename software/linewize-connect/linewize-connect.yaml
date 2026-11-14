@@ -36,8 +36,12 @@ spec:
         category: Security
         description: *description
         developer: *publisher
-        installcheck_script: null
-        minimum_munki_version: "7.0"
+        installcheck_script: |-
+          #!/bin/zsh --no-rcs
+
+          [[ -x /Applications/FamilyZone/MobileZoneAgent/bin/fc-system-service_darwin-amd64 ]] && exit 1
+          exit 0
+        minimum_munki_version: null
         name: Linewize Connect
         preinstall_script: null
         receipts: []
@@ -47,18 +51,7 @@ spec:
               name: rosetta
         unattended_install: true
         uninstallable: false
-        version_script: |-
-          #!/bin/zsh --no-rcs
-
-          setopt pipefail
-
-          service=/Applications/FamilyZone/MobileZoneAgent/bin/fc-system-service_darwin-amd64
-          [[ -x $service ]] || exit 0
-          "$service" -version | /usr/bin/awk '
-              /^Version: / { version = $2 }
-              /^Revision \(Installer\): / { revision = $3 }
-              END { if (version != "" && revision != "") print version "-" revision }
-          '
+        version_script: null
       targets:
         include:
           - label_name: All Students
