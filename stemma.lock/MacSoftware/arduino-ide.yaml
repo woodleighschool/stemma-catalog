@@ -6,14 +6,14 @@ inputs:
     resolver_version: "2"
     declaration: 8262867d88db19ac710d336985afcb5424160536a6ea26df32860975a062d5c3
     observation:
-      asset_id: 442901582
-      filename: arduino-ide_2.3.10_macOS_arm64.dmg
-      release: 2.3.10
-      release_id: 336751627
-      sha256: 8811860dc8782b6cd6bb0076e9215255849f404b1b9e6f38069fdc4f5c43648e
-      url: https://github.com/arduino/arduino-ide/releases/download/2.3.10/arduino-ide_2.3.10_macOS_arm64.dmg
+      asset_id: 739996411
+      filename: arduino-ide_2.3.11_macOS_arm64.dmg
+      release: 2.3.11
+      release_id: 443136657
+      sha256: bd70d36e125943855c27308c97702d69a7017041741a6f123734300424390bf7
+      url: https://github.com/arduino/arduino-ide/releases/download/2.3.11/arduino-ide_2.3.11_macOS_arm64.dmg
     content:
-      sha256: 8811860dc8782b6cd6bb0076e9215255849f404b1b9e6f38069fdc4f5c43648e
-      filename: arduino-ide_2.3.10_macOS_arm64.dmg
+      sha256: bd70d36e125943855c27308c97702d69a7017041741a6f123734300424390bf7
+      filename: arduino-ide_2.3.11_macOS_arm64.dmg
       mode: 420
-    input_version: 2.3.10
+    input_version: 2.3.11

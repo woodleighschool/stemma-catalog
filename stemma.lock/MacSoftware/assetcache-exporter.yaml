@@ -6,14 +6,14 @@ inputs:
     resolver_version: "2"
     declaration: faa0d255567959117f90f69dbe2ed3b1e2bbcb5f333bd6608b2d2a3d1f71197c
     observation:
-      asset_id: 712566977
-      filename: assetcache-exporter-1.5.0.pkg
-      release: v1.5.0
-      release_id: 434914579
-      sha256: a41b1b51103f6faceaf11b317eecc1aa5b0ee6324d609347bec582df09b6004c
-      url: https://github.com/woodleighschool/assetcache-exporter/releases/download/v1.5.0/assetcache-exporter-1.5.0.pkg
+      asset_id: 735474576
+      filename: assetcache-exporter-1.5.1.pkg
+      release: v1.5.1
+      release_id: 441670088
+      sha256: 0efa6a27a3e878afb2d2d4943b888b3034d1e25cae03affe9b9c2d316bd208fa
+      url: https://github.com/woodleighschool/assetcache-exporter/releases/download/v1.5.1/assetcache-exporter-1.5.1.pkg
     content:
-      sha256: a41b1b51103f6faceaf11b317eecc1aa5b0ee6324d609347bec582df09b6004c
-      filename: assetcache-exporter-1.5.0.pkg
+      sha256: 0efa6a27a3e878afb2d2d4943b888b3034d1e25cae03affe9b9c2d316bd208fa
+      filename: assetcache-exporter-1.5.1.pkg
       mode: 420
-    input_version: v1.5.0
+    input_version: v1.5.1

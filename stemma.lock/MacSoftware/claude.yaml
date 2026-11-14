@@ -6,14 +6,14 @@ inputs:
     resolver_version: "2"
     declaration: efb0fb62c9d24192b7b2fafc09ab5088f781c6f2724d4fe688342ba95aa617d6
     observation:
-      filename: Claude-4948659bec3fefa3bbcc6a838aaba8823c8cc485.zip
-      sha256: 8cb6cd8ea45b81eebfc6352701cf302206673e7bc6eb3cc842e4dca33284db14
-      url: https://downloads.claude.ai/releases/darwin/universal/5.1231.0/Claude-4948659bec3fefa3bbcc6a838aaba8823c8cc485.zip
+      filename: Claude-b1edc63367ca6fb5fa8d5a72604951a71b37dd58.zip
+      sha256: d917b2c62f94e0b1466282f5c51cf47000265b1f507872442f5c282d7e367e3a
+      url: https://downloads.claude.ai/releases/darwin/universal/5.11492.2/Claude-b1edc63367ca6fb5fa8d5a72604951a71b37dd58.zip
     content:
-      sha256: 8cb6cd8ea45b81eebfc6352701cf302206673e7bc6eb3cc842e4dca33284db14
-      filename: Claude-4948659bec3fefa3bbcc6a838aaba8823c8cc485.zip
+      sha256: d917b2c62f94e0b1466282f5c51cf47000265b1f507872442f5c282d7e367e3a
+      filename: Claude-b1edc63367ca6fb5fa8d5a72604951a71b37dd58.zip
       mode: 420
-    input_version: 5.1231.0,4948659bec3fefa3bbcc6a838aaba8823c8cc485
+    input_version: 5.11492.2,b1edc63367ca6fb5fa8d5a72604951a71b37dd58
     evidence:
       homebrew.cask:
         artifacts:
@@ -23,4 +23,4 @@ inputs:
         macos: "27"
         name: claude
         target_architecture: arm64
-        version: 5.1231.0,4948659bec3fefa3bbcc6a838aaba8823c8cc485
+        version: 5.11492.2,b1edc63367ca6fb5fa8d5a72604951a71b37dd58

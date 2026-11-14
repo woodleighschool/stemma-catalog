@@ -7,7 +7,7 @@ inputs:
     declaration: bcaf607a6382aaa2572aa49983e94b83640e7b0bdee4f4aabc0bde83ecb812aa
     observation: {}
     content:
-      sha256: 81f4d43b706ee0c279fc3b59222c62374351756dc40743e11a4db79612487bb9
+      sha256: a1c0314aff2dfd9c2cd71dededdd63bca71f85383f85390272728e491426d4c0
       filename: iMovie.app
       tree: true
       mode: 493

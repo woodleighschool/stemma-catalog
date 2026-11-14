@@ -6,10 +6,10 @@ inputs:
     resolver_version: "2"
     declaration: 942bf334b59409af1fb6332da4b905c3d2d14c07f9d49588819a8a712063209a
     observation:
-      filename: Windows_App_11.4.4_installer.pkg
-      url: https://res.public.onecdn.static.microsoft/mro1cdnstorage/C1297A47-86C4-4C1F-97FA-950631F94777/MacAutoupdate/Windows_App_11.4.4_installer.pkg
+      filename: Windows_App_11.4.5_installer.pkg
+      url: https://res.public.onecdn.static.microsoft/mro1cdnstorage/C1297A47-86C4-4C1F-97FA-950631F94777/MacAutoupdate/Windows_App_11.4.5_installer.pkg
       version: ""
     content:
-      sha256: 70041210ec1c40cbcc1913010fb9a7de7e2b0c8d9f336777775789ae65bc9cab
-      filename: Windows_App_11.4.4_installer.pkg
+      sha256: bc7ed3e01cc207c095fdaac8adf328d4d92f47c43ba980a9d5850ddab44688ba
+      filename: Windows_App_11.4.5_installer.pkg
       mode: 420

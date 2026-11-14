@@ -10,7 +10,7 @@ inputs:
       requires_registration: true
       version: "21.2"
     content:
-      sha256: 9511b293abd4996f5b4101c96fbd652bf75fc470df76a54f62fca1dc9ab0d969
+      sha256: 3f0a8ea61081874f06c772b2f07495180a3d5a1b62e1bcfd0c61740fb234be57
       filename: DaVinci_Resolve_21.2_Mac.zip
       mode: 420
     input_version: "21.2"
