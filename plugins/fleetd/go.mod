@@ -4,7 +4,7 @@ go 1.27.3
 
 require (
 	github.com/sigstore/sigstore v1.11.4
-	github.com/theupdateframework/go-tuf/v2 v2.4.2
+	github.com/theupdateframework/go-tuf/v2 v2.5.0
 	github.com/woodleighschool/stemma v0.12.4
 	howett.net/plist v1.0.1
 )
