@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.3.21](https://github.com/woodleighschool/stemma-catalog/compare/v0.3.20...v0.3.21) (2026-11-27)
+
+
+### Bug Fixes
+
+* **go:** update module github.com/sigstore/sigstore (v1.11.3 → v1.11.4) ([#265](https://github.com/woodleighschool/stemma-catalog/issues/265)) ([46ed2b5](https://github.com/woodleighschool/stemma-catalog/commit/46ed2b5e0f8da6eb2159afcebd1802dea8d48fba))
+* **go:** update module github.com/theupdateframework/go-tuf/v2 (v2.4.2 → v2.5.0) ([#268](https://github.com/woodleighschool/stemma-catalog/issues/268)) ([ec10e58](https://github.com/woodleighschool/stemma-catalog/commit/ec10e5866ef94e462b2c1ea5bf698193d9aa7292))
+* **go:** update module github.com/woodleighschool/stemma (v0.12.3 → v0.12.4) ([#256](https://github.com/woodleighschool/stemma-catalog/issues/256)) ([8ef3b44](https://github.com/woodleighschool/stemma-catalog/commit/8ef3b44ddb6400e006a023b1e29a98870f5fadf0))
+
 ## [0.3.20](https://github.com/woodleighschool/stemma-catalog/compare/v0.3.19...v0.3.20) (2026-11-11)
 
 
